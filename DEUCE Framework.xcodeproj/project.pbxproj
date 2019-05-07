@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */; };
+		5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF272C6228249BF00E4486C /* DEUCE_FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF272C5228249BF00E4486C /* DEUCE_FrameworkTests.swift */; };
 		5FF272C8228249BF00E4486C /* DEUCE_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF272BA228249BF00E4486C /* DEUCE_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoaderTests.swift; sourceTree = "<group>"; };
+		5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoader.swift; sourceTree = "<group>"; };
 		5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272BA228249BF00E4486C /* DEUCE_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEUCE_Framework.h; sourceTree = "<group>"; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F349D4422824AE20058AF4F /* Conversations API */ = {
+			isa = PBXGroup;
+			children = (
+				5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */,
+			);
+			path = "Conversations API";
+			sourceTree = "<group>";
+		};
 		5FF272AD228249BF00E4486C = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 		5FF272B9228249BF00E4486C /* DEUCE Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5F349D4422824AE20058AF4F /* Conversations API */,
 				5FF272BA228249BF00E4486C /* DEUCE_Framework.h */,
 				5FF272BB228249BF00E4486C /* Info.plist */,
 			);
@@ -151,6 +162,7 @@
 				TargetAttributes = {
 					5FF272B6228249BF00E4486C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					5FF272BF228249BF00E4486C = {
 						CreatedOnToolsVersion = 10.1;
@@ -197,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +358,7 @@
 		5FF272CC228249BF00E4486C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -362,6 +376,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ios.DEUCE.DEUCE-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -370,6 +385,7 @@
 		5FF272CD228249BF00E4486C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -395,6 +411,7 @@
 		5FF272CF228249BF00E4486C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5M6V4BGSTB;
 				INFOPLIST_FILE = "DEUCE FrameworkTests/Info.plist";
@@ -413,6 +430,7 @@
 		5FF272D0228249BF00E4486C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5M6V4BGSTB;
 				INFOPLIST_FILE = "DEUCE FrameworkTests/Info.plist";
