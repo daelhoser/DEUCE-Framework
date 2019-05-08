@@ -20,7 +20,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.load { _,_  in }
+        sut.load { _ in }
 
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -29,8 +29,8 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
 
-        sut.load { _,_  in }
-        sut.load { _,_  in }
+        sut.load { _  in }
+        sut.load { _  in }
 
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
@@ -39,8 +39,8 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         var capturedErrors = [RemoteConversationsLoader.Error]()
-        sut.load { (error, _) in
-            capturedErrors.append(error!)
+        sut.load { (error) in
+            capturedErrors.append(error)
         }
 
         let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
@@ -56,8 +56,8 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
         samples.forEach { (index, sample) in
             var capturedErrors = [RemoteConversationsLoader.Error]()
-            sut.load { (error, _) in
-                capturedErrors.append(error!)
+            sut.load { (error) in
+                capturedErrors.append(error)
             }
             client.complete(with: sample, at: index)
 
@@ -74,24 +74,24 @@ class RemoteConversationsLoaderTests: XCTestCase {
     }
 
     private class HTTPClientSpy: HTTPClient {
-        private var messages = [(url: URL, completion: (Error?, HTTPURLResponse?) -> Void)]()
+        private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
 
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }
 
-        func get(from url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void) {
+        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
             messages.append((url, completion))
         }
 
         func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(error, nil)
+            messages[index].completion(.failure(error))
         }
 
         func complete(with statusCode: Int, at index: Int = 0) {
-            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)
+            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
 
-            messages[index].completion(nil, response)
+            messages[index].completion(.success(response))
         }
     }
 }
