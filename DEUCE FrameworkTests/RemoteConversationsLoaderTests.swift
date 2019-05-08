@@ -39,10 +39,10 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         client.error = NSError(domain: "Test", code: 0, userInfo: nil)
 
-        var capturedError: RemoteConversationsLoader.Error?
-        sut.load { error in capturedError = error }
+        var capturedErrors = [RemoteConversationsLoader.Error]()
+        sut.load { capturedErrors.append($0) }
 
-        XCTAssertEqual(capturedError, .connectivity)
+        XCTAssertEqual(capturedErrors, [.connectivity])
     }
 
     // MARK: - Helpers
