@@ -28,7 +28,7 @@ public final class RemoteConversationsLoader {
 
     public enum Result: Equatable {
         case success([Conversation])
-        case error(Error)
+        case failure(Error)
     }
     
     public init(url: URL, client: HTTPClient) {
@@ -40,9 +40,9 @@ public final class RemoteConversationsLoader {
         client.get(from: url) { (result) in
             switch result {
             case .success:
-                completion(.error(.invalidData))
+                completion(.failure(.invalidData))
             case .failure:
-                completion(.error(.connectivity))
+                completion(.failure(.connectivity))
             }
         }
     }

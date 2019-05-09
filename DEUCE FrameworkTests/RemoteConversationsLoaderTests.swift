@@ -38,7 +38,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: .error(.connectivity), when: {
+        expect(sut: sut, toCompleteWith: .failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
             client.complete(with: clientError)
         })
@@ -50,7 +50,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500].enumerated()
 
         samples.forEach { (index, sample) in
-            expect(sut: sut, toCompleteWith: .error(.invalidData), when: {
+            expect(sut: sut, toCompleteWith: .failure(.invalidData), when: {
                 client.complete(with: sample, at: index)
             })
         }
@@ -59,11 +59,27 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: .error(.invalidData), when: {
+        expect(sut: sut, toCompleteWith: .failure(.invalidData), when: {
             let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
             client.complete(with: 200, data: invalidJSON)
         })
     }
+
+//    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+//        let (sut, client) = makeSUT()
+//
+//        var items = [Conversation]()
+//
+//        sut.load { (error, items) in
+//
+//        }
+//
+//        let JSON = Data(bytes: "{ \"items\": []".utf8)
+//        client.complete(with: 200, data: JSON)
+//
+//
+//
+//    }
 
     // MARK: - Helpers
 
