@@ -65,21 +65,14 @@ class RemoteConversationsLoaderTests: XCTestCase {
         })
     }
 
-//    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
-//        let (sut, client) = makeSUT()
-//
-//        var items = [Conversation]()
-//
-//        sut.load { (error, items) in
-//
-//        }
-//
-//        let JSON = Data(bytes: "{ \"items\": []".utf8)
-//        client.complete(with: 200, data: JSON)
-//
-//
-//
-//    }
+    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+        let (sut, client) = makeSUT()
+
+        expect(sut: sut, toCompleteWith: .success([]), when: {
+            let JSON = Data(bytes: "{ \"items\": [] }".utf8)
+            client.complete(with: 200, data: JSON)
+        })
+    }
 
     // MARK: - Helpers
 
