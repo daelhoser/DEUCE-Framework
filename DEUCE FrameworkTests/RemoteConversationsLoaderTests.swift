@@ -90,7 +90,34 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
         action()
         XCTAssertEqual(capturedResults, [result], file: file, line: line)
+    }
 
+    private func makeConversation(id: UUID, image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int) -> (model: Conversation, json: [String: Any]) {
+
+        let conversation = Conversation(id: id, image: image, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType)
+
+        let dict: [String: Any?] = [
+            "id": id.uuidString,
+            "image": image?.absoluteString,
+            "message": message,
+            "lastMessageUser": lastMessageUser,
+            "lastMessageTime": lastMessageTime?.debugDescription,
+            "conversationType": conversationType,
+            "groupName": groupName,
+            "contentType": contentType
+            ]
+
+        let reductedDict = dict.reduce(into: [String: Any]()) { (acc, e) in
+            if let value = e.value { acc[e.key] = value }
+        }
+
+        return (conversation, reductedDict)
+    }
+
+    private func makeConversationsJSON(conversations: [[String: Any]]) -> Data {
+        let conversations = [ "Data": conversations]
+
+        return try! JSONSerialization.data(withJSONObject: conversations)
     }
 
     private class HTTPClientSpy: HTTPClient {
