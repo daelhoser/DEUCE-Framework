@@ -25,19 +25,24 @@ public final class RemoteConversationsLoader {
         case connectivity
         case invalidData
     }
+
+    public enum Result: Equatable {
+        case success([Conversation])
+        case error(Error)
+    }
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (Error) -> Void) {
+    public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { (result) in
             switch result {
             case .success:
-                completion(.invalidData)
+                completion(.error(.invalidData))
             case .failure:
-                completion(.connectivity)
+                completion(.error(.connectivity))
             }
         }
     }

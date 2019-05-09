@@ -38,7 +38,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: [.connectivity], when: {
+        expect(sut: sut, toCompleteWith: .error(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
             client.complete(with: clientError)
         })
@@ -50,7 +50,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500].enumerated()
 
         samples.forEach { (index, sample) in
-            expect(sut: sut, toCompleteWith: [.invalidData], when: {
+            expect(sut: sut, toCompleteWith: .error(.invalidData), when: {
                 client.complete(with: sample, at: index)
             })
         }
@@ -59,7 +59,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: [.invalidData], when: {
+        expect(sut: sut, toCompleteWith: .error(.invalidData), when: {
             let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
             client.complete(with: 200, data: invalidJSON)
         })
@@ -73,14 +73,14 @@ class RemoteConversationsLoaderTests: XCTestCase {
         return (sut, client)
     }
 
-    private func expect(sut: RemoteConversationsLoader, toCompleteWith error: [RemoteConversationsLoader.Error], when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
-        var capturedErrors = [RemoteConversationsLoader.Error]()
-        sut.load { (error) in
-            capturedErrors.append(error)
+    private func expect(sut: RemoteConversationsLoader, toCompleteWith result: RemoteConversationsLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        var capturedResults = [RemoteConversationsLoader.Result]()
+        sut.load { (result) in
+            capturedResults.append(result)
         }
 
         action()
-        XCTAssertEqual(capturedErrors, error, file: file, line: line)
+        XCTAssertEqual(capturedResults, [result], file: file, line: line)
 
     }
 

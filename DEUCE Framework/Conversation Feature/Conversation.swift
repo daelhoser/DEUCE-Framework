@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Conversation {
+public struct Conversation: Equatable {
     let id: UUID
     let image: UIImage?
     let message: String?
