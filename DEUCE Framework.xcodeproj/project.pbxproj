@@ -62,6 +62,13 @@
 			path = "Conversations API";
 			sourceTree = "<group>";
 		};
+		5F5708D12283884800D856D5 /* Conversation Feature */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Conversation Feature";
+			sourceTree = "<group>";
+		};
 		5FF272AD228249BF00E4486C = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +90,7 @@
 		5FF272B9228249BF00E4486C /* DEUCE Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5F5708D12283884800D856D5 /* Conversation Feature */,
 				5F349D4422824AE20058AF4F /* Conversations API */,
 				5FF272BA228249BF00E4486C /* DEUCE_Framework.h */,
 				5FF272BB228249BF00E4486C /* Info.plist */,

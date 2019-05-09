@@ -64,6 +64,19 @@ class RemoteConversationsLoaderTests: XCTestCase {
             XCTAssertEqual(capturedErrors, [.invalidData])
         }
     }
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+        let (sut, client) = makeSUT()
+
+        var capturedErrors = [RemoteConversationsLoader.Error]()
+        sut.load { (error) in
+            capturedErrors.append(error)
+        }
+
+        let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
+        client.complete(with: 200, data: invalidJSON)
+
+        XCTAssertEqual(capturedErrors, [.invalidData])
+    }
 
     // MARK: - Helpers
 
@@ -88,10 +101,10 @@ class RemoteConversationsLoaderTests: XCTestCase {
             messages[index].completion(.failure(error))
         }
 
-        func complete(with statusCode: Int, at index: Int = 0) {
+        func complete(with statusCode: Int, data: Data = Data(), at index: Int = 0) {
             let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
 
-            messages[index].completion(.success(response))
+            messages[index].completion(.success(data, response))
         }
     }
 }
