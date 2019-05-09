@@ -38,15 +38,10 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
 
-        var capturedErrors = [RemoteConversationsLoader.Error]()
-        sut.load { (error) in
-            capturedErrors.append(error)
-        }
-
-        let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
-        client.complete(with: clientError)
-
-        XCTAssertEqual(capturedErrors, [.connectivity])
+        expect(sut: sut, toCompleteWith: [.connectivity], when: {
+            let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
+            client.complete(with: clientError)
+        })
     }
 
     func test_load_deliversErrorOnNon200HttpResponse() {
@@ -55,27 +50,19 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500].enumerated()
 
         samples.forEach { (index, sample) in
-            var capturedErrors = [RemoteConversationsLoader.Error]()
-            sut.load { (error) in
-                capturedErrors.append(error)
-            }
-            client.complete(with: sample, at: index)
-
-            XCTAssertEqual(capturedErrors, [.invalidData])
+            expect(sut: sut, toCompleteWith: [.invalidData], when: {
+                client.complete(with: sample, at: index)
+            })
         }
     }
+
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
-        var capturedErrors = [RemoteConversationsLoader.Error]()
-        sut.load { (error) in
-            capturedErrors.append(error)
-        }
-
-        let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
-        client.complete(with: 200, data: invalidJSON)
-
-        XCTAssertEqual(capturedErrors, [.invalidData])
+        expect(sut: sut, toCompleteWith: [.invalidData], when: {
+            let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
+            client.complete(with: 200, data: invalidJSON)
+        })
     }
 
     // MARK: - Helpers
@@ -84,6 +71,17 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = RemoteConversationsLoader(url: url, client: client)
         return (sut, client)
+    }
+
+    private func expect(sut: RemoteConversationsLoader, toCompleteWith error: [RemoteConversationsLoader.Error], when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        var capturedErrors = [RemoteConversationsLoader.Error]()
+        sut.load { (error) in
+            capturedErrors.append(error)
+        }
+
+        action()
+        XCTAssertEqual(capturedErrors, error, file: file, line: line)
+
     }
 
     private class HTTPClientSpy: HTTPClient {
