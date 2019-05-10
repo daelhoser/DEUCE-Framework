@@ -40,14 +40,26 @@ public final class RemoteConversationsLoader {
         client.get(from: url) { (result) in
             switch result {
             case let .success(data, _):
-                if let _ = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) {
-                    completion(.success([]))
-                } else {
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    jsonDecoder.dateDecodingStrategy = .iso8601
+                    let conversationData = try jsonDecoder.decode(ConversationData.self, from: data)
+                    completion(.success(conversationData.conversations))
+                } catch {
+                    print(error)
                     completion(.failure(.invalidData))
                 }
             case .failure:
                 completion(.failure(.connectivity))
             }
         }
+    }
+}
+
+private struct ConversationData: Decodable {
+    let conversations: [Conversation]
+
+    private enum CodingKeys: String, CodingKey {
+        case conversations = "Data"
     }
 }

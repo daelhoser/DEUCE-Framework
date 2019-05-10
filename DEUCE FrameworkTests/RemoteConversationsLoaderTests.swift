@@ -69,11 +69,31 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut: sut, toCompleteWith: .success([]), when: {
-            let JSON = Data(bytes: "{ \"items\": [] }".utf8)
+            let JSON = Data(bytes: "{ \"Data\": [] }".utf8)
             client.complete(with: 200, data: JSON)
         })
     }
 
+    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+        let (sut, client) = makeSUT()
+
+        let item1 = makeConversation(id: UUID(), image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: nil, contentType: 1)
+        let item2 = makeConversation(id: UUID(), image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1)
+
+        let jsonData = makeConversationsJSON(conversations: [item1.json, item2.json])
+
+        let items = [item1.model, item2.model]
+
+        var capturedResults = [RemoteConversationsLoader.Result]()
+
+        sut.load { (result) in
+            capturedResults.append(result)
+        }
+
+        client.complete(with: 200, data: jsonData)
+
+        XCTAssertEqual(capturedResults, [.success(items)])
+    }
     // MARK: - Helpers
 
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteConversationsLoader, client: HTTPClientSpy) {
@@ -97,14 +117,14 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let conversation = Conversation(id: id, image: image, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType)
 
         let dict: [String: Any?] = [
-            "id": id.uuidString,
-            "image": image?.absoluteString,
-            "message": message,
-            "lastMessageUser": lastMessageUser,
-            "lastMessageTime": lastMessageTime?.debugDescription,
-            "conversationType": conversationType,
-            "groupName": groupName,
-            "contentType": contentType
+            "Id": id.uuidString,
+            "OtherUserThumbnailUrl": image?.absoluteString,
+            "LastMessage": message,
+            "OtherUserName": lastMessageUser,
+            "LastMessageTimeStamp": lastMessageTime?.debugDescription,
+            "ConversationType": conversationType,
+            "GroupName": groupName,
+            "ContentType": contentType
             ]
 
         let reductedDict = dict.reduce(into: [String: Any]()) { (acc, e) in
