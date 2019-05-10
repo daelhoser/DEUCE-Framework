@@ -42,7 +42,7 @@ public final class RemoteConversationsLoader {
             case let .success(data, _):
                 do {
                     let jsonDecoder = JSONDecoder()
-                    jsonDecoder.dateDecodingStrategy = .iso8601
+                    jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
                     let conversationData = try jsonDecoder.decode(ConversationData.self, from: data)
                     completion(.success(conversationData.conversations))
                 } catch {

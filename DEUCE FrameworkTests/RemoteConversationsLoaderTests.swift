@@ -76,6 +76,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
     func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
+        //Adding a Date causes this test to fail eventhough its' technically equal. I need to investigate this a little more.
 
         let item1 = makeConversation(id: UUID(), image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: nil, contentType: 1)
         let item2 = makeConversation(id: UUID(), image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1)
@@ -115,7 +116,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
             "OtherUserThumbnailUrl": image?.absoluteString,
             "LastMessage": message,
             "OtherUserName": lastMessageUser,
-            "LastMessageTimeStamp": lastMessageTime?.debugDescription,
+            "LastMessageTimeStamp":  lastMessageTime != nil ? deuceFormatter.string(from: lastMessageTime!) : nil,
             "ConversationType": conversationType,
             "GroupName": groupName,
             "ContentType": contentType
@@ -133,6 +134,15 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
         return try! JSONSerialization.data(withJSONObject: conversations)
     }
+
+    private var deuceFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"//2017-03-05T05:03:12.5622336
+        formatter.timeZone = TimeZone(abbreviation: "UTC")//NSTimeZone.local
+
+        return formatter
+    }
+
 
     private class HTTPClientSpy: HTTPClient {
         private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
