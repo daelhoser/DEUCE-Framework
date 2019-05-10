@@ -39,14 +39,17 @@ public final class RemoteConversationsLoader {
     public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { (result) in
             switch result {
-            case let .success(data, _):
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
-                    let conversationData = try jsonDecoder.decode(ConversationData.self, from: data)
-                    completion(.success(conversationData.conversations))
-                } catch {
-                    print(error)
+            case let .success(data, response):
+                if response.statusCode == 200 {
+                    do {
+                        let jsonDecoder = JSONDecoder()
+                        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
+                        let conversationData = try jsonDecoder.decode(ConversationData.self, from: data)
+                        completion(.success(conversationData.conversations))
+                    } catch {
+                        completion(.failure(.invalidData))
+                    }
+                } else {
                     completion(.failure(.invalidData))
                 }
             case .failure:

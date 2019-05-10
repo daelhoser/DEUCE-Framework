@@ -47,11 +47,12 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnNon200HttpResponse() {
         let (sut, client) = makeSUT()
 
-        let samples = [199, 201, 300, 400, 500].enumerated()
+        let samples = [199, 201, 300, 400, 500]
 
-        samples.forEach { (index, sample) in
+        samples.enumerated().forEach { (index, sample) in
             expect(sut: sut, toCompleteWith: .failure(.invalidData), when: {
-                client.complete(with: sample, at: index)
+                let data = makeConversationsJSON(conversations: [])
+                client.complete(with: sample, data: data, at: index)
             })
         }
     }
@@ -159,7 +160,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
             messages[index].completion(.failure(error))
         }
 
-        func complete(with statusCode: Int, data: Data = Data(), at index: Int = 0) {
+        func complete(with statusCode: Int, data: Data, at index: Int = 0) {
             let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
 
             messages[index].completion(.success(data, response))
