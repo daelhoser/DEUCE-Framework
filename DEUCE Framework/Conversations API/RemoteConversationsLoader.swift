@@ -40,22 +40,33 @@ public final class RemoteConversationsLoader {
         client.get(from: url) { (result) in
             switch result {
             case let .success(data, response):
-                if response.statusCode == 200 {
-                    do {
-                        let jsonDecoder = JSONDecoder()
-                        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
-                        let conversationData = try jsonDecoder.decode(ConversationData.self, from: data)
-                        completion(.success(conversationData.conversations))
-                    } catch {
-                        completion(.failure(.invalidData))
-                    }
-                } else {
+                do {
+                    let conversations = try ConversationsMapper.map(data: data, response: response)
+
+                    completion(.success(conversations))
+                } catch {
                     completion(.failure(.invalidData))
                 }
             case .failure:
                 completion(.failure(.connectivity))
             }
         }
+    }
+}
+
+private class ConversationsMapper {
+    static let OK_200: Int = 200
+
+    static func map(data: Data, response: HTTPURLResponse) throws -> [Conversation] {
+        guard response.statusCode == OK_200 else {
+            throw RemoteConversationsLoader.Error.invalidData
+        }
+
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
+        let conversationData = try jsonDecoder.decode(ConversationData.self, from: data)
+
+        return conversationData.conversations
     }
 }
 
