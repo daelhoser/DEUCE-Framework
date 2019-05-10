@@ -29,31 +29,3 @@ public struct Conversation: Equatable {
         self.contentType = contentType
     }
 }
-
-extension Conversation: Decodable {
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let id = try container.decode(UUID.self, forKey: .id)
-        let image = try container.decodeIfPresent(URL.self, forKey: .image)
-        let message = try container.decodeIfPresent(String.self, forKey: .message)
-        let lastMessageUser = try container.decodeIfPresent(String.self, forKey: .lastMessageUser)
-        let lastMessageTime = try container.decodeIfPresent(Date.self, forKey: .lastMessageTime)
-        let conversationType = try container.decode(Int.self, forKey: .conversationType)
-        let groupName = try container.decodeIfPresent(String.self, forKey: .groupName)
-        let contentType = try container.decode(Int.self, forKey: .contentType)
-
-        self.init(id: id, image: image, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType)
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case id = "Id"
-        case image = "OtherUserThumbnailUrl"
-        case message = "LastMessage"
-        case lastMessageUser = "OtherUserName"
-        case lastMessageTime = "LastMessageTimeStamp"
-        case conversationType = "ConversationType"
-        case groupName = "GroupName"
-        case contentType = "ContentType"
-    }
-}
