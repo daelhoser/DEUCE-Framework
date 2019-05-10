@@ -70,7 +70,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut: sut, toCompleteWith: .success([]), when: {
-            let JSON = Data(bytes: "{ \"Data\": [] }".utf8)
+            let JSON = makeConversationsJSON(conversations: [])
             client.complete(with: 200, data: JSON)
         })
     }
