@@ -84,15 +84,9 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
         let items = [item1.model, item2.model]
 
-        var capturedResults = [RemoteConversationsLoader.Result]()
-
-        sut.load { (result) in
-            capturedResults.append(result)
-        }
-
-        client.complete(with: 200, data: jsonData)
-
-        XCTAssertEqual(capturedResults, [.success(items)])
+        expect(sut: sut, toCompleteWith: .success(items), when: {
+            client.complete(with: 200, data: jsonData)
+        })
     }
     // MARK: - Helpers
 
