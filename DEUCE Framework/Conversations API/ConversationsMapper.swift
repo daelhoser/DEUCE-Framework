@@ -80,4 +80,17 @@ internal final  class ConversationsMapper {
 
         return conversationData.conversations.map { $0.conversation}
     }
+
+    internal static func map(data: Data, with response: HTTPURLResponse) -> RemoteConversationsLoader.Result {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
+
+        guard response.statusCode == OK_200, let conversationData = try? jsonDecoder.decode(ConversationData.self, from: data) else {
+            return .failure(.invalidData)
+        }
+
+        let conversations = conversationData.conversations.map { $0.conversation}
+
+        return .success(conversations)
+    }
 }

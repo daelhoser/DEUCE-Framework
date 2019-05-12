@@ -31,13 +31,7 @@ public final class RemoteConversationsLoader {
         client.get(from: url) { (result) in
             switch result {
             case let .success(data, response):
-                do {
-                    let conversations = try ConversationsMapper.map(data: data, response: response)
-
-                    completion(.success(conversations))
-                } catch {
-                    completion(.failure(.invalidData))
-                }
+                completion(ConversationsMapper.map(data: data, with: response))
             case .failure:
                 completion(.failure(.connectivity))
             }
