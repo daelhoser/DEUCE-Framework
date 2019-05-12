@@ -92,9 +92,13 @@ class RemoteConversationsLoaderTests: XCTestCase {
     }
     // MARK: - Helpers
 
-    private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteConversationsLoader, client: HTTPClientSpy) {
+    private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteConversationsLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteConversationsLoader(url: url, client: client)
+
+        testForMemoryLeaks(object: sut, file: file, line: line)
+        testForMemoryLeaks(object: client, file: file, line: line)
+
         return (sut, client)
     }
 
@@ -144,6 +148,11 @@ class RemoteConversationsLoaderTests: XCTestCase {
         return formatter
     }
 
+    private func testForMemoryLeaks(object: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak object] in
+            XCTAssertNil(object, "Object should be deallocated", file: file, line: line)
+        }
+    }
 
     private class HTTPClientSpy: HTTPClient {
         private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
