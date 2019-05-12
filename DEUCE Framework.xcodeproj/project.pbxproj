@@ -12,6 +12,7 @@
 		5F5708D32283B24500D856D5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5708D22283B24500D856D5 /* Conversation.swift */; };
 		5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F60848C228616E100B23235 /* DateFormatter+Deuce.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
+		5F8731FA2288D97000DD3358 /* ConversationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F92288D97000DD3358 /* ConversationsMapper.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF272C6228249BF00E4486C /* DEUCE_FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF272C5228249BF00E4486C /* DEUCE_FrameworkTests.swift */; };
 		5FF272C8228249BF00E4486C /* DEUCE_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF272BA228249BF00E4486C /* DEUCE_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,6 +34,7 @@
 		5F5708D22283B24500D856D5 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		5F60848C228616E100B23235 /* DateFormatter+Deuce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Deuce.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		5F8731F92288D97000DD3358 /* ConversationsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsMapper.swift; sourceTree = "<group>"; };
 		5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272BA228249BF00E4486C /* DEUCE_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEUCE_Framework.h; sourceTree = "<group>"; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			children = (
 				5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */,
 				5F8731F72288D90600DD3358 /* HTTPClient.swift */,
+				5F8731F92288D97000DD3358 /* ConversationsMapper.swift */,
 			);
 			path = "Conversations API";
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */,
+				5F8731FA2288D97000DD3358 /* ConversationsMapper.swift in Sources */,
 				5F5708D32283B24500D856D5 /* Conversation.swift in Sources */,
 				5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */,
 				5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */,
