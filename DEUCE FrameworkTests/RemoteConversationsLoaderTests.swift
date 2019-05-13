@@ -91,7 +91,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         })
     }
 
-    private func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         var sut: RemoteConversationsLoader?
         let url = URL(string: "https://any-url.com")!
         let client =  HTTPClientSpy()
