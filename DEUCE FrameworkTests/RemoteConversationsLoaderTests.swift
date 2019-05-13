@@ -90,6 +90,23 @@ class RemoteConversationsLoaderTests: XCTestCase {
             client.complete(with: 200, data: jsonData)
         })
     }
+
+    private func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        var sut: RemoteConversationsLoader?
+        let url = URL(string: "https://any-url.com")!
+        let client =  HTTPClientSpy()
+        sut = RemoteConversationsLoader(url: url, client: client)
+
+        var capturedResults = [RemoteConversationsLoader.Result]()
+        sut?.load { capturedResults.append($0) }
+
+        sut = nil
+        client.complete(with: 200, data: makeConversationsJSON(conversations: []))
+
+        XCTAssertTrue(capturedResults.isEmpty)
+    }
+
+
     // MARK: - Helpers
 
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteConversationsLoader, client: HTTPClientSpy) {
