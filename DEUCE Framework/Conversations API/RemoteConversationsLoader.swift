@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class RemoteConversationsLoader {
+public final class RemoteConversationsLoader: ConversationLoader {
     private let url: URL
     private let client: HTTPClient
     
