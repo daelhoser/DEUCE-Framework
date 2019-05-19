@@ -17,10 +17,7 @@ public final class RemoteConversationsLoader {
         case invalidData
     }
 
-    public enum Result: Equatable {
-        case success([Conversation])
-        case failure(Error)
-    }
+    public typealias Result = LoadConversationResult<Error>
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
