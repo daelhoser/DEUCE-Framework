@@ -13,6 +13,6 @@ public enum LoadConversationResult {
     case failure(Error)
 }
 
-protocol ConversationLoader {
+public protocol ConversationLoader {
     func load(completion: @escaping (LoadConversationResult) -> Void)
 }
