@@ -13,8 +13,6 @@ public enum LoadConversationResult<Error: Swift.Error> {
     case failure(Error)
 }
 
-extension LoadConversationResult: Equatable where Error: Equatable {}
-
 protocol ConversationLoader {
     associatedtype Error: Swift.Error
     

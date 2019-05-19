@@ -119,14 +119,25 @@ class RemoteConversationsLoaderTests: XCTestCase {
         return (sut, client)
     }
 
-    private func expect(sut: RemoteConversationsLoader, toCompleteWith result: RemoteConversationsLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
-        var capturedResults = [RemoteConversationsLoader.Result]()
-        sut.load { (result) in
-            capturedResults.append(result)
+    private func expect(sut: RemoteConversationsLoader, toCompleteWith expectedResult: RemoteConversationsLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+
+        let exp = expectation(description: "Waiting on load")
+
+        sut.load { (actualResult) in
+            switch (expectedResult, actualResult) {
+            case (let .success(expectedItem), let .success(actualItems)):
+                XCTAssertEqual(expectedItem, actualItems, file: file, line: line)
+            case (let .failure(expectedError), let .failure(actualError)):
+                XCTAssertEqual(expectedError, actualError, file: file, line: line)
+            default:
+                XCTFail("ExpectedResult \(expectedResult) and got actualResult: \(actualResult)", file: file, line: line)
+            }
+
+            exp.fulfill()
         }
 
         action()
-        XCTAssertEqual(capturedResults, [result], file: file, line: line)
+        wait(for: [exp], timeout: 1.0)
     }
 
     private func makeConversation(id: UUID, image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int) -> (model: Conversation, json: [String: Any]) {
