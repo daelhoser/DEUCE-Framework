@@ -8,13 +8,11 @@
 
 import Foundation
 
-public enum LoadConversationResult<Error: Swift.Error> {
+public enum LoadConversationResult {
     case success([Conversation])
     case failure(Error)
 }
 
 protocol ConversationLoader {
-    associatedtype Error: Swift.Error
-    
-    func load(completion: @escaping (LoadConversationResult<Error>) -> Void)
+    func load(completion: @escaping (LoadConversationResult) -> Void)
 }

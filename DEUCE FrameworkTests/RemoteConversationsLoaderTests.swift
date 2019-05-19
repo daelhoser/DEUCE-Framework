@@ -38,7 +38,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: .failure(.connectivity), when: {
+        expect(sut: sut, toCompleteWith: .failure(RemoteConversationsLoader.Error.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
             client.complete(with: clientError)
         })
@@ -50,7 +50,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
 
         samples.enumerated().forEach { (index, sample) in
-            expect(sut: sut, toCompleteWith: .failure(.invalidData), when: {
+            expect(sut: sut, toCompleteWith: .failure(RemoteConversationsLoader.Error.invalidData), when: {
                 let data = makeConversationsJSON(conversations: [])
                 client.complete(with: sample, data: data, at: index)
             })
@@ -60,7 +60,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: .failure(.invalidData), when: {
+        expect(sut: sut, toCompleteWith: .failure(RemoteConversationsLoader.Error.invalidData), when: {
             let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
             client.complete(with: 200, data: invalidJSON)
         })
@@ -127,7 +127,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
             switch (expectedResult, actualResult) {
             case (let .success(expectedItem), let .success(actualItems)):
                 XCTAssertEqual(expectedItem, actualItems, file: file, line: line)
-            case (let .failure(expectedError), let .failure(actualError)):
+            case (let .failure(expectedError as RemoteConversationsLoader.Error), let .failure(actualError as RemoteConversationsLoader.Error)):
                 XCTAssertEqual(expectedError, actualError, file: file, line: line)
             default:
                 XCTFail("ExpectedResult \(expectedResult) and got actualResult: \(actualResult)", file: file, line: line)

@@ -17,7 +17,7 @@ public final class RemoteConversationsLoader: ConversationLoader {
         case invalidData
     }
 
-    public typealias Result = LoadConversationResult<Error>
+    public typealias Result = LoadConversationResult
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
@@ -32,7 +32,7 @@ public final class RemoteConversationsLoader: ConversationLoader {
             case let .success(data, response):
                 completion(ConversationsMapper.map(data: data, with: response))
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             }
         }
     }

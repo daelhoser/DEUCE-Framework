@@ -86,7 +86,7 @@ internal final  class ConversationsMapper {
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
         guard response.statusCode == OK_200, let conversationData = try? jsonDecoder.decode(ConversationData.self, from: data) else {
-            return .failure(.invalidData)
+            return .failure(RemoteConversationsLoader.Error.invalidData)
         }
 
         let conversations = conversationData.conversations.map { $0.conversation}
