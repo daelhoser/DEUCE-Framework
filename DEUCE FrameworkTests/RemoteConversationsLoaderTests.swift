@@ -38,7 +38,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: .failure(RemoteConversationsLoader.Error.connectivity), when: {
+        expect(sut: sut, toCompleteWith: failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
             client.complete(with: clientError)
         })
@@ -50,7 +50,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
 
         samples.enumerated().forEach { (index, sample) in
-            expect(sut: sut, toCompleteWith: .failure(RemoteConversationsLoader.Error.invalidData), when: {
+            expect(sut: sut, toCompleteWith: failure(.invalidData), when: {
                 let data = makeConversationsJSON(conversations: [])
                 client.complete(with: sample, data: data, at: index)
             })
@@ -60,7 +60,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
-        expect(sut: sut, toCompleteWith: .failure(RemoteConversationsLoader.Error.invalidData), when: {
+        expect(sut: sut, toCompleteWith: failure(.invalidData), when: {
             let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
             client.complete(with: 200, data: invalidJSON)
         })
@@ -174,6 +174,10 @@ class RemoteConversationsLoaderTests: XCTestCase {
         formatter.timeZone = TimeZone(abbreviation: "UTC")//NSTimeZone.local
 
         return formatter
+    }
+
+    private func failure(_ error: RemoteConversationsLoader.Error) -> RemoteConversationsLoader.Result {
+        return .failure(error)
     }
 
     private func testForMemoryLeaks(object: AnyObject, file: StaticString = #file, line: UInt = #line) {
