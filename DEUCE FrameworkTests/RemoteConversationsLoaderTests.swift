@@ -77,9 +77,9 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
     func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
-        //Adding a Date causes this test to fail eventhough its' technically equal. I need to investigate this a little more.
+        //Not sure why adding Date() doesn't work. I need to investigate that and make sure code and test are correct
 
-        let item1 = makeConversation(image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: nil, contentType: 1)
+        let item1 = makeConversation(image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: Date.init(timeIntervalSince1970: 234234), conversationType: 1, groupName: nil, contentType: 1)
         let item2 = makeConversation(image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1)
 
         let jsonData = makeConversationsJSON(conversations: [item1.json, item2.json])
@@ -125,8 +125,8 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
         sut.load { (receivedResult) in
             switch (expectedResult, receivedResult) {
-            case let (.success(expectedItem), .success(actualItems)):
-                XCTAssertEqual(expectedItem, actualItems, file: file, line: line)
+            case let (.success(expectedItem), .success(receivedItems)):
+                XCTAssertEqual(expectedItem, receivedItems, file: file, line: line)
             case let (.failure(expectedError as RemoteConversationsLoader.Error), .failure(actualError  as RemoteConversationsLoader.Error)):
                 XCTAssertEqual(expectedError, actualError, file: file, line: line)
             default:
