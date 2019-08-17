@@ -79,8 +79,8 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         //Adding a Date causes this test to fail eventhough its' technically equal. I need to investigate this a little more.
 
-        let item1 = makeConversation(id: UUID(), image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: nil, contentType: 1)
-        let item2 = makeConversation(id: UUID(), image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1)
+        let item1 = makeConversation(image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: nil, contentType: 1)
+        let item2 = makeConversation(image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1)
 
         let jsonData = makeConversationsJSON(conversations: [item1.json, item2.json])
 
@@ -140,7 +140,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func makeConversation(id: UUID, image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int) -> (model: Conversation, json: [String: Any]) {
+    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int) -> (model: Conversation, json: [String: Any]) {
 
         let conversation = Conversation(id: id, image: image, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType)
 
