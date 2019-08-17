@@ -16,7 +16,6 @@
 		5F8731FA2288D97000DD3358 /* ConversationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F92288D97000DD3358 /* ConversationsMapper.swift */; };
 		5F9491042290E078007531EE /* ConversationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationLoader.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
-		5FF272C6228249BF00E4486C /* DEUCE_FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF272C5228249BF00E4486C /* DEUCE_FrameworkTests.swift */; };
 		5FF272C8228249BF00E4486C /* DEUCE_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF272BA228249BF00E4486C /* DEUCE_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -43,7 +42,6 @@
 		5FF272BA228249BF00E4486C /* DEUCE_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEUCE_Framework.h; sourceTree = "<group>"; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FF272C5228249BF00E4486C /* DEUCE_FrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEUCE_FrameworkTests.swift; sourceTree = "<group>"; };
 		5FF272C7228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */,
-				5FF272C5228249BF00E4486C /* DEUCE_FrameworkTests.swift */,
 				5FF272C7228249BF00E4486C /* Info.plist */,
 				5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */,
 			);
@@ -196,10 +193,11 @@
 				TargetAttributes = {
 					5FF272B6228249BF00E4486C = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1030;
 					};
 					5FF272BF228249BF00E4486C = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -209,6 +207,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 5FF272AD228249BF00E4486C;
 			productRefGroup = 5FF272B8228249BF00E4486C /* Products */;
@@ -256,7 +255,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FF272C6228249BF00E4486C /* DEUCE_FrameworkTests.swift in Sources */,
 				5F6FE3C82292301C0077F8B8 /* URLSessionHTTPClientTests.swift in Sources */,
 				5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */,
 			);
@@ -417,7 +415,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -443,7 +441,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ios.DEUCE.DEUCE-Framework";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -462,7 +460,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ios.DEUCE.DEUCE-FrameworkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -481,7 +479,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ios.DEUCE.DEUCE-FrameworkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
