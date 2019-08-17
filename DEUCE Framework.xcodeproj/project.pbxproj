@@ -125,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */,
-				5FF272C7228249BF00E4486C /* Info.plist */,
 				5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */,
+				5FF272C7228249BF00E4486C /* Info.plist */,
 			);
 			path = "DEUCE FrameworkTests";
 			sourceTree = "<group>";
