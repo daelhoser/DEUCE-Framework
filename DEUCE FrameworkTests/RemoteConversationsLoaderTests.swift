@@ -61,7 +61,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut: sut, toCompleteWith: failure(.invalidData), when: {
-            let invalidJSON = Data(bytes: "{ invalid JSON }".utf8)
+            let invalidJSON = "{ invalid JSON }".data(using: .utf8)!
             client.complete(with: 200, data: invalidJSON)
         })
     }
