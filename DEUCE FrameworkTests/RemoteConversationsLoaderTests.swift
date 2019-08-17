@@ -123,14 +123,14 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
         let exp = expectation(description: "Waiting on load")
 
-        sut.load { (actualResult) in
-            switch (expectedResult, actualResult) {
+        sut.load { (receivedResult) in
+            switch (expectedResult, receivedResult) {
             case let (.success(expectedItem), .success(actualItems)):
                 XCTAssertEqual(expectedItem, actualItems, file: file, line: line)
             case let (.failure(expectedError as RemoteConversationsLoader.Error), .failure(actualError  as RemoteConversationsLoader.Error)):
                 XCTAssertEqual(expectedError, actualError, file: file, line: line)
             default:
-                XCTFail("ExpectedResult \(expectedResult) and got actualResult: \(actualResult)", file: file, line: line)
+                XCTFail("ExpectedResult \(expectedResult) and got receivedResult: \(receivedResult)", file: file, line: line)
             }
 
             exp.fulfill()
