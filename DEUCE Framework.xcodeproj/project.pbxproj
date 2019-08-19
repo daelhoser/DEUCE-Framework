@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
 		5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */; };
 		5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */; };
 		5F5708D32283B24500D856D5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5708D22283B24500D856D5 /* Conversation.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoaderTests.swift; sourceTree = "<group>"; };
 		5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoader.swift; sourceTree = "<group>"; };
 		5F5708D22283B24500D856D5 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -64,6 +66,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F0A1E42230B11C000E8DD71 /* Conversation Status API */ = {
+			isa = PBXGroup;
+			children = (
+				5F0A1E43230B11D000E8DD71 /* Helpers */,
+			);
+			path = "Conversation Status API";
+			sourceTree = "<group>";
+		};
+		5F0A1E43230B11D000E8DD71 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		5F349D4422824AE20058AF4F /* Conversations API */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +142,7 @@
 		5FF272C4228249BF00E4486C /* DEUCE FrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				5F0A1E42230B11C000E8DD71 /* Conversation Status API */,
 				5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */,
 				5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */,
 				5FF272C7228249BF00E4486C /* Info.plist */,
@@ -257,6 +276,7 @@
 			files = (
 				5F6FE3C82292301C0077F8B8 /* URLSessionHTTPClientTests.swift in Sources */,
 				5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */,
+				5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
