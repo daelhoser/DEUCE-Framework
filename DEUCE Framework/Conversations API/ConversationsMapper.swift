@@ -69,18 +69,6 @@ internal final  class ConversationsMapper {
     }
     private static let OK_200: Int = 200
 
-    static func map(data: Data, response: HTTPURLResponse) throws -> [Conversation] {
-        guard response.statusCode == OK_200 else {
-            throw RemoteConversationsLoader.Error.invalidData
-        }
-
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
-        let conversationData = try jsonDecoder.decode(ConversationData.self, from: data)
-
-        return conversationData.conversations.map { $0.conversation}
-    }
-
     internal static func map(data: Data, with response: HTTPURLResponse) -> RemoteConversationsLoader.Result {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
