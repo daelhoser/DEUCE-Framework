@@ -113,8 +113,8 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = RemoteConversationsLoader(url: url, client: client)
 
-        testForMemoryLeaks(object: sut, file: file, line: line)
-        testForMemoryLeaks(object: client, file: file, line: line)
+        trackForMemoryLeaks(object: sut, file: file, line: line)
+        trackForMemoryLeaks(object: client, file: file, line: line)
 
         return (sut, client)
     }
@@ -180,7 +180,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         return .failure(error)
     }
 
-    private func testForMemoryLeaks(object: AnyObject, file: StaticString = #file, line: UInt = #line) {
+    private func trackForMemoryLeaks(object: AnyObject, file: StaticString = #file, line: UInt = #line) {
         addTeardownBlock { [weak object] in
             XCTAssertNil(object, "Object should be deallocated", file: file, line: line)
         }
