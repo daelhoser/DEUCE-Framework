@@ -87,7 +87,7 @@ class URLSessionHTTPClientTests: XCTestCase {
             switch result {
             case let .success(receivedData, receivedResponse):
                 XCTAssertEqual(receivedData, data)
-                //We can't test the receivedResponse because someone the framework creates a new response and passes it around
+                //We can't test the receivedResponse because somehow the framework creates a new response and passes it around
                 XCTAssertEqual(receivedResponse.url, response.url)
                 XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
             default:
@@ -112,7 +112,7 @@ class URLSessionHTTPClientTests: XCTestCase {
             case let .success(receivedData, receivedResponse):
                 let emptyData = Data()
                 XCTAssertEqual(receivedData, emptyData)
-                //We can't test the receivedResponse because  the framework creates a new response and passes it around
+                //We can't test the receivedResponse because somehow the framework creates a new response and passes it around
                 XCTAssertEqual(receivedResponse.url, response.url)
                 XCTAssertEqual(receivedResponse.statusCode, response.statusCode)
             default:
