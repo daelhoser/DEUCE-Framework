@@ -80,7 +80,8 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
 
     private func anyURL() -> URL {
-        return URL(fileURLWithPath: "any-url")!
+        return URL(string: "http://any-url.com")!
+
     }
 
     private class URLProtocolStub: URLProtocol {
