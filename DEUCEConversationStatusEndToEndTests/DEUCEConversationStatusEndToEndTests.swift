@@ -11,7 +11,7 @@ import DEUCE_Framework
 
 class DEUCEConversationStatusEndToEndTests: XCTestCase {
 
-    func test_endToEndTestServerGetFeedResult_matchesFixedTestAccountData() {
+    /*func test_endToEndTestServerGetFeedResult_matchesFixedTestAccountData() {
         switch getFeedResult() {
         case let .success(items)?:
             XCTAssertEqual(items.count, 8, "Expected 8 items in the test account")
@@ -22,7 +22,7 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
         default:
             XCTFail("Expected successful result, got no result instead")
         }
-    }
+    }*/
 
     // MARK: - Helpers
 
