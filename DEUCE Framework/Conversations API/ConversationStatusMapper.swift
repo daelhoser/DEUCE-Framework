@@ -72,7 +72,6 @@ internal final  class ConversationStatusMapper {
             let contentType = try container.decode(Int.self, forKey: .contentType)
             let createdBy = try container.decode(String.self, forKey: .createdByUserName)
 
-            print("SJDI")
             self.init(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdBy)
         }
 
