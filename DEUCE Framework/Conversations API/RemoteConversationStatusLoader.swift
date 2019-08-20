@@ -15,6 +15,7 @@ public final class RemoteConversationStatusLoader: ConversationStatusLoader {
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
+        case unauthorized
     }
 
     public typealias Result = LoadConversationStatusResult

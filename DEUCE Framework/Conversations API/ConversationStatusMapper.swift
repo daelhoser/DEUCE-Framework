@@ -80,13 +80,18 @@ internal final  class ConversationStatusMapper {
         }
     }
     private static let OK_200: Int = 200
+    private static let Unauthorized_401: Int = 401
 
     internal static func map(data: Data, with response: HTTPURLResponse) -> RemoteConversationStatusLoader.Result {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
         guard response.statusCode == OK_200, let conversationData = try? jsonDecoder.decode(ConversationStatusData.self, from: data) else {
-            return .failure(RemoteConversationStatusLoader.Error.invalidData)
+            if response.statusCode == Unauthorized_401 {
+                return .failure(RemoteConversationStatusLoader.Error.unauthorized)
+            } else {
+                return .failure(RemoteConversationStatusLoader.Error.invalidData)
+            }
         }
 
         let conversations = conversationData.conversationStatuses.map { $0.conversation}

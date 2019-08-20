@@ -57,6 +57,17 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
         }
     }
 
+    func test_load_deliversUnAuthorizeErrorOn401HttpResponse() {
+        let (sut, client) = makeSUT()
+        let unauthorizedStatusCode = 401
+
+        expect(sut: sut, toCompleteWith: failure(.unauthorized), when: {
+            let data = makeConversationsJSON(conversations: [])
+            client.complete(with: unauthorizedStatusCode, data: data)
+        })
+
+    }
+
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
 
