@@ -17,11 +17,20 @@
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
 		5F8731FA2288D97000DD3358 /* ConversationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F92288D97000DD3358 /* ConversationsMapper.swift */; };
 		5F9491042290E078007531EE /* ConversationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationLoader.swift */; };
+		5FEC4425230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */; };
+		5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF272C8228249BF00E4486C /* DEUCE_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF272BA228249BF00E4486C /* DEUCE_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5FEC4428230B680E001AFCA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FF272AE228249BF00E4486C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FF272B6228249BF00E4486C;
+			remoteInfo = "DEUCE Framework";
+		};
 		5FF272C2228249BF00E4486C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5FF272AE228249BF00E4486C /* Project object */;
@@ -42,6 +51,9 @@
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		5F8731F92288D97000DD3358 /* ConversationsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsMapper.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLoader.swift; sourceTree = "<group>"; };
+		5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DEUCEConversationStatusEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEUCEConversationStatusEndToEndTests.swift; sourceTree = "<group>"; };
+		5FEC4426230B680E001AFCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272BA228249BF00E4486C /* DEUCE_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEUCE_Framework.h; sourceTree = "<group>"; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +62,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5FEC441F230B680E001AFCA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5FF272B4228249BF00E4486C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,11 +132,21 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		5FEC4423230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */,
+				5FEC4426230B680E001AFCA5 /* Info.plist */,
+			);
+			path = DEUCEConversationStatusEndToEndTests;
+			sourceTree = "<group>";
+		};
 		5FF272AD228249BF00E4486C = {
 			isa = PBXGroup;
 			children = (
 				5FF272B9228249BF00E4486C /* DEUCE Framework */,
 				5FF272C4228249BF00E4486C /* DEUCE FrameworkTests */,
+				5FEC4423230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */,
 				5FF272B8228249BF00E4486C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,6 +156,7 @@
 			children = (
 				5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */,
 				5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */,
+				5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +198,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		5FEC4421230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FEC442C230B680E001AFCA5 /* Build configuration list for PBXNativeTarget "DEUCEConversationStatusEndToEndTests" */;
+			buildPhases = (
+				5FEC441E230B680E001AFCA5 /* Sources */,
+				5FEC441F230B680E001AFCA5 /* Frameworks */,
+				5FEC4420230B680E001AFCA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5FEC4429230B680E001AFCA5 /* PBXTargetDependency */,
+			);
+			name = DEUCEConversationStatusEndToEndTests;
+			productName = DEUCEConversationStatusEndToEndTests;
+			productReference = 5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5FF272B6228249BF00E4486C /* DEUCE Framework */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FF272CB228249BF00E4486C /* Build configuration list for PBXNativeTarget "DEUCE Framework" */;
@@ -209,10 +258,13 @@
 		5FF272AE228249BF00E4486C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = DEUCE;
 				TargetAttributes = {
+					5FEC4421230B680E001AFCA5 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					5FF272B6228249BF00E4486C = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1030;
@@ -238,11 +290,19 @@
 			targets = (
 				5FF272B6228249BF00E4486C /* DEUCE Framework */,
 				5FF272BF228249BF00E4486C /* DEUCE FrameworkTests */,
+				5FEC4421230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5FEC4420230B680E001AFCA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5FF272B5228249BF00E4486C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +320,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5FEC441E230B680E001AFCA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FEC4425230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5FF272B3228249BF00E4486C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +355,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5FEC4429230B680E001AFCA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5FF272B6228249BF00E4486C /* DEUCE Framework */;
+			targetProxy = 5FEC4428230B680E001AFCA5 /* PBXContainerItemProxy */;
+		};
 		5FF272C3228249BF00E4486C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5FF272B6228249BF00E4486C /* DEUCE Framework */;
@@ -295,6 +368,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		5FEC442A230B680E001AFCA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QSBZN86NZC;
+				INFOPLIST_FILE = DEUCEConversationStatusEndToEndTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.DEUCEConversationStatusEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5FEC442B230B680E001AFCA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QSBZN86NZC;
+				INFOPLIST_FILE = DEUCEConversationStatusEndToEndTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.DEUCEConversationStatusEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5FF272C9228249BF00E4486C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -511,6 +622,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5FEC442C230B680E001AFCA5 /* Build configuration list for PBXNativeTarget "DEUCEConversationStatusEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FEC442A230B680E001AFCA5 /* Debug */,
+				5FEC442B230B680E001AFCA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5FF272B1228249BF00E4486C /* Build configuration list for PBXProject "DEUCE Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
