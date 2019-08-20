@@ -1,5 +1,5 @@
 //
-//  ConversationsMapper.swift
+//  ConversationsStatusMapper.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 5/12/19.
@@ -8,16 +8,16 @@
 
 import Foundation
 
-internal final  class ConversationsMapper {
-    private struct ConversationData: Decodable {
-        let conversations: [Convo]
+internal final  class ConversationStatusMapper {
+    private struct ConversationStatusData: Decodable {
+        let conversationStatuses: [ConvoStatus]
 
         private enum CodingKeys: String, CodingKey {
-            case conversations = "Data"
+            case conversationStatuses = "Data"
         }
     }
 
-    private struct Convo: Equatable, Decodable {
+    private struct ConvoStatus: Equatable, Decodable {
         public let id: UUID
         public let image: URL?
         public let conversationId: UUID
@@ -75,21 +75,21 @@ internal final  class ConversationsMapper {
             self.init(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
         }
 
-        var conversation: Conversation {
-            return Conversation(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
+        var conversation: ConversationStatus {
+            return ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
         }
     }
     private static let OK_200: Int = 200
 
-    internal static func map(data: Data, with response: HTTPURLResponse) -> RemoteConversationsLoader.Result {
+    internal static func map(data: Data, with response: HTTPURLResponse) -> RemoteConversationStatusLoader.Result {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
-        guard response.statusCode == OK_200, let conversationData = try? jsonDecoder.decode(ConversationData.self, from: data) else {
-            return .failure(RemoteConversationsLoader.Error.invalidData)
+        guard response.statusCode == OK_200, let conversationData = try? jsonDecoder.decode(ConversationStatusData.self, from: data) else {
+            return .failure(RemoteConversationStatusLoader.Error.invalidData)
         }
 
-        let conversations = conversationData.conversations.map { $0.conversation}
+        let conversations = conversationData.conversationStatuses.map { $0.conversation}
 
         return .success(conversations)
     }

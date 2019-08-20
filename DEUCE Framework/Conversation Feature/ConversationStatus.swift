@@ -1,5 +1,5 @@
 //
-//  Conversation.swift
+//  ConversationStatus.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 5/8/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Conversation: Equatable {
+public struct ConversationStatus: Equatable {
     public let id: UUID
     public let image: URL?
     public let conversationId: UUID

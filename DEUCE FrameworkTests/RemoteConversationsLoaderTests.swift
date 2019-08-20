@@ -92,12 +92,12 @@ class RemoteConversationsLoaderTests: XCTestCase {
     }
 
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        var sut: RemoteConversationsLoader?
+        var sut: RemoteConversationStatusLoader?
         let url = URL(string: "https://any-url.com")!
         let client =  HTTPClientSpy()
-        sut = RemoteConversationsLoader(url: url, client: client)
+        sut = RemoteConversationStatusLoader(url: url, client: client)
 
-        var capturedResults = [RemoteConversationsLoader.Result]()
+        var capturedResults = [RemoteConversationStatusLoader.Result]()
         sut?.load { capturedResults.append($0) }
 
         sut = nil
@@ -109,9 +109,9 @@ class RemoteConversationsLoaderTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteConversationsLoader, client: HTTPClientSpy) {
+    private func makeSUT(url: URL = URL(string: "https://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteConversationStatusLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteConversationsLoader(url: url, client: client)
+        let sut = RemoteConversationStatusLoader(url: url, client: client)
 
         trackForMemoryLeaks(object: sut, file: file, line: line)
         trackForMemoryLeaks(object: client, file: file, line: line)
@@ -119,7 +119,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         return (sut, client)
     }
 
-    private func expect(sut: RemoteConversationsLoader, toCompleteWith expectedResult: RemoteConversationsLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(sut: RemoteConversationStatusLoader, toCompleteWith expectedResult: RemoteConversationStatusLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
 
         let exp = expectation(description: "Waiting on load")
 
@@ -127,7 +127,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
             switch (expectedResult, receivedResult) {
             case let (.success(expectedItem), .success(receivedItems)):
                 XCTAssertEqual(expectedItem, receivedItems, file: file, line: line)
-            case let (.failure(expectedError as RemoteConversationsLoader.Error), .failure(actualError  as RemoteConversationsLoader.Error)):
+            case let (.failure(expectedError as RemoteConversationStatusLoader.Error), .failure(actualError  as RemoteConversationStatusLoader.Error)):
                 XCTAssertEqual(expectedError, actualError, file: file, line: line)
             default:
                 XCTFail("ExpectedResult \(expectedResult) and got receivedResult: \(receivedResult)", file: file, line: line)
@@ -140,9 +140,9 @@ class RemoteConversationsLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdBy: UUID = UUID()) -> (model: Conversation, json: [String: Any]) {
+    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdBy: UUID = UUID()) -> (model: ConversationStatus, json: [String: Any]) {
 
-        let conversation = Conversation(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
+        let conversation = ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
 
         let dict: [String: Any?] = [
             "Id": id.uuidString,
@@ -179,7 +179,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
         return formatter
     }
 
-    private func failure(_ error: RemoteConversationsLoader.Error) -> RemoteConversationsLoader.Result {
+    private func failure(_ error: RemoteConversationStatusLoader.Error) -> RemoteConversationStatusLoader.Result {
         return .failure(error)
     }
 

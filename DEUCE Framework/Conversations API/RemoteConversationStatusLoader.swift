@@ -1,5 +1,5 @@
 //
-//  RemoteConversationsLoader.swift
+//  RemoteConversationStatusLoader.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 5/7/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class RemoteConversationsLoader: ConversationLoader {
+public final class RemoteConversationStatusLoader: ConversationStatusLoader {
     private let url: URL
     private let client: HTTPClient
     
@@ -17,7 +17,7 @@ public final class RemoteConversationsLoader: ConversationLoader {
         case invalidData
     }
 
-    public typealias Result = LoadConversationResult
+    public typealias Result = LoadConversationStatusResult
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
@@ -30,7 +30,7 @@ public final class RemoteConversationsLoader: ConversationLoader {
 
             switch result {
             case let .success(data, response):
-                completion(ConversationsMapper.map(data: data, with: response))
+                completion(ConversationStatusMapper.map(data: data, with: response))
             case .failure:
                 completion(.failure(Error.connectivity))
             }
