@@ -26,12 +26,13 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func getFeedResult() -> LoadConversationResult? {
+    private func getFeedResult(file: StaticString = #file, line: UInt = #line) -> LoadConversationResult? {
         //TODO: I need to switch to my url since i used my own model for DEUCE.
         let testServerURL = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
         let client = URLSessionHTTPClient()
         let loader = RemoteConversationsLoader(url: testServerURL, client: client)
-
+        trackForMemoryLeaks(object: client, file: file, line:  line)
+        trackForMemoryLeaks(object: loader, file: file, line:  line)
         let exp = expectation(description: "Wait for load completion")
 
         var receivedResult: LoadConversationResult?
