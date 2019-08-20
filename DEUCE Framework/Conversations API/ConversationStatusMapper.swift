@@ -13,7 +13,7 @@ internal final  class ConversationStatusMapper {
         let conversationStatuses: [ConvoStatus]
 
         private enum CodingKeys: String, CodingKey {
-            case conversationStatuses = "Data"
+            case conversationStatuses = "payload"
         }
     }
 
@@ -28,9 +28,9 @@ internal final  class ConversationStatusMapper {
         public let groupName: String?
         public let contentType: Int
         public let otherUserId: UUID? // Used for One on One Conversations
-        public let createdBy: UUID
+        public let createdByName: String
 
-        internal init(id: UUID, image: URL?, conversationId: UUID, message: String?, lastMessageUser: String?, lastMessageTime: Date?, conversationType: Int, groupName: String?, contentType: Int, otherUserId: UUID?, createdBy: UUID) {
+        internal init(id: UUID, image: URL?, conversationId: UUID, message: String?, lastMessageUser: String?, lastMessageTime: Date?, conversationType: Int, groupName: String?, contentType: Int, otherUserId: UUID?, createdByName: String) {
             self.id = id
             self.image = image
             self.conversationId = conversationId
@@ -41,7 +41,7 @@ internal final  class ConversationStatusMapper {
             self.groupName = groupName
             self.contentType = contentType
             self.otherUserId = otherUserId
-            self.createdBy = createdBy
+            self.createdByName = createdByName
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,7 +55,7 @@ internal final  class ConversationStatusMapper {
             case conversationType = "ConversationType"
             case groupName = "GroupName"
             case contentType = "ContentType"
-            case createdBy = "CreatedBy"
+            case createdByUserName = "CreatedByUserName"
         }
 
         internal init(from decoder: Decoder) throws {
@@ -70,13 +70,14 @@ internal final  class ConversationStatusMapper {
             let conversationType = try container.decode(Int.self, forKey: .conversationType)
             let groupName = try container.decodeIfPresent(String.self, forKey: .groupName)
             let contentType = try container.decode(Int.self, forKey: .contentType)
-            let createdBy = try container.decode(UUID.self, forKey: .createdBy)
+            let createdBy = try container.decode(String.self, forKey: .createdByUserName)
 
-            self.init(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
+            print("SJDI")
+            self.init(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdBy)
         }
 
         var conversation: ConversationStatus {
-            return ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
+            return ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
         }
     }
     private static let OK_200: Int = 200

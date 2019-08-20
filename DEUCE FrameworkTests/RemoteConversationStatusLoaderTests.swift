@@ -1,5 +1,5 @@
 //
-//  RemoteConversationsLoaderTests.swift
+//  RemoteConversationStatusLoaderTests.swift
 //  DEUCE FrameworkTests
 //
 //  Created by Jose Alvarez on 5/7/19.
@@ -9,7 +9,7 @@
 import XCTest
 import DEUCE_Framework
 
-class RemoteConversationsLoaderTests: XCTestCase {
+class RemoteConversationStatusLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
 
@@ -79,8 +79,8 @@ class RemoteConversationsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         //Not sure why adding Date() doesn't work. I need to investigate that and make sure code and test are correct
 
-        let item1 = makeConversation(image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: Date.init(timeIntervalSince1970: 234234), conversationType: 1, groupName: nil, contentType: 1)
-        let item2 = makeConversation(image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1)
+        let item1 = makeConversation(image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: Date.init(timeIntervalSince1970: 234234), conversationType: 1, groupName: nil, contentType: 1, createdByName: "Jim")
+        let item2 = makeConversation(image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1, createdByName: "Tom")
 
         let jsonData = makeConversationsJSON(conversations: [item1.json, item2.json])
 
@@ -140,9 +140,9 @@ class RemoteConversationsLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdBy: UUID = UUID()) -> (model: ConversationStatus, json: [String: Any]) {
+    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdByName: String) -> (model: ConversationStatus, json: [String: Any]) {
 
-        let conversation = ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
+        let conversation = ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
 
         let dict: [String: Any?] = [
             "Id": id.uuidString,
@@ -155,7 +155,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
             "ConversationType": conversationType,
             "GroupName": groupName,
             "ContentType": contentType,
-            "CreatedBy": createdBy.uuidString
+            "CreatedByUserName": createdByName
             ]
 
         let reductedDict = dict.reduce(into: [String: Any]()) { (acc, e) in
@@ -166,7 +166,7 @@ class RemoteConversationsLoaderTests: XCTestCase {
     }
 
     private func makeConversationsJSON(conversations: [[String: Any]]) -> Data {
-        let conversations = [ "Data": conversations]
+        let conversations = [ "payload": conversations]
 
         return try! JSONSerialization.data(withJSONObject: conversations)
     }

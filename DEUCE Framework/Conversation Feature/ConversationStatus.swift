@@ -19,9 +19,9 @@ public struct ConversationStatus: Equatable {
     public let groupName: String?
     public let contentType: Int
     public let otherUserId: UUID? // Used for One on One Conversations
-    public let createdBy: UUID
+    public let createdByName: String
 
-    public init(id: UUID, image: URL?, conversationId: UUID, message: String?, lastMessageUser: String?, lastMessageTime: Date?, conversationType: Int, groupName: String?, contentType: Int, otherUserId: UUID?, createdBy: UUID) {
+    public init(id: UUID, image: URL?, conversationId: UUID, message: String?, lastMessageUser: String?, lastMessageTime: Date?, conversationType: Int, groupName: String?, contentType: Int, otherUserId: UUID?, createdByName: String) {
         self.id = id
         self.image = image
         self.conversationId = conversationId
@@ -32,6 +32,6 @@ public struct ConversationStatus: Equatable {
         self.groupName = groupName
         self.contentType = contentType
         self.otherUserId = otherUserId
-        self.createdBy = createdBy
+        self.createdByName = createdByName
     }
 }

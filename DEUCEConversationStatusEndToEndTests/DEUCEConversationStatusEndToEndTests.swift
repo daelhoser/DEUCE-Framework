@@ -31,6 +31,8 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
         let client = URLSessionHTTPClient()
         client.addAdditionalHeaders(headers: authorizationHeader())
         let loader = RemoteConversationStatusLoader(url: testServerURL, client: client)
+
+        
         trackForMemoryLeaks(object: client, file: file, line:  line)
         trackForMemoryLeaks(object: loader, file: file, line:  line)
         let exp = expectation(description: "Wait for load completion")
