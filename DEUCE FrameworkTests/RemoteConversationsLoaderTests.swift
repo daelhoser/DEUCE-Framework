@@ -187,6 +187,9 @@ class RemoteConversationsLoaderTests: XCTestCase {
             return messages.map { $0.url }
         }
 
+        func addAdditionalHeaders(headers: [String : String]) {
+        }
+
         func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
             messages.append((url, completion))
         }

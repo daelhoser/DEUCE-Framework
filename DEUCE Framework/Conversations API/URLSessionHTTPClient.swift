@@ -10,6 +10,7 @@ import Foundation
 
 public class URLSessionHTTPClient: HTTPClient {
     private let session: URLSession
+    private var headers: [String: String]?
 
     public init(session: URLSession = .shared) {
         self.session = session
@@ -18,7 +19,7 @@ public class URLSessionHTTPClient: HTTPClient {
     private struct UnexpectedValuesRepresentation: Error {}
 
     public func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-        let request = URLRequest(url: url)
+        let request = GETRequest(for: url)
 
         session.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -29,5 +30,21 @@ public class URLSessionHTTPClient: HTTPClient {
                 completion(.failure(UnexpectedValuesRepresentation()))
             }
         }.resume()
+    }
+
+    public func addAdditionalHeaders(headers: [String: String]) {
+        self.headers = headers
+    }
+
+    private func GETRequest(for url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+
+        if let headers = headers {
+            for header in headers {
+                request.setValue(header.value, forHTTPHeaderField: header.key)
+            }
+        }
+
+        return request
     }
 }

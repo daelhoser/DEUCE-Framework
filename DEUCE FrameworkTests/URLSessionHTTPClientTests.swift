@@ -34,6 +34,23 @@ class URLSessionHTTPClientTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func test_RequestWithAdditionalHeaders_performRequestWithAdditionalHeaders() {
+        let headers = ["key": "Some value", "another key": "another value"]
+        let exp = expectation(description: "Wait for request")
+
+        URLProtocolStub.observeRequests { request in
+            for key in headers.keys {
+                XCTAssertEqual(request.allHTTPHeaderFields?[key], headers[key], "Expected value for  key: \(headers[key] ?? ""): received \(request.allHTTPHeaderFields?[key] ?? "") instead.")
+            }
+            exp.fulfill()
+        }
+        let sut = makeSUT()
+        sut.addAdditionalHeaders(headers: headers)
+        sut.get(from: anyURL()) { _ in }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
     func test_getFromURL_failsOnRequestError() {
         let requestError = anyNSError()
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
