@@ -14,7 +14,7 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
     func test_endToEndTestServerGetFeedResult_matchesFixedTestAccountData() {
         switch getFeedResult() {
         case let .success(items)?:
-            XCTAssertEqual(items.count, 1, "Expected 8 items in the test account")
+            XCTAssertEqual(items.count, 2, "Expected 2 items in the test account")
 
             items.forEach { (item) in
 //                XCTAssertEqual(items, expectedItem(at: index), "Unexpected item values at index \(index)")
@@ -32,7 +32,6 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
         client.addAdditionalHeaders(headers: authorizationHeader())
         let loader = RemoteConversationStatusLoader(url: testServerURL, client: client)
 
-        
         trackForMemoryLeaks(object: client, file: file, line:  line)
         trackForMemoryLeaks(object: loader, file: file, line:  line)
         let exp = expectation(description: "Wait for load completion")
@@ -43,7 +42,7 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
             exp.fulfill()
         }
 
-        wait(for: [exp], timeout: 50.0)
+        wait(for: [exp], timeout: 15.0)
 
         return receivedResult
     }
