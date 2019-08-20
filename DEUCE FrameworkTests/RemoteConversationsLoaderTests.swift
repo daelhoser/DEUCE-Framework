@@ -140,19 +140,22 @@ class RemoteConversationsLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int) -> (model: Conversation, json: [String: Any]) {
+    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdBy: UUID = UUID()) -> (model: Conversation, json: [String: Any]) {
 
-        let conversation = Conversation(id: id, image: image, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType)
+        let conversation = Conversation(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdBy: createdBy)
 
         let dict: [String: Any?] = [
             "Id": id.uuidString,
+            "ConversationId": conversationId.uuidString,
             "OtherUserThumbnailUrl": image?.absoluteString,
             "LastMessage": message,
             "OtherUserName": lastMessageUser,
             "LastMessageTimeStamp":  lastMessageTime != nil ? deuceFormatter.string(from: lastMessageTime!) : nil,
+            "OtherUserId": otherUserId.uuidString,
             "ConversationType": conversationType,
             "GroupName": groupName,
-            "ContentType": contentType
+            "ContentType": contentType,
+            "CreatedBy": createdBy.uuidString
             ]
 
         let reductedDict = dict.reduce(into: [String: Any]()) { (acc, e) in
