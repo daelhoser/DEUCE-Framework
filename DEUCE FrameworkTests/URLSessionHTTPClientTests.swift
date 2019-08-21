@@ -32,6 +32,58 @@ class URLSessionHTTPClientTests: XCTestCase {
         makeSUT().get(from: url) { _ in }
 
         wait(for: [exp], timeout: 1.0)
+
+        //Fixing data Races Solutions 1-3
+    /* // Solution #1
+        let exp = expectation(description: "Wait for request")
+        exp.expectedFulfillmentCount = 2
+
+        URLProtocolStub.observeRequests { request in
+            XCTAssertEqual(request.url, url)
+            XCTAssertEqual(request.httpMethod, "GET")
+            exp.fulfill()
+        }
+
+        //the reason we have exp.fullfill 2x is because if we don't it will lead to a race condition. If we don't add it below then it could possibly be that fulfill at top finishes before the sut.get method completes and thus the next test starts and causes a write 'read race' condition
+        makeSUT().get(from: url) { _ in exp.fulfill() }
+
+        wait(for: [exp], timeout: 1.0)
+         */
+
+        /* // Solution #2
+         let exp = expectation(description: "Wait for request")
+        let exp2 = expectation(description: "waiting on observer requests")
+
+        URLProtocolStub.observeRequests { request in
+            XCTAssertEqual(request.url, url)
+            XCTAssertEqual(request.httpMethod, "GET")
+            exp2.fulfill()
+        }
+
+        //the reason we have exp.fullfill 2x is because if we don't it will lead to a race condition. If we don't add it below then it could possibly be that fulfill at top finishes before the sut.get method completes and thus the next test starts and causes a write 'read race' condition
+        makeSUT().get(from: url) { _ in exp.fulfill() }
+
+        wait(for: [exp, exp2], timeout: 1.0)
+        */
+
+        /*
+        // Solution #3
+        let exp = expectation(description: "Wait for request")
+        var expectedRequests = [URLRequest]()
+
+        URLProtocolStub.observeRequests { request in
+            expectedRequests.append(request)
+        }
+
+        //the reason we have exp.fullfill 2x is because if we don't it will lead to a race condition. If we don't add it below then it could possibly be that fulfill at top finishes before the sut.get method completes and thus the next test starts and causes a write 'read race' condition
+        makeSUT().get(from: url) { _ in exp.fulfill() }
+
+        wait(for: [exp], timeout: 1.0)
+
+        XCTAssertEqual(expectedRequests.count, 1)
+        XCTAssertEqual(expectedRequests[0].url, url)
+        XCTAssertEqual(expectedRequests[0].httpMethod, "GET")
+        */
     }
 
     func test_RequestWithAdditionalHeaders_performRequestWithAdditionalHeaders() {
@@ -195,7 +247,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         }
 
         override class func canInit(with request: URLRequest) -> Bool {
-            requestObserver?(request)
             return true
         }
 
@@ -204,6 +255,12 @@ class URLSessionHTTPClientTests: XCTestCase {
         }
 
         override func startLoading() {
+            // Not quite sure why we are returning here. Checkout the data races video at min 6.
+            if let requestObserver = URLProtocolStub.requestObserver {
+                client?.urlProtocolDidFinishLoading(self)
+                return requestObserver(request)
+            }
+
             if let data = URLProtocolStub.stub?.data {
                 client?.urlProtocol(self, didLoad: data)
             }
