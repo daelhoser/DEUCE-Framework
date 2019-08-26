@@ -10,7 +10,7 @@ import XCTest
 import UIKit
 import DEUCE_Framework
 
-final class ConversationStatusViewController: UIViewController {
+final class ConversationStatusViewController: UITableViewController {
     private var loader: ConversationStatusLoader?
 
     convenience init(loader: ConversationStatusLoader) {
@@ -19,7 +19,18 @@ final class ConversationStatusViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+
+        load()
+    }
+
+    private func load() {
         loader?.load() { _ in }
+    }
+
+    @objc private func didRefresh() {
+        load()
     }
 }
 
@@ -39,6 +50,20 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(loader.requestCount, 1)
     }
 
+    func test_pullToRefresh_loadsFeed() {
+        let (loader, sut) = makeSUT()
+        //forces view to load
+        sut.loadViewIfNeeded()
+
+        //pull to refresh
+        sut.refreshControl?.allTargets.forEach { (target) in
+            sut.refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
+                (target as NSObject).perform(Selector($0))
+            }
+        }
+
+        XCTAssertEqual(loader.requestCount, 2)
+    }
 
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
