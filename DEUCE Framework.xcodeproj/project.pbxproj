@@ -22,6 +22,7 @@
 		5FEC442F230C8274001AFCA5 /* ConversationStatusMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC442E230C8274001AFCA5 /* ConversationStatusMapper.swift */; };
 		5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
+		5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272C7228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DEUCEiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				5F4B31E9230E00CB002CF83F /* Info.plist */,
+				5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */,
+				5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */,
 			);
 			path = DEUCEiOSTests;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 					};
 					5F4B31E1230E00CB002CF83F = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					5FEC4421230B680E001AFCA5 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -440,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +561,7 @@
 		5F4B31ED230E00CB002CF83F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QSBZN86NZC;
 				INFOPLIST_FILE = DEUCEiOSTests/Info.plist;
@@ -566,6 +574,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.DEUCEiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "DEUCEiOSTests/DEUCEiOSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -574,6 +584,7 @@
 		5F4B31EE230E00CB002CF83F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QSBZN86NZC;
 				INFOPLIST_FILE = DEUCEiOSTests/Info.plist;
@@ -586,6 +597,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.DEUCEiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "DEUCEiOSTests/DEUCEiOSTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
