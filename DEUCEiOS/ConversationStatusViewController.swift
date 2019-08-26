@@ -25,6 +25,7 @@ public final class ConversationStatusViewController: UITableViewController {
     }
 
     private func load() {
+        refreshControl?.beginRefreshing()
         loader?.load() { _ in }
     }
 
