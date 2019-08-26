@@ -7,13 +7,18 @@
 //
 
 import XCTest
+import UIKit
 
-final class ConversationStatusViewController {
+final class ConversationStatusViewController: UIViewController {
     private var loader: LoaderSpy?
 
     convenience init(loader: LoaderSpy) {
         self.init()
         self.loader = loader
+    }
+
+    override func viewDidLoad() {
+        loader?.load()
     }
 }
 
@@ -24,10 +29,24 @@ class ConversationStatusTests: XCTestCase {
 
         XCTAssertEqual(loader.requestCount, 0)
     }
+
+    func test_viewDidLoad_loadsConversationStatuses() {
+        let loader = LoaderSpy()
+        let sut = ConversationStatusViewController(loader: loader)
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+
+        XCTAssertEqual(loader.requestCount, 1)
+    }
 }
 
 
 final class LoaderSpy {
     var requestCount = 0
+
+    func load() {
+        requestCount += 1
+    }
 }
 
