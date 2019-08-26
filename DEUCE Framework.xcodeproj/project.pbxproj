@@ -23,6 +23,7 @@
 		5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */; };
+		5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +199,7 @@
 				5F4B31DB230E00CB002CF83F /* DEUCEiOS */,
 				5F4B31E6230E00CB002CF83F /* DEUCEiOSTests */,
 				5FF272B8228249BF00E4486C /* Products */,
+				5FFBAFF923149C2E0097D10A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +235,13 @@
 				5FF272C7228249BF00E4486C /* Info.plist */,
 			);
 			path = "DEUCE FrameworkTests";
+			sourceTree = "<group>";
+		};
+		5FFBAFF923149C2E0097D10A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
