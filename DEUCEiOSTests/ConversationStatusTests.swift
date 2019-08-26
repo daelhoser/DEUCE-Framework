@@ -51,15 +51,17 @@ class ConversationStatusTests: XCTestCase {
 
         return (loader, sut)
     }
-}
+
+    final class LoaderSpy: ConversationStatusLoader {
+        var requestCount = 0
 
 
-final class LoaderSpy: ConversationStatusLoader {
-    var requestCount = 0
-
-
-    func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
-        requestCount += 1
+        func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
+            requestCount += 1
+        }
     }
+
 }
+
+
 
