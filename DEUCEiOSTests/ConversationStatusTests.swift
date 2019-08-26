@@ -41,12 +41,12 @@ class ConversationStatusTests: XCTestCase {
 
 
     // MARK: - Helper Methods
-    private func makeSUT() -> (LoaderSpy, ConversationStatusViewController) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
         let sut = ConversationStatusViewController(loader: loader)
 
-        trackForMemoryLeaks(object: loader)
-        trackForMemoryLeaks(object: sut)
+        trackForMemoryLeaks(object: loader, file: file, line: line)
+        trackForMemoryLeaks(object: sut, file: file, line: line)
 
         return (loader, sut)
     }
