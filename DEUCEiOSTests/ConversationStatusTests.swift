@@ -25,20 +25,30 @@ final class ConversationStatusViewController: UIViewController {
 
 class ConversationStatusTests: XCTestCase {
     func test_init_doesNotLoadConversationStatuses() {
-        let loader = LoaderSpy()
-        _ = ConversationStatusViewController(loader: loader)
+        let (loader, _) = makeSUT()
 
         XCTAssertEqual(loader.requestCount, 0)
     }
 
     func test_viewDidLoad_loadsConversationStatuses() {
-        let loader = LoaderSpy()
-        let sut = ConversationStatusViewController(loader: loader)
+        let (loader, sut) = makeSUT()
 
         //forces view to load
         sut.loadViewIfNeeded()
 
         XCTAssertEqual(loader.requestCount, 1)
+    }
+
+
+    // MARK: - Helper Methods
+    private func makeSUT() -> (LoaderSpy, ConversationStatusViewController) {
+        let loader = LoaderSpy()
+        let sut = ConversationStatusViewController(loader: loader)
+
+        trackForMemoryLeaks(object: loader)
+        trackForMemoryLeaks(object: sut)
+
+        return (loader, sut)
     }
 }
 
