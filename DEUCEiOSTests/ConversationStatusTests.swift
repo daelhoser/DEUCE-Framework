@@ -31,12 +31,7 @@ class ConversationStatusTests: XCTestCase {
         //forces view to load
         sut.loadViewIfNeeded()
 
-        //pull to refresh
-        sut.refreshControl?.allTargets.forEach { (target) in
-            sut.refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
-                (target as NSObject).perform(Selector($0))
-            }
-        }
+        sut.simulatePullToRefresh()
 
         XCTAssertEqual(loader.requestCount, 2)
     }
@@ -60,7 +55,16 @@ class ConversationStatusTests: XCTestCase {
             requestCount += 1
         }
     }
+}
 
+private extension ConversationStatusViewController {
+    func simulatePullToRefresh() {
+        refreshControl?.allTargets.forEach { (target) in
+            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
+                (target as NSObject).perform(Selector($0))
+            }
+        }
+    }
 }
 
 
