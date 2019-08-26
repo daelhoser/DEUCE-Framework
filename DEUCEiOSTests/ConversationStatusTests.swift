@@ -7,32 +7,8 @@
 //
 
 import XCTest
-import UIKit
 import DEUCE_Framework
-
-final class ConversationStatusViewController: UITableViewController {
-    private var loader: ConversationStatusLoader?
-
-    convenience init(loader: ConversationStatusLoader) {
-        self.init()
-        self.loader = loader
-    }
-
-    override func viewDidLoad() {
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
-
-        load()
-    }
-
-    private func load() {
-        loader?.load() { _ in }
-    }
-
-    @objc private func didRefresh() {
-        load()
-    }
-}
+import DEUCEiOS
 
 class ConversationStatusTests: XCTestCase {
     func test_init_doesNotLoadConversationStatuses() {
