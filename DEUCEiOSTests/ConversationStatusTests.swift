@@ -8,17 +8,18 @@
 
 import XCTest
 import UIKit
+import DEUCE_Framework
 
 final class ConversationStatusViewController: UIViewController {
-    private var loader: LoaderSpy?
+    private var loader: ConversationStatusLoader?
 
-    convenience init(loader: LoaderSpy) {
+    convenience init(loader: ConversationStatusLoader) {
         self.init()
         self.loader = loader
     }
 
     override func viewDidLoad() {
-        loader?.load()
+        loader?.load() { _ in }
     }
 }
 
@@ -42,10 +43,11 @@ class ConversationStatusTests: XCTestCase {
 }
 
 
-final class LoaderSpy {
+final class LoaderSpy: ConversationStatusLoader {
     var requestCount = 0
 
-    func load() {
+
+    func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
         requestCount += 1
     }
 }
