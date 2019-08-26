@@ -34,6 +34,10 @@ class ConversationStatusTests: XCTestCase {
         sut.simulatePullToRefresh()
 
         XCTAssertEqual(loader.requestCount, 2)
+
+        sut.simulatePullToRefresh()
+
+        XCTAssertEqual(loader.requestCount, 3)
     }
 
     func test_viewDidLoad_showsLoadingIndicator() {
