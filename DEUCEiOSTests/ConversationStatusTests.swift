@@ -33,13 +33,13 @@ class ConversationStatusTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
 
-        loader.complete()
+        loader.completeConversationStatusLoad()
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once load completes")
 
         sut.simulateUserInitiatedConversationStatusLoad()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator when user initiates conversation status reload")
 
-        loader.complete(at: 1)
+        loader.completeConversationStatusLoad(at: 1)
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
     }
 
@@ -49,10 +49,10 @@ class ConversationStatusTests: XCTestCase {
 
         XCTAssertTrue(sut.isShowingLoadingIndicator)
 
-        loader.complete(at: 0)
+        loader.completeConversationStatusLoad(at: 0)
         sut.simulateUserInitiatedConversationStatusLoad()
 
-        loader.complete(at: 1)
+        loader.completeConversationStatusLoad(at: 1)
 
         XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
@@ -77,7 +77,7 @@ class ConversationStatusTests: XCTestCase {
             loadRequests.append(completion)
         }
 
-        func complete(at index: Int = 0)  {
+        func completeConversationStatusLoad(at index: Int = 0)  {
             loadRequests[index](.success([]))
         }
     }
