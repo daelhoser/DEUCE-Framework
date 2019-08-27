@@ -71,6 +71,20 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
 
+    func test_userConversationStatusRequestAction_hidesLoadingIndicatorOnLoadingCompletion() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
+
+        loader.complete(at: 0)
+        sut.simulateUserInitiatedConversationStatusLoad()
+
+        loader.complete(at: 1)
+
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -91,8 +105,8 @@ class ConversationStatusTests: XCTestCase {
             loadRequests.append(completion)
         }
 
-        func complete() {
-            loadRequests[0](.success([]))
+        func complete(at index: Int = 0)  {
+            loadRequests[index](.success([]))
         }
     }
 }
