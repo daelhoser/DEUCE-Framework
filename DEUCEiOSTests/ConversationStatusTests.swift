@@ -43,6 +43,25 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
     }
 
+    func test_loadConversationStatusCompletion_rendersSuccessfullyLoadedConversationStatus() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), 0, "Expect no rendered conversation status views before a completion")
+        let date = Date()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+
+        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
+        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), 1, "Expected one conversation status view rendered after completion")
+
+        sut.simulateUserInitiatedConversationStatusLoad()
+        loader.completeConversationStatusLoad(at: 1, with: [conversationStatus1, conversationStatus2])
+        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), 2, "Expected two conversation status views rendered after completion")
+
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -54,6 +73,10 @@ class ConversationStatusTests: XCTestCase {
         return (loader, sut)
     }
 
+    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL?, conversationID: UUID = UUID(), message: String?, lastMessageUser: String?, lastMessageTime: Date?, conversationType: Int, groupName: String?, contentType: Int, otherUserId: UUID = UUID(), createdByName: String) -> ConversationStatus {
+        return ConversationStatus(id: id, image: imageURL, conversationId: conversationID, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
+    }
+
     final class LoaderSpy: ConversationStatusLoader {
         var requestCount = 0
         private var loadRequests = [(LoadConversationStatusResult) -> Void]()
@@ -63,8 +86,8 @@ class ConversationStatusTests: XCTestCase {
             loadRequests.append(completion)
         }
 
-        func completeConversationStatusLoad(at index: Int = 0)  {
-            loadRequests[index](.success([]))
+        func completeConversationStatusLoad(at index: Int = 0, with conversationStatuses: [ConversationStatus] = [])  {
+            loadRequests[index](.success(conversationStatuses))
         }
     }
 }
@@ -76,6 +99,14 @@ private extension ConversationStatusViewController {
 
     var isShowingLoadingIndicator: Bool {
         return refreshControl!.isRefreshing
+    }
+
+    func numberOfRenderedConversationStatusViews() -> Int {
+        return tableView.numberOfRows(inSection: conversationSatusesSection)
+    }
+
+    private var conversationSatusesSection: Int {
+        return 0
     }
 }
 

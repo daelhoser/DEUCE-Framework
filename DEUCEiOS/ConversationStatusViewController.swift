@@ -10,6 +10,7 @@ import UIKit
 import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController {
+    private var tableModel = [ConversationStatus]()
     private var loader: ConversationStatusLoader?
 
     public convenience init(loader: ConversationStatusLoader) {
@@ -26,12 +27,23 @@ public final class ConversationStatusViewController: UITableViewController {
 
     private func load() {
         refreshControl?.beginRefreshing()
-        loader?.load() { [weak self] _ in
-            self?.refreshControl?.endRefreshing()
+        loader?.load() { [weak self] result in
+            switch result {
+            case let .success(conversationStatuses):
+                self?.tableModel = conversationStatuses
+                self?.refreshControl?.endRefreshing()
+                self?.tableView.reloadData()
+            default:
+                break
+            }
         }
     }
 
     @objc private func didRefresh() {
         load()
+    }
+
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableModel.count
     }
 }
