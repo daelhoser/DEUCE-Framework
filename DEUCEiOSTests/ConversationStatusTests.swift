@@ -39,8 +39,8 @@ class ConversationStatusTests: XCTestCase {
         sut.simulateUserInitiatedConversationStatusLoad()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator when user initiates conversation status reload")
 
-        loader.completeConversationStatusLoad(at: 1)
-        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
+        loader.completeFeedLoadingWithError(at: 1)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed with error")
     }
 
     func test_loadConversationStatusCompletion_rendersSuccessfullyLoadedConversationStatus() {

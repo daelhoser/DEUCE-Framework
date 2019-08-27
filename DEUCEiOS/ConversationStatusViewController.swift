@@ -28,14 +28,11 @@ public final class ConversationStatusViewController: UITableViewController {
     private func load() {
         refreshControl?.beginRefreshing()
         loader?.load() { [weak self] result in
-            switch result {
-            case let .success(conversationStatuses):
+            if case let .success(conversationStatuses) = result {
                 self?.tableModel = conversationStatuses
-                self?.refreshControl?.endRefreshing()
                 self?.tableView.reloadData()
-            default:
-                break
             }
+            self?.refreshControl?.endRefreshing()
         }
     }
 
