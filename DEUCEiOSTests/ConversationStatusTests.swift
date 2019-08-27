@@ -47,19 +47,18 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), 0, "Expect no rendered conversation status views before a completion")
+        assertThat(sut: sut, isRendering: [])
         let date = Date()
 
         let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
         let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
 
         loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
-        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), 1, "Expected one conversation status view rendered after completion")
+        assertThat(sut: sut, isRendering: [conversationStatus1])
 
         sut.simulateUserInitiatedConversationStatusLoad()
         loader.completeConversationStatusLoad(at: 1, with: [conversationStatus1, conversationStatus2])
-        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), 2, "Expected two conversation status views rendered after completion")
-
+        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2])
     }
 
     // MARK: - Helper Methods
@@ -76,6 +75,11 @@ class ConversationStatusTests: XCTestCase {
     private func makeConversationStatus(id: UUID = UUID(), imageURL: URL?, conversationID: UUID = UUID(), message: String?, lastMessageUser: String?, lastMessageTime: Date?, conversationType: Int, groupName: String?, contentType: Int, otherUserId: UUID = UUID(), createdByName: String) -> ConversationStatus {
         return ConversationStatus(id: id, image: imageURL, conversationId: conversationID, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
     }
+
+    private func assertThat(sut: ConversationStatusViewController, isRendering conversationStatuses: [ConversationStatus], file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), conversationStatuses.count, "Expected \(conversationStatuses.count) convo Statuses, got \(sut.numberOfRenderedConversationStatusViews()) instead.")
+    }
+
 
     final class LoaderSpy: ConversationStatusLoader {
         var requestCount = 0
