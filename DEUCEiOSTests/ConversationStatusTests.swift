@@ -11,64 +11,36 @@ import DEUCE_Framework
 import DEUCEiOS
 
 class ConversationStatusTests: XCTestCase {
-    func test_init_doesNotLoadConversationStatuses() {
-        let (loader, _) = makeSUT()
-
-        XCTAssertEqual(loader.requestCount, 0)
-    }
-
-    func test_viewDidLoad_loadsConversationStatuses() {
+    func test_loadConversationStatusAction_requestConversationStatusFromLoader() {
         let (loader, sut) = makeSUT()
+
+        XCTAssertEqual(loader.requestCount, 0, "Expected no loading requests before view is loaded.")
 
         //forces view to load
         sut.loadViewIfNeeded()
-
-        XCTAssertEqual(loader.requestCount, 1)
-    }
-
-    func test_loadConversatinStatusAction_requestsConversationStatusFromLoader() {
-        let (loader, sut) = makeSUT()
-        //forces view to load
-        sut.loadViewIfNeeded()
+        XCTAssertEqual(loader.requestCount, 1, "Expected a loading request once view is loaded")
 
         sut.simulateUserInitiatedConversationStatusLoad()
-
-        XCTAssertEqual(loader.requestCount, 2)
+        XCTAssertEqual(loader.requestCount, 2, "Expected another loading request once user initiates a reload")
 
         sut.simulateUserInitiatedConversationStatusLoad()
-
-        XCTAssertEqual(loader.requestCount, 3)
+        XCTAssertEqual(loader.requestCount, 3, "Expected yet another loading request once user initiates another reload")
     }
 
-    func test_viewDidLoad_showsLoadingIndicator() {
-        let (_, sut) = makeSUT()
-
-        sut.loadViewIfNeeded()
-
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
-    }
-
-    func test_viewDidLoad_hidesLoadingIndicatorOnLoaderCompletion() {
+    func test_loadingConversationStatusIndicator_isVisibleWhileLoadingConversationStatus() {
         let (loader, sut) = makeSUT()
 
         sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
 
         loader.complete()
-
-        XCTAssertFalse(sut.isShowingLoadingIndicator)
-    }
-
-    func test_userConversationStatusRequestAction_showsALoadingIndicator() {
-        let (loader, sut) = makeSUT()
-        sut.loadViewIfNeeded()
-
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
-
-        loader.complete()
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once load completes")
 
         sut.simulateUserInitiatedConversationStatusLoad()
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator when user initiates conversation status reload")
 
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
+        loader.complete(at: 1)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
     }
 
     func test_userConversationStatusRequestAction_hidesLoadingIndicatorOnLoadingCompletion() {
