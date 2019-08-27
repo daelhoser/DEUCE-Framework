@@ -9,13 +9,19 @@
 import UIKit
 import DEUCE_Framework
 
+public protocol ImageDataLoader {
+    func loadImageData(from url: URL)
+}
+
 public final class ConversationStatusViewController: UITableViewController {
     private var tableModel = [ConversationStatus]()
-    private var loader: ConversationStatusLoader?
+    private var conversationStatusLoader: ConversationStatusLoader?
+    private var imageDataLoader: ImageDataLoader?
 
-    public convenience init(loader: ConversationStatusLoader) {
+    public convenience init(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) {
         self.init()
-        self.loader = loader
+        self.conversationStatusLoader = conversationStatusLoader
+        self.imageDataLoader = imageDataLoader
     }
 
     override public func viewDidLoad() {
@@ -27,7 +33,7 @@ public final class ConversationStatusViewController: UITableViewController {
 
     private func load() {
         refreshControl?.beginRefreshing()
-        loader?.load() { [weak self] result in
+        conversationStatusLoader?.load() { [weak self] result in
             if case let .success(conversationStatuses) = result {
                 self?.tableModel = conversationStatuses
                 self?.tableView.reloadData()
@@ -42,5 +48,14 @@ public final class ConversationStatusViewController: UITableViewController {
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableModel.count
+    }
+
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = tableModel[indexPath.row]
+
+        if let url = model.image {
+            imageDataLoader?.loadImageData(from: url)
+        }
+        return UITableViewCell()
     }
 }
