@@ -26,16 +26,16 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(loader.requestCount, 1)
     }
 
-    func test_pullToRefresh_loadsFeed() {
+    func test_loadConversatinStatusAction_requestsConversationStatusFromLoader() {
         let (loader, sut) = makeSUT()
         //forces view to load
         sut.loadViewIfNeeded()
 
-        sut.simulatePullToRefresh()
+        sut.simulateUserInitiatedConversationStatusLoad()
 
         XCTAssertEqual(loader.requestCount, 2)
 
-        sut.simulatePullToRefresh()
+        sut.simulateUserInitiatedConversationStatusLoad()
 
         XCTAssertEqual(loader.requestCount, 3)
     }
@@ -58,7 +58,7 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
 
-    func test_pullToRefresh_showsALoadingIndicator() {
+    func test_userConversationStatusRequestAction_showsALoadingIndicator() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
@@ -66,7 +66,7 @@ class ConversationStatusTests: XCTestCase {
 
         loader.complete()
 
-        sut.simulatePullToRefresh()
+        sut.simulateUserInitiatedConversationStatusLoad()
 
         XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
@@ -98,7 +98,7 @@ class ConversationStatusTests: XCTestCase {
 }
 
 private extension ConversationStatusViewController {
-    func simulatePullToRefresh() {
+    func simulateUserInitiatedConversationStatusLoad() {
         refreshControl?.allTargets.forEach { (target) in
             refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
                 (target as NSObject).perform(Selector($0))
