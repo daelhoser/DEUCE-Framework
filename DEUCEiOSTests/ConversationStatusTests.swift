@@ -61,6 +61,23 @@ class ConversationStatusTests: XCTestCase {
         assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2])
     }
 
+    func test_loadConversationStatusCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        assertThat(sut: sut, isRendering: [])
+        let date = Date()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+
+        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
+        assertThat(sut: sut, isRendering: [conversationStatus1])
+
+        sut.simulateUserInitiatedConversationStatusLoad()
+        loader.completeFeedLoadingWithError(at: 1)
+        assertThat(sut: sut, isRendering: [conversationStatus1])
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -72,7 +89,7 @@ class ConversationStatusTests: XCTestCase {
         return (loader, sut)
     }
 
-    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL?, conversationID: UUID = UUID(), message: String?, lastMessageUser: String?, lastMessageTime: Date?, conversationType: Int, groupName: String?, contentType: Int, otherUserId: UUID = UUID(), createdByName: String) -> ConversationStatus {
+    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String?, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, otherUserId: UUID = UUID(), createdByName: String) -> ConversationStatus {
         return ConversationStatus(id: id, image: imageURL, conversationId: conversationID, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
     }
 
@@ -92,6 +109,11 @@ class ConversationStatusTests: XCTestCase {
 
         func completeConversationStatusLoad(at index: Int = 0, with conversationStatuses: [ConversationStatus] = [])  {
             loadRequests[index](.success(conversationStatuses))
+        }
+
+        func completeFeedLoadingWithError(at index: Int = 0) {
+            let error = NSError(domain: "an error", code: 0)
+            loadRequests[index](.failure(error))
         }
     }
 }
