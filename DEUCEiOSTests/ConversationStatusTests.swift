@@ -85,16 +85,21 @@ class ConversationStatusTests: XCTestCase {
 
 private extension ConversationStatusViewController {
     func simulateUserInitiatedConversationStatusLoad() {
-        refreshControl?.allTargets.forEach { (target) in
-            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
-                (target as NSObject).perform(Selector($0))
-            }
-        }
+        refreshControl?.simulateUserInitiatedPullToRefresh()
     }
 
     var isShowingLoadingIndicator: Bool {
         return refreshControl!.isRefreshing
     }
+}
+
+private extension UIRefreshControl {
+    func simulateUserInitiatedPullToRefresh() {
+        allTargets.forEach { (target) in
+            actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
+                (target as NSObject).perform(Selector($0))
+            }
+        }    }
 }
 
 
