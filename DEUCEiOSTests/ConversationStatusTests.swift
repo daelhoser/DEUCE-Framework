@@ -58,6 +58,19 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertFalse(sut.isShowingLoadingIndicator())
     }
 
+    func test_pullToRefresh_showsALoadingIndicator() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        XCTAssertTrue(sut.isShowingLoadingIndicator())
+
+        loader.complete()
+
+        sut.simulatePullToRefresh()
+
+        XCTAssertTrue(sut.isShowingLoadingIndicator())
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
