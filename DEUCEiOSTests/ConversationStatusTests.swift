@@ -43,20 +43,6 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
     }
 
-    func test_userConversationStatusRequestAction_hidesLoadingIndicatorOnLoadingCompletion() {
-        let (loader, sut) = makeSUT()
-        sut.loadViewIfNeeded()
-
-        XCTAssertTrue(sut.isShowingLoadingIndicator)
-
-        loader.completeConversationStatusLoad(at: 0)
-        sut.simulateUserInitiatedConversationStatusLoad()
-
-        loader.completeConversationStatusLoad(at: 1)
-
-        XCTAssertFalse(sut.isShowingLoadingIndicator)
-    }
-
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
