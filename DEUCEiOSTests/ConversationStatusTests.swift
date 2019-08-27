@@ -45,7 +45,7 @@ class ConversationStatusTests: XCTestCase {
 
         sut.loadViewIfNeeded()
 
-        XCTAssertTrue(sut.isShowingLoadingIndicator())
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
 
     func test_viewDidLoad_hidesLoadingIndicatorOnLoaderCompletion() {
@@ -55,20 +55,20 @@ class ConversationStatusTests: XCTestCase {
 
         loader.complete()
 
-        XCTAssertFalse(sut.isShowingLoadingIndicator())
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
 
     func test_pullToRefresh_showsALoadingIndicator() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        XCTAssertTrue(sut.isShowingLoadingIndicator())
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
 
         loader.complete()
 
         sut.simulatePullToRefresh()
 
-        XCTAssertTrue(sut.isShowingLoadingIndicator())
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
 
     // MARK: - Helper Methods
@@ -106,7 +106,7 @@ private extension ConversationStatusViewController {
         }
     }
 
-    func isShowingLoadingIndicator() -> Bool {
+    var isShowingLoadingIndicator: Bool {
         return refreshControl!.isRefreshing
     }
 }
