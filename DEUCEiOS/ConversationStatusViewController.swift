@@ -67,14 +67,14 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         cell.profileImageRetry.isHidden = true
 
         let loadImage = { [weak self, weak cell]  in
-            if let url = model.image {
-                self?.imageLoaderTasks[indexPath] = self?.imageDataLoaders?.loadImageData(from: url) { (result) in
-                    let data = try? result.get()
-                    let image = data.map(UIImage.init) ?? nil
-                    cell?.profileImageView.image = image
-                    cell?.profileImageRetry.isHidden = image != nil
-                    cell?.profileImageViewContainer.stopShimmering()
-                }
+            guard let url = model.image else { return }
+
+            self?.imageLoaderTasks[indexPath] = self?.imageDataLoaders?.loadImageData(from: url) { (result) in
+                let data = try? result.get()
+                let image = data.map(UIImage.init) ?? nil
+                cell?.profileImageView.image = image
+                cell?.profileImageRetry.isHidden = image != nil
+                cell?.profileImageViewContainer.stopShimmering()
             }
         }
 
