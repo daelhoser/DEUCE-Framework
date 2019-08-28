@@ -54,10 +54,10 @@ extension ConversationStatusTests {
             return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
         }
 
-        func completeImageLoading(at index: Int = 0) {
+        func completeImageLoading(at index: Int = 0, with data: Data = Data()) {
             let completion = imageRequests[index].completion
 
-            completion(.success(Data()))
+            completion(.success(data))
         }
     }
 }

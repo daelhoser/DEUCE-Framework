@@ -63,7 +63,11 @@ public final class ConversationStatusViewController: UITableViewController {
 
         cell.profileImageViewContainer.startShimmering()
         if let url = model.image {
-            imageLoaderTasks[indexPath] = imageDataLoaders?.loadImageData(from: url) { [weak cell] (_) in
+            imageLoaderTasks[indexPath] = imageDataLoaders?.loadImageData(from: url) { [weak cell] (result) in
+                let data = try? result.get()
+                let image = data.map(UIImage.init) ?? nil
+                cell?.profileImageView.image = image
+
                 cell?.profileImageViewContainer.stopShimmering()
             }
         }

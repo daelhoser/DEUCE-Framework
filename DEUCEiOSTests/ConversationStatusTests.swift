@@ -141,6 +141,30 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertFalse(view2.isShowingLoadingIndicator, "Expected no loading indicator after second view loads")
     }
 
+    func test_profileImageView_rendersImageLoadedFromURL() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+
+        let view1 = sut.simulateFeedImageViewVisible(at: 0)!
+        let view2 = sut.simulateFeedImageViewVisible(at: 1)!
+        XCTAssertEqual(view1.renderedImage, .none, "expected no image while first image loads")
+        XCTAssertEqual(view2.renderedImage, .none, "expected no image while second image loads")
+
+        let imageData1 = UIImage.make(withColor: .red).pngData()!
+        loader.completeImageLoading(at: 0, with: imageData1)
+        XCTAssertEqual(view1.renderedImage, imageData1)
+        XCTAssertEqual(view2.renderedImage, .none, "expected no image while second image loads")
+
+        let imageData2 = UIImage.make(withColor: .green).pngData()!
+        loader.completeImageLoading(at: 1, with: imageData2)
+        XCTAssertEqual(view1.renderedImage, imageData1)
+        XCTAssertEqual(view2.renderedImage, imageData2)
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -209,7 +233,22 @@ private extension ConversationStatusCell {
     var isShowingLoadingIndicator: Bool {
         return profileImageViewContainer.isShimmering
     }
+
+    var renderedImage: Data? {
+        return profileImageView.image?.pngData()
+    }
 }
 
-
+extension UIImage {
+    static func make(withColor color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}
 
