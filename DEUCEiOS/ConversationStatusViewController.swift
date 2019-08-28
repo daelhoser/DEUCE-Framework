@@ -19,7 +19,7 @@ public protocol ImageDataLoader {
     func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask
 }
 
-public final class ConversationStatusViewController: UITableViewController {
+public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
     private var tableModel = [ConversationStatus]()
     private var conversationStatusLoader: ConversationStatusLoader?
     private var imageDataLoaders: ImageDataLoader?
@@ -34,6 +34,8 @@ public final class ConversationStatusViewController: UITableViewController {
     override public func viewDidLoad() {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+
+        tableView.prefetchDataSource = self
 
         load()
     }
@@ -86,5 +88,15 @@ public final class ConversationStatusViewController: UITableViewController {
         let task = imageLoaderTasks[indexPath]
         task?.cancel()
         imageLoaderTasks[indexPath] = nil
+    }
+
+    // MARK: - UITableViewDataSourcePrefetching
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { (indexPath) in
+            let model = tableModel[indexPath.row]
+            if let url = model.image {
+                imageLoaderTasks[indexPath] = imageDataLoaders?.loadImageData(from: url){ _ in }
+            }
+        }
     }
 }

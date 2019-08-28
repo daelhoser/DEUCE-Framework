@@ -234,6 +234,19 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image, conversationStatus1.image, conversationStatus2.image], "Expected three image URL request for the 4 visible views")
     }
 
+    func test_profileImageView_preloadsImageURLWhenNearVisible() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+
+        sut.simulateFeedImageViewNearlyVisible(at: 0)
+        sut.simulateFeedImageViewNearlyVisible(at: 1)
+        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request for the two nearly visible views")
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -273,6 +286,13 @@ private extension ConversationStatusViewController {
         let indexPath = IndexPath(row: index, section: conversationSatusesSection)
 
         return dataSource?.tableView(tableView, cellForRowAt: indexPath) as? ConversationStatusCell
+    }
+
+    func simulateFeedImageViewNearlyVisible(at index: Int) {
+        let dataSource = tableView.prefetchDataSource
+        let indexPath = IndexPath(row: index, section: conversationSatusesSection)
+
+        dataSource?.tableView(tableView, prefetchRowsAt: [indexPath])
     }
 
     func simulateFeedImageViewInvisible(at index: Int) {
