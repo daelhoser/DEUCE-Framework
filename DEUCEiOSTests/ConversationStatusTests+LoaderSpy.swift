@@ -54,4 +54,5 @@ extension ConversationStatusTests {
 
             return loaderTask
         }
-    }}
+    }
+}
