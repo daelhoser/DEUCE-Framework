@@ -136,9 +136,9 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertFalse(view1.isShowingLoadingIndicator, "Expected no loading indicator after first view loads")
         XCTAssertTrue(view2.isShowingLoadingIndicator, "Expected loading indicator for first view while loading first image")
 
-        loader.completeImageLoading(at: 1)
+        loader.completeImageLoadingWithError(at: 1)
         XCTAssertFalse(view1.isShowingLoadingIndicator, "Expected no loading indicator after first view loads")
-        XCTAssertFalse(view2.isShowingLoadingIndicator, "Expected no loading indicator after second view loads")
+        XCTAssertFalse(view2.isShowingLoadingIndicator, "Expected no loading indicator after second view loads with Error")
     }
 
     func test_profileImageView_rendersImageLoadedFromURL() {

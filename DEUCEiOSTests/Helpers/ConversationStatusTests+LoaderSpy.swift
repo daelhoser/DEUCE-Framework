@@ -59,5 +59,11 @@ extension ConversationStatusTests {
 
             completion(.success(data))
         }
+
+        func completeImageLoadingWithError(at index: Int = 0) {
+            let completion = imageRequests[index].completion
+            let error = NSError(domain: "Any error", code: 0)
+            completion(.failure(error))
+        }
     }
 }
