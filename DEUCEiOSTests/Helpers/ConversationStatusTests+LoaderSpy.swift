@@ -45,14 +45,13 @@ extension ConversationStatusTests {
         }
 
 
-        private var imageRequests = [(url: URL, imageLoaderTask: ImageDataLoaderTask, completion: (Result) -> Void)]()
+        private var imageRequests = [(url: URL, completion: (Result) -> Void)]()
         private(set) var cancelledImageURLs = [URL]()
 
         func loadImageData(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataLoaderTask {
-            let loaderTask = TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
-            imageRequests.append((url, loaderTask, completion))
+            imageRequests.append((url, completion))
 
-            return loaderTask
+            return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
         }
 
         func completeImageLoading(at index: Int = 0) {
