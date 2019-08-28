@@ -163,9 +163,9 @@
 		5F4B31E6230E00CB002CF83F /* DEUCEiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				5F7CAF0D2316F4750088D5AC /* Helpers */,
 				5F4B31E9230E00CB002CF83F /* Info.plist */,
 				5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */,
-				5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */,
 				5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */,
 			);
 			path = DEUCEiOSTests;
@@ -184,6 +184,14 @@
 			isa = PBXGroup;
 			children = (
 				5F60848C228616E100B23235 /* DateFormatter+Deuce.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5F7CAF0D2316F4750088D5AC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
