@@ -14,7 +14,7 @@ public protocol ImageDataLoaderTask {
 }
 
 public protocol ImageDataLoader {
-    func loadImageData(from url: URL) -> ImageDataLoaderTask
+    func loadImageData(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataLoaderTask
 }
 
 public final class ConversationStatusViewController: UITableViewController {
@@ -56,12 +56,16 @@ public final class ConversationStatusViewController: UITableViewController {
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ConversationStatusCell()
         let model = tableModel[indexPath.row]
 
+        cell.profileImageViewContainer.startShimmering()
         if let url = model.image {
-            imageLoaderTasks[indexPath] = imageDataLoaders?.loadImageData(from: url)
+            imageLoaderTasks[indexPath] = imageDataLoaders?.loadImageData(from: url) { [weak cell] (_) in
+                cell?.profileImageViewContainer.stopShimmering()
+            }
         }
-        return UITableViewCell()
+        return cell
     }
 
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -119,7 +119,26 @@ class ConversationStatusTests: XCTestCase {
     }
 
     func test_profileImageViewLoadingIndicator_isVisibleWhileLoadingImages() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
 
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+
+        let view1 = sut.simulateFeedImageViewVisible(at: 0)!
+        let view2 = sut.simulateFeedImageViewVisible(at: 1)!
+
+        XCTAssertTrue(view1.isShowingLoadingIndicator, "Expected loading indicator for first view while loading first image")
+        XCTAssertTrue(view2.isShowingLoadingIndicator, "Expected loading indicator for first view while loading first image")
+
+        loader.completeImageLoading(at: 0)
+        XCTAssertFalse(view1.isShowingLoadingIndicator, "Expected no loading indicator after first view loads")
+        XCTAssertTrue(view2.isShowingLoadingIndicator, "Expected loading indicator for first view while loading first image")
+
+        loader.completeImageLoading(at: 1)
+        XCTAssertFalse(view1.isShowingLoadingIndicator, "Expected no loading indicator after first view loads")
+        XCTAssertFalse(view2.isShowingLoadingIndicator, "Expected no loading indicator after second view loads")
     }
 
     // MARK: - Helper Methods
@@ -156,11 +175,11 @@ private extension ConversationStatusViewController {
     }
 
     @discardableResult
-    func simulateFeedImageViewVisible(at index: Int) -> UITableViewCell? {
+    func simulateFeedImageViewVisible(at index: Int) -> ConversationStatusCell? {
         let dataSource = tableView.dataSource
         let indexPath = IndexPath(row: index, section: conversationSatusesSection)
 
-        return dataSource?.tableView(tableView, cellForRowAt: indexPath)
+        return dataSource?.tableView(tableView, cellForRowAt: indexPath) as? ConversationStatusCell
     }
 
     func simulateFeedImageViewInvisible(at index: Int) {
@@ -182,7 +201,14 @@ private extension UIRefreshControl {
             actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
                 (target as NSObject).perform(Selector($0))
             }
-        }    }
+        }
+    }
+}
+
+private extension ConversationStatusCell {
+    var isShowingLoadingIndicator: Bool {
+        return profileImageViewContainer.isShimmering
+    }
 }
 
 

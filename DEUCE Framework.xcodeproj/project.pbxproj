@@ -15,6 +15,8 @@
 		5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F60848C228616E100B23235 /* DateFormatter+Deuce.swift */; };
 		5F6FE3C82292301C0077F8B8 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */; };
 		5F7CAF0C2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */; };
+		5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */; };
+		5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
 		5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationStatusLoader.swift */; };
 		5FEC4425230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */; };
@@ -65,6 +67,8 @@
 		5F60848C228616E100B23235 /* DateFormatter+Deuce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Deuce.swift"; sourceTree = "<group>"; };
 		5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationStatusTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusCell.swift; sourceTree = "<group>"; };
+		5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoader.swift; sourceTree = "<group>"; };
 		5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DEUCEConversationStatusEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +158,7 @@
 		5F4B31DB230E00CB002CF83F /* DEUCEiOS */ = {
 			isa = PBXGroup;
 			children = (
+				5F7CAF0E2316FB820088D5AC /* Views */,
 				5F4B31DD230E00CB002CF83F /* Info.plist */,
 				5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */,
 			);
@@ -194,6 +199,15 @@
 				5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5F7CAF0E2316FB820088D5AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */,
+				5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5FEC4423230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */ = {
@@ -465,6 +479,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */,
+				5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */,
 				5FFBAFFD2314A0BE0097D10A /* ConversationStatusViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
