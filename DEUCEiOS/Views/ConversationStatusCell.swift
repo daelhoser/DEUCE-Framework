@@ -15,4 +15,5 @@ public final class ConversationStatusCell: UITableViewCell {
     public var nameLabel: UILabel! = UILabel()
     public var messageLabel: UILabel! = UILabel()
     public var dateLabel: UILabel? = UILabel()
+    public var profileImageRetry: UIButton = UIButton()
 }
