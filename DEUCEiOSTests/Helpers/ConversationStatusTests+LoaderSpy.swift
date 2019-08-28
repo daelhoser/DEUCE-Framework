@@ -45,7 +45,7 @@ extension ConversationStatusTests {
         }
 
 
-        private var imageRequests = [(url: URL, imageLoaderTask: ImageDataLoaderTask, completion: (Result<Data, Error>) -> Void)]()
+        private var imageRequests = [(url: URL, imageLoaderTask: ImageDataLoaderTask, completion: (Result) -> Void)]()
         private(set) var cancelledImageURLs = [URL]()
 
         func loadImageData(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataLoaderTask {

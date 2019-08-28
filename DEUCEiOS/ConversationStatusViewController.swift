@@ -14,7 +14,9 @@ public protocol ImageDataLoaderTask {
 }
 
 public protocol ImageDataLoader {
-    func loadImageData(from url: URL, completion: @escaping (Result<Data, Error>) -> Void) -> ImageDataLoaderTask
+    typealias Result = Swift.Result<Data, Error>
+
+    func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask
 }
 
 public final class ConversationStatusViewController: UITableViewController {
