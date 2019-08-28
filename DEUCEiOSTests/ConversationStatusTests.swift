@@ -247,6 +247,20 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request for the two nearly visible views")
     }
 
+    func test_profileImageView_cancelsImageURLPreloadingWhenNotNearVisibleAnymore() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+
+        sut.simulateFeedImageViewNotVisible(at: 0)
+        sut.simulateFeedImageViewNotVisible(at: 1)
+
+        XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request cancelled for the two not visible views")
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -301,6 +315,15 @@ private extension ConversationStatusViewController {
         let delegate = tableView.delegate
 
         delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: indexPath)
+    }
+
+    func simulateFeedImageViewNotVisible(at index: Int) {
+        simulateFeedImageViewNearlyVisible(at: index)
+        
+        let dataSource = tableView.prefetchDataSource
+        let indexPath = IndexPath(row: index, section: conversationSatusesSection)
+
+        dataSource?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
     }
 
     private var conversationSatusesSection: Int {

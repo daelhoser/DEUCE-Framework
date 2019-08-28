@@ -99,4 +99,12 @@ public final class ConversationStatusViewController: UITableViewController, UITa
             }
         }
     }
+
+    public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { (indexPath) in
+            let task = imageLoaderTasks[indexPath]
+            task?.cancel()
+            imageLoaderTasks[indexPath] = nil
+        }
+    }
 }
