@@ -188,6 +188,31 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertTrue(view2.isShowingRetryAction, "Expected a retry action for second view after it completes with URL Error")
     }
 
+    func test_profileImageRetryButton_isVisibleOnInvalidImageData() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+
+        let view1 = sut.simulateFeedImageViewVisible(at: 0)!
+        let view2 = sut.simulateFeedImageViewVisible(at: 1)!
+
+        XCTAssertFalse(view1.isShowingRetryAction, "Expected no retry action for first view while first image loads")
+        XCTAssertFalse(view2.isShowingRetryAction, "Expected no retry action for second view while second image loads")
+
+        let invalidData = "Invalid Data".data(using: .utf8)!
+
+        loader.completeImageLoading(at: 0, with: invalidData)
+        XCTAssertTrue(view1.isShowingRetryAction, "Expected a retry action for first view after it completes with URL Error")
+        XCTAssertFalse(view2.isShowingRetryAction, "Expected no retry action for second view while second image loads")
+
+        loader.completeImageLoading(at: 1, with: invalidData)
+        XCTAssertTrue(view1.isShowingRetryAction, "Expected a retry action for first view after it completes with URL Error")
+        XCTAssertTrue(view2.isShowingRetryAction, "Expected a retry action for second view after it completes with URL Error")
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
