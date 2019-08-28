@@ -9,19 +9,24 @@
 import UIKit
 import DEUCE_Framework
 
+public protocol ImageDataLoaderTask {
+    func cancel()
+}
+
 public protocol ImageDataLoader {
-    func loadImageData(from url: URL)
+    func loadImageData(from url: URL) -> ImageDataLoaderTask
 }
 
 public final class ConversationStatusViewController: UITableViewController {
     private var tableModel = [ConversationStatus]()
     private var conversationStatusLoader: ConversationStatusLoader?
-    private var imageDataLoader: ImageDataLoader?
+    private var imageDataLoaders: ImageDataLoader?
+    private var imageLoaderTasks: [IndexPath: ImageDataLoaderTask] = [:]
 
     public convenience init(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) {
         self.init()
         self.conversationStatusLoader = conversationStatusLoader
-        self.imageDataLoader = imageDataLoader
+        self.imageDataLoaders = imageDataLoader
     }
 
     override public func viewDidLoad() {
@@ -54,8 +59,14 @@ public final class ConversationStatusViewController: UITableViewController {
         let model = tableModel[indexPath.row]
 
         if let url = model.image {
-            imageDataLoader?.loadImageData(from: url)
+            imageLoaderTasks[indexPath] = imageDataLoaders?.loadImageData(from: url)
         }
         return UITableViewCell()
+    }
+
+    public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let task = imageLoaderTasks[indexPath]
+        task?.cancel()
+        imageLoaderTasks[indexPath] = nil
     }
 }

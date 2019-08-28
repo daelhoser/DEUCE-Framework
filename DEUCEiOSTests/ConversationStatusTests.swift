@@ -103,6 +103,26 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected no new URL requests since previous conversation Status had no image URL")
     }
 
+    func test_profileImageView_cancelsLoadingWhenNotVisibleAnymore() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        let date = Date()
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+
+        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1, conversationStatus2])
+
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
+
+        sut.simulateFeedImageViewInvisible(at: 0)
+        XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image], "Expected first image URL request once first view becomes invisible")
+
+        sut.simulateFeedImageViewInvisible(at: 1)
+        XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected first and second images URL request cancelled after they become invisible")
+
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -125,7 +145,6 @@ class ConversationStatusTests: XCTestCase {
 
     final class LoaderSpy: ConversationStatusLoader, ImageDataLoader {
         var requestCount = 0
-        private(set) var loadedImageURLs = [URL]()
         private var loadRequests = [(LoadConversationStatusResult) -> Void]()
 
         func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
@@ -142,8 +161,29 @@ class ConversationStatusTests: XCTestCase {
             loadRequests[index](.failure(error))
         }
 
-        func loadImageData(from url: URL) {
-            loadedImageURLs.append(url)
+        // MARK - ImageDataLoader
+
+        private struct TaskSpy: ImageDataLoaderTask {
+            let cancelCallback: () -> Void
+
+            func cancel() {
+                cancelCallback()
+            }
+        }
+
+        var loadedImageURLs: [URL] {
+            return imageRequests.map { $0.url }
+        }
+
+
+        private var imageRequests = [(url: URL, imageLoaderTask: ImageDataLoaderTask)]()
+        private(set) var cancelledImageURLs = [URL]()
+
+        func loadImageData(from url: URL) -> ImageDataLoaderTask {
+            let loaderTask = TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
+            imageRequests.append((url, loaderTask))
+
+            return loaderTask
         }
     }
 }
@@ -161,11 +201,20 @@ private extension ConversationStatusViewController {
         return tableView.numberOfRows(inSection: conversationSatusesSection)
     }
 
-    func simulateFeedImageViewVisible(at index: Int) {
+    @discardableResult
+    func simulateFeedImageViewVisible(at index: Int) -> UITableViewCell? {
         let dataSource = tableView.dataSource
         let indexPath = IndexPath(row: index, section: conversationSatusesSection)
 
-        dataSource?.tableView(tableView, cellForRowAt: indexPath)
+        return dataSource?.tableView(tableView, cellForRowAt: indexPath)
+    }
+
+    func simulateFeedImageViewInvisible(at index: Int) {
+        let view = simulateFeedImageViewVisible(at: index)
+        let indexPath = IndexPath(row: index, section: conversationSatusesSection)
+        let delegate = tableView.delegate
+
+        delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: indexPath)
     }
 
     private var conversationSatusesSection: Int {
