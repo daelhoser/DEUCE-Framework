@@ -15,5 +15,16 @@ public final class ConversationStatusCell: UITableViewCell {
     public var nameLabel: UILabel! = UILabel()
     public var messageLabel: UILabel! = UILabel()
     public var dateLabel: UILabel? = UILabel()
-    public var profileImageRetry: UIButton = UIButton()
+    private(set) public lazy var profileImageRetry: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
+
+        return button
+    }()
+
+    var onRetry: (() -> Void)?
+
+    @objc private func retryButtonTapped() {
+        onRetry?()
+    }
 }

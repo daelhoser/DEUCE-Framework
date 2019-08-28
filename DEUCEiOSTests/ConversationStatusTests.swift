@@ -213,6 +213,27 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertTrue(view2.isShowingRetryAction, "Expected a retry action for second view after it completes with URL Error")
     }
 
+    func test_profileImageRetryButton_retriesImageLoad() {
+        let (loader, sut) = makeSUT()
+        sut.loadViewIfNeeded()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+
+        let view1 = sut.simulateFeedImageViewVisible(at: 0)!
+        let view2 = sut.simulateFeedImageViewVisible(at: 1)!
+        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request for the two visible views")
+
+        loader.completeImageLoadingWithError(at: 0)
+        view1.simulateRetryAction()
+        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image, conversationStatus1.image], "Expected three image URL request for the two visible views")
+
+        loader.completeImageLoadingWithError(at: 1)
+        view2.simulateRetryAction()
+        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image, conversationStatus1.image, conversationStatus2.image], "Expected three image URL request for the 4 visible views")
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -289,9 +310,13 @@ private extension ConversationStatusCell {
     var isShowingRetryAction: Bool {
         return !profileImageRetry.isHidden
     }
+
+    func simulateRetryAction() {
+        profileImageRetry.simulateTap()
+    }
 }
 
-extension UIImage {
+private extension UIImage {
     static func make(withColor color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
@@ -301,6 +326,16 @@ extension UIImage {
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return img!
+    }
+}
+
+private extension UIButton {
+    func simulateTap() {
+        allTargets.forEach { (target) in
+            actions(forTarget: target, forControlEvent: .touchUpInside)?.forEach {
+                (target as NSObject).perform(Selector($0))
+            }
+        }
     }
 }
 
