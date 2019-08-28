@@ -142,52 +142,7 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), conversationStatuses.count, "Expected \(conversationStatuses.count) convo Statuses, got \(sut.numberOfRenderedConversationStatusViews()) instead.", file: file, line: line)
     }
 
-
-    final class LoaderSpy: ConversationStatusLoader, ImageDataLoader {
-        var requestCount = 0
-        private var loadRequests = [(LoadConversationStatusResult) -> Void]()
-
-        func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
-            requestCount += 1
-            loadRequests.append(completion)
-        }
-
-        func completeConversationStatusLoad(at index: Int = 0, with conversationStatuses: [ConversationStatus] = [])  {
-            loadRequests[index](.success(conversationStatuses))
-        }
-
-        func completeFeedLoadingWithError(at index: Int = 0) {
-            let error = NSError(domain: "an error", code: 0)
-            loadRequests[index](.failure(error))
-        }
-
-        // MARK - ImageDataLoader
-
-        private struct TaskSpy: ImageDataLoaderTask {
-            let cancelCallback: () -> Void
-
-            func cancel() {
-                cancelCallback()
-            }
-        }
-
-        var loadedImageURLs: [URL] {
-            return imageRequests.map { $0.url }
-        }
-
-
-        private var imageRequests = [(url: URL, imageLoaderTask: ImageDataLoaderTask)]()
-        private(set) var cancelledImageURLs = [URL]()
-
-        func loadImageData(from url: URL) -> ImageDataLoaderTask {
-            let loaderTask = TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
-            imageRequests.append((url, loaderTask))
-
-            return loaderTask
-        }
-    }
 }
-
 private extension ConversationStatusViewController {
     func simulateUserInitiatedConversationStatusLoad() {
         refreshControl?.simulateUserInitiatedPullToRefresh()
