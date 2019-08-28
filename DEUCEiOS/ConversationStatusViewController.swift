@@ -85,9 +85,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let task = imageLoaderTasks[indexPath]
-        task?.cancel()
-        imageLoaderTasks[indexPath] = nil
+        cancelTask(at: indexPath)
     }
 
     // MARK: - UITableViewDataSourcePrefetching
@@ -101,10 +99,14 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach { (indexPath) in
-            let task = imageLoaderTasks[indexPath]
-            task?.cancel()
-            imageLoaderTasks[indexPath] = nil
-        }
+        indexPaths.forEach(cancelTask)
+    }
+
+    // MARK: - Helper methods
+
+    private func cancelTask(at indexPath: IndexPath) {
+        let task = imageLoaderTasks[indexPath]
+        task?.cancel()
+        imageLoaderTasks[indexPath] = nil
     }
 }
