@@ -66,9 +66,7 @@ class ConversationStatusTests: XCTestCase {
         sut.loadViewIfNeeded()
 
         assertThat(sut: sut, isRendering: [])
-        let date = Date()
-
-        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let conversationStatus1 = makeConversationStatus()
 
         loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
         assertThat(sut: sut, isRendering: [conversationStatus1])
@@ -82,12 +80,10 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let date = Date()
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
         loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1, conversationStatus2])
-        let conversationStatus3 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-
+        let conversationStatus3 = makeConversationStatus()
 
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
 
@@ -107,9 +103,8 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let date = Date()
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
 
         loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1, conversationStatus2])
 
@@ -120,6 +115,10 @@ class ConversationStatusTests: XCTestCase {
 
         sut.simulateFeedImageViewInvisible(at: 1)
         XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected first and second images URL request cancelled after they become invisible")
+
+    }
+
+    func test_profileImageViewLoadingIndicator_isVisibleWhileLoadingImages() {
 
     }
 
@@ -134,7 +133,7 @@ class ConversationStatusTests: XCTestCase {
         return (loader, sut)
     }
 
-    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String?, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, otherUserId: UUID = UUID(), createdByName: String) -> ConversationStatus {
+    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int = 0, groupName: String? = nil, contentType: Int = 0, otherUserId: UUID = UUID(), createdByName: String = "creator") -> ConversationStatus {
         return ConversationStatus(id: id, image: imageURL, conversationId: conversationID, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
     }
 
