@@ -10,14 +10,13 @@ import UIKit
 import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var tableModel = [ConversationStatus]() {
+    private var tableModel = [ConversationStatusCellController]() {
         didSet {
             tableView.reloadData()
         }
     }
     private var refreshController: ConversationStatusRefreshViewController?
     private var imageDataLoaders: ImageDataLoader?
-    private var cellControllers: [IndexPath: ConversationStatusCellController] = [:]
 
     public convenience init(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) {
         self.init()
@@ -31,7 +30,9 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         tableView.prefetchDataSource = self
 
         refreshController?.onRefresh = { [weak self] conversationStatuses in
-            self?.tableModel = conversationStatuses
+            self?.tableModel = conversationStatuses.map { model in
+                ConversationStatusCellController(model: model, imageDataLoader: self!.imageDataLoaders!)
+            }
         }
 
         refreshController?.refresh()
@@ -42,15 +43,11 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let controller = cellController(forRowAt: indexPath)
-
-        cellControllers[indexPath] = controller
-
-        return controller.view()
+        return cellController(forRowAt: indexPath).view()
     }
 
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        removeCellController(at: indexPath)
+        cancelCellControllerLoad(at: indexPath)
     }
 
     // MARK: - UITableViewDataSourcePrefetching
@@ -58,24 +55,22 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         indexPaths.forEach { (indexPath) in
             let controller = cellController(forRowAt: indexPath)
             _ = controller.preload()
-
-            cellControllers[indexPath] = controller
         }
     }
 
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach(removeCellController)
+        indexPaths.forEach(cancelCellControllerLoad)
     }
 
     // MARK: - Helper methods
 
     private func cellController(forRowAt indexPath: IndexPath) -> ConversationStatusCellController {
-        let model = tableModel[indexPath.row]
-
-        return ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
+        return tableModel[indexPath.row]
     }
 
-    private func removeCellController(at indexPath: IndexPath) {
-        cellControllers[indexPath] = nil
+
+    private func cancelCellControllerLoad(at indexPath: IndexPath) {
+        let controller = tableModel[indexPath.row]
+        controller.cancelLoad()
     }
 }

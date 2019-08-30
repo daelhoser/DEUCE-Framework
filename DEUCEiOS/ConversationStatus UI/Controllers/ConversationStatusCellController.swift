@@ -54,7 +54,7 @@ final class ConversationStatusCellController {
         task = imageDataLoader.loadImageData(from: url) { _ in }
     }
 
-    deinit {
+    func cancelLoad() {
         task?.cancel()
     }
 }
