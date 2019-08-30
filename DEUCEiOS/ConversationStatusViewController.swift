@@ -10,10 +10,10 @@ import UIKit
 import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var tableModel = [ConversationStatus]()
+    private var models = [ConversationStatus]()
     private var refreshController: ConversationStatusRefreshViewController?
     private var imageDataLoaders: ImageDataLoader?
-    private var imageLoaderTasks: [IndexPath: ImageDataLoaderTask] = [:]
+    private var cellControllers: [IndexPath: ConversationStatusCellController] = [:]
 
     public convenience init(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) {
         self.init()
@@ -27,7 +27,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         tableView.prefetchDataSource = self
 
         refreshController?.onRefresh = { [weak self] conversationStatuses in
-            self?.tableModel = conversationStatuses
+            self?.models = conversationStatuses
             self?.tableView.reloadData()
         }
 
@@ -35,61 +35,40 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableModel.count
+        return models.count
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ConversationStatusCell()
-        let model = tableModel[indexPath.row]
+        let model = models[indexPath.row]
+        let controller = ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
 
-        //        cell.initialsLabel =
-        cell.nameLabel.text = model.lastMessageUser ?? model.groupName
-        cell.messageLabel.text = model.message
-        //        cell.dateLabel?.text =
-        cell.profileImageViewContainer.startShimmering()
-        cell.profileImageRetry.isHidden = true
+        cellControllers[indexPath] = controller
 
-        let loadImage = { [weak self, weak cell]  in
-            guard let url = model.image else { return }
-
-            self?.imageLoaderTasks[indexPath] = self?.imageDataLoaders?.loadImageData(from: url) { (result) in
-                let data = try? result.get()
-                let image = data.map(UIImage.init) ?? nil
-                cell?.profileImageView.image = image
-                cell?.profileImageRetry.isHidden = image != nil
-                cell?.profileImageViewContainer.stopShimmering()
-            }
-        }
-
-        cell.onRetry = loadImage
-        loadImage()
-
-        return cell
+        return controller.view()
     }
 
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cancelTask(at: indexPath)
+        removeCellController(at: indexPath)
     }
 
     // MARK: - UITableViewDataSourcePrefetching
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { (indexPath) in
-            let model = tableModel[indexPath.row]
-            if let url = model.image {
-                imageLoaderTasks[indexPath] = imageDataLoaders?.loadImageData(from: url){ _ in }
-            }
+            let model = models[indexPath.row]
+            let controller = ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
+            _ = controller.view()
+
+            cellControllers[indexPath] = controller
         }
     }
 
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach(cancelTask)
+        indexPaths.forEach(removeCellController)
     }
 
     // MARK: - Helper methods
 
-    private func cancelTask(at indexPath: IndexPath) {
-        let task = imageLoaderTasks[indexPath]
-        task?.cancel()
-        imageLoaderTasks[indexPath] = nil
+    private func removeCellController(at indexPath: IndexPath) {
+        cellControllers[indexPath] = nil
     }
 }
