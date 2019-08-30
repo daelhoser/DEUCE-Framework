@@ -10,7 +10,11 @@ import UIKit
 import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var tableModel = [ConversationStatus]()
+    private var tableModel = [ConversationStatus]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     private var refreshController: ConversationStatusRefreshViewController?
     private var imageDataLoaders: ImageDataLoader?
     private var cellControllers: [IndexPath: ConversationStatusCellController] = [:]
@@ -28,7 +32,6 @@ public final class ConversationStatusViewController: UITableViewController, UITa
 
         refreshController?.onRefresh = { [weak self] conversationStatuses in
             self?.tableModel = conversationStatuses
-            self?.tableView.reloadData()
         }
 
         refreshController?.load()
