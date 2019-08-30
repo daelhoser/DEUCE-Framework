@@ -28,6 +28,7 @@
 		5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
 		5FEEF918231994AD00083C51 /* ConversationStatusCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */; };
 		5FEEF91B23199E9E00083C51 /* ConversationStatusComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91A23199E9E00083C51 /* ConversationStatusComposer.swift */; };
+		5FEEF91E2319C51800083C51 /* ConversationStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91D2319C51800083C51 /* ConversationStatusViewModel.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */; };
 		5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
@@ -84,6 +85,7 @@
 		5FEEF9142319890C00083C51 /* ImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataLoader.swift; sourceTree = "<group>"; };
 		5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusCellController.swift; sourceTree = "<group>"; };
 		5FEEF91A23199E9E00083C51 /* ConversationStatusComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusComposer.swift; sourceTree = "<group>"; };
+		5FEEF91D2319C51800083C51 /* ConversationStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusViewModel.swift; sourceTree = "<group>"; };
 		5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +250,7 @@
 		5FEEF916231989B900083C51 /* ConversationStatus UI */ = {
 			isa = PBXGroup;
 			children = (
+				5FEEF91C2319C50C00083C51 /* Models */,
 				5FEEF91923199E8A00083C51 /* Composers */,
 				5FEEF9102319881300083C51 /* Controllers */,
 				5F7CAF0E2316FB820088D5AC /* Views */,
@@ -261,6 +264,14 @@
 				5FEEF91A23199E9E00083C51 /* ConversationStatusComposer.swift */,
 			);
 			path = Composers;
+			sourceTree = "<group>";
+		};
+		5FEEF91C2319C50C00083C51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5FEEF91D2319C51800083C51 /* ConversationStatusViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5FF272AD228249BF00E4486C = {
@@ -528,6 +539,7 @@
 				5FEEF91B23199E9E00083C51 /* ConversationStatusComposer.swift in Sources */,
 				5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */,
 				5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */,
+				5FEEF91E2319C51800083C51 /* ConversationStatusViewModel.swift in Sources */,
 				5FEEF918231994AD00083C51 /* ConversationStatusCellController.swift in Sources */,
 				5FFBAFFD2314A0BE0097D10A /* ConversationStatusViewController.swift in Sources */,
 			);

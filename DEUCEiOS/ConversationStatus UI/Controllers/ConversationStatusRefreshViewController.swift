@@ -8,35 +8,34 @@
 
 import Foundation
 import UIKit
-import DEUCE_Framework
 
 final class ConversationStatusRefreshViewController: NSObject {
-    private(set) lazy var view: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+    private(set) lazy var view = binded(UIRefreshControl())
 
-        return refreshControl
-    }()
+    private let viewModel: ConversationStatusViewModel
 
-    private let loader: ConversationStatusLoader
-
-    init(loader: ConversationStatusLoader) {
-        self.loader = loader
+    init(viewModel: ConversationStatusViewModel) {
+        self.viewModel = viewModel
     }
 
     @objc private func didRefresh() {
         refresh()
     }
 
-    var onRefresh: (([ConversationStatus]) -> Void)?
-
     func refresh() {
-        view.beginRefreshing()
-        loader.load() { [weak self] result in
-            if case let .success(conversationStatuses) = result {
-                self?.onRefresh?(conversationStatuses)
+        viewModel.loadConversationStatuses()
+    }
+
+    private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
+        viewModel.onChange = { [weak self] viewModel in
+            if viewModel.isLoading {
+                self?.view.beginRefreshing()
+            } else {
+                self?.view.endRefreshing()
             }
-            self?.view.endRefreshing()
         }
+        view.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+
+        return view
     }
 }
