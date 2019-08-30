@@ -18,12 +18,16 @@ public final class ConversationStatusComposer {
         let viewController = ConversationStatusViewController(refreshController: refreshController)
         viewController.refreshController = refreshController
 
-        refreshController.onRefresh = { [weak viewController] conversationStatuses in
-            viewController?.tableModel = conversationStatuses.map { model in
-                ConversationStatusCellController(model: model, imageDataLoader: imageDataLoader)
-            }
-        }
+        refreshController.onRefresh = adaptConversationStatusToCellControllers(forwardingTo: viewController, loader: imageDataLoader)
 
         return viewController
+    }
+
+    private static func adaptConversationStatusToCellControllers(forwardingTo controller: ConversationStatusViewController, loader: ImageDataLoader) -> ([ConversationStatus]) -> Void {
+        return { [weak controller] conversationStatus in
+            controller?.tableModel = conversationStatus.map { model in
+                ConversationStatusCellController(model: model, imageDataLoader: loader)
+            }
+        }
     }
 }
