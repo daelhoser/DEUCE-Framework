@@ -264,7 +264,7 @@ class ConversationStatusTests: XCTestCase {
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
-        let sut = ConversationStatusViewController(conversationStatusLoader: loader, imageDataLoader: loader)
+        let sut = ConversationStatusComposer.conversationStatusComposedWith(conversationStatusLoader: loader, imageDataLoader: loader)
 
         trackForMemoryLeaks(object: loader, file: file, line: line)
         trackForMemoryLeaks(object: sut, file: file, line: line)

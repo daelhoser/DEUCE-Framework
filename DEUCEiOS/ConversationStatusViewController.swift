@@ -7,25 +7,18 @@
 //
 
 import UIKit
-import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var tableModel = [ConversationStatusCellController]() {
+    var tableModel = [ConversationStatusCellController]() {
         didSet {
             tableView.reloadData()
         }
     }
-    private var refreshController: ConversationStatusRefreshViewController?
+    var refreshController: ConversationStatusRefreshViewController?
 
-    public convenience init(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) {
+    convenience init(refreshController: ConversationStatusRefreshViewController) {
         self.init()
-        self.refreshController = ConversationStatusRefreshViewController(loader: conversationStatusLoader)
-
-        refreshController?.onRefresh = { [weak self] conversationStatuses in
-            self?.tableModel = conversationStatuses.map { model in
-                ConversationStatusCellController(model: model, imageDataLoader: imageDataLoader)
-            }
-        }
+        self.refreshController = refreshController
     }
 
     override public func viewDidLoad() {
