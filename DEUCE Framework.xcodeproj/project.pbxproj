@@ -163,8 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				5FEEF913231988E600083C51 /* ImageDataLoader */,
-				5FEEF9102319881300083C51 /* Controllers */,
-				5F7CAF0E2316FB820088D5AC /* Views */,
+				5FEEF916231989B900083C51 /* ConversationStatus UI */,
+				5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */,
 				5F4B31DD230E00CB002CF83F /* Info.plist */,
 			);
 			path = DEUCEiOS;
@@ -227,7 +227,6 @@
 		5FEEF9102319881300083C51 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */,
 				5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */,
 			);
 			path = Controllers;
@@ -239,6 +238,15 @@
 				5FEEF9142319890C00083C51 /* ImageDataLoader.swift */,
 			);
 			path = ImageDataLoader;
+			sourceTree = "<group>";
+		};
+		5FEEF916231989B900083C51 /* ConversationStatus UI */ = {
+			isa = PBXGroup;
+			children = (
+				5FEEF9102319881300083C51 /* Controllers */,
+				5F7CAF0E2316FB820088D5AC /* Views */,
+			);
+			path = "ConversationStatus UI";
 			sourceTree = "<group>";
 		};
 		5FF272AD228249BF00E4486C = {
