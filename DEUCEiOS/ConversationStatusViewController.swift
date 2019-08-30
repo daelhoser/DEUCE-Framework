@@ -42,8 +42,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = tableModel[indexPath.row]
-        let controller = ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
+        let controller = cellController(forRowAt: indexPath)
 
         cellControllers[indexPath] = controller
 
@@ -57,8 +56,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     // MARK: - UITableViewDataSourcePrefetching
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { (indexPath) in
-            let model = tableModel[indexPath.row]
-            let controller = ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
+            let controller = cellController(forRowAt: indexPath)
             _ = controller.view()
 
             cellControllers[indexPath] = controller
@@ -70,6 +68,12 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     // MARK: - Helper methods
+
+    private func cellController(forRowAt indexPath: IndexPath) -> ConversationStatusCellController {
+        let model = tableModel[indexPath.row]
+
+        return ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
+    }
 
     private func removeCellController(at indexPath: IndexPath) {
         cellControllers[indexPath] = nil
