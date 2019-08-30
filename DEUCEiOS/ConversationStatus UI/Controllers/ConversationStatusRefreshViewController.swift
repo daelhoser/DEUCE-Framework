@@ -11,7 +11,7 @@ import UIKit
 import DEUCE_Framework
 
 final class ConversationStatusRefreshViewController: NSObject {
-    lazy var view: UIRefreshControl = {
+    private(set) lazy var view: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
 
