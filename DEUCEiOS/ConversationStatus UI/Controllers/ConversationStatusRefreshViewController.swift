@@ -25,12 +25,12 @@ final class ConversationStatusRefreshViewController: NSObject {
     }
 
     @objc private func didRefresh() {
-        load()
+        refresh()
     }
 
     var onRefresh: (([ConversationStatus]) -> Void)?
 
-    func load() {
+    func refresh() {
         view.beginRefreshing()
         loader.load() { [weak self] result in
             if case let .success(conversationStatuses) = result {

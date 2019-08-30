@@ -34,7 +34,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
             self?.tableModel = conversationStatuses
         }
 
-        refreshController?.load()
+        refreshController?.refresh()
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
