@@ -10,7 +10,7 @@ import UIKit
 import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var models = [ConversationStatus]()
+    private var tableModel = [ConversationStatus]()
     private var refreshController: ConversationStatusRefreshViewController?
     private var imageDataLoaders: ImageDataLoader?
     private var cellControllers: [IndexPath: ConversationStatusCellController] = [:]
@@ -27,7 +27,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         tableView.prefetchDataSource = self
 
         refreshController?.onRefresh = { [weak self] conversationStatuses in
-            self?.models = conversationStatuses
+            self?.tableModel = conversationStatuses
             self?.tableView.reloadData()
         }
 
@@ -35,11 +35,11 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        return tableModel.count
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = models[indexPath.row]
+        let model = tableModel[indexPath.row]
         let controller = ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
 
         cellControllers[indexPath] = controller
@@ -54,7 +54,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     // MARK: - UITableViewDataSourcePrefetching
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { (indexPath) in
-            let model = models[indexPath.row]
+            let model = tableModel[indexPath.row]
             let controller = ConversationStatusCellController(model: model, imageDataLoader: imageDataLoaders!)
             _ = controller.view()
 
