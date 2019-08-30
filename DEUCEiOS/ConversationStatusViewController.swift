@@ -57,7 +57,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { (indexPath) in
             let controller = cellController(forRowAt: indexPath)
-            _ = controller.view()
+            _ = controller.preload()
 
             cellControllers[indexPath] = controller
         }

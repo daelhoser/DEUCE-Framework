@@ -48,6 +48,12 @@ final class ConversationStatusCellController {
         return cell
     }
 
+    func preload() {
+        guard let url = model.image else { return }
+
+        task = imageDataLoader.loadImageData(from: url) { _ in }
+    }
+
     deinit {
         task?.cancel()
     }
