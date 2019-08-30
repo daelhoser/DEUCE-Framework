@@ -20,7 +20,7 @@ final class ConversationStatusCellController {
         self.imageDataLoader = imageDataLoader
     }
 
-    public func view() -> UITableViewCell {
+    func view() -> UITableViewCell {
         let cell = ConversationStatusCell()
 
         //        cell.initialsLabel =
