@@ -16,25 +16,22 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         }
     }
     private var refreshController: ConversationStatusRefreshViewController?
-    private var imageDataLoaders: ImageDataLoader?
 
     public convenience init(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) {
         self.init()
         self.refreshController = ConversationStatusRefreshViewController(loader: conversationStatusLoader)
-        self.imageDataLoaders = imageDataLoader
+
+        refreshController?.onRefresh = { [weak self] conversationStatuses in
+            self?.tableModel = conversationStatuses.map { model in
+                ConversationStatusCellController(model: model, imageDataLoader: imageDataLoader)
+            }
+        }
     }
 
     override public func viewDidLoad() {
         refreshControl = refreshController?.view
 
         tableView.prefetchDataSource = self
-
-        refreshController?.onRefresh = { [weak self] conversationStatuses in
-            self?.tableModel = conversationStatuses.map { model in
-                ConversationStatusCellController(model: model, imageDataLoader: self!.imageDataLoaders!)
-            }
-        }
-
         refreshController?.refresh()
     }
 
