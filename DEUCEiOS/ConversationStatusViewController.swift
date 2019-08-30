@@ -63,6 +63,10 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         let cell = ConversationStatusCell()
         let model = tableModel[indexPath.row]
 
+        //        cell.initialsLabel =
+        cell.nameLabel.text = model.lastMessageUser ?? model.groupName
+        cell.messageLabel.text = model.message
+        //        cell.dateLabel?.text =
         cell.profileImageViewContainer.startShimmering()
         cell.profileImageRetry.isHidden = true
 

@@ -278,8 +278,27 @@ class ConversationStatusTests: XCTestCase {
 
     private func assertThat(sut: ConversationStatusViewController, isRendering conversationStatuses: [ConversationStatus], file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), conversationStatuses.count, "Expected \(conversationStatuses.count) convo Statuses, got \(sut.numberOfRenderedConversationStatusViews()) instead.", file: file, line: line)
+
+        conversationStatuses.enumerated().forEach { (arg) in
+            let (index, conversationStatus) = arg
+            assertThat(sut, hasViewConfiguredFor: conversationStatus, at: index, file: file, line: line)
+        }
     }
 
+    private func assertThat(_ sut: ConversationStatusViewController, hasViewConfiguredFor conversationStatus: ConversationStatus, at index: Int, file: StaticString = #file, line: UInt = #line) {
+        let view = sut.simulateFeedImageViewVisible(at: index)
+
+        guard let cell = view else {
+            return XCTFail("Expected \(ConversationStatusCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
+        }
+
+        //        let shouldLocationBeVisible = (image.location != nil)
+        //        XCTAssertEqual(cell.isShowingLocation, shouldLocationBeVisible, "Expected `isShowingLocation` to be \(shouldLocationBeVisible) for image view at index (\(index))", file: file, line: line)
+        let name = conversationStatus.lastMessageUser ?? conversationStatus.groupName
+        XCTAssertEqual(cell.nameText, name, "Expected name text to be \(String(describing: name)) for conversation status  view at index (\(index))", file: file, line: line)
+
+        XCTAssertEqual(cell.messageText, conversationStatus.message, "Expected message text to be \(String(describing: conversationStatus.message)) for conversation status view at index (\(index)", file: file, line: line)
+    }
 }
 private extension ConversationStatusViewController {
     func simulateUserInitiatedConversationStatusLoad() {
@@ -356,6 +375,14 @@ private extension ConversationStatusCell {
 
     func simulateRetryAction() {
         profileImageRetry.simulateTap()
+    }
+
+    var nameText: String? {
+        return nameLabel.text
+    }
+
+    var messageText: String? {
+        return messageLabel.text
     }
 }
 
