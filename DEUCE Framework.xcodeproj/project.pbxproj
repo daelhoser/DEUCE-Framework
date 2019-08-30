@@ -24,6 +24,8 @@
 		5FEC442D230C53F4001AFCA5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
 		5FEC442F230C8274001AFCA5 /* ConversationStatusMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC442E230C8274001AFCA5 /* ConversationStatusMapper.swift */; };
 		5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */; };
+		5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */; };
+		5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */; };
 		5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
@@ -76,6 +78,8 @@
 		5FEC4426230B680E001AFCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FEC442E230C8274001AFCA5 /* ConversationStatusMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationStatusMapper.swift; sourceTree = "<group>"; };
 		5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationStatus.swift; sourceTree = "<group>"; };
+		5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusRefreshViewController.swift; sourceTree = "<group>"; };
+		5FEEF9142319890C00083C51 /* ImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataLoader.swift; sourceTree = "<group>"; };
 		5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,9 +162,10 @@
 		5F4B31DB230E00CB002CF83F /* DEUCEiOS */ = {
 			isa = PBXGroup;
 			children = (
+				5FEEF913231988E600083C51 /* ImageDataLoader */,
+				5FEEF9102319881300083C51 /* Controllers */,
 				5F7CAF0E2316FB820088D5AC /* Views */,
 				5F4B31DD230E00CB002CF83F /* Info.plist */,
-				5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */,
 			);
 			path = DEUCEiOS;
 			sourceTree = "<group>";
@@ -217,6 +222,23 @@
 				5FEC4426230B680E001AFCA5 /* Info.plist */,
 			);
 			path = DEUCEConversationStatusEndToEndTests;
+			sourceTree = "<group>";
+		};
+		5FEEF9102319881300083C51 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */,
+				5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5FEEF913231988E600083C51 /* ImageDataLoader */ = {
+			isa = PBXGroup;
+			children = (
+				5FEEF9142319890C00083C51 /* ImageDataLoader.swift */,
+			);
+			path = ImageDataLoader;
 			sourceTree = "<group>";
 		};
 		5FF272AD228249BF00E4486C = {
@@ -480,6 +502,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */,
+				5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */,
+				5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */,
 				5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */,
 				5FFBAFFD2314A0BE0097D10A /* ConversationStatusViewController.swift in Sources */,
 			);

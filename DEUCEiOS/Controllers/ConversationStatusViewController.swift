@@ -9,50 +9,29 @@
 import UIKit
 import DEUCE_Framework
 
-public protocol ImageDataLoaderTask {
-    func cancel()
-}
-
-public protocol ImageDataLoader {
-    typealias Result = Swift.Result<Data, Error>
-
-    func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask
-}
-
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
     private var tableModel = [ConversationStatus]()
-    private var conversationStatusLoader: ConversationStatusLoader?
+    private var refreshController: ConversationStatusRefreshViewController?
     private var imageDataLoaders: ImageDataLoader?
     private var imageLoaderTasks: [IndexPath: ImageDataLoaderTask] = [:]
 
     public convenience init(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) {
         self.init()
-        self.conversationStatusLoader = conversationStatusLoader
+        self.refreshController = ConversationStatusRefreshViewController(loader: conversationStatusLoader)
         self.imageDataLoaders = imageDataLoader
     }
 
     override public func viewDidLoad() {
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+        refreshControl = refreshController?.view
 
         tableView.prefetchDataSource = self
 
-        load()
-    }
-
-    private func load() {
-        refreshControl?.beginRefreshing()
-        conversationStatusLoader?.load() { [weak self] result in
-            if case let .success(conversationStatuses) = result {
-                self?.tableModel = conversationStatuses
-                self?.tableView.reloadData()
-            }
-            self?.refreshControl?.endRefreshing()
+        refreshController?.onRefresh = { [weak self] conversationStatuses in
+            self?.tableModel = conversationStatuses
+            self?.tableView.reloadData()
         }
-    }
 
-    @objc private func didRefresh() {
-        load()
+        refreshController?.load()
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
