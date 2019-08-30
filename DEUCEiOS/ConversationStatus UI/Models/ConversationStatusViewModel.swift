@@ -10,26 +10,24 @@ import Foundation
 import DEUCE_Framework
 
 final class ConversationStatusViewModel {
+    typealias Observer<T> = ((T) -> Void)
     private let loader: ConversationStatusLoader
 
     init(loader: ConversationStatusLoader) {
         self.loader = loader
     }
 
-    var onChange: ((ConversationStatusViewModel) -> Void)?
-    var onConversationStatusLoad: (([ConversationStatus]) -> Void)?
-
-    private(set) var isLoading: Bool = false {
-        didSet { onChange?(self) }
-    }
+    var onLoadingStateChange: Observer<Bool>?
+    var onConversationStatusLoad: Observer<[ConversationStatus]>?
 
     func loadConversationStatuses() {
-        isLoading = true
+        onLoadingStateChange?(true)
         loader.load() { [weak self] result in
             if case let .success(conversationStatuses) = result {
                 self?.onConversationStatusLoad?(conversationStatuses)
             }
-            self?.isLoading = false
+            self?.onLoadingStateChange?(false)
+
         }
     }
 }
