@@ -8,53 +8,51 @@
 
 import Foundation
 import UIKit
-import DEUCE_Framework
 
 final class ConversationStatusCellController {
-    private let model: ConversationStatus
-    private let imageDataLoader: ImageDataLoader
-    private var task: ImageDataLoaderTask?
+    private let viewModel: ConversationStatusCellViewModel<UIImage>
 
-    init(model: ConversationStatus, imageDataLoader: ImageDataLoader) {
-        self.model = model
-        self.imageDataLoader = imageDataLoader
+    init(viewModel: ConversationStatusCellViewModel<UIImage>) {
+        self.viewModel = viewModel
     }
 
     func view() -> UITableViewCell {
-        let cell = ConversationStatusCell()
-
-        //        cell.initialsLabel =
-        cell.nameLabel.text = model.lastMessageUser ?? model.groupName
-        cell.messageLabel.text = model.message
-        //        cell.dateLabel?.text =
-        cell.profileImageViewContainer.startShimmering()
-        cell.profileImageRetry.isHidden = true
-
-        let loadImage = { [weak self, weak cell]  in
-            guard let url = self?.model.image else { return }
-
-            self?.task = self?.imageDataLoader.loadImageData(from: url) { (result) in
-                let data = try? result.get()
-                let image = data.map(UIImage.init) ?? nil
-                cell?.profileImageView.image = image
-                cell?.profileImageRetry.isHidden = image != nil
-                cell?.profileImageViewContainer.stopShimmering()
-            }
-        }
-
-        cell.onRetry = loadImage
-        loadImage()
+        let cell = binded(cell: ConversationStatusCell())
+        viewModel.loadImageData()
 
         return cell
     }
 
     func preload() {
-        guard let url = model.image else { return }
-
-        task = imageDataLoader.loadImageData(from: url) { _ in }
+        viewModel.loadImageData()
     }
 
     func cancelLoad() {
-        task?.cancel()
+        viewModel.cancelImageDataLoad()
+    }
+
+    private func binded(cell: ConversationStatusCell) -> ConversationStatusCell {
+        cell.initialsLabel.text = viewModel.initials
+        cell.nameLabel.text = viewModel.userGroupName
+        cell.messageLabel.text = viewModel.message
+        cell.dateLabel?.text = viewModel.lastMessageTime
+        cell.profileImageViewContainer.isShimmering = true
+        cell.profileImageRetry.isHidden = true
+        cell.profileImageView.image = nil
+        cell.onRetry = viewModel.loadImageData
+
+        viewModel.onImageLoad = { [weak cell] image in
+            cell?.profileImageView.image = image
+        }
+
+        viewModel.onImageLoadingStateChange = { [weak cell] isLoading in
+            cell?.profileImageViewContainer.isShimmering = isLoading
+        }
+
+        viewModel.onShouldRetryImageLoadStateChange = { [weak cell] shouldRetry in
+            cell?.profileImageRetry.isHidden = !shouldRetry
+        }
+
+        return cell
     }
 }

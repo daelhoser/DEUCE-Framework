@@ -8,6 +8,7 @@
 
 import Foundation
 import DEUCE_Framework
+import UIKit
 
 public final class ConversationStatusComposer {
     private init() {}
@@ -27,7 +28,8 @@ public final class ConversationStatusComposer {
     private static func adaptConversationStatusToCellControllers(forwardingTo controller: ConversationStatusViewController, loader: ImageDataLoader) -> ([ConversationStatus]) -> Void {
         return { [weak controller] conversationStatus in
             controller?.tableModel = conversationStatus.map { model in
-                ConversationStatusCellController(model: model, imageDataLoader: loader)
+                let viewModel = ConversationStatusCellViewModel(model: model, imageDataLoader: loader, imageTransformer: UIImage.init)
+                return ConversationStatusCellController(viewModel: viewModel)
             }
         }
     }
