@@ -19,6 +19,7 @@
 		5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
 		5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationStatusLoader.swift */; };
+		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FEC4425230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */; };
 		5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FEC442D230C53F4001AFCA5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -77,6 +78,7 @@
 		5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoader.swift; sourceTree = "<group>"; };
+		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
 		5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DEUCEConversationStatusEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEUCEConversationStatusEndToEndTests.swift; sourceTree = "<group>"; };
 		5FEC4426230B680E001AFCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			children = (
 				5FEEF91D2319C51800083C51 /* ConversationStatusViewModel.swift */,
 				5FEEF91F231BEFAC00083C51 /* ConversationStatusCellViewModel.swift */,
+				5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */,
 				5FEEF920231BEFAC00083C51 /* ConversationStatusCellViewModel.swift in Sources */,
 				5FEEF91E2319C51800083C51 /* ConversationStatusViewModel.swift in Sources */,
+				5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */,
 				5FEEF918231994AD00083C51 /* ConversationStatusCellController.swift in Sources */,
 				5FFBAFFD2314A0BE0097D10A /* ConversationStatusViewController.swift in Sources */,
 			);

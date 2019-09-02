@@ -50,7 +50,7 @@ class ConversationStatusTests: XCTestCase {
         assertThat(sut: sut, isRendering: [])
         let date = Date()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
         let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
 
         loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
@@ -292,12 +292,14 @@ class ConversationStatusTests: XCTestCase {
             return XCTFail("Expected \(ConversationStatusCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
         }
 
-        //        let shouldLocationBeVisible = (image.location != nil)
-        //        XCTAssertEqual(cell.isShowingLocation, shouldLocationBeVisible, "Expected `isShowingLocation` to be \(shouldLocationBeVisible) for image view at index (\(index))", file: file, line: line)
         let name = conversationStatus.lastMessageUser ?? conversationStatus.groupName
         XCTAssertEqual(cell.nameText, name, "Expected name text to be \(String(describing: name)) for conversation status  view at index (\(index))", file: file, line: line)
 
         XCTAssertEqual(cell.messageText, conversationStatus.message, "Expected message text to be \(String(describing: conversationStatus.message)) for conversation status view at index (\(index)", file: file, line: line)
+
+        XCTAssertEqual(cell.initialsText, conversationStatus.initials, "Expected message text to be \(String(describing: conversationStatus.initials)) for conversation status view at index (\(index)", file: file, line: line)
+
+        XCTAssertEqual(cell.timeMessageSent, conversationStatus.lastMessageTimeSent, "Expected time sent text to be \(String(describing: conversationStatus.lastMessageTimeSent)) for conversation status view at index (\(index)", file: file, line: line)
     }
 }
 private extension ConversationStatusViewController {
@@ -384,6 +386,14 @@ private extension ConversationStatusCell {
     var messageText: String? {
         return messageLabel.text
     }
+
+    var initialsText: String? {
+        return initialsLabel.text
+    }
+
+    var timeMessageSent: String? {
+        return dateLabel?.text
+    }
 }
 
 private extension UIImage {
@@ -406,6 +416,26 @@ private extension UIButton {
                 (target as NSObject).perform(Selector($0))
             }
         }
+    }
+}
+
+private extension ConversationStatus {
+    var initials: String? {
+        let userGroupName = groupName ?? lastMessageUser
+
+        guard let fullName = userGroupName else { return nil }
+
+        let formatter = PersonNameComponentsFormatter()
+        formatter.style = .abbreviated
+        guard let personNameComponents = formatter.personNameComponents(from: fullName) else {
+            return nil
+        }
+
+        return formatter.string(from: personNameComponents)
+    }
+
+    var lastMessageTimeSent: String? {
+        return lastMessageTime?.elapsedInterval
     }
 }
 

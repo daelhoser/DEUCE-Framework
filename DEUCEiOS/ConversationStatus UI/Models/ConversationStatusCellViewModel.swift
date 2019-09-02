@@ -44,7 +44,7 @@ final class ConversationStatusCellViewModel<Image> {
     }
 
     var lastMessageTime: String? {
-        return nil
+        return model.lastMessageTime?.elapsedInterval
     }
 
     var onImageLoad: Observer<Image>?
