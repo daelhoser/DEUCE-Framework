@@ -18,9 +18,9 @@ final class RealTimeConversationStatusLoader {
 
 class RealTimeConversationStatusLoaderTests: XCTestCase {
 
-    func test_init_doesNotReceiveObserveForConversationStatusItems() {
+    func test_init_doesNotObserveForConversationStatusItems() {
         let client = RealTimeClientSpy()
-        let sut = RealTimeConversationStatusLoader(client: client)
+        _ = RealTimeConversationStatusLoader(client: client)
 
         XCTAssertFalse(client.isObserving)
     }
