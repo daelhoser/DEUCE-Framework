@@ -194,7 +194,7 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
         return .failure(error)
     }
 
-    private class HTTPClientSpy: HTTPClient {
+    private class HTTPClientSpy: HTTPClient, HTTPClientHeaders {
         private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
 
         var requestedURLs: [URL] {
