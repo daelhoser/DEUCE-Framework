@@ -14,6 +14,10 @@ final class RealTimeConversationStatusLoader {
     init(client: RealTimeClientSpy) {
         self.client = client
     }
+
+    func connect() {
+        client.connect()
+    }
 }
 
 class RealTimeConversationStatusLoaderTests: XCTestCase {
@@ -23,9 +27,22 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
 
         XCTAssertFalse(client.attemptedConnections)
     }
+
+    func test_onConnect_attemptsToMakeAConnection() {
+        let client = RealTimeClientSpy()
+        let loader = RealTimeConversationStatusLoader(client: client)
+
+        loader.connect()
+
+        XCTAssertTrue(client.attemptedConnections)
+    }
 }
 
 class RealTimeClientSpy {
     private(set) var attemptedConnections = false
+
+    func connect() {
+        attemptedConnections = true
+    }
 }
 
