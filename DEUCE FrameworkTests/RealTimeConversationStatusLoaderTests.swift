@@ -9,7 +9,7 @@
 import XCTest
 
 final class RealTimeConversationStatusLoader {
-    let client: RealTimeClientSpy
+    private let client: RealTimeClientSpy
 
     init(client: RealTimeClientSpy) {
         self.client = client
@@ -17,17 +17,8 @@ final class RealTimeConversationStatusLoader {
 }
 
 class RealTimeConversationStatusLoaderTests: XCTestCase {
-
-    func test_init_doesNotObserveForConversationStatusItems() {
-        let client = RealTimeClientSpy()
-        _ = RealTimeConversationStatusLoader(client: client)
-
-        XCTAssertFalse(client.isObserving)
-    }
-
 }
 
 class RealTimeClientSpy {
-    private(set) var isObserving = false
 }
 
