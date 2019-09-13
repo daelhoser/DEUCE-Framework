@@ -54,6 +54,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         XCTAssertEqual(clientError, receivedError as NSError)
     }
 
+    // MARK - Helper methods
     private func makeSUT() -> (RealTimeClientSpy, RealTimeConversationStatusLoader) {
         let client = RealTimeClientSpy()
         let loader = RealTimeConversationStatusLoader(client: client)
