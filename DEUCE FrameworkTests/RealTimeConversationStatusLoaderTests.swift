@@ -15,7 +15,7 @@ final class RealTimeConversationStatusLoader {
         self.client = client
     }
 
-    func connect(completion: @escaping (Error) -> Void) {
+    func connect(completion: @escaping (Bool, Error?) -> Void) {
         client.connect(completion: completion)
     }
 }
@@ -30,7 +30,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
     func test_onConnect_attemptsToMakeAConnection() {
         let (client, loader) = makeSUT()
 
-        loader.connect { _ in }
+        loader.connect { _,_  in }
 
         XCTAssertTrue(client.attemptedConnections)
     }
@@ -41,7 +41,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         var receivedError: Error!
         let exp = expectation(description: "wait on connect")
 
-        loader.connect { error in
+        loader.connect { _, error in
             receivedError = error
             exp.fulfill()
         }
@@ -52,6 +52,21 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
 
         XCTAssertEqual(clientError, receivedError as NSError)
+    }
+
+    func test_onConnect_notifiesConnectedOnClientConnection() {
+        let (client, loader) = makeSUT()
+
+        var connected = false
+        let exp = expectation(description: "wait on connect")
+        loader.connect { isConnected, _ in
+            connected = isConnected
+            exp.fulfill()
+        }
+        client.completesWithSuccess()
+        wait(for: [exp], timeout: 1.0)
+
+        XCTAssertTrue(connected)
     }
 
     // MARK - Helper methods
@@ -68,15 +83,19 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
 
 class RealTimeClientSpy {
     private(set) var attemptedConnections = false
-    private var completions = [(Error) -> Void]()
+    private var completions = [(Bool, Error?) -> Void]()
 
-    func connect(completion: @escaping (Error) -> Void) {
+    func connect(completion: @escaping (Bool, Error?) -> Void) {
         attemptedConnections = true
         completions.append(completion)
     }
 
     func completesWithError(_ error: NSError, at index: Int = 0) {
-        completions[index](error)
+        completions[index](false, error)
+    }
+
+    func completesWithSuccess(at index: Int = 0) {
+        completions[index](true, nil)
     }
 }
 
