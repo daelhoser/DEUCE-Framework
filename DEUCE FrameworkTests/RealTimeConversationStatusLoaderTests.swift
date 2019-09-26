@@ -69,6 +69,32 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         XCTAssertTrue(connected)
     }
 
+    func test_onConnected_notitiesConnectionLostOnConnectionLost() {
+        let (client, loader) = makeSUT()
+
+        var connectionStatus = [Bool]()
+        var receivedError: Error?
+        let exp = expectation(description: "wait on connect")
+        exp.expectedFulfillmentCount = 2
+
+        loader.connect { isConnected, error in
+            connectionStatus.append(isConnected)
+            receivedError = error
+            exp.fulfill()
+        }
+        client.completesWithSuccess()
+
+        XCTAssertTrue(connectionStatus[0])
+        XCTAssertNil(receivedError)
+
+        let clientError = NSError(domain: "connection lost error", code: 0)
+        client.completesWithError(clientError)
+        XCTAssertFalse(connectionStatus[1])
+        XCTAssertEqual(clientError, receivedError! as NSError)
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
     // MARK - Helper methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationStatusLoader) {
         let client = RealTimeClientSpy()
