@@ -70,12 +70,12 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
     }
 
     // MARK - Helper methods
-    private func makeSUT() -> (RealTimeClientSpy, RealTimeConversationStatusLoader) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationStatusLoader) {
         let client = RealTimeClientSpy()
         let loader = RealTimeConversationStatusLoader(client: client)
 
-        trackForMemoryLeaks(object: client)
-        trackForMemoryLeaks(object: loader)
+        trackForMemoryLeaks(object: client, file: file, line: line)
+        trackForMemoryLeaks(object: loader, file: file, line: line)
 
         return (client, loader)
     }
