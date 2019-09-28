@@ -165,13 +165,29 @@
 		5F349D4422824AE20058AF4F /* Conversations API */ = {
 			isa = PBXGroup;
 			children = (
+				5F419696234019F70025549E /* HTTP */,
+				5F419695234019A00025549E /* Conversations Realtime */,
+			);
+			path = "Conversations API";
+			sourceTree = "<group>";
+		};
+		5F419695234019A00025549E /* Conversations Realtime */ = {
+			isa = PBXGroup;
+			children = (
+				5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */,
+			);
+			path = "Conversations Realtime";
+			sourceTree = "<group>";
+		};
+		5F419696234019F70025549E /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
 				5FEC442E230C8274001AFCA5 /* ConversationStatusMapper.swift */,
 				5F349D4522824AFC0058AF4F /* RemoteConversationStatusLoader.swift */,
 				5F8731F72288D90600DD3358 /* HTTPClient.swift */,
-				5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */,
 				5F0A1E46230B2C5600E8DD71 /* URLSessionHTTPClient.swift */,
 			);
-			path = "Conversations API";
+			path = HTTP;
 			sourceTree = "<group>";
 		};
 		5F4B31DB230E00CB002CF83F /* DEUCEiOS */ = {
