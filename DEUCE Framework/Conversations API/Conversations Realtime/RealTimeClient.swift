@@ -10,3 +10,7 @@ import Foundation
 
 public protocol RealTimeClient {
 }
+
+enum RealTimeClientResult {
+
+}

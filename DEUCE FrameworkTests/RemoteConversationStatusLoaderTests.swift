@@ -151,43 +151,10 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdByName: String) -> (model: ConversationStatus, json: [String: Any]) {
-
-        let conversation = ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
-
-        let dict: [String: Any?] = [
-            "Id": id.uuidString,
-            "ConversationId": conversationId.uuidString,
-            "OtherUserThumbnailUrl": image?.absoluteString,
-            "LastMessage": message,
-            "OtherUserName": lastMessageUser,
-            "LastMessageTimeStamp":  lastMessageTime != nil ? deuceFormatter.string(from: lastMessageTime!) : nil,
-            "OtherUserId": otherUserId.uuidString,
-            "ConversationType": conversationType,
-            "GroupName": groupName,
-            "ContentType": contentType,
-            "CreatedByUserName": createdByName
-            ]
-
-        let reductedDict = dict.reduce(into: [String: Any]()) { (acc, e) in
-            if let value = e.value { acc[e.key] = value }
-        }
-
-        return (conversation, reductedDict)
-    }
-
     private func makeConversationsJSON(conversations: [[String: Any]]) -> Data {
         let conversations = [ "payload": conversations]
 
         return try! JSONSerialization.data(withJSONObject: conversations)
-    }
-
-    private var deuceFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"//2017-03-05T05:03:12.5622336
-        formatter.timeZone = TimeZone(abbreviation: "UTC")//NSTimeZone.local
-
-        return formatter
     }
 
     private func failure(_ error: RemoteConversationStatusLoader.Error) -> RemoteConversationStatusLoader.Result {
