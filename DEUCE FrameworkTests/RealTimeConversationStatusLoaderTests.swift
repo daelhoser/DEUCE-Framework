@@ -11,12 +11,27 @@ import XCTest
 final class RealTimeConversationStatusLoader {
     private let client: RealTimeClientSpy
 
+    enum Error: Swift.Error {
+        case connection
+    }
+
+    enum Status {
+        case connected
+        case failed(Error)
+    }
+
     init(client: RealTimeClientSpy) {
         self.client = client
     }
 
-    func connect(completion: @escaping (Bool, Error?) -> Void) {
-        client.connect(completion: completion)
+    func connect(completion: @escaping (Status) -> Void) {
+        client.connect { (connected, error) in
+            if error != nil {
+                completion(.failed(.connection))
+            } else {
+                completion(.connected)
+            }
+        }
     }
 }
 
@@ -30,69 +45,40 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
     func test_onConnect_attemptsToMakeAConnection() {
         let (client, loader) = makeSUT()
 
-        loader.connect { _,_  in }
+        loader.connect { _  in }
 
         XCTAssertTrue(client.attemptedConnections)
     }
 
     func test_onConnect_notifiesConnectionErrorOnError() {
         let (client, loader) = makeSUT()
-
-        var receivedError: Error!
-        let exp = expectation(description: "wait on connect")
-
-        loader.connect { _, error in
-            receivedError = error
-            exp.fulfill()
-        }
-
         let clientError = NSError(domain: "any error", code: 0)
-        client.completesWithError(clientError)
 
-        wait(for: [exp], timeout: 1.0)
-
-        XCTAssertEqual(clientError, receivedError as NSError)
+        expect(sut: loader, toCompleteWith: .failed(.connection), when: {
+            client.completesWithError(clientError)
+        })
     }
 
     func test_onConnect_notifiesConnectedOnClientConnection() {
         let (client, loader) = makeSUT()
 
-        var connected = false
-        let exp = expectation(description: "wait on connect")
-        loader.connect { isConnected, _ in
-            connected = isConnected
-            exp.fulfill()
-        }
-        client.completesWithSuccess()
-        wait(for: [exp], timeout: 1.0)
-
-        XCTAssertTrue(connected)
+        expect(sut: loader, toCompleteWith: .connected, when: {
+            client.completesWithSuccess()
+        })
     }
 
     func test_onConnected_notitiesConnectionLostOnConnectionLost() {
         let (client, loader) = makeSUT()
 
-        var connectionStatus = [Bool]()
-        var receivedError: Error?
-        let exp = expectation(description: "wait on connect")
-        exp.expectedFulfillmentCount = 2
-
-        loader.connect { isConnected, error in
-            connectionStatus.append(isConnected)
-            receivedError = error
-            exp.fulfill()
-        }
-        client.completesWithSuccess()
-
-        XCTAssertTrue(connectionStatus[0])
-        XCTAssertNil(receivedError)
+        expect(sut: loader, toCompleteWith: .connected, when: {
+            client.completesWithSuccess()
+        })
 
         let clientError = NSError(domain: "connection lost error", code: 0)
-        client.completesWithError(clientError)
-        XCTAssertFalse(connectionStatus[1])
-        XCTAssertEqual(clientError, receivedError! as NSError)
-
-        wait(for: [exp], timeout: 1.0)
+        expect(sut: loader, toCompleteWith: .failed(.connection), when: {
+            //Note that removing the 'at: 1' parameter causes a memory leak plus an failed test. Review code to better understand.
+            client.completesWithError(clientError, at: 1)
+        })
     }
 
     // MARK - Helper methods
@@ -105,19 +91,39 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
 
         return (client, loader)
     }
+
+    private func expect(sut: RealTimeConversationStatusLoader, toCompleteWith expectedResult: RealTimeConversationStatusLoader.Status, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Waiting on connection")
+
+        sut.connect { (receivedResult) in
+            switch (expectedResult, receivedResult) {
+            case (.connected, .connected):
+                break
+            case let (.failed(expectedError), .failed(receivedError)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("ExpectedResult \(expectedResult) and got receivedResult: \(receivedResult)", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+
+        action()
+        wait(for: [exp], timeout: 1.0)
+    }
 }
 
 class RealTimeClientSpy {
-    private(set) var attemptedConnections = false
+    var attemptedConnections: Bool {
+        return !completions.isEmpty
+    }
     private var completions = [(Bool, Error?) -> Void]()
 
     func connect(completion: @escaping (Bool, Error?) -> Void) {
-        attemptedConnections = true
-        completions.append(completion)
+        self.completions.append(completion)
     }
 
     func completesWithError(_ error: NSError, at index: Int = 0) {
-        completions[index](false, error)
+        self.completions[index](false, error)
     }
 
     func completesWithSuccess(at index: Int = 0) {
