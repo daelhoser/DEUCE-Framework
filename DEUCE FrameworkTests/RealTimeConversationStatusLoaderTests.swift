@@ -9,18 +9,6 @@
 import XCTest
 import DEUCE_Framework
 
-//There is a var in the framework already. We are going to move this class to the framework also in the future. As of right now we want to use this.
-private extension DateFormatter {
-    static var deuceFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"//2017-03-05T05:03:12.5622336
-        formatter.timeZone = TimeZone(abbreviation: "UTC")//NSTimeZone.local
-
-        return formatter
-    }
-}
-
-
 class RealTimeConversationStatusLoaderTests: XCTestCase {
     func test_onInit_doesNotAttemptConnectToClient() {
         let (client, _) = makeSUT()
