@@ -9,8 +9,11 @@
 import Foundation
 
 public protocol RealTimeClient {
+    func connect(result: @escaping (RealTimeClientResult) -> Void)
 }
 
-enum RealTimeClientResult {
-
+public enum RealTimeClientResult {
+    case connected
+    case failed(Error)
+    case newMessage([String: Any])
 }

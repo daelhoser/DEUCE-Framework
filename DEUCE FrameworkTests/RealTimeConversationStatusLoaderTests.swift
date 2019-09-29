@@ -10,7 +10,7 @@ import XCTest
 import DEUCE_Framework
 
 final class RealTimeConversationStatusLoader {
-    private let client: RealTimeClientSpy
+    private let client: RealTimeClient
 
     enum Error: Swift.Error {
         case connection
@@ -22,18 +22,19 @@ final class RealTimeConversationStatusLoader {
         case newMessage(ConversationStatus)
     }
 
-    init(client: RealTimeClientSpy) {
+    init(client: RealTimeClient) {
         self.client = client
     }
 
     func connect(completion: @escaping (Status) -> Void) {
-        client.connect { (connected, error, message) in
-            if error != nil {
-                completion(.failed(.connection))
-            } else if connected != nil {
+        client.connect { (result) in
+            switch result {
+            case .connected:
                 completion(.connected)
-            } else {
-                if let message = message, let conversation = RealTimeConversationStatusLoader.map(dictionary: message) {
+            case .failed:
+                completion(.failed(.connection))
+            case let .newMessage(dictionary):
+                if let conversation = RealTimeConversationStatusLoader.map(dictionary: dictionary) {
                     completion(.newMessage(conversation))
                 } else {
                     completion(.failed(.connection))
@@ -217,26 +218,26 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
     }
 }
 
-class RealTimeClientSpy {
+class RealTimeClientSpy: RealTimeClient {
     var attemptedConnections: Bool {
         return !completions.isEmpty
     }
-    private var completions = [(Bool?, Error?, [String: Any]?) -> Void]()
+    private var completions = [(RealTimeClientResult) -> Void]()
 
-    func connect(completion: @escaping (Bool?, Error?, [String: Any]?) -> Void) {
-        self.completions.append(completion)
+    func connect(result: @escaping (RealTimeClientResult) -> Void) {
+        completions.append(result)
     }
 
     func completesWithError(_ error: NSError, at index: Int = 0) {
-        self.completions[index](false, error, nil)
+        self.completions[index](.failed(error))
     }
 
     func completesWithSuccess(at index: Int = 0) {
-        completions[index](true, nil, nil)
+        completions[index](.connected)
     }
 
     func completeWithNewMessage(_ message: [String: Any], at index: Int = 0) {
-        completions[index](nil, nil, message)
+        completions[index](.newMessage(message))
     }
 }
 
