@@ -64,6 +64,16 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         })
     }
 
+    func test_onConnected_notifiesInvalidDataErrorOnInvalidDataReceived() {
+        let (client, loader) = makeSUT()
+        let invalidData = ["invalid": "Data"]
+
+        expect(sut: loader, toCompleteWith: .failed(.invalidData), when: {
+            client.completeWithNewMessage(invalidData)
+        })
+    }
+
+
     // MARK - Helper methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationStatusLoader) {
         let client = RealTimeClientSpy()
