@@ -13,6 +13,7 @@ final public class RealTimeConversationStatusLoader {
 
     public enum Error: Swift.Error {
         case connection
+        case invalidData
     }
 
     public enum Status {
@@ -33,24 +34,19 @@ final public class RealTimeConversationStatusLoader {
             case .failed:
                 completion(.failed(.connection))
             case let .newMessage(dictionary):
-                if let conversation = RealTimeConversationStatusLoader.map(dictionary: dictionary) {
-                    completion(.newMessage(conversation))
-                } else {
-                    completion(.failed(.connection))
-                }
+                completion(RealTimeConversationStatusLoader.map(dictionary: dictionary))
             }
         }
     }
 
-    static func map(dictionary: [String: Any]) -> ConversationStatus? {
+    static func map(dictionary: [String: Any]) -> Status {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
-
         guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted), let convo = try? jsonDecoder.decode(ConvoStatus.self, from: data) else {
-            return nil
+            return .failed(.invalidData)
         }
-        return convo.conversation
+        return .newMessage(convo.conversation)
     }
 
     private struct ConvoStatus: Equatable, Decodable {
