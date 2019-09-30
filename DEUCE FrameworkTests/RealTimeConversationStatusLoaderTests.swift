@@ -28,7 +28,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         let (client, loader) = makeSUT()
         let clientError = NSError(domain: "any error", code: 0)
 
-        expect(sut: loader, toCompleteWith: .failed(.connection), when: {
+        expect(sut: loader, toCompleteWith: failure(.connection), when: {
             client.completesWithError(clientError)
         })
     }
@@ -49,7 +49,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         })
 
         let clientError = NSError(domain: "connection lost error", code: 0)
-        expect(sut: loader, toCompleteWith: .failed(.connection), when: {
+        expect(sut: loader, toCompleteWith: failure(.connection), when: {
             //Note that removing the 'at: 1' parameter causes a memory leak plus an failed test. Review code to better understand.
             client.completesWithError(clientError, at: 1)
         })
@@ -68,7 +68,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         let (client, loader) = makeSUT()
         let invalidData = ["invalid": "Data"]
 
-        expect(sut: loader, toCompleteWith: .failed(.invalidData), when: {
+        expect(sut: loader, toCompleteWith: failure(.invalidData), when: {
             client.completeWithNewMessage(invalidData)
         })
     }
@@ -85,7 +85,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         return (client, loader)
     }
 
-    private func expect(sut: RealTimeConversationStatusLoader, toCompleteWith expectedResult: RealTimeConversationStatusLoader.Status, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(sut: RealTimeConversationStatusLoader, toCompleteWith expectedResult: Status, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Waiting on connection")
 
         sut.connect { (receivedResult) in
@@ -93,7 +93,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
             case (.connected, .connected):
                 break
             case let (.failed(expectedError), .failed(receivedError)):
-                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+                XCTAssertEqual(expectedError as! RealTimeConversationStatusLoader.Error, receivedError  as! RealTimeConversationStatusLoader.Error, file: file, line: line)
             case let (.newMessage(expectedMessage), .newMessage(receivedMessage)):
                 XCTAssertEqual(expectedMessage, receivedMessage, file: file, line: line)
             default:
@@ -104,6 +104,10 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
 
         action()
         wait(for: [exp], timeout: 1.0)
+    }
+
+    private func failure(_ error: RealTimeConversationStatusLoader.Error) -> RealTimeConversationStatusLoader.Result {
+        return .failed(error)
     }
 }
 

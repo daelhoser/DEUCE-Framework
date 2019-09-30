@@ -37,6 +37,8 @@
 		5FEEF920231BEFAC00083C51 /* ConversationStatusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91F231BEFAC00083C51 /* ConversationStatusCellViewModel.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF292A5234167FF008540D2 /* RealTimeConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConversationStatusLoader.swift */; };
+		5FF292A723417B9E008540D2 /* ConversationStatusRemoteWithRealTimeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A623417B9E008540D2 /* ConversationStatusRemoteWithRealTimeLoader.swift */; };
+		5FF292A923417C69008540D2 /* ConversationStatusRealtimeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A823417C69008540D2 /* ConversationStatusRealtimeLoader.swift */; };
 		5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */; };
 		5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FFBAFFB23149CED0097D10A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -104,6 +106,8 @@
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272C7228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF292A4234167FF008540D2 /* RealTimeConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationStatusLoader.swift; sourceTree = "<group>"; };
+		5FF292A623417B9E008540D2 /* ConversationStatusRemoteWithRealTimeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusRemoteWithRealTimeLoader.swift; sourceTree = "<group>"; };
+		5FF292A823417C69008540D2 /* ConversationStatusRealtimeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusRealtimeLoader.swift; sourceTree = "<group>"; };
 		5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DEUCEiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusTests.swift; sourceTree = "<group>"; };
 		5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			children = (
 				5F419696234019F70025549E /* HTTP */,
 				5F419695234019A00025549E /* Conversations Realtime */,
+				5FF292A623417B9E008540D2 /* ConversationStatusRemoteWithRealTimeLoader.swift */,
 			);
 			path = "Conversations API";
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			children = (
 				5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */,
 				5F9491032290E078007531EE /* ConversationStatusLoader.swift */,
+				5FF292A823417C69008540D2 /* ConversationStatusRealtimeLoader.swift */,
 			);
 			path = "Conversation Feature";
 			sourceTree = "<group>";
@@ -610,9 +616,11 @@
 				5F0A1E47230B2C5600E8DD71 /* URLSessionHTTPClient.swift in Sources */,
 				5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */,
 				5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */,
+				5FF292A923417C69008540D2 /* ConversationStatusRealtimeLoader.swift in Sources */,
 				5FEC442F230C8274001AFCA5 /* ConversationStatusMapper.swift in Sources */,
 				5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */,
 				5FF292A5234167FF008540D2 /* RealTimeConversationStatusLoader.swift in Sources */,
+				5FF292A723417B9E008540D2 /* ConversationStatusRemoteWithRealTimeLoader.swift in Sources */,
 				5F349D4622824AFC0058AF4F /* RemoteConversationStatusLoader.swift in Sources */,
 				5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */,
 				5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */,

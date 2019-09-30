@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class RealTimeConversationStatusLoader {
+final public class RealTimeConversationStatusLoader: ConversationStatusRealtimeLoader {
     private let client: RealTimeClient
 
     public enum Error: Swift.Error {
@@ -16,23 +16,20 @@ final public class RealTimeConversationStatusLoader {
         case invalidData
     }
 
-    public enum Status {
-        case connected
-        case failed(Error)
-        case newMessage(ConversationStatus)
-    }
+    public typealias Result = Status
+
 
     public init(client: RealTimeClient) {
         self.client = client
     }
 
-    public func connect(completion: @escaping (Status) -> Void) {
+    public func connect(completion: @escaping (Result) -> Void) {
         client.connect { (result) in
             switch result {
             case .connected:
                 completion(.connected)
             case .failed:
-                completion(.failed(.connection))
+                completion(.failed(Error.connection))
             case let .newMessage(dictionary):
                 completion(RealTimeConversationStatusLoader.map(dictionary: dictionary))
             }
@@ -44,7 +41,7 @@ final public class RealTimeConversationStatusLoader {
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
         guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted), let convo = try? jsonDecoder.decode(ConvoStatus.self, from: data) else {
-            return .failed(.invalidData)
+            return .failed(Error.invalidData)
         }
         return .newMessage(convo.conversation)
     }
