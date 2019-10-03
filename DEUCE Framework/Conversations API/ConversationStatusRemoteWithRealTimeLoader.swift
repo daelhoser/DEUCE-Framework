@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ConversationStatusRemoteWithRealTimeLoader: ConversationStatusLoader, ConversationStatusRealtimeLoader  {
+public final class ConversationStatusRemoteWithRealTimeLoader: ConversationStatusLoader, ConversationStatusRealtimeLoader  {
     private let remoteLoader: ConversationStatusLoader
     private let realtimeLoader: ConversationStatusRealtimeLoader
 
@@ -17,11 +17,11 @@ final class ConversationStatusRemoteWithRealTimeLoader: ConversationStatusLoader
         self.realtimeLoader = realtimeLoader
     }
 
-    func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
+    public func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
         remoteLoader.load(completion: completion)
     }
 
-    func connect(completion: @escaping (Status) -> Void) {
+    public func connect(completion: @escaping (Status) -> Void) {
         realtimeLoader.connect(completion: completion)
     }
 }
