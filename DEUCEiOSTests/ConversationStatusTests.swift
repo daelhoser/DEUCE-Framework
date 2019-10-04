@@ -11,6 +11,12 @@ import DEUCE_Framework
 import DEUCEiOS
 
 class ConversationStatusTests: XCTestCase {
+    func test_ViewController_isFirstViewInNavigationController() {
+        let (_, sut) = makeSUT()
+
+        XCTAssertNotNil(sut.parent as? UINavigationController, "Expected Conversation Status to be wrapped in NavigationController")
+    }
+
     // MARK: - Conversation Status Loader
     func test_loadConversationStatusAction_requestConversationStatusFromLoader() {
         let (loader, sut) = makeSUT()
