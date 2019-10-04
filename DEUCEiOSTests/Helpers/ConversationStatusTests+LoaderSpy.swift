@@ -12,7 +12,7 @@ import DEUCE_Framework
 import DEUCEiOS
 
 extension ConversationStatusTests {
-    final class LoaderSpy: ConversationStatusLoader, ImageDataLoader {
+    final class LoaderSpy: ConversationStatusLoaderAndListener, ImageDataLoader {
         var requestCount = 0
         private var loadRequests = [(LoadConversationStatusResult) -> Void]()
 
@@ -64,6 +64,13 @@ extension ConversationStatusTests {
             let completion = imageRequests[index].completion
             let error = NSError(domain: "Any error", code: 0)
             completion(.failure(error))
+        }
+
+        // MARK: - Listener
+        private(set) var realtimeRequestCount = 0
+
+        func listen(completion: @escaping (Status) -> Void) {
+            realtimeRequestCount += 1
         }
     }
 }

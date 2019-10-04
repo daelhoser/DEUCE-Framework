@@ -13,11 +13,11 @@ import UIKit
 public final class ConversationStatusComposer {
     private init() {}
 
-    public static func conversationStatusComposedWith(conversationStatusLoader: ConversationStatusLoader, imageDataLoader: ImageDataLoader) -> ConversationStatusViewController {
+    public static func conversationStatusComposedWith(conversationStatusLoader: ConversationStatusLoaderAndListener, imageDataLoader: ImageDataLoader) -> ConversationStatusViewController {
         let viewModel = ConversationStatusViewModel(loader: conversationStatusLoader)
         let refreshController = ConversationStatusRefreshViewController(viewModel: viewModel)
 
-        let viewController = ConversationStatusViewController(refreshController: refreshController)
+        let viewController = ConversationStatusViewController(refreshController: refreshController, conversationStatusListener: conversationStatusLoader)
         viewController.refreshController = refreshController
 
         viewModel.onConversationStatusLoad = adaptConversationStatusToCellControllers(forwardingTo: viewController, loader: imageDataLoader)

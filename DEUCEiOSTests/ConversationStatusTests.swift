@@ -27,6 +27,16 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(loader.requestCount, 3, "Expected yet another loading request once user initiates another reload")
     }
 
+    func test_loaderConverstationStatusAction_requestConversationStatusRealtimeConnectionFromLoader() {
+        let (loader, sut) = makeSUT()
+
+        XCTAssertEqual(loader.realtimeRequestCount, 0, "Expected no connection requests before view is loaded.")
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected a connection request once view is loaded")
+    }
+
     func test_loadingConversationStatusIndicator_isVisibleWhileLoadingConversationStatus() {
         let (loader, sut) = makeSUT()
 

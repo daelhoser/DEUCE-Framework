@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var tableModel = [ConversationStatusCellController]() {
@@ -15,10 +16,12 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         }
     }
     var refreshController: ConversationStatusRefreshViewController?
+    var conversationStatusListener: ConversationStatusListener?
 
-    convenience init(refreshController: ConversationStatusRefreshViewController) {
+    convenience init(refreshController: ConversationStatusRefreshViewController, conversationStatusListener: ConversationStatusListener?) {
         self.init()
         self.refreshController = refreshController
+        self.conversationStatusListener = conversationStatusListener
     }
 
     override public func viewDidLoad() {
@@ -26,6 +29,10 @@ public final class ConversationStatusViewController: UITableViewController, UITa
 
         tableView.prefetchDataSource = self
         refreshController?.refresh()
+
+        conversationStatusListener?.listen(completion: { (_) in
+            
+        })
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
