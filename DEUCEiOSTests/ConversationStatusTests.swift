@@ -11,6 +11,7 @@ import DEUCE_Framework
 import DEUCEiOS
 
 class ConversationStatusTests: XCTestCase {
+    // MARK: - Conversation Status Loader
     func test_loadConversationStatusAction_requestConversationStatusFromLoader() {
         let (loader, sut) = makeSUT()
 
@@ -25,16 +26,6 @@ class ConversationStatusTests: XCTestCase {
 
         sut.simulateUserInitiatedConversationStatusLoad()
         XCTAssertEqual(loader.requestCount, 3, "Expected yet another loading request once user initiates another reload")
-    }
-
-    func test_listenForConversationStatus_beginsListeningForConversationStatus() {
-        let (loader, sut) = makeSUT()
-
-        XCTAssertEqual(loader.realtimeRequestCount, 0, "Expected no connection requests before view is loaded.")
-
-        //forces view to load
-        sut.loadViewIfNeeded()
-        XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected a connection request once view is loaded")
     }
 
     func test_loadingConversationStatusIndicator_isVisibleWhileLoadingConversationStatus() {
@@ -270,6 +261,18 @@ class ConversationStatusTests: XCTestCase {
 
         XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request cancelled for the two not visible views")
     }
+
+    // MARK: - Conversation Status Listener
+    func test_listenForConversationStatus_beginsListeningForConversationStatus() {
+        let (loader, sut) = makeSUT()
+
+        XCTAssertEqual(loader.realtimeRequestCount, 0, "Expected no connection requests before view is loaded.")
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected a connection request once view is loaded")
+    }
+
 
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
