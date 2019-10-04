@@ -8,11 +8,11 @@
 
 import Foundation
 
-public final class ConversationStatusRemoteWithRealTimeLoader: ConversationStatusLoader, ConversationStatusRealtimeLoader  {
+public final class ConversationStatusRemoteWithRealTimeLoader: ConversationStatusLoader, ConversationStatusListener  {
     private let remoteLoader: ConversationStatusLoader
-    private let realtimeLoader: ConversationStatusRealtimeLoader
+    private let realtimeLoader: ConversationStatusListener
 
-    init(remoteLoader: ConversationStatusLoader, realtimeLoader: ConversationStatusRealtimeLoader) {
+    init(remoteLoader: ConversationStatusLoader, realtimeLoader: ConversationStatusListener) {
         self.remoteLoader = remoteLoader
         self.realtimeLoader = realtimeLoader
     }

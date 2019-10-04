@@ -1,5 +1,5 @@
 //
-//  ConversationStatusRealtimeLoader.swift
+//  ConversationStatusListener.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 9/29/19.
@@ -14,6 +14,6 @@ public enum Status {
     case newMessage(ConversationStatus)
 }
 
-public protocol ConversationStatusRealtimeLoader {
+public protocol ConversationStatusListener {
     func connect(completion: @escaping (Status) -> Void)
 }

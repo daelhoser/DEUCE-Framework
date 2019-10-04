@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class RealTimeConversationStatusLoader: ConversationStatusRealtimeLoader {
+final public class RealTimeConversationStatusLoader: ConversationStatusListener {
     private let client: RealTimeClient
 
     public enum Error: Swift.Error {
