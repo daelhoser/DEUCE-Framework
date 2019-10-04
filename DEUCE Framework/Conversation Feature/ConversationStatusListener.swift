@@ -15,5 +15,5 @@ public enum Status {
 }
 
 public protocol ConversationStatusListener {
-    func connect(completion: @escaping (Status) -> Void)
+    func listen(completion: @escaping (Status) -> Void)
 }

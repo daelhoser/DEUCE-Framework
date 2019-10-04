@@ -23,7 +23,7 @@ final public class RealTimeConversationStatusLoader: ConversationStatusListener 
         self.client = client
     }
 
-    public func connect(completion: @escaping (Result) -> Void) {
+    public func listen(completion: @escaping (Result) -> Void) {
         client.connect { (result) in
             switch result {
             case .connected:
