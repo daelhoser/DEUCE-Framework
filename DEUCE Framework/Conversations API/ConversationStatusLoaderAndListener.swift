@@ -1,5 +1,5 @@
 //
-//  ConversationStatusRemoteWithRealTimeLoader.swift
+//  ConversationStatusLoaderAndListener.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 9/29/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class ConversationStatusRemoteWithRealTimeLoader: ConversationStatusLoader, ConversationStatusListener  {
+public final class ConversationStatusLoaderAndListener: ConversationStatusLoader, ConversationStatusListener  {
     private let remoteLoader: ConversationStatusLoader
     private let realtimeLoader: ConversationStatusListener
 
