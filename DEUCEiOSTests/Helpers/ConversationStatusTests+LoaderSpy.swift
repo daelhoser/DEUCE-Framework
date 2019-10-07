@@ -68,9 +68,15 @@ extension ConversationStatusTests {
 
         // MARK: - Listener
         private(set) var realtimeRequestCount = 0
+        private var statusCompletion: ((Status) -> Void)?
 
         func listen(completion: @escaping (Status) -> Void) {
+            statusCompletion = completion
             realtimeRequestCount += 1
+        }
+
+        func notifyStatusChange(status: Status) {
+            statusCompletion?(status)
         }
     }
 }

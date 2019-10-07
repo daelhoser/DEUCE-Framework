@@ -280,13 +280,33 @@ class ConversationStatusTests: XCTestCase {
     }
 
     func test_StatusView_isVisibleWhileListenerConnects() {
-        let (_, sut) = makeSUT()
+        let (loader, sut) = makeSUT()
 
         XCTAssertNil(sut.loadingStatus, "Expected status label to be nil")
 
         //forces view to load
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.loadingStatus, "Loading...", "Expected loading... status while connecting")
+
+        loader.notifyStatusChange(status: .connected)
+        XCTAssertNil(sut.loadingStatus, "Expected nil status when connected successfully")
+
+        loader.notifyStatusChange(status: .newMessage(makeConversationStatus()))
+        XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
+
+        let error = RealTimeConversationStatusLoader.Error.connection
+        loader.notifyStatusChange(status: .failed(error))
+        XCTAssertEqual(sut.loadingStatus, "disconnected")
+
+        //receiving a new message after being disconnected is unlikely. Nevertheless, we still want to test.
+        loader.notifyStatusChange(status: .newMessage(makeConversationStatus()))
+        XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
+
+        //consider this case. Test if needed
+        let invalidData = RealTimeConversationStatusLoader.Error.invalidData
+        loader.notifyStatusChange(status: .failed(invalidData))
+        XCTAssertNil(sut.loadingStatus, "Expected nil when a conversation can't be decoded properly.")
+
     }
 
     // MARK: - Helper Methods

@@ -38,8 +38,23 @@ public final class ConversationStatusViewController: UITableViewController, UITa
 
     private func observeNewConversationStatuses() {
         header?.subtitleLabel.text = "Loading..."
-        conversationStatusListener?.listen(completion: { (_) in
+        conversationStatusListener?.listen(completion: { [weak self] (status) in
+            guard let self = self else { return }
 
+            switch status {
+            case .connected:
+                self.header?.subtitleLabel.text = nil
+            case let .failed(error):
+                if let error = error as? RealTimeConversationStatusLoader.Error {
+                    if case .connection = error {
+                        self.header?.subtitleLabel.text = "disconnected"
+                    } else {
+                        self.header?.subtitleLabel.text = nil
+                    }
+                }
+            case .newMessage:
+                self.header?.subtitleLabel.text = nil
+            }
         })
     }
 
