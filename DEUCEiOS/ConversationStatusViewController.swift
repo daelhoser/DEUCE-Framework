@@ -33,6 +33,10 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         tableView.prefetchDataSource = self
         refreshController?.refresh()
 
+        observeNewConversationStatuses()
+    }
+
+    private func observeNewConversationStatuses() {
         header?.subtitleLabel.text = "Loading..."
         conversationStatusListener?.listen(completion: { (_) in
 
