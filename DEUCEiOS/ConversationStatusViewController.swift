@@ -9,6 +9,11 @@
 import UIKit
 import DEUCE_Framework
 
+public final class HeaderView: UIView {
+    let titleLabel = UILabel()
+    public let subtitleLabel = UILabel()
+}
+
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var tableModel = [ConversationStatusCellController]() {
         didSet {
@@ -17,6 +22,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
     var refreshController: ConversationStatusRefreshViewController?
     var conversationStatusListener: ConversationStatusListener?
+    public private(set) var header: HeaderView?
 
     convenience init(refreshController: ConversationStatusRefreshViewController, conversationStatusListener: ConversationStatusListener?) {
         self.init()
@@ -26,12 +32,15 @@ public final class ConversationStatusViewController: UITableViewController, UITa
 
     override public func viewDidLoad() {
         refreshControl = refreshController?.view
+        header = HeaderView()
+        navigationItem.titleView = header
 
         tableView.prefetchDataSource = self
         refreshController?.refresh()
 
+        header?.subtitleLabel.text = "Loading..."
         conversationStatusListener?.listen(completion: { (_) in
-            
+
         })
     }
 

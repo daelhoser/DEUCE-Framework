@@ -279,6 +279,15 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected a connection request once view is loaded")
     }
 
+    func test_StatusView_isVisibleWhileListenerConnects() {
+        let (_, sut) = makeSUT()
+
+        XCTAssertNil(sut.loadingStatus, "Expected status label to be nil")
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(sut.loadingStatus, "Loading...", "Expected loading... status while connecting")
+    }
 
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
@@ -330,6 +339,10 @@ private extension ConversationStatusViewController {
 
     var isShowingLoadingIndicator: Bool {
         return refreshControl!.isRefreshing
+    }
+
+    var loadingStatus: String? {
+        return header?.subtitleLabel.text
     }
 
     func numberOfRenderedConversationStatusViews() -> Int {
