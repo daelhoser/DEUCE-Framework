@@ -9,11 +9,6 @@
 import UIKit
 import DEUCE_Framework
 
-public final class HeaderView: UIView {
-    let titleLabel = UILabel()
-    public let subtitleLabel = UILabel()
-}
-
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var tableModel = [ConversationStatusCellController]() {
         didSet {
