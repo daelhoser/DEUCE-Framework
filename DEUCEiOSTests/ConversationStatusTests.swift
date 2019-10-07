@@ -286,7 +286,7 @@ class ConversationStatusTests: XCTestCase {
 
         //forces view to load
         sut.loadViewIfNeeded()
-        XCTAssertEqual(sut.loadingStatus, "Loading...", "Expected loading... status while connecting")
+        XCTAssertEqual(sut.loadingStatus, "connecting...", "Expected connecting... status while connecting")
 
         loader.notifyStatusChange(status: .connected)
         XCTAssertNil(sut.loadingStatus, "Expected nil status when connected successfully")

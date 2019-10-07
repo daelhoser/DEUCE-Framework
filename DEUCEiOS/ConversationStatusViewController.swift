@@ -37,7 +37,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     private func observeNewConversationStatuses() {
-        header?.subtitleLabel.text = "Loading..."
+        header?.subtitleLabel.text = "connecting..."
         conversationStatusListener?.listen(completion: { [weak self] (status) in
             guard let self = self else { return }
 
