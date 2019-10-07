@@ -302,11 +302,9 @@ class ConversationStatusTests: XCTestCase {
         loader.notifyStatusChange(status: .newMessage(makeConversationStatus()))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
 
-        //consider this case. Test if needed
         let invalidData = RealTimeConversationStatusLoader.Error.invalidData
         loader.notifyStatusChange(status: .failed(invalidData))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a conversation can't be decoded properly.")
-
     }
 
     // MARK: - Helper Methods
