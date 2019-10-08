@@ -9,6 +9,26 @@
 import UIKit
 import DEUCE_Framework
 
+public final class TryAgainView: UIView {
+    private let tryAgainButton = UIButton()
+
+    var onRetryButtonTapped: (() -> Void)?
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        tryAgainButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func buttonTapped() {
+        onRetryButtonTapped?()
+    }
+}
+
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var tableModel = [ConversationStatusCellController]() {
         didSet {
@@ -18,6 +38,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     var refreshController: ConversationStatusRefreshViewController?
     var conversationStatusListener: ConversationStatusListener?
     public private(set) var header: HeaderView?
+    public private(set) var tryAgainView: TryAgainView?
 
     convenience init(refreshController: ConversationStatusRefreshViewController, conversationStatusListener: ConversationStatusListener?) {
         self.init()
@@ -26,8 +47,12 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
     override public func viewDidLoad() {
+        super.viewDidLoad()
+
         refreshControl = refreshController?.view
         header = HeaderView()
+        tryAgainView = TryAgainView(frame: .zero)
+
         navigationItem.titleView = header
 
         tableView.prefetchDataSource = self
@@ -38,6 +63,8 @@ public final class ConversationStatusViewController: UITableViewController, UITa
 
     private func observeNewConversationStatuses() {
         header?.subtitleLabel.text = "connecting..."
+        tryAgainView?.isHidden = true
+
         conversationStatusListener?.listen(completion: { [weak self] (status) in
             guard let self = self else { return }
 
@@ -48,6 +75,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
                 if let error = error as? RealTimeConversationStatusLoader.Error {
                     if case .connection = error {
                         self.header?.subtitleLabel.text = "disconnected"
+                        self.tryAgainView?.isHidden = false
                     } else {
                         self.header?.subtitleLabel.text = nil
                     }

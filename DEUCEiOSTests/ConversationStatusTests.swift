@@ -307,6 +307,24 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertNil(sut.loadingStatus, "Expected nil when a conversation can't be decoded properly.")
     }
 
+    func test_TryAgainView_isVisibleWhenListenerFailsToConnect() {
+        let (loader, sut) = makeSUT()
+
+        XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present before load starts")
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+
+        XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present before listener begins listening. No response yet.")
+
+        loader.notifyStatusChange(status: .connected)
+        XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present when connections is successful.")
+
+        let error = RealTimeConversationStatusLoader.Error.connection
+        loader.notifyStatusChange(status: .failed(error))
+        XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -361,6 +379,13 @@ private extension ConversationStatusViewController {
 
     var loadingStatus: String? {
         return header?.subtitleLabel.text
+    }
+
+    var isTryAgainViewDisplayed: Bool {
+        if let view = tryAgainView {
+            return !view.isHidden
+        }
+        return false
     }
 
     func numberOfRenderedConversationStatusViews() -> Int {
