@@ -12,7 +12,7 @@ import DEUCE_Framework
 public final class TryAgainView: UIView {
     private let tryAgainButton = UIButton()
 
-    var onRetryButtonTapped: (() -> Void)?
+    public var onRetryButtonTapped: (() -> Void)?
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +52,9 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         refreshControl = refreshController?.view
         header = HeaderView()
         tryAgainView = TryAgainView(frame: .zero)
+        tryAgainView?.onRetryButtonTapped = { [weak self] in
+            self?.observeNewConversationStatuses()
+        }
 
         navigationItem.titleView = header
 

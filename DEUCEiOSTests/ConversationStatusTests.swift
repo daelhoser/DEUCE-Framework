@@ -325,6 +325,27 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
     }
 
+    func test_conversationStatusListener_attemptsToConnectOnRetryAction() {
+        let (loader, sut) = makeSUT()
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+
+        XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected listener to be called once only")
+
+        let error = RealTimeConversationStatusLoader.Error.connection
+        loader.notifyStatusChange(status: .failed(error))
+        XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
+
+        sut.simulateTryAgainActionRequested()
+
+        XCTAssertEqual(loader.realtimeRequestCount, 2, "Expected listener to be called two times")
+        XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present before after user attempts connecting again.")
+
+        loader.notifyStatusChange(status: .connected)
+        XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present when the connection is successful.")
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()
@@ -386,6 +407,10 @@ private extension ConversationStatusViewController {
             return !view.isHidden
         }
         return false
+    }
+
+    func simulateTryAgainActionRequested() {
+        tryAgainView?.simulateTryAgainButtonTapped()
     }
 
     func numberOfRenderedConversationStatusViews() -> Int {
@@ -513,6 +538,12 @@ private extension ConversationStatus {
 
     var lastMessageTimeSent: String? {
         return lastMessageTime?.elapsedInterval
+    }
+}
+
+private extension TryAgainView {
+    func simulateTryAgainButtonTapped() {
+        self.onRetryButtonTapped?()
     }
 }
 
