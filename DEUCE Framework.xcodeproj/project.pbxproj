@@ -23,6 +23,7 @@
 		5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
 		5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationStatusLoader.swift */; };
+		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */; };
 		5FB5EF2C231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */; };
@@ -91,6 +92,7 @@
 		5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoader.swift; sourceTree = "<group>"; };
+		5FB52C42234D6054008B6D66 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
 		5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeClient.swift; sourceTree = "<group>"; };
 		5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationStatusLoaderTests.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */,
 				5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */,
 				5F3082F6234BA534005B9CC0 /* HeaderView.swift */,
+				5FB52C42234D6054008B6D66 /* TryAgainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */,
 				5FEEF918231994AD00083C51 /* ConversationStatusCellController.swift in Sources */,
 				5FFBAFFD2314A0BE0097D10A /* ConversationStatusViewController.swift in Sources */,
+				5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
