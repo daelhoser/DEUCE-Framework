@@ -23,6 +23,8 @@
 		5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
 		5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationStatusLoader.swift */; };
+		5FA5CAB0234E764500950F2B /* ConversationStatusObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */; };
+		5FA5CAB2234E767200950F2B /* ConversationStatusHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */; };
 		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */; };
@@ -92,6 +94,8 @@
 		5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoader.swift; sourceTree = "<group>"; };
+		5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusObserverController.swift; sourceTree = "<group>"; };
+		5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusHeaderController.swift; sourceTree = "<group>"; };
 		5FB52C42234D6054008B6D66 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
 		5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeClient.swift; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 			children = (
 				5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */,
 				5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */,
+				5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */,
+				5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -589,7 +595,9 @@
 				5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */,
 				5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */,
 				5FEEF91B23199E9E00083C51 /* ConversationStatusComposer.swift in Sources */,
+				5FA5CAB0234E764500950F2B /* ConversationStatusObserverController.swift in Sources */,
 				5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */,
+				5FA5CAB2234E767200950F2B /* ConversationStatusHeaderController.swift in Sources */,
 				5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */,
 				5FEEF920231BEFAC00083C51 /* ConversationStatusCellViewModel.swift in Sources */,
 				5FEEF91E2319C51800083C51 /* ConversationStatusViewModel.swift in Sources */,

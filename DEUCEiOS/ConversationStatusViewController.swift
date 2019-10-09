@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DEUCE_Framework
 
 public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var tableModel = [ConversationStatusCellController]() {
@@ -16,57 +15,31 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         }
     }
     var refreshController: ConversationStatusRefreshViewController?
-    var conversationStatusListener: ConversationStatusListener?
-    public private(set) var header: HeaderView?
-    public private(set) var tryAgainView: TryAgainView?
+    public private(set) var observerController: ConversationStatusObserverController?
+    var headerController: ConversationStatusHeaderController?
 
-    convenience init(refreshController: ConversationStatusRefreshViewController, conversationStatusListener: ConversationStatusListener?) {
+    convenience init(refreshController: ConversationStatusRefreshViewController, observerController: ConversationStatusObserverController?) {
         self.init()
         self.refreshController = refreshController
-        self.conversationStatusListener = conversationStatusListener
+        self.observerController = observerController
+        self.headerController = ConversationStatusHeaderController()
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 
         refreshControl = refreshController?.view
-        header = HeaderView()
-        tryAgainView = TryAgainView(frame: .zero)
-        tryAgainView?.onRetryButtonTapped = { [weak self] in
-            self?.observeNewConversationStatuses()
-        }
-
-        navigationItem.titleView = header
+        navigationItem.titleView = headerController?.view
+        view.addSubview(observerController!.retryView)
 
         tableView.prefetchDataSource = self
+
+        observerController?.onStatusChange = { [weak self] state in
+            self?.headerController?.update(string: state)
+        }
+
+        observerController?.observe()
         refreshController?.refresh()
-
-        observeNewConversationStatuses()
-    }
-
-    private func observeNewConversationStatuses() {
-        header?.subtitleLabel.text = "connecting..."
-        tryAgainView?.isHidden = true
-
-        conversationStatusListener?.listen(completion: { [weak self] (status) in
-            guard let self = self else { return }
-
-            switch status {
-            case .connected:
-                self.header?.subtitleLabel.text = nil
-            case let .failed(error):
-                if let error = error as? RealTimeConversationStatusLoader.Error {
-                    if case .connection = error {
-                        self.header?.subtitleLabel.text = "disconnected"
-                        self.tryAgainView?.isHidden = false
-                    } else {
-                        self.header?.subtitleLabel.text = nil
-                    }
-                }
-            case .newMessage:
-                self.header?.subtitleLabel.text = nil
-            }
-        })
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,7 +71,6 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     private func cellController(forRowAt indexPath: IndexPath) -> ConversationStatusCellController {
         return tableModel[indexPath.row]
     }
-
 
     private func cancelCellControllerLoad(at indexPath: IndexPath) {
         let controller = tableModel[indexPath.row]

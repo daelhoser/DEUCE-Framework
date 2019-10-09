@@ -399,18 +399,23 @@ private extension ConversationStatusViewController {
     }
 
     var loadingStatus: String? {
-        return header?.subtitleLabel.text
+        guard let header = navigationItem.titleView as? HeaderView else {
+            return nil
+        }
+        return header.subtitleLabel.text
     }
 
     var isTryAgainViewDisplayed: Bool {
-        if let view = tryAgainView {
+        if let view = observerController?.retryView {
             return !view.isHidden
         }
         return false
     }
 
     func simulateTryAgainActionRequested() {
-        tryAgainView?.simulateTryAgainButtonTapped()
+        let view = observerController?.retryView
+
+        view?.simulateTryAgainButtonTapped()
     }
 
     func numberOfRenderedConversationStatusViews() -> Int {
