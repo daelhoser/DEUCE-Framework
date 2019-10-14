@@ -7,49 +7,45 @@
 //
 
 import Foundation
-import DEUCE_Framework
 
 final public class ConversationStatusObserverController {
-    public lazy var retryView: TryAgainView = {
-        let view = TryAgainView()
+    public lazy var retryView: TryAgainView = binded(view: TryAgainView())
+
+    private let viewmodel: ConversationStatusObserverViewModel
+
+    var onStatusChange: ((String?) -> Void)?
+
+    init(viewmodel: ConversationStatusObserverViewModel) {
+        self.viewmodel = viewmodel
+    }
+
+    func observe() {
+        viewmodel.observe()
+    }
+
+    func binded(view: TryAgainView) -> TryAgainView {
         view.isHidden = true
+
+        viewmodel.onConnectionStateChange = { [weak self, weak view] (status) in
+            view?.isHidden = true
+
+            switch status {
+            case .connected:
+                self?.onStatusChange?(nil)
+            case .connecting:
+                self?.onStatusChange?("connecting...")
+            case .disconnected:
+                view?.isHidden = false
+                self?.onStatusChange?("disconnected")
+            case .newMessage:
+                self?.onStatusChange?(nil)
+            }
+        }
+
         view.onRetryButtonTapped = { [weak self] in
             self?.observe()
         }
 
         return view
-    }()
-
-    private let observer: ConversationStatusListener
-
-    var onStatusChange: ((String?) -> Void)?
-
-    init(observer: ConversationStatusListener) {
-        self.observer = observer
-    }
-
-    func observe() {
-        onStatusChange?("connecting...")
-        retryView.isHidden = true
-
-        observer.listen(completion: { [weak self] (status) in
-            guard let self = self else { return }
-
-            switch status {
-            case .connected:
-                self.onStatusChange?(nil)
-            case let .failed(error):
-                if let error = error as? RealTimeConversationStatusLoader.Error {
-                    if case .connection = error {
-                        self.onStatusChange?("disconnected")
-                        self.retryView.isHidden = false
-                    } else {
-                        self.onStatusChange?(nil)
-                    }
-                }
-            case .newMessage:
-                self.onStatusChange?(nil)
-            }
-        })
     }
 }

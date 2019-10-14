@@ -340,7 +340,7 @@ class ConversationStatusTests: XCTestCase {
         sut.simulateTryAgainActionRequested()
 
         XCTAssertEqual(loader.realtimeRequestCount, 2, "Expected listener to be called two times")
-        XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present before after user attempts connecting again.")
+        XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present after user attempts connecting again.")
 
         loader.notifyStatusChange(status: .connected)
         XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present when the connection is successful.")

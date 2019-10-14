@@ -15,8 +15,9 @@ public final class ConversationStatusComposer {
 
     public static func conversationStatusComposedWith(conversationStatusLoader: ConversationStatusLoaderAndListener, imageDataLoader: ImageDataLoader) -> UINavigationController {
         let viewModel = ConversationStatusViewModel(loader: conversationStatusLoader)
+        let observerViewModel = ConversationStatusObserverViewModel(observer: conversationStatusLoader)
         let refreshController = ConversationStatusRefreshViewController(viewModel: viewModel)
-        let observerController = ConversationStatusObserverController(observer: conversationStatusLoader)
+        let observerController = ConversationStatusObserverController(viewmodel: observerViewModel)
         let viewController = ConversationStatusViewController(refreshController: refreshController, observerController: observerController)
         viewController.refreshController = refreshController
 
