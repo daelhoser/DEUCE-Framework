@@ -346,6 +346,38 @@ class ConversationStatusTests: XCTestCase {
         XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present when the connection is successful.")
     }
 
+    // MARK: - New Message Functionality
+
+    func test_ConversationStatusObserver_addsNewMessageToTheTopOfList() {
+        let (loader, sut) = makeSUT()
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+        loader.notifyStatusChange(status: .connected)
+
+        let date = Date()
+
+        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let conversationStatus3 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
+        let conversationStatus4 = makeConversationStatus(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
+
+        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
+        assertThat(sut: sut, isRendering: [conversationStatus1])
+
+        sut.simulateUserInitiatedConversationStatusLoad()
+        loader.completeConversationStatusLoad(at: 1, with: [conversationStatus1, conversationStatus2])
+        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2])
+
+        //first new message received via real time
+        loader.notifyStatusChange(status: .newMessage(conversationStatus3))
+        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2, conversationStatus3])
+
+        //second new  message received via real time
+        loader.notifyStatusChange(status: .newMessage(conversationStatus4))
+        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2, conversationStatus3, conversationStatus4])
+    }
+
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
         let loader = LoaderSpy()

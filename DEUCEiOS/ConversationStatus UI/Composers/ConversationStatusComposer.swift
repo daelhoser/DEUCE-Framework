@@ -22,6 +22,7 @@ public final class ConversationStatusComposer {
         viewController.refreshController = refreshController
 
         viewModel.onConversationStatusLoad = adaptConversationStatusToCellControllers(forwardingTo: viewController, loader: imageDataLoader)
+        observerViewModel.onNewConversationStatus = adaptNewConversationStatusToCellController(forwardingTo: viewController, loader: imageDataLoader)
 
         return UINavigationController(rootViewController: viewController)
     }
@@ -32,6 +33,13 @@ public final class ConversationStatusComposer {
                 let viewModel = ConversationStatusCellViewModel(model: model, imageDataLoader: loader, imageTransformer: UIImage.init)
                 return ConversationStatusCellController(viewModel: viewModel)
             }
+        }
+    }
+
+    private static func adaptNewConversationStatusToCellController(forwardingTo controller: ConversationStatusViewController, loader: ImageDataLoader)  -> (ConversationStatus) -> Void {
+        return { [weak controller] conversationStatus in
+            let viewModel = ConversationStatusCellViewModel(model: conversationStatus, imageDataLoader: loader, imageTransformer: UIImage.init)
+            controller?.tableModel.append(ConversationStatusCellController(viewModel: viewModel))
         }
     }
 }

@@ -24,6 +24,7 @@ final class ConversationStatusObserverViewModel {
     }
 
     var onConnectionStateChange: ((ConnectionState) -> Void)?
+    var onNewConversationStatus: ((ConversationStatus) -> Void)?
 
     func observe() {
         onConnectionStateChange?(.connecting)
@@ -40,8 +41,9 @@ final class ConversationStatusObserverViewModel {
                         self.onConnectionStateChange?(.disconnected)
                     }
                 }
-            case .newMessage:
+            case let .newMessage(message):
                 self.onConnectionStateChange?(.newMessage)
+                self.onNewConversationStatus?(message)
             }
         })
     }
