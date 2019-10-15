@@ -372,6 +372,15 @@ class ConversationStatusTests: XCTestCase {
         }
     }
 
+
+    /// Tests that the view is configured accordingly
+    ///
+    /// - Parameters:
+    ///   - sut: system under test
+    ///   - conversationStatus: conversation status model
+    ///   - index: index
+    ///   - file: file in case of failed test (no need to pass anything, it is using default value)
+    ///   - line: line number incase of failed test (no need to pass anything, it is using default value)
     private func assertThat(_ sut: ConversationStatusViewController, hasViewConfiguredFor conversationStatus: ConversationStatus, at index: Int, file: StaticString = #file, line: UInt = #line) {
         let view = sut.simulateFeedImageViewVisible(at: index)
 
