@@ -58,7 +58,7 @@ class ConversationStatusTests: XCTestCase {
         let date = Date()
 
         let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
 
         loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
         assertThat(sut: sut, isRendering: [conversationStatus1])
@@ -358,9 +358,9 @@ class ConversationStatusTests: XCTestCase {
         let date = Date()
 
         let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
-        let conversationStatus3 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
-        let conversationStatus4 = makeConversationStatus(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, lastMessageTime: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
+        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let conversationStatus3 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
+        let conversationStatus4 = makeConversationStatus(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
 
         loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
         assertThat(sut: sut, isRendering: [conversationStatus1])
@@ -391,7 +391,7 @@ class ConversationStatusTests: XCTestCase {
         return (loader, sut)
     }
 
-    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int = 0, groupName: String? = nil, contentType: Int = 0, otherUserId: UUID = UUID(), createdByName: String = "creator") -> ConversationStatus {
+    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date = Date(), conversationType: Int = 0, groupName: String? = nil, contentType: Int = 0, otherUserId: UUID = UUID(), createdByName: String = "creator") -> ConversationStatus {
         return ConversationStatus(id: id, image: imageURL, conversationId: conversationID, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
     }
 
