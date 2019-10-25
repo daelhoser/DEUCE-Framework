@@ -348,7 +348,7 @@ class ConversationStatusTests: XCTestCase {
 
     // MARK: - New Message Functionality
 
-    func test_ConversationStatusObserver_addsNewMessageToTheTopOfList() {
+    func test_ConversationStatusObserver_addsNewConversationToTheTopOfList() {
         let (loader, sut) = makeSUT()
 
         //forces view to load
