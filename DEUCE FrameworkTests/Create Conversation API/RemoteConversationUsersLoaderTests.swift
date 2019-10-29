@@ -70,6 +70,9 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let client = ClientSpy()
         let loader = ConversationUsersLoader(url: url, client: client)
 
+        trackForMemoryLeaks(object: client)
+        trackForMemoryLeaks(object: loader)
+
         return (client, loader)
     }
 }
