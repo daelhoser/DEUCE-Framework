@@ -19,7 +19,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
     func test_onConnect_attemptsToMakeAConnection() {
         let (client, loader) = makeSUT()
 
-        loader.connect { _  in }
+        loader.listen { _  in }
 
         XCTAssertTrue(client.attemptedConnections)
     }
@@ -88,7 +88,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
     private func expect(sut: RealTimeConversationStatusLoader, toCompleteWith expectedResult: Status, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Waiting on connection")
 
-        sut.connect { (receivedResult) in
+        sut.listen { (receivedResult) in
             switch (expectedResult, receivedResult) {
             case (.connected, .connected):
                 break
