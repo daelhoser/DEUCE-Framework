@@ -171,6 +171,8 @@
 		5F0A1E42230B11C000E8DD71 /* Conversation Status API */ = {
 			isa = PBXGroup;
 			children = (
+				5F349D4222824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift */,
+				5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */,
 				5F0A1E43230B11D000E8DD71 /* Helpers */,
 			);
 			path = "Conversation Status API";
@@ -334,6 +336,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5FF1CEE12368A3A6002DC32E /* Create New Conversation API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Create New Conversation API";
+			sourceTree = "<group>";
+		};
 		5FF272AD228249BF00E4486C = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +371,7 @@
 		5FF272B9228249BF00E4486C /* DEUCE Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5FF1CEE12368A3A6002DC32E /* Create New Conversation API */,
 				5F60848B228616C200B23235 /* Helpers */,
 				5F5708D12283884800D856D5 /* Conversation Feature */,
 				5F349D4422824AE20058AF4F /* Conversations API */,
@@ -374,8 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				5F0A1E42230B11C000E8DD71 /* Conversation Status API */,
-				5F349D4222824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift */,
-				5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */,
 				5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */,
 				5FF272C7228249BF00E4486C /* Info.plist */,
 			);
