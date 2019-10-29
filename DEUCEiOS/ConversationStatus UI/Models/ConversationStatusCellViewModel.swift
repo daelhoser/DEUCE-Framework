@@ -23,6 +23,10 @@ final class ConversationStatusCellViewModel<Image> {
         self.imageTransformer = imageTransformer
     }
 
+    var conversationID: UUID {
+        return model.conversationId
+    }
+
     var userGroupName: String? {
         return model.lastMessageUser ?? model.groupName
     }

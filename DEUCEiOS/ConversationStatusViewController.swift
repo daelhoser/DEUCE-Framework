@@ -42,6 +42,21 @@ public final class ConversationStatusViewController: UITableViewController, UITa
         refreshController?.refresh()
     }
 
+
+    /// Update model with controller. If the controller holds a reference to an existing Conversation Status (unique Conversation ID) then it replaces the old one from the model and adds the new one on top of the stack. If not found on the model then it is just added.
+    ///
+    /// - Parameter controller: Conversation Status Cell Controller
+    internal func addConversationStatusController(controller: ConversationStatusCellController) {
+        let indexOfExistingController = tableModel.lastIndex { (cont) -> Bool in
+            return cont.uniqueId == controller.uniqueId
+        }
+
+        if let index = indexOfExistingController {
+            tableModel.remove(at: index)
+        }
+        tableModel.append(controller)
+    }
+
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableModel.count
     }

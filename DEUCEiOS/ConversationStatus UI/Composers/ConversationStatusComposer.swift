@@ -39,7 +39,7 @@ public final class ConversationStatusComposer {
     private static func adaptNewConversationStatusToCellController(forwardingTo controller: ConversationStatusViewController, loader: ImageDataLoader)  -> (ConversationStatus) -> Void {
         return { [weak controller] conversationStatus in
             let viewModel = ConversationStatusCellViewModel(model: conversationStatus, imageDataLoader: loader, imageTransformer: UIImage.init)
-            controller?.tableModel.append(ConversationStatusCellController(viewModel: viewModel))
+            controller?.addConversationStatusController(controller: ConversationStatusCellController(viewModel: viewModel))
         }
     }
 }

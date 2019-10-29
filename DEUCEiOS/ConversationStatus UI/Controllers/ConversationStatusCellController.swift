@@ -12,6 +12,10 @@ import UIKit
 final class ConversationStatusCellController {
     private let viewModel: ConversationStatusCellViewModel<UIImage>
 
+    var uniqueId: UUID {
+        return viewModel.conversationID
+    }
+
     init(viewModel: ConversationStatusCellViewModel<UIImage>) {
         self.viewModel = viewModel
     }
