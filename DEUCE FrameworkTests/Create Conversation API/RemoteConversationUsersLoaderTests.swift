@@ -24,17 +24,13 @@ class ConversationUsersLoader {
 
 class RemoteConversationUsersLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
-        let url = URL(string: "http://a-url.com")!
-        let client = ClientSpy()
-        _ = ConversationUsersLoader(url: url, client: client)
+        let (client, _) = makeSUT()
 
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
 
     func test_load_requestsDataFromURL() {
-        let url = URL(string: "http://a-url.com")!
-        let client = ClientSpy()
-        let loader = ConversationUsersLoader(url: url, client: client)
+        let (client, loader) = makeSUT()
 
         loader.load()
 
@@ -42,14 +38,22 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
     }
 
     func test_load_requestsDataFromURLTwice() {
-        let url = URL(string: "http://a-url.com")!
-        let client = ClientSpy()
-        let loader = ConversationUsersLoader(url: url, client: client)
+        let (client, loader) = makeSUT()
 
         loader.load()
         loader.load()
 
         XCTAssertEqual(client.requestedURLs.count, 2)
+    }
+
+    // MARK: - Helper Methods
+
+    private func makeSUT() -> (ClientSpy, ConversationUsersLoader) {
+        let url = URL(string: "http://a-url.com")!
+        let client = ClientSpy()
+        let loader = ConversationUsersLoader(url: url, client: client)
+
+        return (client, loader)
     }
 }
 
