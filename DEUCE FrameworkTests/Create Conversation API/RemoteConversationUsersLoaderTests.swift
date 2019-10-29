@@ -40,6 +40,17 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         XCTAssertEqual(client.requestedURLs.count, 1)
     }
+
+    func test_load_requestsDataFromURLTwice() {
+        let url = URL(string: "http://a-url.com")!
+        let client = ClientSpy()
+        let loader = ConversationUsersLoader(url: url, client: client)
+
+        loader.load()
+        loader.load()
+
+        XCTAssertEqual(client.requestedURLs.count, 2)
+    }
 }
 
 class ClientSpy {
