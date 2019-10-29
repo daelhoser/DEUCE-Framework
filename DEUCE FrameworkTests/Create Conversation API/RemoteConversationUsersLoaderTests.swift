@@ -78,16 +78,18 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 }
 
 class ClientSpy {
-    private(set) var requestedURLs = [URL]()
-    private var completion: ((Error) -> Void)?
+    private(set) var requests = [(url: URL, completion: ((Error) -> Void)?)]()
+
+    var requestedURLs: [URL] {
+        return requests.map { $0.url }
+    }
 
     func load(url: URL, completion: @escaping (Error) -> Void) {
-        requestedURLs.append(url)
-        self.completion = completion
+        self.requests.append((url, completion))
     }
 
     func completeWith(error: Error) {
-        completion?(error)
+        requests[0].completion?(error)
     }
 }
 
