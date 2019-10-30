@@ -53,14 +53,19 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         var capturedError: Error?
 
+        let exp = expectation(description: "Performing Load")
+
         loader.load { (error) in
             capturedError = error
+            exp.fulfill()
         }
 
         let clientError = NSError(domain: "any-error", code: 0)
         client.completeWith(error: clientError)
 
         XCTAssertEqual(capturedError as NSError?, clientError)
+
+        wait(for: [exp], timeout: 1.0)
     }
 
     // MARK: - Helper Methods
