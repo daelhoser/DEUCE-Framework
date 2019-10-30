@@ -12,6 +12,11 @@ class ConversationUsersLoader {
     let url: URL
     let client: ClientSpy
 
+    public enum Error: Swift.Error {
+        case connection
+        case invalidData
+    }
+
     init(url: URL, client: ClientSpy) {
         self.url = url
         self.client = client
@@ -19,7 +24,7 @@ class ConversationUsersLoader {
 
     func load(completion: @escaping (Error) -> Void) {
         client.load(url: url) { (error) in
-            completion(error)
+            completion(.connection)
         }
     }
 }
@@ -51,7 +56,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (client, loader) = makeSUT()
 
-        var capturedError: Error?
+        var capturedError: ConversationUsersLoader.Error?
 
         let exp = expectation(description: "Performing Load")
 
@@ -63,7 +68,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let clientError = NSError(domain: "any-error", code: 0)
         client.completeWith(error: clientError)
 
-        XCTAssertEqual(capturedError as NSError?, clientError)
+        XCTAssertEqual(capturedError, .connection)
 
         wait(for: [exp], timeout: 1.0)
     }
