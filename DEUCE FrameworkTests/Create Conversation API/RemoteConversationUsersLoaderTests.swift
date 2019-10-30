@@ -56,22 +56,40 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (client, loader) = makeSUT()
 
-        var capturedError: ConversationUsersLoader.Error?
+        var capturedError = [ConversationUsersLoader.Error]()
 
         let exp = expectation(description: "Performing Load")
 
         loader.load { (error) in
-            capturedError = error
+            capturedError.append(error)
             exp.fulfill()
         }
 
         let clientError = NSError(domain: "any-error", code: 0)
         client.completeWith(error: clientError)
 
-        XCTAssertEqual(capturedError, .connection)
+        XCTAssertEqual(capturedError, [.connection])
 
         wait(for: [exp], timeout: 1.0)
     }
+
+//    func test_load_deliversErrorOnNon200HttpResponse() {
+//        let (clients, loader) = makeSUT()
+//
+//        let samples = [199, 201, 300, 400, 500]
+//
+//        var capturedErro: Error?
+//
+//
+//
+//        samples.enumerated().forEach { (index, sample) in
+//            loader.load { (error) in
+//                capturedError = error
+//            }
+//        }
+//    }
+
+
 
     // MARK: - Helper Methods
 
