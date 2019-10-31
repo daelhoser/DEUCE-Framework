@@ -66,22 +66,11 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
     func test_load_deliversErrorOnClientError() {
         let (client, loader) = makeSUT()
-
-        var capturedError = [ConversationUsersLoader.Error]()
-
-        let exp = expectation(description: "Performing Load")
-
-        loader.load { (error) in
-            capturedError.append(error)
-            exp.fulfill()
-        }
-
         let clientError = NSError(domain: "any-error", code: 0)
-        client.completeWith(error: clientError)
 
-        XCTAssertEqual(capturedError, [.connection])
-
-        wait(for: [exp], timeout: 1.0)
+        expect(sut: loader, toCompleteWith: .connection, when: {
+            client.completeWith(error: clientError)
+        })
     }
 
     func test_load_deliversErrorOnNon200HttpResponse() {
@@ -89,58 +78,29 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         let samples = [199, 201, 300, 400, 500]
 
-        let exp = expectation(description: "waiting for load to complete")
-        exp.expectedFulfillmentCount = samples.count
-
         samples.enumerated().forEach { (index, sample) in
-            loader.load { (error) in
-                var capturedError = [ConversationUsersLoader.Error]()
-                capturedError.append(error)
-                XCTAssertEqual(capturedError, [.invalidData])
-
-                exp.fulfill()
-            }
-            client.completeWith(statusCode: sample, data: "any-data".data(using: .utf8)!)
+            expect(sut: loader, toCompleteWith: .invalidData, when: {
+                client.completeWith(statusCode: sample, data: "any-data".data(using: .utf8)!)
+            })
         }
-        wait(for: [exp], timeout: 1.0)
     }
 
     func test_load_deliversUnAuthorizeErrorOn401HttpResponse() {
         let (client, loader) = makeSUT()
         let unauthorizedStatusCode = 401
 
-        let exp = expectation(description: "waiting for load to complete")
-
-        loader.load { (error) in
-            var capturedError = [ConversationUsersLoader.Error]()
-            capturedError.append(error)
-            XCTAssertEqual(capturedError, [.unauthorized])
-
-            exp.fulfill()
-        }
-
-        client.completeWith(statusCode: unauthorizedStatusCode, data: "any-data".data(using: .utf8)!)
-
-        wait(for: [exp], timeout: 1.0)
+        expect(sut: loader, toCompleteWith: .unauthorized, when: {
+            client.completeWith(statusCode: unauthorizedStatusCode, data: "any-data".data(using: .utf8)!)
+        })
     }
 
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (client, loader) = makeSUT()
 
-        let exp = expectation(description: "waiting for load to complete")
-
-        loader.load { (error) in
-            var capturedError = [ConversationUsersLoader.Error]()
-            capturedError.append(error)
-            XCTAssertEqual(capturedError, [.invalidData])
-
-            exp.fulfill()
-        }
-
-        let invalidData = "invalid-Data".data(using: .utf8)!
-        client.completeWith(statusCode: 200, data: invalidData)
-
-        wait(for: [exp], timeout: 1.0)
+        expect(sut: loader, toCompleteWith: .invalidData, when: {
+            let invalidData = "invalid-Data".data(using: .utf8)!
+            client.completeWith(statusCode: 200, data: invalidData)
+        })
     }
 
 
@@ -155,6 +115,19 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         trackForMemoryLeaks(object: loader)
 
         return (client, loader)
+    }
+
+    private func expect(sut: ConversationUsersLoader, toCompleteWith error:ConversationUsersLoader.Error, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Waiting on load")
+
+        sut.load { (receivedError) in
+            XCTAssertEqual(error, receivedError, "Expected error \(error), received \(receivedError) instead", file: file, line: line)
+        }
+        exp.fulfill()
+
+        action()
+
+        wait(for: [exp], timeout: 1.0)
     }
 }
 
