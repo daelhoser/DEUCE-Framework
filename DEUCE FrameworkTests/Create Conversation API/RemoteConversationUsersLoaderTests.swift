@@ -123,6 +123,25 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+        let (client, loader) = makeSUT()
+
+        let exp = expectation(description: "waiting for load to complete")
+
+        loader.load { (error) in
+            var capturedError = [ConversationUsersLoader.Error]()
+            capturedError.append(error)
+            XCTAssertEqual(capturedError, [.invalidData])
+
+            exp.fulfill()
+        }
+
+        let invalidData = "invalid-Data".data(using: .utf8)!
+        client.completeWith(statusCode: 200, data: invalidData)
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
 
     // MARK: - Helper Methods
 
@@ -157,6 +176,13 @@ class ClientSpy: HTTPClient {
         let url = requests[0].url
         let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
         let data = "any-string".data(using: .utf8)!
+
+        requests[0].completion?(.success(data, response))
+    }
+
+    func completeWith(statusCode code: Int, data: Data) {
+        let url = requests[0].url
+        let response = HTTPURLResponse(url: url, statusCode: code, httpVersion: nil, headerFields: nil)!
 
         requests[0].completion?(.success(data, response))
     }
