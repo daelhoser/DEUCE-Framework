@@ -100,7 +100,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
                 exp.fulfill()
             }
-            client.compleWithStatusCodeError(statusCode: sample)
+            client.completeWith(statusCode: sample, data: "any-data".data(using: .utf8)!)
         }
         wait(for: [exp], timeout: 1.0)
     }
@@ -118,7 +118,8 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
             exp.fulfill()
         }
-        client.compleWithStatusCodeError(statusCode: unauthorizedStatusCode)
+
+        client.completeWith(statusCode: unauthorizedStatusCode, data: "any-data".data(using: .utf8)!)
 
         wait(for: [exp], timeout: 1.0)
     }
@@ -170,14 +171,6 @@ class ClientSpy: HTTPClient {
 
     func completeWith(error: Error) {
         requests[0].completion?(.failure(error))
-    }
-
-    func compleWithStatusCodeError(statusCode: Int) {
-        let url = requests[0].url
-        let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-        let data = "any-string".data(using: .utf8)!
-
-        requests[0].completion?(.success(data, response))
     }
 
     func completeWith(statusCode code: Int, data: Data) {
