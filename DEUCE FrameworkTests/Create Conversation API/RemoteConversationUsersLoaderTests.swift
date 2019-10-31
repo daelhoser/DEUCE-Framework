@@ -7,27 +7,29 @@
 //
 
 import XCTest
+import DEUCE_Framework
 
 class ConversationUsersLoader {
     let url: URL
-    let client: ClientSpy
+    let client: HTTPClient
 
     public enum Error: Swift.Error {
         case connection
         case invalidData
     }
 
-    init(url: URL, client: ClientSpy) {
+    init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
 
     func load(completion: @escaping (Error) -> Void) {
-        client.load(url: url) { (response, error) in
-            if response != nil {
-                completion(.invalidData)
-            } else {
-                completion(.connection)
+        client.get(from: url) { (result) in
+            switch result {
+            case .success:
+                return completion(.invalidData)
+            case .failure:
+                return completion(.connection)
             }
         }
     }
@@ -114,25 +116,27 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
     }
 }
 
-class ClientSpy {
-    private(set) var requests = [(url: URL, completion: ((HTTPURLResponse?, Error?) -> Void)?)]()
+class ClientSpy: HTTPClient {
+    private(set) var requests = [(url: URL, completion: ((HTTPClientResult) -> Void)?)]()
 
     var requestedURLs: [URL] {
         return requests.map { $0.url }
     }
 
-    func load(url: URL, completion: @escaping (HTTPURLResponse?, Error?) -> Void) {
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
         self.requests.append((url, completion))
     }
 
     func completeWith(error: Error) {
-        requests[0].completion?(nil, error)
+        requests[0].completion?(.failure(error))
     }
 
     func compleWithStatusCodeError(statusCode: Int) {
         let url = requests[0].url
-        let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)
-        requests[0].completion?(response, nil)
+        let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        let data = "any-string".data(using: .utf8)!
+        
+        requests[0].completion?(.success(data, response))
     }
 }
 
