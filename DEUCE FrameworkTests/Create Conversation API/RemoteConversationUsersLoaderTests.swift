@@ -16,6 +16,7 @@ class ConversationUsersLoader {
     public enum Error: Swift.Error {
         case connection
         case invalidData
+        case unauthorized
     }
 
     init(url: URL, client: HTTPClient) {
@@ -26,8 +27,12 @@ class ConversationUsersLoader {
     func load(completion: @escaping (Error) -> Void) {
         client.get(from: url) { (result) in
             switch result {
-            case .success:
-                return completion(.invalidData)
+            case let .success(_, urlResponse):
+                if urlResponse.statusCode == 401 {
+                    return completion(.unauthorized)
+                } else {
+                    return completion(.invalidData)
+                }
             case .failure:
                 return completion(.connection)
             }
@@ -100,6 +105,23 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
+    func test_load_deliversUnAuthorizeErrorOn401HttpResponse() {
+        let (client, loader) = makeSUT()
+        let unauthorizedStatusCode = 401
+
+        let exp = expectation(description: "waiting for load to complete")
+
+        loader.load { (error) in
+            var capturedError = [ConversationUsersLoader.Error]()
+            capturedError.append(error)
+            XCTAssertEqual(capturedError, [.unauthorized])
+
+            exp.fulfill()
+        }
+        client.compleWithStatusCodeError(statusCode: unauthorizedStatusCode)
+
+        wait(for: [exp], timeout: 1.0)
+    }
 
 
     // MARK: - Helper Methods
@@ -135,7 +157,7 @@ class ClientSpy: HTTPClient {
         let url = requests[0].url
         let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
         let data = "any-string".data(using: .utf8)!
-        
+
         requests[0].completion?(.success(data, response))
     }
 }
