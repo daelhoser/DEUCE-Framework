@@ -9,7 +9,7 @@
 import XCTest
 import DEUCE_Framework
 
-struct ConversationUser: Equatable {
+struct ConversationUser: Equatable, Decodable {
 }
 
 class ConversationUsersLoader {
@@ -37,13 +37,19 @@ class ConversationUsersLoader {
     func load(completion: @escaping (Result) -> Void) {
         client.get(from: url) { (result) in
             switch result {
-            case let .success(_, urlResponse):
-                if urlResponse.statusCode == 401 {
-                    return completion(.failure(.unauthorized))
-                } else {
-                    return completion(.failure(.invalidData))
+            case let .success(data, urlResponse):
+                let jsonDecoder = JSONDecoder()
+
+                guard urlResponse.statusCode == 200, let users = try? jsonDecoder.decode([ConversationUser].self, from: data) else {
+                    if urlResponse.statusCode == 401 {
+                        return completion(.failure(.unauthorized))
+                    } else {
+                        return completion(.failure(.invalidData))
+                    }
                 }
+                return completion(.success(users))
             case .failure:
+                // perhaps did not even reach server
                 return completion(.failure(.connection))
             }
         }
@@ -113,14 +119,14 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         })
     }
 
-//    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
-//        let (client, loader) = makeSUT()
-//
-//        expect(sut: loader, toCompleteWith: .success([]), when: {
-//            let emptyArray = "[]".data(using: .utf8)!
-//            client.completeWith(statusCode: 200, data: emptyArray)
-//        })
-//    }
+    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+        let (client, loader) = makeSUT()
+
+        expect(sut: loader, toCompleteWith: .success([]), when: {
+            let emptyArray = "[]".data(using: .utf8)!
+            client.completeWith(statusCode: 200, data: emptyArray)
+        })
+    }
 
     // MARK: - Helper Methods
 
