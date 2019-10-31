@@ -89,7 +89,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         let samples = [199, 201, 300, 400, 500]
 
-        let exp = expectation(description: "waiting")
+        let exp = expectation(description: "waiting for load to complete")
         exp.expectedFulfillmentCount = samples.count
 
         samples.enumerated().forEach { (index, sample) in
