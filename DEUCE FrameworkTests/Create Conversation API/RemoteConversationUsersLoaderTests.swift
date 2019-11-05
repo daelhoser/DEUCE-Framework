@@ -49,7 +49,7 @@ class ConversationUsersLoader {
                 }
                 return completion(.success(users))
             case .failure:
-                // perhaps did not even reach server
+                // did not reach server
                 return completion(.failure(.connection))
             }
         }
