@@ -31,7 +31,9 @@ public class ConversationUsersLoader {
     }
 
     public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) { (result) in
+        client.get(from: url) { [weak self] (result) in
+            guard self != nil else { return }
+
             switch result {
             case let .success(data, urlResponse):
                 return completion(ConversationUsersMapper.map(response: urlResponse, data: data))

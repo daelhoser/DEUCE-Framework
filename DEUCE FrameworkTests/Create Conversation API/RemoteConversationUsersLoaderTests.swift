@@ -93,6 +93,22 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         })
     }
 
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        var sut: ConversationUsersLoader?
+        let url = URL(string: "https://any-url.com")!
+        let client =  ClientSpy()
+        sut = ConversationUsersLoader(url: url, client: client)
+
+        var capturedResults = [ConversationUsersLoader.Result]()
+        sut?.load { capturedResults.append($0) }
+
+        sut = nil
+        client.completeWith(statusCode: 200, data: wrapInPayloadAndConvert(array: []))
+
+        XCTAssertTrue(capturedResults.isEmpty)
+    }
+
+
 
     // MARK: - Helper Methods
 
