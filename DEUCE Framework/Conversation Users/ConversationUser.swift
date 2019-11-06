@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ConversationUser: Equatable, Decodable {
+public struct ConversationUser: Equatable {
     public let id: String
     public let displayName: String
     public var thumbnailURL: URL?
@@ -17,11 +17,5 @@ public struct ConversationUser: Equatable, Decodable {
         self.id = id
         self.displayName = displayName
         self.thumbnailURL = thumbnailURL
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case id = "Id"
-        case displayName = "DisplayName"
-        case thumbnailURL = "ThumbnailUrl"
     }
 }
