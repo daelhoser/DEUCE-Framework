@@ -140,7 +140,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let (client, loader) = makeSUT()
 
         expect(sut: loader, toCompleteWith: .success([]), when: {
-            let data =  wrapInPayload(dictionary: [])
+            let data =  wrapInPayloadAndConvert(array: [])
             client.completeWith(statusCode: 200, data: data)
         })
     }
@@ -152,7 +152,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let user2 = makeConversationUserJSON(id: "Id2", displayName: "Liliana", thumbnailUrl: URL(string: "http://www.a-url.com")!)
 
         expect(sut: loader, toCompleteWith: .success([user1.model, user2.model]), when: {
-            let data = wrapInPayload(dictionary: [user1.json, user2.json])
+            let data = wrapInPayloadAndConvert(array: [user1.json, user2.json])
             client.completeWith(statusCode: 200, data: data)
         })
     }
@@ -209,12 +209,6 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let user = ConversationUser(id: id, displayName: displayName, thumbnailURL: thumbnailUrl)
 
         return (user, reducedDictionary)
-    }
-
-    private func wrapInPayload(dictionary: [[String: Any]]) -> Data {
-        let users = ["payload": dictionary]
-
-        return try! JSONSerialization.data(withJSONObject: users)
     }
 }
 

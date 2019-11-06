@@ -51,7 +51,7 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
 
         samples.enumerated().forEach { (index, sample) in
             expect(sut: sut, toCompleteWith: failure(.invalidData), when: {
-                let data = makeConversationsJSON(conversations: [])
+                let data = wrapInPayloadAndConvert(array: [])
                 client.complete(with: sample, data: data, at: index)
             })
         }
@@ -62,7 +62,7 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
         let unauthorizedStatusCode = 401
 
         expect(sut: sut, toCompleteWith: failure(.unauthorized), when: {
-            let data = makeConversationsJSON(conversations: [])
+            let data = wrapInPayloadAndConvert(array: [])
             client.complete(with: unauthorizedStatusCode, data: data)
         })
 
@@ -81,7 +81,7 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut: sut, toCompleteWith: .success([]), when: {
-            let JSON = makeConversationsJSON(conversations: [])
+            let JSON = wrapInPayloadAndConvert(array: [])
             client.complete(with: 200, data: JSON)
         })
     }
@@ -93,7 +93,7 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
         let item1 = makeConversation(image: URL(string: "http://a-url"), message: nil, lastMessageUser: "Darren", lastMessageTime: Date.init(timeIntervalSince1970: 234234), conversationType: 1, groupName: nil, contentType: 1, createdByName: "Jim")
         let item2 = makeConversation(image: nil, message: "HELLO", lastMessageUser: "Darren", lastMessageTime: nil, conversationType: 1, groupName: "GPP 101", contentType: 1, createdByName: "Tom")
 
-        let jsonData = makeConversationsJSON(conversations: [item1.json, item2.json])
+        let jsonData = wrapInPayloadAndConvert(array: [item1.json, item2.json])
 
         let items = [item1.model, item2.model]
 
@@ -112,7 +112,7 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
         sut?.load { capturedResults.append($0) }
 
         sut = nil
-        client.complete(with: 200, data: makeConversationsJSON(conversations: []))
+        client.complete(with: 200, data: wrapInPayloadAndConvert(array: []))
 
         XCTAssertTrue(capturedResults.isEmpty)
     }
@@ -149,12 +149,6 @@ class RemoteConversationStatusLoaderTests: XCTestCase {
 
         action()
         wait(for: [exp], timeout: 1.0)
-    }
-
-    private func makeConversationsJSON(conversations: [[String: Any]]) -> Data {
-        let conversations = [ "payload": conversations]
-
-        return try! JSONSerialization.data(withJSONObject: conversations)
     }
 
     private func failure(_ error: RemoteConversationStatusLoader.Error) -> RemoteConversationStatusLoader.Result {

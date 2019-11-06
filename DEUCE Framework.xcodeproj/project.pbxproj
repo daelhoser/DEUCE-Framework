@@ -22,6 +22,7 @@
 		5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */; };
 		5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
+		5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */; };
 		5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationStatusLoader.swift */; };
 		5FA5CAB0234E764500950F2B /* ConversationStatusObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */; };
 		5FA5CAB2234E767200950F2B /* ConversationStatusHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */; };
@@ -95,6 +96,7 @@
 		5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusCell.swift; sourceTree = "<group>"; };
 		5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+JSON.swift"; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoader.swift; sourceTree = "<group>"; };
 		5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusObserverController.swift; sourceTree = "<group>"; };
 		5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusHeaderController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */,
 				5F41969923401D070025549E /* XCTestCase+ConversationStatus.swift */,
 				5F41969B23401D4A0025549E /* XCTestCase+DateFormatter.swift */,
+				5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				5F41969C23401D4A0025549E /* XCTestCase+DateFormatter.swift in Sources */,
 				5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */,
 				5F349D4322824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift in Sources */,
+				5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */,
 				5FB5EF2C231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift in Sources */,
 				5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				5F41969A23401D070025549E /* XCTestCase+ConversationStatus.swift in Sources */,
