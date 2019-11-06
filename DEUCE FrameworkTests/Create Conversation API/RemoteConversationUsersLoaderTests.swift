@@ -10,6 +10,15 @@ import XCTest
 import DEUCE_Framework
 
 struct ConversationUser: Equatable, Decodable {
+    let id: String
+    let displayName: String
+    var thumbnailURL: URL?
+
+    private enum CodingKeys: String, CodingKey {
+        case id = "Id"
+        case displayName = "DisplayName"
+        case thumbnailURL = "ThumbnailUrl"
+    }
 }
 
 class ConversationUsersLoader {
@@ -40,19 +49,27 @@ class ConversationUsersLoader {
             case let .success(data, urlResponse):
                 let jsonDecoder = JSONDecoder()
 
-                guard urlResponse.statusCode == 200, let users = try? jsonDecoder.decode([ConversationUser].self, from: data) else {
+                guard urlResponse.statusCode == 200, let payload = try? jsonDecoder.decode(ConversationUserStatusData.self, from: data) else {
                     if urlResponse.statusCode == 401 {
                         return completion(.failure(.unauthorized))
                     } else {
                         return completion(.failure(.invalidData))
                     }
                 }
-                return completion(.success(users))
+                return completion(.success(payload.users))
             case .failure:
                 // did not reach server
                 return completion(.failure(.connection))
             }
         }
+    }
+}
+
+struct ConversationUserStatusData: Decodable {
+    let users: [ConversationUser]
+
+    private enum CodingKeys: String, CodingKey {
+        case users = "payload"
     }
 }
 
@@ -123,10 +140,23 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let (client, loader) = makeSUT()
 
         expect(sut: loader, toCompleteWith: .success([]), when: {
-            let emptyArray = "[]".data(using: .utf8)!
-            client.completeWith(statusCode: 200, data: emptyArray)
+            let data =  wrapInPayload(dictionary: [])
+            client.completeWith(statusCode: 200, data: data)
         })
     }
+
+    func test_load_deliversItemsOn200HTTPResponseWithJSONList() {
+        let (client, loader) = makeSUT()
+
+        let user1 = makeConversationUserJSON(id: "Id1", displayName: "Jose", thumbnailUrl: nil)
+        let user2 = makeConversationUserJSON(id: "Id2", displayName: "Liliana", thumbnailUrl: URL(string: "http://www.a-url.com")!)
+
+        expect(sut: loader, toCompleteWith: .success([user1.model, user2.model]), when: {
+            let data = wrapInPayload(dictionary: [user1.json, user2.json])
+            client.completeWith(statusCode: 200, data: data)
+        })
+    }
+
 
     // MARK: - Helper Methods
 
@@ -163,6 +193,28 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
     private func failure(_ error: ConversationUsersLoader.Error) -> ConversationUsersLoader.Result {
         return .failure(error)
+    }
+
+    private func makeConversationUserJSON(id: String = "123456", displayName: String = "username", thumbnailUrl: URL? = nil) -> (model: ConversationUser, json: [String: Any]) {
+        let dictionary: [String: Any?] = [
+            "Id": id,
+            "DisplayName": displayName,
+            "ThumbnailUrl": thumbnailUrl?.absoluteString
+        ]
+
+        let reducedDictionary = dictionary.reduce(into: [String: Any]()) { (acc, d) in
+            if let value = d.value { acc[d.key] = value }
+        }
+
+        let user = ConversationUser(id: id, displayName: displayName, thumbnailURL: thumbnailUrl)
+
+        return (user, reducedDictionary)
+    }
+
+    private func wrapInPayload(dictionary: [[String: Any]]) -> Data {
+        let users = ["payload": dictionary]
+
+        return try! JSONSerialization.data(withJSONObject: users)
     }
 }
 
