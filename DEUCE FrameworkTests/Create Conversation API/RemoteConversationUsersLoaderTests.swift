@@ -94,12 +94,12 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
     }
 
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        var sut: ConversationUsersLoader?
+        var sut: RemoteConversationUsersLoader?
         let url = URL(string: "https://any-url.com")!
         let client =  ClientSpy()
-        sut = ConversationUsersLoader(url: url, client: client)
+        sut = RemoteConversationUsersLoader(url: url, client: client)
 
-        var capturedResults = [ConversationUsersLoader.Result]()
+        var capturedResults = [RemoteConversationUsersLoader.Result]()
         sut?.load { capturedResults.append($0) }
 
         sut = nil
@@ -112,10 +112,10 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
     // MARK: - Helper Methods
 
-    private func makeSUT() -> (ClientSpy, ConversationUsersLoader) {
+    private func makeSUT() -> (ClientSpy, RemoteConversationUsersLoader) {
         let url = URL(string: "http://a-url.com")!
         let client = ClientSpy()
-        let loader = ConversationUsersLoader(url: url, client: client)
+        let loader = RemoteConversationUsersLoader(url: url, client: client)
 
         trackForMemoryLeaks(object: client)
         trackForMemoryLeaks(object: loader)
@@ -123,7 +123,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         return (client, loader)
     }
 
-    private func expect(sut: ConversationUsersLoader, toCompleteWith result: ConversationUsersLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(sut: RemoteConversationUsersLoader, toCompleteWith result: RemoteConversationUsersLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Waiting on load")
 
         sut.load { (receivedResult) in
@@ -143,7 +143,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func failure(_ error: ConversationUsersLoader.Error) -> ConversationUsersLoader.Result {
+    private func failure(_ error: RemoteConversationUsersLoader.Error) -> RemoteConversationUsersLoader.Result {
         return .failure(error)
     }
 

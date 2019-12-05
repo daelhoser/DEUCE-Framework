@@ -23,7 +23,7 @@
 		5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
 		5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */; };
-		5F92EE0C23733B8A00582167 /* ConversationUsersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0B23733B8A00582167 /* ConversationUsersLoader.swift */; };
+		5F92EE0C23733B8A00582167 /* RemoteConversationUsersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0B23733B8A00582167 /* RemoteConversationUsersLoader.swift */; };
 		5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0F23733D1800582167 /* ConversationUser.swift */; };
 		5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE112373478700582167 /* ConversationUsersMapper.swift */; };
 		5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationStatusLoader.swift */; };
@@ -100,7 +100,7 @@
 		5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+JSON.swift"; sourceTree = "<group>"; };
-		5F92EE0B23733B8A00582167 /* ConversationUsersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUsersLoader.swift; sourceTree = "<group>"; };
+		5F92EE0B23733B8A00582167 /* RemoteConversationUsersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationUsersLoader.swift; sourceTree = "<group>"; };
 		5F92EE0F23733D1800582167 /* ConversationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUser.swift; sourceTree = "<group>"; };
 		5F92EE112373478700582167 /* ConversationUsersMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUsersMapper.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoader.swift; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		5F92EE0A23733B6800582167 /* Conversation Users API */ = {
 			isa = PBXGroup;
 			children = (
-				5F92EE0B23733B8A00582167 /* ConversationUsersLoader.swift */,
+				5F92EE0B23733B8A00582167 /* RemoteConversationUsersLoader.swift */,
 				5F92EE112373478700582167 /* ConversationUsersMapper.swift */,
 			);
 			path = "Conversation Users API";
@@ -704,7 +704,7 @@
 				5FF292A723417B9E008540D2 /* ConversationStatusLoaderAndRealtimeListener.swift in Sources */,
 				5F349D4622824AFC0058AF4F /* RemoteConversationStatusLoader.swift in Sources */,
 				5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */,
-				5F92EE0C23733B8A00582167 /* ConversationUsersLoader.swift in Sources */,
+				5F92EE0C23733B8A00582167 /* RemoteConversationUsersLoader.swift in Sources */,
 				5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

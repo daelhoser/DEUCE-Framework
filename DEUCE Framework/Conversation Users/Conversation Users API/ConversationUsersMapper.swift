@@ -36,7 +36,7 @@ internal final class ConversationUsersMapper {
     private static let OK_200: Int = 200
     private static let Unauthorized_401: Int = 401
 
-    static func map(response: HTTPURLResponse, data: Data) -> ConversationUsersLoader.Result {
+    static func map(response: HTTPURLResponse, data: Data) -> RemoteConversationUsersLoader.Result {
         if response.statusCode == Unauthorized_401 {
             return .failure(.unauthorized)
         } else if response.statusCode == OK_200 {

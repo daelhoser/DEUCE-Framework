@@ -1,5 +1,5 @@
 //
-//  ConversationUsersLoader.swift
+//  RemoteConversationUsersLoader.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 11/6/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ConversationUsersLoader {
+public class RemoteConversationUsersLoader {
     let url: URL
     let client: HTTPClient
 
