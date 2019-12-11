@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class RemoteConversationsLoader: ConversationStatusLoader {
+public final class RemoteConversationsLoader: ConversationsLoader {
     private let url: URL
     private let client: HTTPClient
     
@@ -18,7 +18,7 @@ public final class RemoteConversationsLoader: ConversationStatusLoader {
         case unauthorized
     }
 
-    public typealias Result = LoadConversationStatusResult
+    public typealias Result = LoadConversationsResult
     
     public init(url: URL, client: HTTPClient) {
         self.url = url

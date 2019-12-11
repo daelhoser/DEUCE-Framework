@@ -26,17 +26,17 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func getFeedResult(file: StaticString = #file, line: UInt = #line) -> LoadConversationStatusResult? {
+    private func getFeedResult(file: StaticString = #file, line: UInt = #line) -> LoadConversationsResult? {
         let testServerURL = URL(string: "http://desktop-l87s12t:54368/api/ConversationStatus/Latest")!
         let client = URLSessionHTTPClient()
         client.addAdditionalHeaders(headers: authorizationHeader())
-        let loader = RemoteConversationStatusLoader(url: testServerURL, client: client)
+        let loader = RemoteConversationsLoader(url: testServerURL, client: client)
 
         trackForMemoryLeaks(object: client, file: file, line:  line)
         trackForMemoryLeaks(object: loader, file: file, line:  line)
         let exp = expectation(description: "Wait for load completion")
 
-        var receivedResult: LoadConversationStatusResult?
+        var receivedResult: LoadConversationsResult?
         loader.load { (result) in
             receivedResult = result
             exp.fulfill()
@@ -46,8 +46,8 @@ class DEUCEConversationStatusEndToEndTests: XCTestCase {
 
         return receivedResult
     }
-//    private func expectedItem(at index: Int) -> ConversationStatus {
-//        return ConversationStatus(id: id(at: index), image: imageUrl(at: index), message: <#T##String?#>, lastMessageUser: <#T##String?#>, lastMessageTime: <#T##Date?#>, conversationType: <#T##Int#>, groupName: <#T##String?#>, contentType: <#T##Int#>)
+//    private func expectedItem(at index: Int) -> Conversation {
+//        return Conversation(id: id(at: index), image: imageUrl(at: index), message: <#T##String?#>, lastMessageUser: <#T##String?#>, lastMessageTime: <#T##Date?#>, conversationType: <#T##Int#>, groupName: <#T##String?#>, contentType: <#T##Int#>)
 //    }
 
     private func id(at index: Int) -> UUID {

@@ -1,5 +1,5 @@
 //
-//  ConversationStatusListener.swift
+//  ConversationsListener.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 9/29/19.
@@ -11,9 +11,9 @@ import Foundation
 public enum Status {
     case connected
     case failed(Error)
-    case newMessage(ConversationStatus)
+    case newMessage(Conversation)
 }
 
-public protocol ConversationStatusListener {
+public protocol ConversationsListener {
     func listen(completion: @escaping (Status) -> Void)
 }

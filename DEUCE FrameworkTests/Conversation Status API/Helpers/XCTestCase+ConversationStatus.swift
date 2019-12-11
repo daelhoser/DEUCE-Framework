@@ -1,5 +1,5 @@
 //
-//  XCTestCase+ConversationStatus.swift
+//  XCTestCase+Conversation.swift
 //  DEUCE FrameworkTests
 //
 //  Created by Jose Alvarez on 9/28/19.
@@ -10,9 +10,9 @@ import XCTest
 import DEUCE_Framework
 
 extension XCTestCase {
-    func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdByName: String) -> (model: ConversationStatus, json: [String: Any]) {
+    func makeConversation(id: UUID = UUID(), image: URL? = nil, message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date? = nil, conversationType: Int, groupName: String? = nil, contentType: Int, conversationId: UUID = UUID(), otherUserId: UUID = UUID(), createdByName: String) -> (model: Conversation, json: [String: Any]) {
 
-        let conversation = ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
+        let conversation = Conversation(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
 
         let dict: [String: Any?] = [
             "Id": id.uuidString,

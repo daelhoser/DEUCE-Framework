@@ -75,9 +75,9 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
 
 
     // MARK - Helper methods
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationStatusLoader) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationsListener) {
         let client = RealTimeClientSpy()
-        let loader = RealTimeConversationStatusLoader(client: client)
+        let loader = RealTimeConversationsListener(client: client)
 
         trackForMemoryLeaks(object: client, file: file, line: line)
         trackForMemoryLeaks(object: loader, file: file, line: line)
@@ -85,7 +85,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         return (client, loader)
     }
 
-    private func expect(sut: RealTimeConversationStatusLoader, toCompleteWith expectedResult: Status, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(sut: RealTimeConversationsListener, toCompleteWith expectedResult: Status, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Waiting on connection")
 
         sut.listen { (receivedResult) in
@@ -93,7 +93,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
             case (.connected, .connected):
                 break
             case let (.failed(expectedError), .failed(receivedError)):
-                XCTAssertEqual(expectedError as! RealTimeConversationStatusLoader.Error, receivedError  as! RealTimeConversationStatusLoader.Error, file: file, line: line)
+                XCTAssertEqual(expectedError as! RealTimeConversationsListener.Error, receivedError  as! RealTimeConversationsListener.Error, file: file, line: line)
             case let (.newMessage(expectedMessage), .newMessage(receivedMessage)):
                 XCTAssertEqual(expectedMessage, receivedMessage, file: file, line: line)
             default:
@@ -106,7 +106,7 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func failure(_ error: RealTimeConversationStatusLoader.Error) -> RealTimeConversationStatusLoader.Result {
+    private func failure(_ error: RealTimeConversationsListener.Error) -> RealTimeConversationsListener.Result {
         return .failed(error)
     }
 }

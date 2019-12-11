@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
 		5F0A1E47230B2C5600E8DD71 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E46230B2C5600E8DD71 /* URLSessionHTTPClient.swift */; };
-		5F24B5CD2347ABE400E04F4D /* ConversationStatusLoaderAndListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24B5CC2347ABE400E04F4D /* ConversationStatusLoaderAndListener.swift */; };
+		5F24B5CD2347ABE400E04F4D /* ConversationsLoaderAndListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */; };
 		5F28F7CD239895D8005C271C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5F28F7CC239895D8005C271C /* README.md */; };
 		5F3082F7234BA534005B9CC0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3082F6234BA534005B9CC0 /* HeaderView.swift */; };
-		5F349D4322824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4222824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift */; };
+		5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */; };
 		5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */; };
 		5F41969A23401D070025549E /* XCTestCase+ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F41969923401D070025549E /* XCTestCase+ConversationStatus.swift */; };
 		5F41969C23401D4A0025549E /* XCTestCase+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F41969B23401D4A0025549E /* XCTestCase+DateFormatter.swift */; };
@@ -27,7 +27,7 @@
 		5F92EE0C23733B8A00582167 /* RemoteConversationUsersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0B23733B8A00582167 /* RemoteConversationUsersLoader.swift */; };
 		5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0F23733D1800582167 /* ConversationUser.swift */; };
 		5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE112373478700582167 /* ConversationUsersMapper.swift */; };
-		5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationStatusLoader.swift */; };
+		5F9491042290E078007531EE /* ConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationsLoader.swift */; };
 		5FA5CAB0234E764500950F2B /* ConversationStatusObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */; };
 		5FA5CAB2234E767200950F2B /* ConversationStatusHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */; };
 		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
@@ -39,7 +39,7 @@
 		5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FEC442D230C53F4001AFCA5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
 		5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */; };
-		5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */; };
+		5FEC4431230C8302001AFCA5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* Conversation.swift */; };
 		5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */; };
 		5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
 		5FEEF918231994AD00083C51 /* ConversationStatusCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */; };
@@ -48,9 +48,9 @@
 		5FEEF920231BEFAC00083C51 /* ConversationStatusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91F231BEFAC00083C51 /* ConversationStatusCellViewModel.swift */; };
 		5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
-		5FF292A5234167FF008540D2 /* RealTimeConversationStatusLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConversationStatusLoader.swift */; };
-		5FF292A723417B9E008540D2 /* ConversationStatusLoaderAndRealtimeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A623417B9E008540D2 /* ConversationStatusLoaderAndRealtimeListener.swift */; };
-		5FF292A923417C69008540D2 /* ConversationStatusListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A823417C69008540D2 /* ConversationStatusListener.swift */; };
+		5FF292A5234167FF008540D2 /* RealTimeConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */; };
+		5FF292A723417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */; };
+		5FF292A923417C69008540D2 /* ConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A823417C69008540D2 /* ConversationsListener.swift */; };
 		5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */; };
 		5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FFBAFFB23149CED0097D10A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -84,10 +84,10 @@
 /* Begin PBXFileReference section */
 		5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		5F0A1E46230B2C5600E8DD71 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
-		5F24B5CC2347ABE400E04F4D /* ConversationStatusLoaderAndListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoaderAndListener.swift; sourceTree = "<group>"; };
+		5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoaderAndListener.swift; sourceTree = "<group>"; };
 		5F28F7CC239895D8005C271C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5F3082F6234BA534005B9CC0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		5F349D4222824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationStatusLoaderTests.swift; sourceTree = "<group>"; };
+		5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoaderTests.swift; sourceTree = "<group>"; };
 		5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoader.swift; sourceTree = "<group>"; };
 		5F41969923401D070025549E /* XCTestCase+ConversationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ConversationStatus.swift"; sourceTree = "<group>"; };
 		5F41969B23401D4A0025549E /* XCTestCase+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DateFormatter.swift"; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		5F92EE0B23733B8A00582167 /* RemoteConversationUsersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationUsersLoader.swift; sourceTree = "<group>"; };
 		5F92EE0F23733D1800582167 /* ConversationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUser.swift; sourceTree = "<group>"; };
 		5F92EE112373478700582167 /* ConversationUsersMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUsersMapper.swift; sourceTree = "<group>"; };
-		5F9491032290E078007531EE /* ConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoader.swift; sourceTree = "<group>"; };
+		5F9491032290E078007531EE /* ConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoader.swift; sourceTree = "<group>"; };
 		5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusObserverController.swift; sourceTree = "<group>"; };
 		5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusHeaderController.swift; sourceTree = "<group>"; };
 		5FB52C42234D6054008B6D66 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 		5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEUCEConversationStatusEndToEndTests.swift; sourceTree = "<group>"; };
 		5FEC4426230B680E001AFCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsMapper.swift; sourceTree = "<group>"; };
-		5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationStatus.swift; sourceTree = "<group>"; };
+		5FEC4430230C8302001AFCA5 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusRefreshViewController.swift; sourceTree = "<group>"; };
 		5FEEF9142319890C00083C51 /* ImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataLoader.swift; sourceTree = "<group>"; };
 		5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusCellController.swift; sourceTree = "<group>"; };
@@ -129,9 +129,9 @@
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272C7228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FF292A4234167FF008540D2 /* RealTimeConversationStatusLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationStatusLoader.swift; sourceTree = "<group>"; };
-		5FF292A623417B9E008540D2 /* ConversationStatusLoaderAndRealtimeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusLoaderAndRealtimeListener.swift; sourceTree = "<group>"; };
-		5FF292A823417C69008540D2 /* ConversationStatusListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusListener.swift; sourceTree = "<group>"; };
+		5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsListener.swift; sourceTree = "<group>"; };
+		5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoaderAndRealtimeListener.swift; sourceTree = "<group>"; };
+		5FF292A823417C69008540D2 /* ConversationsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListener.swift; sourceTree = "<group>"; };
 		5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DEUCEiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusTests.swift; sourceTree = "<group>"; };
 		5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusViewController.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 		5F0A1E42230B11C000E8DD71 /* Conversation Status API */ = {
 			isa = PBXGroup;
 			children = (
-				5F349D4222824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift */,
+				5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */,
 				5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */,
 				5F0A1E43230B11D000E8DD71 /* Helpers */,
 			);
@@ -206,8 +206,8 @@
 			children = (
 				5F419696234019F70025549E /* HTTP */,
 				5F419695234019A00025549E /* Conversations Realtime */,
-				5FF292A623417B9E008540D2 /* ConversationStatusLoaderAndRealtimeListener.swift */,
-				5F24B5CC2347ABE400E04F4D /* ConversationStatusLoaderAndListener.swift */,
+				5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */,
+				5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */,
 			);
 			path = "Conversations API";
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */,
-				5FF292A4234167FF008540D2 /* RealTimeConversationStatusLoader.swift */,
+				5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */,
 			);
 			path = "Conversations Realtime";
 			sourceTree = "<group>";
@@ -257,9 +257,9 @@
 		5F5708D12283884800D856D5 /* Conversation Feature */ = {
 			isa = PBXGroup;
 			children = (
-				5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */,
-				5F9491032290E078007531EE /* ConversationStatusLoader.swift */,
-				5FF292A823417C69008540D2 /* ConversationStatusListener.swift */,
+				5FEC4430230C8302001AFCA5 /* Conversation.swift */,
+				5F9491032290E078007531EE /* ConversationsLoader.swift */,
+				5FF292A823417C69008540D2 /* ConversationsListener.swift */,
 			);
 			path = "Conversation Feature";
 			sourceTree = "<group>";
@@ -691,17 +691,17 @@
 				5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */,
 				5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */,
 				5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */,
-				5FF292A923417C69008540D2 /* ConversationStatusListener.swift in Sources */,
+				5FF292A923417C69008540D2 /* ConversationsListener.swift in Sources */,
 				5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */,
 				5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */,
-				5FF292A5234167FF008540D2 /* RealTimeConversationStatusLoader.swift in Sources */,
-				5F24B5CD2347ABE400E04F4D /* ConversationStatusLoaderAndListener.swift in Sources */,
+				5FF292A5234167FF008540D2 /* RealTimeConversationsListener.swift in Sources */,
+				5F24B5CD2347ABE400E04F4D /* ConversationsLoaderAndListener.swift in Sources */,
 				5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */,
-				5FF292A723417B9E008540D2 /* ConversationStatusLoaderAndRealtimeListener.swift in Sources */,
+				5FF292A723417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift in Sources */,
 				5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */,
-				5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */,
+				5FEC4431230C8302001AFCA5 /* Conversation.swift in Sources */,
 				5F92EE0C23733B8A00582167 /* RemoteConversationUsersLoader.swift in Sources */,
-				5F9491042290E078007531EE /* ConversationStatusLoader.swift in Sources */,
+				5F9491042290E078007531EE /* ConversationsLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,7 +712,7 @@
 				5F6FE3C82292301C0077F8B8 /* URLSessionHTTPClientTests.swift in Sources */,
 				5F41969C23401D4A0025549E /* XCTestCase+DateFormatter.swift in Sources */,
 				5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */,
-				5F349D4322824AB20058AF4F /* RemoteConversationStatusLoaderTests.swift in Sources */,
+				5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */,
 				5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */,
 				5FB5EF2C231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift in Sources */,
 				5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */,

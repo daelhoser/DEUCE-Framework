@@ -9,15 +9,15 @@
 import Foundation
 
 internal final  class ConversationsMapper {
-    private struct ConversationStatusData: Decodable {
-        let conversationStatuses: [ConvoStatus]
+    private struct ConversationsData: Decodable {
+        let conversations: [ConversationsDecodable]
 
         private enum CodingKeys: String, CodingKey {
-            case conversationStatuses = "payload"
+            case conversations = "payload"
         }
     }
 
-    private struct ConvoStatus: Equatable, Decodable {
+    private struct ConversationsDecodable: Equatable, Decodable {
         public let id: UUID
         public let image: URL?
         public let conversationId: UUID
@@ -75,8 +75,8 @@ internal final  class ConversationsMapper {
             self.init(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdBy)
         }
 
-        var conversation: ConversationStatus {
-            return ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
+        var conversation: Conversation {
+            return Conversation(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
         }
     }
     private static let OK_200: Int = 200
@@ -86,7 +86,7 @@ internal final  class ConversationsMapper {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
-        guard response.statusCode == OK_200, let conversationData = try? jsonDecoder.decode(ConversationStatusData.self, from: data) else {
+        guard response.statusCode == OK_200, let conversationData = try? jsonDecoder.decode(ConversationsData.self, from: data) else {
             if response.statusCode == Unauthorized_401 {
                 return .failure(RemoteConversationsLoader.Error.unauthorized)
             } else {
@@ -94,7 +94,7 @@ internal final  class ConversationsMapper {
             }
         }
 
-        let conversations = conversationData.conversationStatuses.map { $0.conversation}
+        let conversations = conversationData.conversations.map { $0.conversation}
 
         return .success(conversations)
     }

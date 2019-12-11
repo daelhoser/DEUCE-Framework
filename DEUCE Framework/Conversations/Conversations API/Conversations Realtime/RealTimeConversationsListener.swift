@@ -1,5 +1,5 @@
 //
-//  RealTimeConversationStatusLoader.swift
+//  RealTimeConversationsListener.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 9/29/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class RealTimeConversationStatusLoader: ConversationStatusListener {
+final public class RealTimeConversationsListener: ConversationsListener {
     private let client: RealTimeClient
 
     public enum Error: Swift.Error {
@@ -31,7 +31,7 @@ final public class RealTimeConversationStatusLoader: ConversationStatusListener 
             case .failed:
                 completion(.failed(Error.connection))
             case let .newMessage(dictionary):
-                completion(RealTimeConversationStatusLoader.map(dictionary: dictionary))
+                completion(RealTimeConversationsListener.map(dictionary: dictionary))
             }
         }
     }
@@ -104,8 +104,8 @@ final public class RealTimeConversationStatusLoader: ConversationStatusListener 
             self.init(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdBy)
         }
 
-        var conversation: ConversationStatus {
-            return ConversationStatus(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
+        var conversation: Conversation {
+            return Conversation(id: id, image: image, conversationId: conversationId, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
         }
     }
 }
