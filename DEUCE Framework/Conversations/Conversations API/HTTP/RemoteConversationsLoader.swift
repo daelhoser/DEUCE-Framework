@@ -1,5 +1,5 @@
 //
-//  RemoteConversationStatusLoader.swift
+//  RemoteConversationsLoader.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 5/7/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class RemoteConversationStatusLoader: ConversationStatusLoader {
+public final class RemoteConversationsLoader: ConversationStatusLoader {
     private let url: URL
     private let client: HTTPClient
     
