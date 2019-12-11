@@ -38,7 +38,7 @@
 		5FEC4425230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */; };
 		5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FEC442D230C53F4001AFCA5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
-		5FEC442F230C8274001AFCA5 /* ConversationStatusMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC442E230C8274001AFCA5 /* ConversationStatusMapper.swift */; };
+		5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */; };
 		5FEC4431230C8302001AFCA5 /* ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */; };
 		5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */; };
 		5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
@@ -116,7 +116,7 @@
 		5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DEUCEConversationStatusEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEUCEConversationStatusEndToEndTests.swift; sourceTree = "<group>"; };
 		5FEC4426230B680E001AFCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FEC442E230C8274001AFCA5 /* ConversationStatusMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationStatusMapper.swift; sourceTree = "<group>"; };
+		5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsMapper.swift; sourceTree = "<group>"; };
 		5FEC4430230C8302001AFCA5 /* ConversationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationStatus.swift; sourceTree = "<group>"; };
 		5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusRefreshViewController.swift; sourceTree = "<group>"; };
 		5FEEF9142319890C00083C51 /* ImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataLoader.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		5F419696234019F70025549E /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				5FEC442E230C8274001AFCA5 /* ConversationStatusMapper.swift */,
+				5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */,
 				5F349D4522824AFC0058AF4F /* RemoteConversationStatusLoader.swift */,
 				5F8731F72288D90600DD3358 /* HTTPClient.swift */,
 				5F0A1E46230B2C5600E8DD71 /* URLSessionHTTPClient.swift */,
@@ -376,13 +376,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		5FF1CEE12368A3A6002DC32E /* Create Conversation API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Create Conversation API";
-			sourceTree = "<group>";
-		};
 		5FF1CEE22368A523002DC32E /* Create Conversation API */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,7 +413,6 @@
 		5FF272B9228249BF00E4486C /* DEUCE Framework */ = {
 			isa = PBXGroup;
 			children = (
-				5FF1CEE12368A3A6002DC32E /* Create Conversation API */,
 				5F60848B228616C200B23235 /* Helpers */,
 				5F92EE0D23733CC900582167 /* Conversations */,
 				5F92EE0E23733CE400582167 /* Conversation Users */,
@@ -700,7 +692,7 @@
 				5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */,
 				5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */,
 				5FF292A923417C69008540D2 /* ConversationStatusListener.swift in Sources */,
-				5FEC442F230C8274001AFCA5 /* ConversationStatusMapper.swift in Sources */,
+				5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */,
 				5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */,
 				5FF292A5234167FF008540D2 /* RealTimeConversationStatusLoader.swift in Sources */,
 				5F24B5CD2347ABE400E04F4D /* ConversationStatusLoaderAndListener.swift in Sources */,

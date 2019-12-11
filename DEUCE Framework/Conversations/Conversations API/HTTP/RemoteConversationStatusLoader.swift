@@ -31,7 +31,7 @@ public final class RemoteConversationStatusLoader: ConversationStatusLoader {
 
             switch result {
             case let .success(data, response):
-                completion(ConversationStatusMapper.map(data: data, with: response))
+                completion(ConversationsMapper.map(data: data, with: response))
             case .failure:
                 completion(.failure(Error.connectivity))
             }

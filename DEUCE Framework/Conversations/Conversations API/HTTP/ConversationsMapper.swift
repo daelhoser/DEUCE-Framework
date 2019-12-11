@@ -1,5 +1,5 @@
 //
-//  ConversationsStatusMapper.swift
+//  ConversationsMapper.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 5/12/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal final  class ConversationStatusMapper {
+internal final  class ConversationsMapper {
     private struct ConversationStatusData: Decodable {
         let conversationStatuses: [ConvoStatus]
 
