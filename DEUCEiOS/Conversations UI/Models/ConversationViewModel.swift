@@ -27,7 +27,6 @@ final class ConversationViewModel {
                 self?.onConversationLoad?(conversations)
             }
             self?.onLoadingStateChange?(false)
-
         }
     }
 }

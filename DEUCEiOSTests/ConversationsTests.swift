@@ -103,7 +103,7 @@ class ConversationsTests: XCTestCase {
         sut.simulateUserInitiatedConversationLoad()
         loader.completeConversationsLoad(at: 1, with: [Conversation3])
         sut.simulateFeedImageViewVisible(at: 0)
-        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image], "Expected no new URL requests since previous conversation Status had no image URL")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image], "Expected no new URL requests since previous conversation had no image URL")
     }
 
     func test_profileImageView_cancelsLoadingWhenNotVisibleAnymore() {

@@ -38,18 +38,18 @@ internal final class ConversationUsersMapper {
 
     static func map(response: HTTPURLResponse, data: Data) -> RemoteConversationUsersLoader.Result {
         if response.statusCode == Unauthorized_401 {
-            return .failure(.unauthorized)
+            return .failure(RemoteConversationUsersLoader.Error.unauthorized)
         } else if response.statusCode == OK_200 {
             let jsonDecoder = JSONDecoder()
 
             guard let payload = try? jsonDecoder.decode(ConversationUserData.self, from: data) else {
-                return .failure(.invalidData)
+                return .failure(RemoteConversationUsersLoader.Error.invalidData)
             }
 
             let users = payload.users.map { return $0.user }
 
             return .success(users)
         }
-        return .failure(.invalidData)
+        return .failure(RemoteConversationUsersLoader.Error.invalidData)
     }
 }

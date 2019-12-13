@@ -128,7 +128,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         sut.load { (receivedResult) in
             switch (result, receivedResult) {
-            case let (.failure(error), .failure(receivedError)):
+            case let (.failure(error as RemoteConversationUsersLoader.Error), .failure(receivedError as RemoteConversationUsersLoader.Error)):
                 XCTAssertEqual(error, receivedError, "Expected error \(error), received \(receivedError) instead", file: file, line: line)
             case let (.success(items), .success(receivedItems)):
                 XCTAssertEqual(items, receivedItems, "Expected items \(items), received \(receivedItems) instead", file: file, line: line)

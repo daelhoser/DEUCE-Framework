@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class RemoteConversationUsersLoader {
+public class RemoteConversationUsersLoader: UsersLoader {
     let url: URL
     let client: HTTPClient
 
@@ -16,11 +16,6 @@ public class RemoteConversationUsersLoader {
         case connection
         case invalidData
         case unauthorized
-    }
-
-    public enum LoadConversationUsersResult {
-        case success([ConversationUser])
-        case failure(Error)
     }
 
     public typealias Result = LoadConversationUsersResult
@@ -39,7 +34,7 @@ public class RemoteConversationUsersLoader {
                 return completion(ConversationUsersMapper.map(response: urlResponse, data: data))
             case .failure:
                 // did not reach server
-                return completion(.failure(.connection))
+                return completion(.failure(Error.connection))
             }
         }
     }
