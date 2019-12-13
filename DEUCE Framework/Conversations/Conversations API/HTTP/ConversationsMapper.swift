@@ -10,14 +10,14 @@ import Foundation
 
 internal final  class ConversationsMapper {
     private struct ConversationsData: Decodable {
-        let conversations: [ConversationsDecodable]
+        let conversations: [ConversationDecodable]
 
         private enum CodingKeys: String, CodingKey {
             case conversations = "payload"
         }
     }
 
-    private struct ConversationsDecodable: Equatable, Decodable {
+    private struct ConversationDecodable: Equatable, Decodable {
         public let id: UUID
         public let image: URL?
         public let conversationId: UUID

@@ -40,13 +40,13 @@ final public class RealTimeConversationsListener: ConversationsListener {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
-        guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted), let convo = try? jsonDecoder.decode(ConvoStatus.self, from: data) else {
+        guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted), let convo = try? jsonDecoder.decode(ConversationDecodable.self, from: data) else {
             return .failed(Error.invalidData)
         }
         return .newMessage(convo.conversation)
     }
 
-    private struct ConvoStatus: Equatable, Decodable {
+    private struct ConversationDecodable: Equatable, Decodable {
         public let id: UUID
         public let image: URL?
         public let conversationId: UUID
