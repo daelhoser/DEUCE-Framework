@@ -1,5 +1,5 @@
 //
-//  ConversationStatusViewModel.swift
+//  ConversationViewModel.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 8/30/19.
@@ -9,22 +9,22 @@
 import Foundation
 import DEUCE_Framework
 
-final class ConversationStatusViewModel {
+final class ConversationViewModel {
     typealias Observer<T> = ((T) -> Void)
-    private let loader: ConversationStatusLoader
+    private let loader: ConversationsLoader
 
-    init(loader: ConversationStatusLoader) {
+    init(loader: ConversationsLoader) {
         self.loader = loader
     }
 
     var onLoadingStateChange: Observer<Bool>?
-    var onConversationStatusLoad: Observer<[ConversationStatus]>?
+    var onConversationLoad: Observer<[Conversation]>?
 
-    func loadConversationStatuses() {
+    func loadConversations() {
         onLoadingStateChange?(true)
         loader.load() { [weak self] result in
-            if case let .success(conversationStatuses) = result {
-                self?.onConversationStatusLoad?(conversationStatuses)
+            if case let .success(conversations) = result {
+                self?.onConversationLoad?(conversations)
             }
             self?.onLoadingStateChange?(false)
 

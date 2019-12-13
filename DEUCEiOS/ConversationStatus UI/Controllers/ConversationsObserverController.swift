@@ -1,5 +1,5 @@
 //
-//  ConversationStatusObserverController.swift
+//  ConversationsObserverController.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 10/9/19.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-final public class ConversationStatusObserverController {
+final public class ConversationsObserverController {
     public lazy var retryView: TryAgainView = binded(view: TryAgainView())
 
-    private let viewmodel: ConversationStatusObserverViewModel
+    private let viewmodel: ConversationsObserverViewModel
 
     var onStatusChange: ((String?) -> Void)?
 
-    init(viewmodel: ConversationStatusObserverViewModel) {
+    init(viewmodel: ConversationsObserverViewModel) {
         self.viewmodel = viewmodel
     }
 

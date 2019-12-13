@@ -1,5 +1,5 @@
 //
-//  ConversationStatusTests.swift
+//  ConversationsTests.swift
 //  DEUCEiOSTests
 //
 //  Created by Jose Alvarez on 8/26/19.
@@ -10,15 +10,15 @@ import XCTest
 import DEUCE_Framework
 import DEUCEiOS
 
-class ConversationStatusTests: XCTestCase {
+class ConversationsTests: XCTestCase {
     func test_ViewController_isFirstViewInNavigationController() {
         let (_, sut) = makeSUT()
 
-        XCTAssertNotNil(sut.parent as? UINavigationController, "Expected Conversation Status to be wrapped in NavigationController")
+        XCTAssertNotNil(sut.parent as? UINavigationController, "Expected Conversation to be wrapped in NavigationController")
     }
 
-    // MARK: - Conversation Status Loader
-    func test_loadConversationStatusAction_requestConversationStatusFromLoader() {
+    // MARK: - Conversation Loader
+    func test_loadConversationAction_requestConversationFromLoader() {
         let (loader, sut) = makeSUT()
 
         XCTAssertEqual(loader.requestCount, 0, "Expected no loading requests before view is loaded.")
@@ -27,101 +27,101 @@ class ConversationStatusTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.requestCount, 1, "Expected a loading request once view is loaded")
 
-        sut.simulateUserInitiatedConversationStatusLoad()
+        sut.simulateUserInitiatedConversationLoad()
         XCTAssertEqual(loader.requestCount, 2, "Expected another loading request once user initiates a reload")
 
-        sut.simulateUserInitiatedConversationStatusLoad()
+        sut.simulateUserInitiatedConversationLoad()
         XCTAssertEqual(loader.requestCount, 3, "Expected yet another loading request once user initiates another reload")
     }
 
-    func test_loadingConversationStatusIndicator_isVisibleWhileLoadingConversationStatus() {
+    func test_loadingConversationIndicator_isVisibleWhileLoadingConversation() {
         let (loader, sut) = makeSUT()
 
         sut.loadViewIfNeeded()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
 
-        loader.completeConversationStatusLoad()
+        loader.completeConversationsLoad()
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once load completes")
 
-        sut.simulateUserInitiatedConversationStatusLoad()
-        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator when user initiates conversation status reload")
+        sut.simulateUserInitiatedConversationLoad()
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator when user initiates conversation reload")
 
         loader.completeFeedLoadingWithError(at: 1)
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading is completed with error")
     }
 
-    func test_loadConversationStatusCompletion_rendersSuccessfullyLoadedConversationStatus() {
+    func test_loadConversationCompletion_rendersSuccessfullyLoadedConversation() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
         assertThat(sut: sut, isRendering: [])
         let date = Date()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
 
-        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
-        assertThat(sut: sut, isRendering: [conversationStatus1])
+        loader.completeConversationsLoad(at: 0, with: [Conversation1])
+        assertThat(sut: sut, isRendering: [Conversation1])
 
-        sut.simulateUserInitiatedConversationStatusLoad()
-        loader.completeConversationStatusLoad(at: 1, with: [conversationStatus1, conversationStatus2])
-        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2])
+        sut.simulateUserInitiatedConversationLoad()
+        loader.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
+        assertThat(sut: sut, isRendering: [Conversation1, Conversation2])
     }
 
-    func test_loadConversationStatusCompletion_doesNotAlterCurrentRenderingStateOnError() {
+    func test_loadConversationCompletion_doesNotAlterCurrentRenderingStateOnError() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
         assertThat(sut: sut, isRendering: [])
-        let conversationStatus1 = makeConversationStatus()
+        let Conversation1 = makeConversation()
 
-        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
-        assertThat(sut: sut, isRendering: [conversationStatus1])
+        loader.completeConversationsLoad(at: 0, with: [Conversation1])
+        assertThat(sut: sut, isRendering: [Conversation1])
 
-        sut.simulateUserInitiatedConversationStatusLoad()
+        sut.simulateUserInitiatedConversationLoad()
         loader.completeFeedLoadingWithError(at: 1)
-        assertThat(sut: sut, isRendering: [conversationStatus1])
+        assertThat(sut: sut, isRendering: [Conversation1])
     }
 
     func test_profileImageView_loadsImageUrlWhenVisible() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1, conversationStatus2])
-        let conversationStatus3 = makeConversationStatus()
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(at: 0, with: [Conversation1, Conversation2])
+        let Conversation3 = makeConversation()
 
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
 
         sut.simulateFeedImageViewVisible(at: 0)
-        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image], "Expected first image URL request once first view becomes visible")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image], "Expected first image URL request once first view becomes visible")
 
         sut.simulateFeedImageViewVisible(at: 1)
-        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected second image URL request once second view also becomes visible")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image], "Expected second image URL request once second view also becomes visible")
 
-        sut.simulateUserInitiatedConversationStatusLoad()
-        loader.completeConversationStatusLoad(at: 1, with: [conversationStatus3])
+        sut.simulateUserInitiatedConversationLoad()
+        loader.completeConversationsLoad(at: 1, with: [Conversation3])
         sut.simulateFeedImageViewVisible(at: 0)
-        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected no new URL requests since previous conversation Status had no image URL")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image], "Expected no new URL requests since previous conversation Status had no image URL")
     }
 
     func test_profileImageView_cancelsLoadingWhenNotVisibleAnymore() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
 
-        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1, conversationStatus2])
+        loader.completeConversationsLoad(at: 0, with: [Conversation1, Conversation2])
 
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
 
         sut.simulateFeedImageViewInvisible(at: 0)
-        XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image], "Expected first image URL request once first view becomes invisible")
+        XCTAssertEqual(loader.cancelledImageURLs, [Conversation1.image], "Expected first image URL request once first view becomes invisible")
 
         sut.simulateFeedImageViewInvisible(at: 1)
-        XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected first and second images URL request cancelled after they become invisible")
+        XCTAssertEqual(loader.cancelledImageURLs, [Conversation1.image, Conversation2.image], "Expected first and second images URL request cancelled after they become invisible")
 
     }
 
@@ -129,9 +129,9 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(with: [Conversation1, Conversation2])
 
         let view1 = sut.simulateFeedImageViewVisible(at: 0)!
 //        let view2 = sut.simulateFeedImageViewVisible(at: 1)!
@@ -152,9 +152,9 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(with: [Conversation1, Conversation2])
 
         let view1 = sut.simulateFeedImageViewVisible(at: 0)!
         let view2 = sut.simulateFeedImageViewVisible(at: 1)!
@@ -176,9 +176,9 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(with: [Conversation1, Conversation2])
 
         let view1 = sut.simulateFeedImageViewVisible(at: 0)!
         let view2 = sut.simulateFeedImageViewVisible(at: 1)!
@@ -199,9 +199,9 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(with: [Conversation1, Conversation2])
 
         let view1 = sut.simulateFeedImageViewVisible(at: 0)!
         let view2 = sut.simulateFeedImageViewVisible(at: 1)!
@@ -224,52 +224,52 @@ class ConversationStatusTests: XCTestCase {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(with: [Conversation1, Conversation2])
 
         let view1 = sut.simulateFeedImageViewVisible(at: 0)!
         let view2 = sut.simulateFeedImageViewVisible(at: 1)!
-        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request for the two visible views")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image], "Expected two image URL request for the two visible views")
 
         loader.completeImageLoadingWithError(at: 0)
         view1.simulateRetryAction()
-        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image, conversationStatus1.image], "Expected three image URL request for the two visible views")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image, Conversation1.image], "Expected three image URL request for the two visible views")
 
         loader.completeImageLoadingWithError(at: 1)
         view2.simulateRetryAction()
-        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image, conversationStatus1.image, conversationStatus2.image], "Expected three image URL request for the 4 visible views")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image, Conversation1.image, Conversation2.image], "Expected three image URL request for the 4 visible views")
     }
 
     func test_profileImageView_preloadsImageURLWhenNearVisible() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(with: [Conversation1, Conversation2])
 
         sut.simulateFeedImageViewNearlyVisible(at: 0)
         sut.simulateFeedImageViewNearlyVisible(at: 1)
-        XCTAssertEqual(loader.loadedImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request for the two nearly visible views")
+        XCTAssertEqual(loader.loadedImageURLs, [Conversation1.image, Conversation2.image], "Expected two image URL request for the two nearly visible views")
     }
 
     func test_profileImageView_cancelsImageURLPreloadingWhenNotNearVisibleAnymore() {
         let (loader, sut) = makeSUT()
         sut.loadViewIfNeeded()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"))
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"))
-        loader.completeConversationStatusLoad(with: [conversationStatus1, conversationStatus2])
+        let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:another-url.com"))
+        loader.completeConversationsLoad(with: [Conversation1, Conversation2])
 
         sut.simulateFeedImageViewNotVisible(at: 0)
         sut.simulateFeedImageViewNotVisible(at: 1)
 
-        XCTAssertEqual(loader.cancelledImageURLs, [conversationStatus1.image, conversationStatus2.image], "Expected two image URL request cancelled for the two not visible views")
+        XCTAssertEqual(loader.cancelledImageURLs, [Conversation1.image, Conversation2.image], "Expected two image URL request cancelled for the two not visible views")
     }
 
-    // MARK: - Conversation Status Listener
-    func test_listenForConversationStatus_beginsListeningForConversationStatus() {
+    // MARK: - Conversation Listener
+    func test_listenForConversation_beginsListeningForConversation() {
         let (loader, sut) = makeSUT()
 
         XCTAssertEqual(loader.realtimeRequestCount, 0, "Expected no connection requests before view is loaded.")
@@ -291,18 +291,18 @@ class ConversationStatusTests: XCTestCase {
         loader.notifyStatusChange(status: .connected)
         XCTAssertNil(sut.loadingStatus, "Expected nil status when connected successfully")
 
-        loader.notifyStatusChange(status: .newMessage(makeConversationStatus()))
+        loader.notifyStatusChange(status: .newMessage(makeConversation()))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
 
-        let error = RealTimeConversationStatusLoader.Error.connection
+        let error = RealTimeConversationsListener.Error.connection
         loader.notifyStatusChange(status: .failed(error))
         XCTAssertEqual(sut.loadingStatus, "disconnected")
 
         //receiving a new message after being disconnected is unlikely. Nevertheless, we still want to test.
-        loader.notifyStatusChange(status: .newMessage(makeConversationStatus()))
+        loader.notifyStatusChange(status: .newMessage(makeConversation()))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
 
-        let invalidData = RealTimeConversationStatusLoader.Error.invalidData
+        let invalidData = RealTimeConversationsListener.Error.invalidData
         loader.notifyStatusChange(status: .failed(invalidData))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a conversation can't be decoded properly.")
     }
@@ -320,12 +320,12 @@ class ConversationStatusTests: XCTestCase {
         loader.notifyStatusChange(status: .connected)
         XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present when connections is successful.")
 
-        let error = RealTimeConversationStatusLoader.Error.connection
+        let error = RealTimeConversationsListener.Error.connection
         loader.notifyStatusChange(status: .failed(error))
         XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
     }
 
-    func test_conversationStatusListener_attemptsToConnectOnRetryAction() {
+    func test_ConversationsListener_attemptsToConnectOnRetryAction() {
         let (loader, sut) = makeSUT()
 
         //forces view to load
@@ -333,7 +333,7 @@ class ConversationStatusTests: XCTestCase {
 
         XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected listener to be called once only")
 
-        let error = RealTimeConversationStatusLoader.Error.connection
+        let error = RealTimeConversationsListener.Error.connection
         loader.notifyStatusChange(status: .failed(error))
         XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
 
@@ -348,7 +348,7 @@ class ConversationStatusTests: XCTestCase {
 
     // MARK: - New Message Functionality
 
-    func test_ConversationStatusObserver_addsNewConversationToTheTopOfList() {
+    func test_ConversationObserver_addsNewConversationToTheTopOfList() {
         let (loader, sut) = makeSUT()
 
         //forces view to load
@@ -357,28 +357,28 @@ class ConversationStatusTests: XCTestCase {
 
         let date = Date()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
-        let conversationStatus3 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
-        let conversationStatus4 = makeConversationStatus(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
+        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
+        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
 
-        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1])
-        assertThat(sut: sut, isRendering: [conversationStatus1])
+        loader.completeConversationsLoad(at: 0, with: [Conversation1])
+        assertThat(sut: sut, isRendering: [Conversation1])
 
-        sut.simulateUserInitiatedConversationStatusLoad()
-        loader.completeConversationStatusLoad(at: 1, with: [conversationStatus1, conversationStatus2])
-        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2])
+        sut.simulateUserInitiatedConversationLoad()
+        loader.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
+        assertThat(sut: sut, isRendering: [Conversation1, Conversation2])
 
         //first new message received via real time
-        loader.notifyStatusChange(status: .newMessage(conversationStatus3))
-        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2, conversationStatus3])
+        loader.notifyStatusChange(status: .newMessage(Conversation3))
+        assertThat(sut: sut, isRendering: [Conversation1, Conversation2, Conversation3])
 
         //second new  message received via real time
-        loader.notifyStatusChange(status: .newMessage(conversationStatus4))
-        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2, conversationStatus3, conversationStatus4])
+        loader.notifyStatusChange(status: .newMessage(Conversation4))
+        assertThat(sut: sut, isRendering: [Conversation1, Conversation2, Conversation3, Conversation4])
     }
 
-    func test_ConversationStatusObserver_movesUpdatedConversationToTheTopOfList() {
+    func test_ConversationObserver_movesUpdatedConversationToTheTopOfList() {
         let (loader, sut) = makeSUT()
 
         //forces view to load
@@ -387,28 +387,28 @@ class ConversationStatusTests: XCTestCase {
 
         let date = Date()
 
-        let conversationStatus1 = makeConversationStatus(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let conversationStatus2 = makeConversationStatus(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
-        let conversationStatus3 = makeConversationStatus(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
-        let conversationStatus4 = makeConversationStatus(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
+        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
+        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
 
-        loader.completeConversationStatusLoad(at: 0, with: [conversationStatus1, conversationStatus2, conversationStatus3, conversationStatus4])
-        assertThat(sut: sut, isRendering: [conversationStatus1, conversationStatus2, conversationStatus3, conversationStatus4])
+        loader.completeConversationsLoad(at: 0, with: [Conversation1, Conversation2, Conversation3, Conversation4])
+        assertThat(sut: sut, isRendering: [Conversation1, Conversation2, Conversation3, Conversation4])
 
-        let someTimeLater = conversationStatus1.lastMessageTime?.addingTimeInterval(1.0)
-        let newMessageToSameConversation = ConversationStatus(id: conversationStatus1.id, image: conversationStatus1.image, conversationId: conversationStatus1.conversationId, message: "Different Message", lastMessageUser: conversationStatus1.lastMessageUser, lastMessageTime: someTimeLater, conversationType: conversationStatus1.conversationType, groupName: conversationStatus1.groupName, contentType: conversationStatus1.contentType, otherUserId: conversationStatus1.otherUserId, createdByName: conversationStatus1.createdByName)
+        let someTimeLater = Conversation1.lastMessageTime?.addingTimeInterval(1.0)
+        let newMessageToSameConversation = Conversation(id: Conversation1.id, image: Conversation1.image, conversationId: Conversation1.conversationId, message: "Different Message", lastMessageUser: Conversation1.lastMessageUser, lastMessageTime: someTimeLater, conversationType: Conversation1.conversationType, groupName: Conversation1.groupName, contentType: Conversation1.contentType, otherUserId: Conversation1.otherUserId, createdByName: Conversation1.createdByName)
 
         //first new message received via real time
         loader.notifyStatusChange(status: .newMessage(newMessageToSameConversation))
-        assertThat(sut: sut, isRendering: [conversationStatus2, conversationStatus3, conversationStatus4, newMessageToSameConversation])
+        assertThat(sut: sut, isRendering: [Conversation2, Conversation3, Conversation4, newMessageToSameConversation])
     }
 
 
     // MARK: - Helper Methods
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationStatusViewController) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationsViewController) {
         let loader = LoaderSpy()
-        let navigationController = ConversationStatusComposer.conversationStatusComposedWith(conversationStatusLoader: loader, imageDataLoader: loader)
-        let sut = navigationController.children.first! as! ConversationStatusViewController
+        let navigationController = ConversationsComposer.conversationsComposedWith(conversationsLoader: loader, imageDataLoader: loader)
+        let sut = navigationController.children.first! as! ConversationsViewController
 
         trackForMemoryLeaks(object: navigationController, file: file, line: line)
         trackForMemoryLeaks(object: loader, file: file, line: line)
@@ -417,16 +417,16 @@ class ConversationStatusTests: XCTestCase {
         return (loader, sut)
     }
 
-    private func makeConversationStatus(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date = Date(), conversationType: Int = 0, groupName: String? = nil, contentType: Int = 0, otherUserId: UUID = UUID(), createdByName: String = "creator") -> ConversationStatus {
-        return ConversationStatus(id: id, image: imageURL, conversationId: conversationID, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
+    private func makeConversation(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date = Date(), conversationType: Int = 0, groupName: String? = nil, contentType: Int = 0, otherUserId: UUID = UUID(), createdByName: String = "creator") -> Conversation {
+        return Conversation(id: id, image: imageURL, conversationId: conversationID, message: message, lastMessageUser: lastMessageUser, lastMessageTime: lastMessageTime, conversationType: conversationType, groupName: groupName, contentType: contentType, otherUserId: otherUserId, createdByName: createdByName)
     }
 
-    private func assertThat(sut: ConversationStatusViewController, isRendering conversationStatuses: [ConversationStatus], file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(sut.numberOfRenderedConversationStatusViews(), conversationStatuses.count, "Expected \(conversationStatuses.count) convo Statuses, got \(sut.numberOfRenderedConversationStatusViews()) instead.", file: file, line: line)
+    private func assertThat(sut: ConversationsViewController, isRendering Conversationes: [Conversation], file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(sut.numberOfRenderedConversationViews(), Conversationes.count, "Expected \(Conversationes.count) conversations, got \(sut.numberOfRenderedConversationViews()) instead.", file: file, line: line)
 
-        conversationStatuses.enumerated().forEach { (arg) in
-            let (index, conversationStatus) = arg
-            assertThat(sut, hasViewConfiguredFor: conversationStatus, at: index, file: file, line: line)
+        Conversationes.enumerated().forEach { (arg) in
+            let (index, Conversation) = arg
+            assertThat(sut, hasViewConfiguredFor: Conversation, at: index, file: file, line: line)
         }
     }
 
@@ -435,29 +435,29 @@ class ConversationStatusTests: XCTestCase {
     ///
     /// - Parameters:
     ///   - sut: system under test
-    ///   - conversationStatus: conversation status model
+    ///   - Conversation: conversation  model
     ///   - index: index
     ///   - file: file in case of failed test (no need to pass anything, it is using default value)
     ///   - line: line number incase of failed test (no need to pass anything, it is using default value)
-    private func assertThat(_ sut: ConversationStatusViewController, hasViewConfiguredFor conversationStatus: ConversationStatus, at index: Int, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ConversationsViewController, hasViewConfiguredFor Conversation: Conversation, at index: Int, file: StaticString = #file, line: UInt = #line) {
         let view = sut.simulateFeedImageViewVisible(at: index)
 
         guard let cell = view else {
-            return XCTFail("Expected \(ConversationStatusCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
+            return XCTFail("Expected \(ConversationCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
         }
 
-        let name = conversationStatus.lastMessageUser ?? conversationStatus.groupName
-        XCTAssertEqual(cell.nameText, name, "Expected name text to be \(String(describing: name)) for conversation status  view at index (\(index))", file: file, line: line)
+        let name = Conversation.lastMessageUser ?? Conversation.groupName
+        XCTAssertEqual(cell.nameText, name, "Expected name text to be \(String(describing: name)) for conversation view at index (\(index))", file: file, line: line)
 
-        XCTAssertEqual(cell.messageText, conversationStatus.message, "Expected message text to be \(String(describing: conversationStatus.message)) for conversation status view at index (\(index)", file: file, line: line)
+        XCTAssertEqual(cell.messageText, Conversation.message, "Expected message text to be \(String(describing: Conversation.message)) for conversation view at index (\(index)", file: file, line: line)
 
-        XCTAssertEqual(cell.initialsText, conversationStatus.initials, "Expected message text to be \(String(describing: conversationStatus.initials)) for conversation status view at index (\(index)", file: file, line: line)
+        XCTAssertEqual(cell.initialsText, Conversation.initials, "Expected message text to be \(String(describing: Conversation.initials)) for conversation view at index (\(index)", file: file, line: line)
 
-        XCTAssertEqual(cell.timeMessageSent, conversationStatus.lastMessageTimeSent, "Expected time sent text to be \(String(describing: conversationStatus.lastMessageTimeSent)) for conversation status view at index (\(index)", file: file, line: line)
+        XCTAssertEqual(cell.timeMessageSent, Conversation.lastMessageTimeSent, "Expected time sent text to be \(String(describing: Conversation.lastMessageTimeSent)) for conversation view at index (\(index)", file: file, line: line)
     }
 }
-private extension ConversationStatusViewController {
-    func simulateUserInitiatedConversationStatusLoad() {
+private extension ConversationsViewController {
+    func simulateUserInitiatedConversationLoad() {
         refreshControl?.simulateUserInitiatedPullToRefresh()
     }
 
@@ -485,16 +485,16 @@ private extension ConversationStatusViewController {
         view?.simulateTryAgainButtonTapped()
     }
 
-    func numberOfRenderedConversationStatusViews() -> Int {
+    func numberOfRenderedConversationViews() -> Int {
         return tableView.numberOfRows(inSection: conversationSatusesSection)
     }
 
     @discardableResult
-    func simulateFeedImageViewVisible(at index: Int) -> ConversationStatusCell? {
+    func simulateFeedImageViewVisible(at index: Int) -> ConversationCell? {
         let dataSource = tableView.dataSource
         let indexPath = IndexPath(row: index, section: conversationSatusesSection)
 
-        return dataSource?.tableView(tableView, cellForRowAt: indexPath) as? ConversationStatusCell
+        return dataSource?.tableView(tableView, cellForRowAt: indexPath) as? ConversationCell
     }
 
     func simulateFeedImageViewNearlyVisible(at index: Int) {
@@ -536,7 +536,7 @@ private extension UIRefreshControl {
     }
 }
 
-private extension ConversationStatusCell {
+private extension ConversationCell {
     var isShowingLoadingIndicator: Bool {
         return profileImageViewContainer.isShimmering
     }
@@ -593,7 +593,7 @@ private extension UIButton {
     }
 }
 
-private extension ConversationStatus {
+private extension Conversation {
     var initials: String? {
         let userGroupName = groupName ?? lastMessageUser
 

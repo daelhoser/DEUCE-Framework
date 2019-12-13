@@ -1,5 +1,5 @@
 //
-//  ConversationStatusTests+LoaderSpy.swift
+//  ConversationsTests+LoaderSpy.swift
 //  DEUCEiOSTests
 //
 //  Created by Jose Alvarez on 8/28/19.
@@ -11,18 +11,18 @@ import XCTest
 import DEUCE_Framework
 import DEUCEiOS
 
-extension ConversationStatusTests {
-    final class LoaderSpy: ConversationStatusLoaderAndListener, ImageDataLoader {
+extension ConversationsTests {
+    final class LoaderSpy: ConversationsLoaderAndListener, ImageDataLoader {
         var requestCount = 0
-        private var loadRequests = [(LoadConversationStatusResult) -> Void]()
+        private var loadRequests = [(LoadConversationsResult) -> Void]()
 
-        func load(completion: @escaping (LoadConversationStatusResult) -> Void) {
+        func load(completion: @escaping (LoadConversationsResult) -> Void) {
             requestCount += 1
             loadRequests.append(completion)
         }
 
-        func completeConversationStatusLoad(at index: Int = 0, with conversationStatuses: [ConversationStatus] = [])  {
-            loadRequests[index](.success(conversationStatuses))
+        func completeConversationsLoad(at index: Int = 0, with conversations: [Conversation] = [])  {
+            loadRequests[index](.success(conversations))
         }
 
         func completeFeedLoadingWithError(at index: Int = 0) {

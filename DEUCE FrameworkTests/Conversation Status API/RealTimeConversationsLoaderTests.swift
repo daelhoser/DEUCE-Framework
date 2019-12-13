@@ -1,5 +1,5 @@
 //
-//  RealTimeConversationStatusLoaderTests.swift
+//  RealTimeConversationsLoaderTests.swift
 //  DEUCE FrameworkTests
 //
 //  Created by Jose Alvarez on 9/2/19.
@@ -9,7 +9,7 @@
 import XCTest
 import DEUCE_Framework
 
-class RealTimeConversationStatusLoaderTests: XCTestCase {
+class RealTimeConversationsLoaderTests: XCTestCase {
     func test_onInit_doesNotAttemptConnectToClient() {
         let (client, _) = makeSUT()
 
@@ -57,10 +57,10 @@ class RealTimeConversationStatusLoaderTests: XCTestCase {
 
     func test_onConnected_notifiesNewMessageOnNewMessageReceived() {
         let (client, loader) = makeSUT()
-        let conversationStatus = makeConversation(conversationType: 0, contentType: 0, createdByName: "any name")
+        let conversation = makeConversation(conversationType: 0, contentType: 0, createdByName: "any name")
 
-        expect(sut: loader, toCompleteWith: .newMessage(conversationStatus.model), when: {
-            client.completeWithNewMessage(conversationStatus.json)
+        expect(sut: loader, toCompleteWith: .newMessage(conversation.model), when: {
+            client.completeWithNewMessage(conversation.json)
         })
     }
 

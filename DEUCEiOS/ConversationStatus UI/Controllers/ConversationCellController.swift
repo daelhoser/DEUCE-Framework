@@ -1,5 +1,5 @@
 //
-//  ConversationStatusCellController.swift
+//  ConversationCellController.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 8/30/19.
@@ -9,19 +9,19 @@
 import Foundation
 import UIKit
 
-final class ConversationStatusCellController {
-    private let viewModel: ConversationStatusCellViewModel<UIImage>
+final class ConversationCellController {
+    private let viewModel: ConversationCellViewModel<UIImage>
 
     var uniqueId: UUID {
         return viewModel.conversationID
     }
 
-    init(viewModel: ConversationStatusCellViewModel<UIImage>) {
+    init(viewModel: ConversationCellViewModel<UIImage>) {
         self.viewModel = viewModel
     }
 
     func view() -> UITableViewCell {
-        let cell = binded(cell: ConversationStatusCell())
+        let cell = binded(cell: ConversationCell())
         viewModel.loadImageData()
 
         return cell
@@ -35,7 +35,7 @@ final class ConversationStatusCellController {
         viewModel.cancelImageDataLoad()
     }
 
-    private func binded(cell: ConversationStatusCell) -> ConversationStatusCell {
+    private func binded(cell: ConversationCell) -> ConversationCell {
         cell.initialsLabel.text = viewModel.initials
         cell.nameLabel.text = viewModel.userGroupName
         cell.messageLabel.text = viewModel.message

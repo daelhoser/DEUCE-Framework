@@ -1,5 +1,5 @@
 //
-//  ConversationStatusCell.swift
+//  ConversationCell.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 8/28/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class ConversationStatusCell: UITableViewCell {
+public final class ConversationCell: UITableViewCell {
     public var profileImageView: UIImageView! = UIImageView()
     public var profileImageViewContainer: UIView! = UIView()
     public var initialsLabel: UILabel! = UILabel()

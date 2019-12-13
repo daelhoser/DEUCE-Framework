@@ -14,13 +14,12 @@
 		5F3082F7234BA534005B9CC0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3082F6234BA534005B9CC0 /* HeaderView.swift */; };
 		5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */; };
 		5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */; };
-		5F41969A23401D070025549E /* XCTestCase+ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F41969923401D070025549E /* XCTestCase+ConversationStatus.swift */; };
+		5F41969A23401D070025549E /* XCTestCase+Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F41969923401D070025549E /* XCTestCase+Conversation.swift */; };
 		5F41969C23401D4A0025549E /* XCTestCase+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F41969B23401D4A0025549E /* XCTestCase+DateFormatter.swift */; };
 		5F4B31E3230E00CB002CF83F /* DEUCEiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4B31DA230E00CB002CF83F /* DEUCEiOS.framework */; };
 		5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F60848C228616E100B23235 /* DateFormatter+Deuce.swift */; };
 		5F6FE3C82292301C0077F8B8 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */; };
-		5F7CAF0C2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */; };
-		5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */; };
+		5F7CAF102316FBA30088D5AC /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF0F2316FBA30088D5AC /* ConversationCell.swift */; };
 		5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */; };
 		5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8731F72288D90600DD3358 /* HTTPClient.swift */; };
 		5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */; };
@@ -28,33 +27,34 @@
 		5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0F23733D1800582167 /* ConversationUser.swift */; };
 		5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE112373478700582167 /* ConversationUsersMapper.swift */; };
 		5F9491042290E078007531EE /* ConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationsLoader.swift */; };
-		5FA5CAB0234E764500950F2B /* ConversationStatusObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */; };
-		5FA5CAB2234E767200950F2B /* ConversationStatusHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */; };
+		5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */; };
+		5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */; };
 		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */; };
-		5FB5EF2C231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */; };
-		5FEB12062354D1830028B3F2 /* ConversationStatusObserverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEB12052354D1830028B3F2 /* ConversationStatusObserverViewModel.swift */; };
-		5FEC4425230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */; };
+		5FB5EF2C231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF2B231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift */; };
+		5FEC4425230B680E001AFCA5 /* ConversationsEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */; };
 		5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FEC442D230C53F4001AFCA5 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
 		5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */; };
 		5FEC4431230C8302001AFCA5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* Conversation.swift */; };
-		5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */; };
+		5FEEF9122319882B00083C51 /* ConversationsRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9112319882B00083C51 /* ConversationsRefreshViewController.swift */; };
 		5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
-		5FEEF918231994AD00083C51 /* ConversationStatusCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */; };
-		5FEEF91B23199E9E00083C51 /* ConversationStatusComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91A23199E9E00083C51 /* ConversationStatusComposer.swift */; };
-		5FEEF91E2319C51800083C51 /* ConversationStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91D2319C51800083C51 /* ConversationStatusViewModel.swift */; };
-		5FEEF920231BEFAC00083C51 /* ConversationStatusCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91F231BEFAC00083C51 /* ConversationStatusCellViewModel.swift */; };
+		5FEEF918231994AD00083C51 /* ConversationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF917231994AD00083C51 /* ConversationCellController.swift */; };
+		5FEEF91B23199E9E00083C51 /* ConversationsComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91A23199E9E00083C51 /* ConversationsComposer.swift */; };
+		5FEEF91E2319C51800083C51 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91D2319C51800083C51 /* ConversationViewModel.swift */; };
+		5FEEF920231BEFAC00083C51 /* ConversationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91F231BEFAC00083C51 /* ConversationCellViewModel.swift */; };
+		5FF0B7B923A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B7B823A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift */; };
+		5FF0B7BB23A31AA700F8A1BB /* ConversationsObserverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B7BA23A31AA700F8A1BB /* ConversationsObserverViewModel.swift */; };
 		5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF292A5234167FF008540D2 /* RealTimeConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */; };
 		5FF292A723417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */; };
 		5FF292A923417C69008540D2 /* ConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A823417C69008540D2 /* ConversationsListener.swift */; };
-		5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */; };
+		5FFBAFF8231495F30097D10A /* ConversationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationsTests.swift */; };
 		5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FFBAFFB23149CED0097D10A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
-		5FFBAFFD2314A0BE0097D10A /* ConversationStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */; };
+		5FFBAFFD2314A0BE0097D10A /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFFC2314A0BE0097D10A /* ConversationsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +89,7 @@
 		5F3082F6234BA534005B9CC0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoaderTests.swift; sourceTree = "<group>"; };
 		5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoader.swift; sourceTree = "<group>"; };
-		5F41969923401D070025549E /* XCTestCase+ConversationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ConversationStatus.swift"; sourceTree = "<group>"; };
+		5F41969923401D070025549E /* XCTestCase+Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Conversation.swift"; sourceTree = "<group>"; };
 		5F41969B23401D4A0025549E /* XCTestCase+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DateFormatter.swift"; sourceTree = "<group>"; };
 		5F4B31DA230E00CB002CF83F /* DEUCEiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCEiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F4B31DD230E00CB002CF83F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,8 +97,7 @@
 		5F4B31E9230E00CB002CF83F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F60848C228616E100B23235 /* DateFormatter+Deuce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Deuce.swift"; sourceTree = "<group>"; };
 		5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
-		5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationStatusTests+LoaderSpy.swift"; sourceTree = "<group>"; };
-		5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusCell.swift; sourceTree = "<group>"; };
+		5F7CAF0F2316FBA30088D5AC /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		5F8731F72288D90600DD3358 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+JSON.swift"; sourceTree = "<group>"; };
@@ -106,24 +105,25 @@
 		5F92EE0F23733D1800582167 /* ConversationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUser.swift; sourceTree = "<group>"; };
 		5F92EE112373478700582167 /* ConversationUsersMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUsersMapper.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoader.swift; sourceTree = "<group>"; };
-		5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusObserverController.swift; sourceTree = "<group>"; };
-		5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusHeaderController.swift; sourceTree = "<group>"; };
+		5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsObserverController.swift; sourceTree = "<group>"; };
+		5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsHeaderController.swift; sourceTree = "<group>"; };
 		5FB52C42234D6054008B6D66 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
 		5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeClient.swift; sourceTree = "<group>"; };
-		5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationStatusLoaderTests.swift; sourceTree = "<group>"; };
-		5FEB12052354D1830028B3F2 /* ConversationStatusObserverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusObserverViewModel.swift; sourceTree = "<group>"; };
+		5FB5EF2B231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsLoaderTests.swift; sourceTree = "<group>"; };
 		5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DEUCEConversationStatusEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEUCEConversationStatusEndToEndTests.swift; sourceTree = "<group>"; };
+		5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsEndToEndTests.swift; sourceTree = "<group>"; };
 		5FEC4426230B680E001AFCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsMapper.swift; sourceTree = "<group>"; };
 		5FEC4430230C8302001AFCA5 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
-		5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusRefreshViewController.swift; sourceTree = "<group>"; };
+		5FEEF9112319882B00083C51 /* ConversationsRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsRefreshViewController.swift; sourceTree = "<group>"; };
 		5FEEF9142319890C00083C51 /* ImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataLoader.swift; sourceTree = "<group>"; };
-		5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusCellController.swift; sourceTree = "<group>"; };
-		5FEEF91A23199E9E00083C51 /* ConversationStatusComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusComposer.swift; sourceTree = "<group>"; };
-		5FEEF91D2319C51800083C51 /* ConversationStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusViewModel.swift; sourceTree = "<group>"; };
-		5FEEF91F231BEFAC00083C51 /* ConversationStatusCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusCellViewModel.swift; sourceTree = "<group>"; };
+		5FEEF917231994AD00083C51 /* ConversationCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellController.swift; sourceTree = "<group>"; };
+		5FEEF91A23199E9E00083C51 /* ConversationsComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsComposer.swift; sourceTree = "<group>"; };
+		5FEEF91D2319C51800083C51 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
+		5FEEF91F231BEFAC00083C51 /* ConversationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellViewModel.swift; sourceTree = "<group>"; };
+		5FF0B7B823A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConversationsTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		5FF0B7BA23A31AA700F8A1BB /* ConversationsObserverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsObserverViewModel.swift; sourceTree = "<group>"; };
 		5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationUsersLoaderTests.swift; sourceTree = "<group>"; };
 		5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoaderAndRealtimeListener.swift; sourceTree = "<group>"; };
 		5FF292A823417C69008540D2 /* ConversationsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListener.swift; sourceTree = "<group>"; };
 		5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DEUCEiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusTests.swift; sourceTree = "<group>"; };
-		5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatusViewController.swift; sourceTree = "<group>"; };
+		5FFBAFF7231495F30097D10A /* ConversationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsTests.swift; sourceTree = "<group>"; };
+		5FFBAFFC2314A0BE0097D10A /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */,
-				5FB5EF2B231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift */,
+				5FB5EF2B231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift */,
 				5F0A1E43230B11D000E8DD71 /* Helpers */,
 			);
 			path = "Conversation Status API";
@@ -194,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */,
-				5F41969923401D070025549E /* XCTestCase+ConversationStatus.swift */,
+				5F41969923401D070025549E /* XCTestCase+Conversation.swift */,
 				5F41969B23401D4A0025549E /* XCTestCase+DateFormatter.swift */,
 				5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */,
 			);
@@ -237,7 +237,7 @@
 			children = (
 				5FEEF913231988E600083C51 /* ImageDataLoader */,
 				5FEEF916231989B900083C51 /* ConversationStatus UI */,
-				5FFBAFFC2314A0BE0097D10A /* ConversationStatusViewController.swift */,
+				5FFBAFFC2314A0BE0097D10A /* ConversationsViewController.swift */,
 				5F4B31DD230E00CB002CF83F /* Info.plist */,
 			);
 			path = DEUCEiOS;
@@ -248,7 +248,7 @@
 			children = (
 				5F7CAF0D2316F4750088D5AC /* Helpers */,
 				5F4B31E9230E00CB002CF83F /* Info.plist */,
-				5FFBAFF7231495F30097D10A /* ConversationStatusTests.swift */,
+				5FFBAFF7231495F30097D10A /* ConversationsTests.swift */,
 				5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */,
 			);
 			path = DEUCEiOSTests;
@@ -275,7 +275,7 @@
 		5F7CAF0D2316F4750088D5AC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				5F7CAF0B2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift */,
+				5FF0B7B823A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 		5F7CAF0E2316FB820088D5AC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5F7CAF0F2316FBA30088D5AC /* ConversationStatusCell.swift */,
+				5F7CAF0F2316FBA30088D5AC /* ConversationCell.swift */,
 				5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */,
 				5F3082F6234BA534005B9CC0 /* HeaderView.swift */,
 				5FB52C42234D6054008B6D66 /* TryAgainView.swift */,
@@ -321,7 +321,7 @@
 		5FEC4423230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
-				5FEC4424230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift */,
+				5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */,
 				5FEC4426230B680E001AFCA5 /* Info.plist */,
 			);
 			path = DEUCEConversationStatusEndToEndTests;
@@ -330,10 +330,10 @@
 		5FEEF9102319881300083C51 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5FEEF9112319882B00083C51 /* ConversationStatusRefreshViewController.swift */,
-				5FEEF917231994AD00083C51 /* ConversationStatusCellController.swift */,
-				5FA5CAAF234E764500950F2B /* ConversationStatusObserverController.swift */,
-				5FA5CAB1234E767200950F2B /* ConversationStatusHeaderController.swift */,
+				5FEEF9112319882B00083C51 /* ConversationsRefreshViewController.swift */,
+				5FEEF917231994AD00083C51 /* ConversationCellController.swift */,
+				5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */,
+				5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 		5FEEF91923199E8A00083C51 /* Composers */ = {
 			isa = PBXGroup;
 			children = (
-				5FEEF91A23199E9E00083C51 /* ConversationStatusComposer.swift */,
+				5FEEF91A23199E9E00083C51 /* ConversationsComposer.swift */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -368,9 +368,9 @@
 		5FEEF91C2319C50C00083C51 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5FEEF91D2319C51800083C51 /* ConversationStatusViewModel.swift */,
-				5FEB12052354D1830028B3F2 /* ConversationStatusObserverViewModel.swift */,
-				5FEEF91F231BEFAC00083C51 /* ConversationStatusCellViewModel.swift */,
+				5FF0B7BA23A31AA700F8A1BB /* ConversationsObserverViewModel.swift */,
+				5FEEF91D2319C51800083C51 /* ConversationViewModel.swift */,
+				5FEEF91F231BEFAC00083C51 /* ConversationCellViewModel.swift */,
 				5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */,
 			);
 			path = Models;
@@ -648,18 +648,18 @@
 			files = (
 				5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */,
 				5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */,
-				5FEEF91B23199E9E00083C51 /* ConversationStatusComposer.swift in Sources */,
-				5FA5CAB0234E764500950F2B /* ConversationStatusObserverController.swift in Sources */,
-				5FEEF9122319882B00083C51 /* ConversationStatusRefreshViewController.swift in Sources */,
-				5FA5CAB2234E767200950F2B /* ConversationStatusHeaderController.swift in Sources */,
-				5F7CAF102316FBA30088D5AC /* ConversationStatusCell.swift in Sources */,
-				5FEEF920231BEFAC00083C51 /* ConversationStatusCellViewModel.swift in Sources */,
-				5FEEF91E2319C51800083C51 /* ConversationStatusViewModel.swift in Sources */,
+				5FEEF91B23199E9E00083C51 /* ConversationsComposer.swift in Sources */,
+				5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */,
+				5FEEF9122319882B00083C51 /* ConversationsRefreshViewController.swift in Sources */,
+				5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */,
+				5F7CAF102316FBA30088D5AC /* ConversationCell.swift in Sources */,
+				5FEEF920231BEFAC00083C51 /* ConversationCellViewModel.swift in Sources */,
+				5FEEF91E2319C51800083C51 /* ConversationViewModel.swift in Sources */,
 				5F3082F7234BA534005B9CC0 /* HeaderView.swift in Sources */,
 				5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */,
-				5FEEF918231994AD00083C51 /* ConversationStatusCellController.swift in Sources */,
-				5FFBAFFD2314A0BE0097D10A /* ConversationStatusViewController.swift in Sources */,
-				5FEB12062354D1830028B3F2 /* ConversationStatusObserverViewModel.swift in Sources */,
+				5FEEF918231994AD00083C51 /* ConversationCellController.swift in Sources */,
+				5FFBAFFD2314A0BE0097D10A /* ConversationsViewController.swift in Sources */,
+				5FF0B7BB23A31AA700F8A1BB /* ConversationsObserverViewModel.swift in Sources */,
 				5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -668,8 +668,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F7CAF0C2316EED00088D5AC /* ConversationStatusTests+LoaderSpy.swift in Sources */,
-				5FFBAFF8231495F30097D10A /* ConversationStatusTests.swift in Sources */,
+				5FFBAFF8231495F30097D10A /* ConversationsTests.swift in Sources */,
+				5FF0B7B923A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift in Sources */,
 				5FFBAFFB23149CED0097D10A /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,7 +678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FEC4425230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.swift in Sources */,
+				5FEC4425230B680E001AFCA5 /* ConversationsEndToEndTests.swift in Sources */,
 				5FEC442D230C53F4001AFCA5 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,9 +714,9 @@
 				5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */,
 				5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */,
 				5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */,
-				5FB5EF2C231DD17D00158FF6 /* RealTimeConversationStatusLoaderTests.swift in Sources */,
+				5FB5EF2C231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift in Sources */,
 				5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				5F41969A23401D070025549E /* XCTestCase+ConversationStatus.swift in Sources */,
+				5F41969A23401D070025549E /* XCTestCase+Conversation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

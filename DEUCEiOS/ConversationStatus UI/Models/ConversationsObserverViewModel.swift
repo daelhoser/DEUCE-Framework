@@ -1,5 +1,5 @@
 //
-//  ConversationStatusObserverViewModel.swift
+//  ConversationsObserverViewModel.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 10/14/19.
@@ -9,10 +9,10 @@
 import Foundation
 import DEUCE_Framework
 
-final class ConversationStatusObserverViewModel {
-    private let observer: ConversationStatusListener
+final class ConversationsObserverViewModel {
+    private let observer: ConversationsListener
 
-    init(observer: ConversationStatusListener) {
+    init(observer: ConversationsListener) {
         self.observer = observer
     }
 
@@ -24,7 +24,7 @@ final class ConversationStatusObserverViewModel {
     }
 
     var onConnectionStateChange: ((ConnectionState) -> Void)?
-    var onNewConversationStatus: ((ConversationStatus) -> Void)?
+    var onNewConversation: ((Conversation) -> Void)?
 
     func observe() {
         onConnectionStateChange?(.connecting)
@@ -36,14 +36,14 @@ final class ConversationStatusObserverViewModel {
             case .connected:
                 self.onConnectionStateChange?(.connected)
             case let .failed(error):
-                if let error = error as? RealTimeConversationStatusLoader.Error {
+                if let error = error as? RealTimeConversationsListener.Error {
                     if case .connection = error {
                         self.onConnectionStateChange?(.disconnected)
                     }
                 }
             case let .newMessage(message):
                 self.onConnectionStateChange?(.newMessage)
-                self.onNewConversationStatus?(message)
+                self.onNewConversation?(message)
             }
         })
     }

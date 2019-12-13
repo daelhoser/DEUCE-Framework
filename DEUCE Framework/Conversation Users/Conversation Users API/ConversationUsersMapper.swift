@@ -9,7 +9,7 @@
 import Foundation
 
 internal final class ConversationUsersMapper {
-    private struct ConversationUserStatusData: Decodable {
+    private struct ConversationUserData: Decodable {
         let users: [ConvoUser]
 
         private enum CodingKeys: String, CodingKey {
@@ -42,7 +42,7 @@ internal final class ConversationUsersMapper {
         } else if response.statusCode == OK_200 {
             let jsonDecoder = JSONDecoder()
 
-            guard let payload = try? jsonDecoder.decode(ConversationUserStatusData.self, from: data) else {
+            guard let payload = try? jsonDecoder.decode(ConversationUserData.self, from: data) else {
                 return .failure(.invalidData)
             }
 

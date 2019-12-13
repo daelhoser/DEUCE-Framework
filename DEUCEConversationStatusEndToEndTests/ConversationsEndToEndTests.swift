@@ -1,6 +1,6 @@
 //
-//  DEUCEConversationStatusEndToEndTests.swift
-//  DEUCEConversationStatusEndToEndTests
+//  ConversationsEndToEndTests.swift
+//  ConversationsEndToEndTests
 //
 //  Created by Jose Alvarez on 8/19/19.
 //  Copyright © 2019 DEUCE. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 import DEUCE_Framework
 
-class DEUCEConversationStatusEndToEndTests: XCTestCase {
+class ConversationsEndToEndTests: XCTestCase {
 
     func test_endToEndTestServerGetFeedResult_matchesFixedTestAccountData() {
         switch getFeedResult() {

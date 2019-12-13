@@ -1,5 +1,5 @@
 //
-//  ConversationStatusCellViewModel.swift
+//  ConversationCellViewModel.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 9/1/19.
@@ -9,15 +9,15 @@
 import Foundation
 import DEUCE_Framework
 
-final class ConversationStatusCellViewModel<Image> {
+final class ConversationCellViewModel<Image> {
     typealias Observer<T> = (T) -> Void
 
-    private let model: ConversationStatus
+    private let model: Conversation
     private let imageDataLoader: ImageDataLoader
     private var task: ImageDataLoaderTask?
     private var imageTransformer: (Data) -> Image?
 
-    init(model: ConversationStatus, imageDataLoader: ImageDataLoader, imageTransformer: @escaping (Data) -> Image?) {
+    init(model: Conversation, imageDataLoader: ImageDataLoader, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
         self.imageDataLoader = imageDataLoader
         self.imageTransformer = imageTransformer

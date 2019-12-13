@@ -1,5 +1,5 @@
 //
-//  ConversationStatusViewController.swift
+//  ConversationsViewController.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 8/26/19.
@@ -8,21 +8,21 @@
 
 import UIKit
 
-public final class ConversationStatusViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    var tableModel = [ConversationStatusCellController]() {
+public final class ConversationsViewController: UITableViewController, UITableViewDataSourcePrefetching {
+    var tableModel = [ConversationCellController]() {
         didSet {
             tableView.reloadData()
         }
     }
-    var refreshController: ConversationStatusRefreshViewController?
-    public private(set) var observerController: ConversationStatusObserverController?
-    var headerController: ConversationStatusHeaderController?
+    var refreshController: ConversationsRefreshViewController?
+    public private(set) var observerController: ConversationsObserverController?
+    var headerController: ConversationsHeaderController?
 
-    convenience init(refreshController: ConversationStatusRefreshViewController, observerController: ConversationStatusObserverController?) {
+    convenience init(refreshController: ConversationsRefreshViewController, observerController: ConversationsObserverController?) {
         self.init()
         self.refreshController = refreshController
         self.observerController = observerController
-        self.headerController = ConversationStatusHeaderController()
+        self.headerController = ConversationsHeaderController()
     }
 
     override public func viewDidLoad() {
@@ -43,10 +43,10 @@ public final class ConversationStatusViewController: UITableViewController, UITa
     }
 
 
-    /// Update model with controller. If the controller holds a reference to an existing Conversation Status (unique Conversation ID) then it replaces the old one from the model and adds the new one on top of the stack. If not found on the model then it is just added.
+    /// Update model with controller. If the controller holds a reference to an existing Conversation (unique Conversation ID) then it replaces the old one from the model and adds the new one on top of the stack. If not found on the model then it is just added.
     ///
-    /// - Parameter controller: Conversation Status Cell Controller
-    internal func addConversationStatusController(controller: ConversationStatusCellController) {
+    /// - Parameter controller: Conversation Cell Controller
+    internal func addConversationController(controller: ConversationCellController) {
         let indexOfExistingController = tableModel.lastIndex { (cont) -> Bool in
             return cont.uniqueId == controller.uniqueId
         }
@@ -83,7 +83,7 @@ public final class ConversationStatusViewController: UITableViewController, UITa
 
     // MARK: - Helper methods
 
-    private func cellController(forRowAt indexPath: IndexPath) -> ConversationStatusCellController {
+    private func cellController(forRowAt indexPath: IndexPath) -> ConversationCellController {
         return tableModel[indexPath.row]
     }
 

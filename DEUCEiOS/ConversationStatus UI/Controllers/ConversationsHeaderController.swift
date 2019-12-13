@@ -1,5 +1,5 @@
 //
-//  ConversationStatusHeaderController.swift
+//  ConversationsHeaderController.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 10/9/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ConversationStatusHeaderController {
+final class ConversationsHeaderController {
     lazy var view: HeaderView = {
         let headerView = HeaderView()
 

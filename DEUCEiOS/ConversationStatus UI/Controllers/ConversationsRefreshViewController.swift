@@ -1,5 +1,5 @@
 //
-//  ConversationStatusRefreshViewController.swift
+//  ConversationsRefreshViewController.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 8/30/19.
@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-final class ConversationStatusRefreshViewController: NSObject {
+final class ConversationsRefreshViewController: NSObject {
     private(set) lazy var view = binded(UIRefreshControl())
 
-    private let viewModel: ConversationStatusViewModel
+    private let viewModel: ConversationViewModel
 
-    init(viewModel: ConversationStatusViewModel) {
+    init(viewModel: ConversationViewModel) {
         self.viewModel = viewModel
     }
 
@@ -23,7 +23,7 @@ final class ConversationStatusRefreshViewController: NSObject {
     }
 
     func refresh() {
-        viewModel.loadConversationStatuses()
+        viewModel.loadConversations()
     }
 
     private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
