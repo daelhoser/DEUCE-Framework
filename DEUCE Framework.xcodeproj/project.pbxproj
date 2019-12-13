@@ -236,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				5FEEF913231988E600083C51 /* ImageDataLoader */,
-				5FEEF916231989B900083C51 /* ConversationStatus UI */,
+				5FEEF916231989B900083C51 /* Conversations UI */,
 				5FFBAFFC2314A0BE0097D10A /* ConversationsViewController.swift */,
 				5F4B31DD230E00CB002CF83F /* Info.plist */,
 			);
@@ -346,7 +346,7 @@
 			path = ImageDataLoader;
 			sourceTree = "<group>";
 		};
-		5FEEF916231989B900083C51 /* ConversationStatus UI */ = {
+		5FEEF916231989B900083C51 /* Conversations UI */ = {
 			isa = PBXGroup;
 			children = (
 				5FEEF91C2319C50C00083C51 /* Models */,
@@ -354,7 +354,7 @@
 				5FEEF9102319881300083C51 /* Controllers */,
 				5F7CAF0E2316FB820088D5AC /* Views */,
 			);
-			path = "ConversationStatus UI";
+			path = "Conversations UI";
 			sourceTree = "<group>";
 		};
 		5FEEF91923199E8A00083C51 /* Composers */ = {
@@ -376,12 +376,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		5FF1CEE22368A523002DC32E /* Create Conversation API */ = {
+		5FF1CEE22368A523002DC32E /* Conversation Users API */ = {
 			isa = PBXGroup;
 			children = (
 				5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */,
 			);
-			path = "Create Conversation API";
+			path = "Conversation Users API";
 			sourceTree = "<group>";
 		};
 		5FF272AD228249BF00E4486C = {
@@ -424,7 +424,7 @@
 		5FF272C4228249BF00E4486C /* DEUCE FrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				5FF1CEE22368A523002DC32E /* Create Conversation API */,
+				5FF1CEE22368A523002DC32E /* Conversation Users API */,
 				5F0A1E42230B11C000E8DD71 /* Conversation Status API */,
 				5F6FE3C72292301C0077F8B8 /* URLSessionHTTPClientTests.swift */,
 				5FF272C7228249BF00E4486C /* Info.plist */,
