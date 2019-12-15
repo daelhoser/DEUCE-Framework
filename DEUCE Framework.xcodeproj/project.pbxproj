@@ -253,17 +253,6 @@
 			path = DEUCEiOSTests;
 			sourceTree = "<group>";
 		};
-		5F5708D12283884800D856D5 /* Feature */ = {
-			isa = PBXGroup;
-			children = (
-				5FEC4430230C8302001AFCA5 /* Conversation.swift */,
-				5F9491032290E078007531EE /* ConversationsLoader.swift */,
-				5FF292A823417C69008540D2 /* ConversationsListener.swift */,
-				5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */,
-			);
-			path = Feature;
-			sourceTree = "<group>";
-		};
 		5F60848B228616C200B23235 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,7 +292,6 @@
 		5F92EE0D23733CC900582167 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
-				5F5708D12283884800D856D5 /* Feature */,
 				5F349D4422824AE20058AF4F /* API */,
 			);
 			path = Conversations;
@@ -312,10 +300,22 @@
 		5F92EE0E23733CE400582167 /* Conversation Users */ = {
 			isa = PBXGroup;
 			children = (
-				5FE9FC7123A42FD200ED68E8 /* Feature */,
 				5F92EE0A23733B6800582167 /* API */,
 			);
 			path = "Conversation Users";
+			sourceTree = "<group>";
+		};
+		5FA6E38623A5E6AF0059C41D /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				5FEC4430230C8302001AFCA5 /* Conversation.swift */,
+				5F9491032290E078007531EE /* ConversationsLoader.swift */,
+				5FF292A823417C69008540D2 /* ConversationsListener.swift */,
+				5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */,
+				5F92EE0F23733D1800582167 /* ConversationUser.swift */,
+				5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */,
+			);
+			path = Feature;
 			sourceTree = "<group>";
 		};
 		5FE9FC7023A42D9D00ED68E8 /* HTTP */ = {
@@ -325,15 +325,6 @@
 				5F0A1E46230B2C5600E8DD71 /* URLSessionHTTPClient.swift */,
 			);
 			path = HTTP;
-			sourceTree = "<group>";
-		};
-		5FE9FC7123A42FD200ED68E8 /* Feature */ = {
-			isa = PBXGroup;
-			children = (
-				5F92EE0F23733D1800582167 /* ConversationUser.swift */,
-				5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */,
-			);
-			path = Feature;
 			sourceTree = "<group>";
 		};
 		5FEC4423230B680E001AFCA5 /* ConversationsEndToEndTests */ = {
@@ -431,6 +422,7 @@
 		5FF272B9228249BF00E4486C /* DEUCE Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5FA6E38623A5E6AF0059C41D /* Feature */,
 				5FE9FC7023A42D9D00ED68E8 /* HTTP */,
 				5F60848B228616C200B23235 /* Helpers */,
 				5F92EE0D23733CC900582167 /* Conversations */,
