@@ -31,6 +31,7 @@
 		5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */; };
 		5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
 		5FA6E38923A5EA3D0059C41D /* LoadFeedImageDataFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6E38823A5EA3D0059C41D /* LoadFeedImageDataFromRemoteUseCaseTests.swift */; };
+		5FA6E38B23A5ED6B0059C41D /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6E38A23A5ED6B0059C41D /* SharedTestHelpers.swift */; };
 		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */; };
@@ -110,6 +111,7 @@
 		5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsObserverController.swift; sourceTree = "<group>"; };
 		5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsHeaderController.swift; sourceTree = "<group>"; };
 		5FA6E38823A5EA3D0059C41D /* LoadFeedImageDataFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedImageDataFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		5FA6E38A23A5ED6B0059C41D /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		5FB52C42234D6054008B6D66 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
 		5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeClient.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				5F41969923401D070025549E /* XCTestCase+Conversation.swift */,
 				5F41969B23401D4A0025549E /* XCTestCase+DateFormatter.swift */,
 				5F92EE0823733ADC00582167 /* XCTestCase+JSON.swift */,
+				5FA6E38A23A5ED6B0059C41D /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 			files = (
 				5F6FE3C82292301C0077F8B8 /* URLSessionHTTPClientTests.swift in Sources */,
 				5FA6E38923A5EA3D0059C41D /* LoadFeedImageDataFromRemoteUseCaseTests.swift in Sources */,
+				5FA6E38B23A5ED6B0059C41D /* SharedTestHelpers.swift in Sources */,
 				5F41969C23401D4A0025549E /* XCTestCase+DateFormatter.swift in Sources */,
 				5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */,
 				5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */,
