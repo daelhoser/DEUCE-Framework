@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DEUCE_Framework
 
 public protocol ImageDataLoaderTask {
     func cancel()
