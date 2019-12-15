@@ -29,6 +29,7 @@
 		5F9491042290E078007531EE /* ConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationsLoader.swift */; };
 		5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */; };
 		5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */; };
+		5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
 		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */; };
@@ -40,7 +41,6 @@
 		5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */; };
 		5FEC4431230C8302001AFCA5 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4430230C8302001AFCA5 /* Conversation.swift */; };
 		5FEEF9122319882B00083C51 /* ConversationsRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9112319882B00083C51 /* ConversationsRefreshViewController.swift */; };
-		5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
 		5FEEF918231994AD00083C51 /* ConversationCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF917231994AD00083C51 /* ConversationCellController.swift */; };
 		5FEEF91B23199E9E00083C51 /* ConversationsComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91A23199E9E00083C51 /* ConversationsComposer.swift */; };
 		5FEEF91E2319C51800083C51 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91D2319C51800083C51 /* ConversationViewModel.swift */; };
@@ -234,7 +234,6 @@
 		5F4B31DB230E00CB002CF83F /* DEUCEiOS */ = {
 			isa = PBXGroup;
 			children = (
-				5FEEF913231988E600083C51 /* ImageDataLoader */,
 				5FEEF916231989B900083C51 /* Conversations UI */,
 				5FFBAFFC2314A0BE0097D10A /* ConversationsViewController.swift */,
 				5F4B31DD230E00CB002CF83F /* Info.plist */,
@@ -314,6 +313,7 @@
 				5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */,
 				5F92EE0F23733D1800582167 /* ConversationUser.swift */,
 				5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */,
+				5FEEF9142319890C00083C51 /* ImageDataLoader.swift */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -345,14 +345,6 @@
 				5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		5FEEF913231988E600083C51 /* ImageDataLoader */ = {
-			isa = PBXGroup;
-			children = (
-				5FEEF9142319890C00083C51 /* ImageDataLoader.swift */,
-			);
-			path = ImageDataLoader;
 			sourceTree = "<group>";
 		};
 		5FEEF916231989B900083C51 /* Conversations UI */ = {
@@ -658,7 +650,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */,
-				5FEEF9152319890C00083C51 /* ImageDataLoader.swift in Sources */,
 				5FEEF91B23199E9E00083C51 /* ConversationsComposer.swift in Sources */,
 				5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */,
 				5FEEF9122319882B00083C51 /* ConversationsRefreshViewController.swift in Sources */,
@@ -702,6 +693,7 @@
 				5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */,
 				5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */,
 				5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */,
+				5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */,
 				5FF292A923417C69008540D2 /* ConversationsListener.swift in Sources */,
 				5FE9FC7323A42FFB00ED68E8 /* UsersLoader.swift in Sources */,
 				5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */,
