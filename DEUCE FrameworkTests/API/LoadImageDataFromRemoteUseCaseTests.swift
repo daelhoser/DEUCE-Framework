@@ -1,5 +1,5 @@
 //
-//  LoadFeedImageDataFromRemoteUseCaseTests.swift
+//  LoadImageDataFromRemoteUseCaseTests.swift
 //  DEUCE FrameworkTests
 //
 //  Created by Jose Alvarez on 12/14/19.
@@ -32,7 +32,7 @@ class RemoteFeedImageDataLoader {
     }
 }
 
-class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
+class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
     func test_onInit_doesNotPerformAnyURLRequest() {
         let (_, client) = makeSUT()
         
