@@ -7,10 +7,17 @@
 //
 
 import XCTest
+import DEUCE_Framework
 
 class RemoteFeedImageDataLoader {
-    init(client: Any) {
-        
+    private let client: HTTPClient
+    
+    init(client: HTTPClient) {
+        self.client = client
+    }
+    
+    func loadImageData(url: URL) {
+        client.get(from: url) { _ in }
     }
 }
 
@@ -19,6 +26,15 @@ class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
         let (_, client) = makeSUT()
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
+    }
+    
+    func test_loadImageDataFromURL_requestsDataFromURL() {
+        let (sut, client) = makeSUT()
+        let url = anyURL()
+        
+        sut.loadImageData(url: url)
+
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     // MARK: - Helper Methods
@@ -30,7 +46,12 @@ class LoadFeedImageDataFromRemoteUseCaseTests: XCTestCase {
         return (sut, client)
     }
     
-    private class HTTPClientSpy {
-        var requestedURLs = [URL]()
+}
+
+class HTTPClientSpy: HTTPClient {
+    var requestedURLs = [URL]()
+    
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+        requestedURLs.append(url)
     }
 }
