@@ -154,29 +154,4 @@ class RemoteConversationsLoaderTests: XCTestCase {
     private func failure(_ error: RemoteConversationsLoader.Error) -> RemoteConversationsLoader.Result {
         return .failure(error)
     }
-
-    private class HTTPClientSpy: HTTPClient, HTTPClientHeaders {
-        private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
-
-        var requestedURLs: [URL] {
-            return messages.map { $0.url }
-        }
-
-        func addAdditionalHeaders(headers: [String : String]) {
-        }
-
-        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-            messages.append((url, completion))
-        }
-
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-
-        func complete(with statusCode: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-
-            messages[index].completion(.success(data, response))
-        }
-    }
 }

@@ -20,8 +20,18 @@ class RemoteFeedImageDataLoader {
         case invalidData
     }
     
-    func loadImageData(from url: URL, completion: @escaping (ImageDataLoader.Result) -> Void) {
-        client.get(from: url) { result in
+    class HTTPClientTaskWrapper: ImageDataLoaderTask {
+        var task: HTTPClientTask?
+
+        func cancel() {
+            task?.cancel()
+        }
+    }
+    
+    func loadImageData(from url: URL, completion: @escaping (ImageDataLoader.Result) -> Void) -> HTTPClientTaskWrapper {
+        let taskWrapper = HTTPClientTaskWrapper()
+        
+        taskWrapper.task = client.get(from: url) { result in
             switch result {
             case let .success (data, response):
                 let isValidResponse = response.statusCode == 200 && !data.isEmpty
@@ -30,6 +40,8 @@ class RemoteFeedImageDataLoader {
                 completion(.failure(error))
             }
         }
+        
+        return taskWrapper
     }
 }
 
@@ -44,7 +56,7 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         let (sut, client) = makeSUT()
         let url = anyURL()
         
-        sut.loadImageData(from: url) { _ in }
+        _ = sut.loadImageData(from: url) { _ in }
 
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -53,10 +65,10 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         let (sut, client) = makeSUT()
         let url = anyURL()
         
-        sut.loadImageData(from: url) { _ in }
+        _ = sut.loadImageData(from: url) { _ in }
         
         let anotherURL = URL(string: "another-url")!
-        sut.loadImageData(from: anotherURL) { _ in }
+        _ = sut.loadImageData(from: anotherURL) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url, anotherURL])
     }
@@ -67,7 +79,7 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         let error = NSError(domain: "any error", code: 0)
         
         expect(sut, toCompleteWith: .failure(error), when: {
-            client.completeWith(error: error)
+            client.complete(with: error)
         })
     }
     
@@ -77,10 +89,11 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         let samples = [199, 201, 400, 500, 600]
         let data = "any-data".data(using: .utf8)!
         
-        samples.enumerated().forEach { (index, code) in
+        samples.enumerated().forEach { (arg) in
+            let (index, code) = arg
             expect(sut, toCompleteWith: failure(.invalidData), when: {
                 // Careful in not adding the index parameter. You will face deallocations issues. It is good to invest time in understanding this.
-                client.completeWith(statusCode: code, data: data, at: index)
+                client.complete(with: code, data: data, at: index)
             })
         }
     }
@@ -91,7 +104,7 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         let emptyData = "".data(using: .utf8)!
         
         expect(sut, toCompleteWith: failure(.invalidData), when: {
-            client.completeWith(statusCode: 200, data: emptyData)
+            client.complete(with: 200, data: emptyData)
         })
     }
     
@@ -100,8 +113,19 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         let nonEmptyData = Data("non-empty data".utf8)
         
         expect(sut, toCompleteWith: .success(nonEmptyData), when: {
-            client.completeWith(statusCode: 200, data: nonEmptyData)
+            client.complete(with: 200, data: nonEmptyData)
         })
+    }
+    
+    func test_cancelLoadImageDataURLTask_cancelsClientURLRequest() {
+        let (sut, client) = makeSUT()
+        let url = URL(string: "https://a-given-url.com")!
+        
+        let task = sut.loadImageData(from: url) { _ in }
+        XCTAssertTrue(client.cancelledURLs.isEmpty, "Expected no cancelled URL request until task is cancelled")
+        
+        task.cancel()
+        XCTAssertEqual(client.cancelledURLs, [url], "Expected cancelled URL request after task is cancelled")
     }
     
     // MARK: - Helper Methods
@@ -117,7 +141,7 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         let url = URL(string: "https://a-given-url.com")!
         let exp = expectation(description: "Wait for load completion")
         
-        sut.loadImageData(from: url) { receivedResult in
+        _ = sut.loadImageData(from: url) { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedData), .success(expectedData)):
                 XCTAssertEqual(receivedData, expectedData, file: file, line: line)
@@ -139,28 +163,5 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
     
     private func failure(_ error: RemoteFeedImageDataLoader.Error) -> ImageDataLoader.Result {
         return .failure(error)
-    }
-}
-
-class HTTPClientSpy: HTTPClient {
-    var requestedURLs: [URL] {
-        return messages.map { $0.url }
-    }
-    
-    var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
-    
-    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-        messages.append((url, completion))
-    }
-    
-    func completeWith(error: Error, at index: Int = 0) {
-        messages[index].completion(.failure(error))
-    }
-    
-    func completeWith(statusCode code: Int, data: Data, at index: Int = 0) {
-        let url = messages[index].url
-        let response = HTTPURLResponse(url: url, statusCode: code, httpVersion: nil, headerFields: nil)!
-            
-        messages[index].completion(.success(data, response))
     }
 }

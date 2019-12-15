@@ -17,11 +17,19 @@ public class URLSessionHTTPClient: HTTPClient, HTTPClientHeaders {
     }
 
     private struct UnexpectedValuesRepresentation: Error {}
+    
+    private struct URLSessionTaskWrapper: HTTPClientTask {
+        let wrapped: URLSessionTask
+        
+        func cancel() {
+            wrapped.cancel()
+        }
+    }
 
-    public func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+    public func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) -> HTTPClientTask {
         let request = GETRequest(for: url)
 
-        session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
             } else if let data = data, let response = response as? HTTPURLResponse {
@@ -29,7 +37,10 @@ public class URLSessionHTTPClient: HTTPClient, HTTPClientHeaders {
             } else {
                 completion(.failure(UnexpectedValuesRepresentation()))
             }
-        }.resume()
+        }
+        task.resume()
+        
+        return URLSessionTaskWrapper(wrapped: task)
     }
 
     public func addAdditionalHeaders(headers: [String: String]) {

@@ -38,7 +38,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let clientError = NSError(domain: "any-error", code: 0)
 
         expect(sut: loader, toCompleteWith: failure(.connection), when: {
-            client.completeWith(error: clientError)
+            client.complete(with: clientError)
         })
     }
 
@@ -46,10 +46,11 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let (client, loader) = makeSUT()
 
         let samples = [199, 201, 300, 400, 500]
-
-        samples.enumerated().forEach { (index, sample) in
+        
+        samples.enumerated().forEach { (arg) in
+            let (_, sample) = arg
             expect(sut: loader, toCompleteWith: failure(.invalidData), when: {
-                client.completeWith(statusCode: sample, data: "any-data".data(using: .utf8)!)
+                client.complete(with: sample, data: "any-data".data(using: .utf8)!)
             })
         }
     }
@@ -59,7 +60,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         let unauthorizedStatusCode = 401
 
         expect(sut: loader, toCompleteWith: failure(.unauthorized), when: {
-            client.completeWith(statusCode: unauthorizedStatusCode, data: "any-data".data(using: .utf8)!)
+            client.complete(with: unauthorizedStatusCode, data: "any-data".data(using: .utf8)!)
         })
     }
 
@@ -68,7 +69,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         expect(sut: loader, toCompleteWith: failure(.invalidData), when: {
             let invalidData = "invalid-Data".data(using: .utf8)!
-            client.completeWith(statusCode: 200, data: invalidData)
+            client.complete(with: 200, data: invalidData)
         })
     }
 
@@ -77,7 +78,7 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         expect(sut: loader, toCompleteWith: .success([]), when: {
             let data =  wrapInPayloadAndConvert(array: [])
-            client.completeWith(statusCode: 200, data: data)
+            client.complete(with: 200, data: data)
         })
     }
 
@@ -89,21 +90,21 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
         expect(sut: loader, toCompleteWith: .success([user1.model, user2.model]), when: {
             let data = wrapInPayloadAndConvert(array: [user1.json, user2.json])
-            client.completeWith(statusCode: 200, data: data)
+            client.complete(with: 200, data: data)
         })
     }
 
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         var sut: RemoteConversationUsersLoader?
         let url = URL(string: "https://any-url.com")!
-        let client =  ClientSpy()
+        let client =  HTTPClientSpy()
         sut = RemoteConversationUsersLoader(url: url, client: client)
 
         var capturedResults = [RemoteConversationUsersLoader.Result]()
         sut?.load { capturedResults.append($0) }
 
         sut = nil
-        client.completeWith(statusCode: 200, data: wrapInPayloadAndConvert(array: []))
+        client.complete(with: 200, data: wrapInPayloadAndConvert(array: []))
 
         XCTAssertTrue(capturedResults.isEmpty)
     }
@@ -112,9 +113,9 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
 
     // MARK: - Helper Methods
 
-    private func makeSUT() -> (ClientSpy, RemoteConversationUsersLoader) {
+    private func makeSUT() -> (HTTPClientSpy, RemoteConversationUsersLoader) {
         let url = URL(string: "http://a-url.com")!
-        let client = ClientSpy()
+        let client = HTTPClientSpy()
         let loader = RemoteConversationUsersLoader(url: url, client: client)
 
         trackForMemoryLeaks(object: client)
@@ -163,27 +164,3 @@ class RemoteConversationUsersLoaderTests: XCTestCase {
         return (user, reducedDictionary)
     }
 }
-
-class ClientSpy: HTTPClient {
-    private(set) var requests = [(url: URL, completion: ((HTTPClientResult) -> Void)?)]()
-
-    var requestedURLs: [URL] {
-        return requests.map { $0.url }
-    }
-
-    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-        self.requests.append((url, completion))
-    }
-
-    func completeWith(error: Error) {
-        requests[0].completion?(.failure(error))
-    }
-
-    func completeWith(statusCode code: Int, data: Data) {
-        let url = requests[0].url
-        let response = HTTPURLResponse(url: url, statusCode: code, httpVersion: nil, headerFields: nil)!
-
-        requests[0].completion?(.success(data, response))
-    }
-}
-
