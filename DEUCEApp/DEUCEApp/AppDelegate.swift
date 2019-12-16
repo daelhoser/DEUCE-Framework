@@ -7,6 +7,13 @@
 //
 
 import UIKit
+import DEUCE_Framework
+import DEUCEiOS
+
+class MockRealtimeClient: RealTimeClient {
+    func connect(result: @escaping (RealTimeClientResult) -> Void) {
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let session = URLSession(configuration: .ephemeral)
+        let client = URLSessionHTTPClient(session: session)
+        let url = URL(string: "https://private-cc34f7-deuce2.apiary-mock.com/conversations")!
+        
+        let conversationsLoader = RemoteConversationsLoader(url: url, client: client)
+        let realTimeClient = MockRealtimeClient()
+        let listener = RealTimeConversationsListener(client: realTimeClient)
+        let loaderAndListener = ConversationsLoaderAndRealtimeListener(remoteLoader: conversationsLoader, realtimeLoader: listener)
+        let imageLoader = RemoteImageDataLoader(client: client)
+        
+        let viewController = ConversationsComposer.conversationsComposedWith(conversationsLoader: loaderAndListener, imageDataLoader: imageLoader)
+        
+        window?.rootViewController = viewController
+        
         return true
     }
 
