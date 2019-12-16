@@ -12,7 +12,7 @@ public final class ConversationsLoaderAndRealtimeListener: ConversationsLoaderAn
     private let remoteLoader: ConversationsLoader
     private let realtimeLoader: ConversationsListener
 
-    init(remoteLoader: ConversationsLoader, realtimeLoader: ConversationsListener) {
+    public init(remoteLoader: ConversationsLoader, realtimeLoader: ConversationsListener) {
         self.remoteLoader = remoteLoader
         self.realtimeLoader = realtimeLoader
     }
