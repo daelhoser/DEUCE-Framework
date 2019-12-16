@@ -121,7 +121,7 @@
 		5FB5EF29231DC8BA00158FF6 /* RealTimeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeClient.swift; sourceTree = "<group>"; };
 		5FB5EF2B231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsLoaderTests.swift; sourceTree = "<group>"; };
 		5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoader.swift; sourceTree = "<group>"; };
-		5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DEUCEConversationStatusEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FEC4422230B680E001AFCA5 /* ConversationsEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConversationsEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsEndToEndTests.swift; sourceTree = "<group>"; };
 		5FEC4426230B680E001AFCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsMapper.swift; sourceTree = "<group>"; };
@@ -439,7 +439,7 @@
 			children = (
 				5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */,
 				5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */,
-				5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */,
+				5FEC4422230B680E001AFCA5 /* ConversationsEndToEndTests.xctest */,
 				5F4B31DA230E00CB002CF83F /* DEUCEiOS.framework */,
 				5F4B31E2230E00CB002CF83F /* DEUCEiOSTests.xctest */,
 			);
@@ -534,9 +534,9 @@
 			productReference = 5F4B31E2230E00CB002CF83F /* DEUCEiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5FEC4421230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */ = {
+		5FEC4421230B680E001AFCA5 /* ConversationsEndToEndTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FEC442C230B680E001AFCA5 /* Build configuration list for PBXNativeTarget "DEUCEConversationStatusEndToEndTests" */;
+			buildConfigurationList = 5FEC442C230B680E001AFCA5 /* Build configuration list for PBXNativeTarget "ConversationsEndToEndTests" */;
 			buildPhases = (
 				5FEC441E230B680E001AFCA5 /* Sources */,
 				5FEC441F230B680E001AFCA5 /* Frameworks */,
@@ -547,9 +547,9 @@
 			dependencies = (
 				5FEC4429230B680E001AFCA5 /* PBXTargetDependency */,
 			);
-			name = DEUCEConversationStatusEndToEndTests;
+			name = ConversationsEndToEndTests;
 			productName = DEUCEConversationStatusEndToEndTests;
-			productReference = 5FEC4422230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests.xctest */;
+			productReference = 5FEC4422230B680E001AFCA5 /* ConversationsEndToEndTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		5FF272B6228249BF00E4486C /* DEUCE Framework */ = {
@@ -634,7 +634,7 @@
 			targets = (
 				5FF272B6228249BF00E4486C /* DEUCE Framework */,
 				5FF272BF228249BF00E4486C /* DEUCE FrameworkTests */,
-				5FEC4421230B680E001AFCA5 /* DEUCEConversationStatusEndToEndTests */,
+				5FEC4421230B680E001AFCA5 /* ConversationsEndToEndTests */,
 				5F4B31D9230E00CB002CF83F /* DEUCEiOS */,
 				5F4B31E1230E00CB002CF83F /* DEUCEiOSTests */,
 			);
@@ -894,18 +894,18 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QSBZN86NZC;
-				INFOPLIST_FILE = DEUCEConversationStatusEndToEndTests/Info.plist;
+				DEVELOPMENT_TEAM = 5M6V4BGSTB;
+				INFOPLIST_FILE = ConversationsEndToEndTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.DEUCEConversationStatusEndToEndTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.ConversationsEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -915,18 +915,18 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QSBZN86NZC;
-				INFOPLIST_FILE = DEUCEConversationStatusEndToEndTests/Info.plist;
+				DEVELOPMENT_TEAM = 5M6V4BGSTB;
+				INFOPLIST_FILE = ConversationsEndToEndTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.DEUCEConversationStatusEndToEndTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.ConversationsEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1169,7 +1169,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FEC442C230B680E001AFCA5 /* Build configuration list for PBXNativeTarget "DEUCEConversationStatusEndToEndTests" */ = {
+		5FEC442C230B680E001AFCA5 /* Build configuration list for PBXNativeTarget "ConversationsEndToEndTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FEC442A230B680E001AFCA5 /* Debug */,
