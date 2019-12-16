@@ -27,7 +27,9 @@ class ConversationsEndToEndTests: XCTestCase {
     // MARK: - Helpers
 
     private func getFeedResult(file: StaticString = #file, line: UInt = #line) -> LoadConversationsResult? {
-        let testServerURL = URL(string: "http://desktop-l87s12t:54368/api/ConversationStatus/Latest")!
+//        let testServerURL = URL(string: "http://desktop-l87s12t:54368/api/ConversationStatus/Latest")!
+        let testServerURL = URL(string: "https://private-cc34f7-deuce2.apiary-mock.com/conversations")!
+
         let client = URLSessionHTTPClient()
         client.addAdditionalHeaders(headers: authorizationHeader())
         let loader = RemoteConversationsLoader(url: testServerURL, client: client)
