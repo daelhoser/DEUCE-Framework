@@ -27,6 +27,7 @@
 		5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE0F23733D1800582167 /* ConversationUser.swift */; };
 		5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE112373478700582167 /* ConversationUsersMapper.swift */; };
 		5F9491042290E078007531EE /* ConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationsLoader.swift */; };
+		5FA4BD6F23A7F2D000ECEBAA /* RemoteImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4BD6E23A7F2D000ECEBAA /* RemoteImageDataLoader.swift */; };
 		5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */; };
 		5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */; };
 		5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
@@ -109,6 +110,7 @@
 		5F92EE0F23733D1800582167 /* ConversationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUser.swift; sourceTree = "<group>"; };
 		5F92EE112373478700582167 /* ConversationUsersMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUsersMapper.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoader.swift; sourceTree = "<group>"; };
+		5FA4BD6E23A7F2D000ECEBAA /* RemoteImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageDataLoader.swift; sourceTree = "<group>"; };
 		5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsObserverController.swift; sourceTree = "<group>"; };
 		5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsHeaderController.swift; sourceTree = "<group>"; };
 		5FA6E38A23A5ED6B0059C41D /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -234,8 +236,6 @@
 		5F419696234019F70025549E /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
-				5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */,
-				5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -291,8 +291,6 @@
 		5F92EE0A23733B6800582167 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				5F92EE0B23733B8A00582167 /* RemoteConversationUsersLoader.swift */,
-				5F92EE112373478700582167 /* ConversationUsersMapper.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -311,6 +309,34 @@
 				5F92EE0A23733B6800582167 /* API */,
 			);
 			path = "Conversation Users";
+			sourceTree = "<group>";
+		};
+		5FA4BD6B23A7F29900ECEBAA /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5FA4BD6D23A7F2B300ECEBAA /* Users */,
+				5FA4BD6C23A7F2A500ECEBAA /* Conversations */,
+				5FA4BD6E23A7F2D000ECEBAA /* RemoteImageDataLoader.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5FA4BD6C23A7F2A500ECEBAA /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				5F349D4522824AFC0058AF4F /* RemoteConversationsLoader.swift */,
+				5FEC442E230C8274001AFCA5 /* ConversationsMapper.swift */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
+		5FA4BD6D23A7F2B300ECEBAA /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				5F92EE0B23733B8A00582167 /* RemoteConversationUsersLoader.swift */,
+				5F92EE112373478700582167 /* ConversationUsersMapper.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		5FA6E38623A5E6AF0059C41D /* Feature */ = {
@@ -423,6 +449,7 @@
 		5FF272B9228249BF00E4486C /* DEUCE Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5FA4BD6B23A7F29900ECEBAA /* API */,
 				5FA6E38623A5E6AF0059C41D /* Feature */,
 				5FE9FC7023A42D9D00ED68E8 /* HTTP */,
 				5F60848B228616C200B23235 /* Helpers */,
@@ -700,6 +727,7 @@
 			files = (
 				5F0A1E47230B2C5600E8DD71 /* URLSessionHTTPClient.swift in Sources */,
 				5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */,
+				5FA4BD6F23A7F2D000ECEBAA /* RemoteImageDataLoader.swift in Sources */,
 				5FB5EF2A231DC8BA00158FF6 /* RealTimeClient.swift in Sources */,
 				5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */,
 				5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */,
