@@ -9,7 +9,7 @@
 import XCTest
 import DEUCE_Framework
 
-class RemoteFeedImageDataLoader {
+class RemoteImageDataLoader {
     private let client: HTTPClient
     
     init(client: HTTPClient) {
@@ -163,15 +163,15 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
     }
     
     // MARK: - Helper Methods
-    private func makeSUT(url: URL = anyURL(), file: StaticString = #file, line: UInt = #line) -> (sut: RemoteFeedImageDataLoader, client: HTTPClientSpy) {
+    private func makeSUT(url: URL = anyURL(), file: StaticString = #file, line: UInt = #line) -> (sut: RemoteImageDataLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteFeedImageDataLoader(client: client)
+        let sut = RemoteImageDataLoader(client: client)
         trackForMemoryLeaks(object: sut, file: file, line: line)
         trackForMemoryLeaks(object: client, file: file, line: line)
         return (sut, client)
     }
     
-    private func expect(_ sut: RemoteFeedImageDataLoader, toCompleteWith expectedResult: ImageDataLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: RemoteImageDataLoader, toCompleteWith expectedResult: ImageDataLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let url = URL(string: "https://a-given-url.com")!
         let exp = expectation(description: "Wait for load completion")
         
@@ -195,7 +195,7 @@ class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func failure(_ error: RemoteFeedImageDataLoader.Error) -> ImageDataLoader.Result {
+    private func failure(_ error: RemoteImageDataLoader.Error) -> ImageDataLoader.Result {
         return .failure(error)
     }
 }
