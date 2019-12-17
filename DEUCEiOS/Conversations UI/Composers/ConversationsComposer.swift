@@ -33,6 +33,7 @@ public final class ConversationsComposer {
                 let viewModel = ConversationCellViewModel(model: model, imageDataLoader: loader, imageTransformer: UIImage.init)
                 return ConversationCellController(viewModel: viewModel)
             }
+            controller?.tableView.reloadData()
         }
     }
 

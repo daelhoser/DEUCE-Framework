@@ -37,6 +37,7 @@ final class ConversationCellController {
     }
 
     private func binded(cell: ConversationCell) {
+        cell.initialsLabel.isHidden = false
         cell.initialsLabel.text = viewModel.initials
         cell.nameLabel.text = viewModel.userGroupName
         cell.messageLabel.text = viewModel.message

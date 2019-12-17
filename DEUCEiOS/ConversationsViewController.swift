@@ -9,11 +9,7 @@
 import UIKit
 
 public final class ConversationsViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    var tableModel = [ConversationCellController]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var tableModel = [ConversationCellController]()
     var refreshController: ConversationsRefreshViewController?
     public private(set) var observerController: ConversationsObserverController?
     var headerController: ConversationsHeaderController?
@@ -58,7 +54,9 @@ public final class ConversationsViewController: UITableViewController, UITableVi
         if let index = indexOfExistingController {
             tableModel.remove(at: index)
         }
-        tableModel.append(controller)
+        tableModel.insert(controller, at: 0)
+        
+        tableView.reloadData()
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
