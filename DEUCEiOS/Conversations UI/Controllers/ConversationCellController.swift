@@ -20,8 +20,9 @@ final class ConversationCellController {
         self.viewModel = viewModel
     }
 
-    func view() -> UITableViewCell {
-        let cell = binded(cell: ConversationCell())
+    func view(in tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationCell") as! ConversationCell
+        binded(cell: cell)
         viewModel.loadImageData()
 
         return cell
@@ -35,28 +36,27 @@ final class ConversationCellController {
         viewModel.cancelImageDataLoad()
     }
 
-    private func binded(cell: ConversationCell) -> ConversationCell {
+    private func binded(cell: ConversationCell) {
         cell.initialsLabel.text = viewModel.initials
         cell.nameLabel.text = viewModel.userGroupName
         cell.messageLabel.text = viewModel.message
         cell.dateLabel?.text = viewModel.lastMessageTime
-        cell.profileImageViewContainer.isShimmering = true
+        cell.profileImageView.isShimmering = true
         cell.profileImageRetry.isHidden = true
         cell.profileImageView.image = nil
         cell.onRetry = viewModel.loadImageData
 
         viewModel.onImageLoad = { [weak cell] image in
             cell?.profileImageView.image = image
+            cell?.initialsLabel.isHidden = true
         }
 
         viewModel.onImageLoadingStateChange = { [weak cell] isLoading in
-            cell?.profileImageViewContainer.isShimmering = isLoading
+            cell?.profileImageView.isShimmering = isLoading
         }
 
         viewModel.onShouldRetryImageLoadStateChange = { [weak cell] shouldRetry in
             cell?.profileImageRetry.isHidden = !shouldRetry
         }
-
-        return cell
     }
 }

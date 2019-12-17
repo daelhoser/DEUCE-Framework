@@ -28,6 +28,7 @@
 		5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92EE112373478700582167 /* ConversationUsersMapper.swift */; };
 		5F9491042290E078007531EE /* ConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationsLoader.swift */; };
 		5FA4BD6F23A7F2D000ECEBAA /* RemoteImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4BD6E23A7F2D000ECEBAA /* RemoteImageDataLoader.swift */; };
+		5FA4BD7623A84D2B00ECEBAA /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FA4BD7523A84D2B00ECEBAA /* ConversationCell.xib */; };
 		5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */; };
 		5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */; };
 		5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
@@ -111,6 +112,7 @@
 		5F92EE112373478700582167 /* ConversationUsersMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationUsersMapper.swift; sourceTree = "<group>"; };
 		5F9491032290E078007531EE /* ConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoader.swift; sourceTree = "<group>"; };
 		5FA4BD6E23A7F2D000ECEBAA /* RemoteImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageDataLoader.swift; sourceTree = "<group>"; };
+		5FA4BD7523A84D2B00ECEBAA /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsObserverController.swift; sourceTree = "<group>"; };
 		5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsHeaderController.swift; sourceTree = "<group>"; };
 		5FA6E38A23A5ED6B0059C41D /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				5F7CAF0F2316FBA30088D5AC /* ConversationCell.swift */,
+				5FA4BD7523A84D2B00ECEBAA /* ConversationCell.xib */,
 				5F7CAF112316FFEB0088D5AC /* UIView+Shimmering.swift */,
 				5F3082F6234BA534005B9CC0 /* HeaderView.swift */,
 				5FB52C42234D6054008B6D66 /* TryAgainView.swift */,
@@ -646,6 +649,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FA4BD7623A84D2B00ECEBAA /* ConversationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

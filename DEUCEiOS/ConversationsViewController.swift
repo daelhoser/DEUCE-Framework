@@ -37,6 +37,10 @@ public final class ConversationsViewController: UITableViewController, UITableVi
         observerController?.onStatusChange = { [weak self] state in
             self?.headerController?.update(string: state)
         }
+        
+        let bundle = Bundle(for: ConversationCell.self)
+        let nib = UINib(nibName: "ConversationCell", bundle: bundle)
+        tableView.register(nib, forCellReuseIdentifier: "ConversationCell")
 
         observerController?.observe()
         refreshController?.refresh()
@@ -62,7 +66,7 @@ public final class ConversationsViewController: UITableViewController, UITableVi
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellController(forRowAt: indexPath).view()
+        return cellController(forRowAt: indexPath).view(in: tableView)
     }
 
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {

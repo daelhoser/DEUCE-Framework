@@ -9,22 +9,24 @@
 import UIKit
 
 public final class ConversationCell: UITableViewCell {
-    public var profileImageView: UIImageView! = UIImageView()
-    public var profileImageViewContainer: UIView! = UIView()
-    public var initialsLabel: UILabel! = UILabel()
-    public var nameLabel: UILabel! = UILabel()
-    public var messageLabel: UILabel! = UILabel()
-    public var dateLabel: UILabel? = UILabel()
-    private(set) public lazy var profileImageRetry: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
-
-        return button
-    }()
+    @IBOutlet public weak var profileImageView: UIImageView!
+    @IBOutlet public weak var initialsLabel: UILabel!
+    @IBOutlet public weak var nameLabel: UILabel!
+    @IBOutlet public weak var messageLabel: UILabel!
+    @IBOutlet public weak var dateLabel: UILabel!
+    @IBOutlet private(set) weak var profileImageRetry: UIButton!
 
     var onRetry: (() -> Void)?
 
-    @objc private func retryButtonTapped() {
+    @IBAction private func retryButtonTapped() {
         onRetry?()
+    }
+    
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        profileImageView.layer.borderWidth = 1.0
+        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2.0
+        profileImageView.layer.borderColor = UIColor.darkGray.cgColor
     }
 }
