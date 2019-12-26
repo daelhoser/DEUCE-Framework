@@ -51,7 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let session = URLSession(configuration: .ephemeral)
         let client = URLSessionHTTPClient(session: session)
-        let url = URL(string: "https://private-cc34f7-deuce2.apiary-mock.com/conversations")!
+        client.addAdditionalHeaders(headers: ["Content-Type": "application/json", "Authorization": "bearer cUQDqfHosx3t74qCf5xCYCqIVSEh4IeQFuliE9a_uBVOCLZlpk2f3lFLL2ym2dnt7-PFvbYtSO_IwvoF8HmSZRaTZBtTmGz04FGacLekyiGX5TN9Gf02MrujkCeb1iT4vsuQozPesE5Zcg7vZpudT5GoEEwRXnbNals7EH4LMYxT03ORIE8dh1YfREDCbQw9dq2KYm_6hqiegDZGNy7WmYWgwzIx5DhsnW5pfDEtI68pG1zC7ue_qIcmcdjx8RisYSjNaHhX5nZnEjSUPzfdpPPu7CUprwACjB76yAFvg0QEgLRGl0WOGqrEl4Q6Tj5WXhZgMX-ezNp5C0bkiFCYM08G_OVXM1IN0s8Rl1yrUVfE6on8d3-8TsPVQYzJ859_-9u7jPBMTaMDf_O_VyUBu6sv1DdJ-15eJ9a3H1Z3-3t_wHECbMZ-mHBGu-uaJSd0e_s8OXEDMq5fsQoLyZe4x6X8PWJOUPzoZ_cp5cwR67tqPIhQbjTejQ290zfkm7KZD_x4V7mAt2HWRXEeGP9_cQ"])
+        //        let url = URL(string: "https://private-cc34f7-deuce2.apiary-mock.com/conversations")!
+        let url = URL(string: "http://172.17.147.90/api/ConversationStatus/Latest")!
         
         let conversationsLoader = RemoteConversationsLoader(url: url, client: client)
         let realTimeClient = MockRealtimeClient()
