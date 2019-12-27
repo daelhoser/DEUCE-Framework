@@ -75,9 +75,9 @@ class RealTimeConversationsLoaderTests: XCTestCase {
 
 
     // MARK - Helper methods
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationsListener) {
+    private func makeSUT(url: URL = URL(string: "http://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationsListener) {
         let client = RealTimeClientSpy()
-        let loader = RealTimeConversationsListener(client: client)
+        let loader = RealTimeConversationsListener(client: client, url: url)
 
         trackForMemoryLeaks(object: client, file: file, line: line)
         trackForMemoryLeaks(object: loader, file: file, line: line)
@@ -117,7 +117,7 @@ class RealTimeClientSpy: RealTimeClient {
     }
     private var completions = [(RealTimeClientResult) -> Void]()
 
-    func connect(result: @escaping (RealTimeClientResult) -> Void) {
+    func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
         completions.append(result)
     }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol RealTimeClient {
-    func connect(result: @escaping (RealTimeClientResult) -> Void)
+    func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void)
 }
 
 public enum RealTimeClientResult {
