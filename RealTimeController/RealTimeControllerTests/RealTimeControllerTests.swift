@@ -10,6 +10,10 @@ import XCTest
 
 import RealTimeController
 
+enum RealTimeResult {
+    case failed(RealTimeController.Error)
+}
+
 class RealTimeController {
     let client: ClientSpy
     
@@ -21,8 +25,10 @@ class RealTimeController {
         self.client = client
     }
     
-    func connect(completion: @escaping (Error) -> Void) {
-        client.connect(completion: completion)
+    func connect(completion: @escaping (RealTimeResult) -> Void) {
+        client.connect { (error) in
+            completion(.failed(error))
+        }
     }
 }
 
@@ -38,15 +44,19 @@ class RealTimeControllerTests: XCTestCase {
         let client = ClientSpy()
         let sut = RealTimeController(client: client)
         
-        var capturedError: RealTimeController.Error?
+        var capturedResult: RealTimeResult?
         
-        sut.connect() { error in
-            capturedError = error
+        sut.connect() { result in
+            capturedResult = result
         }
         
         client.connect(withError: .connectivity)
         
-        XCTAssertEqual([capturedError], [RealTimeController.Error.connectivity])
+        let expectedResult = RealTimeResult.failed(RealTimeController.Error.connectivity)
+        
+        if case let .failed(capturedError)? = capturedResult, case let .failed(expectedError) = expectedResult {
+            XCTAssertEqual(capturedError, expectedError)
+        }
     }
 }
 
