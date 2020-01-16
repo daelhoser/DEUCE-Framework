@@ -60,9 +60,23 @@ class RealTimeControllerTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 10.0)
         
         XCTAssertEqual(capturedResult, RealTimeClientResult.connected)
+    }
+    
+    private func makeSUT() -> (connection: RealTimeConnection, proxy: RealTimeProxy, sut: SignalRClient) {
+//        let connection = HubConnection(withUrl: "http://172.17.147.90")
+//        connection.addValue(value: "Bearer Xm2mk0_R_0b5DYr95Mgo0AtH0-6yed8NgXHPFRtMYfy4wEKtdq8cjy69j6-pQjVKtU5tMGTIcbd0AMQqr4xEvcHuRUNs6HrFS6HW9FJLb6DsjrKV7ycjhTysRRua5sUYVAfO5y-sDAF_cr83HSNZ-Rt2VvStydXQkwIwYpuNanMfKAmmvEDSgirErPaz9fmwUAZiOzMRXHuoF57XgQ_it3PUFvArvM9gNzVfPg5FYEJ0XzY2x1MnbT_uIskhppjNN5kEkf--1ntCWjvlhBwL3jbl57dBz2Y0ZmLgrWFWLr2B9S2XCbIMV7CZZCLo2B5CuQmJyUBUm3pA9Q3vfbiRXeCjCAbq3AUcfQCmF4r_FsKHhEGQluZRe4UxGOdOCKpLmADLoGrNN-wlFOP44-Jp3gf8l5meFa-wLrYgNA1VB0X-RAl0oz4PdrBKvMjjonq9bjgJXJoZE4FmoSWNvdHv5jIVWiSMN6Aws6h6fP8h5hCKob1mhN3vYEhJ3J4zqR9nMqRasID0yTEZ4ajCT1tFog", forHttpHeaderField: "Authorization")
+//        let proxy = connection.createHubProxy(hubName: "chathub")!
+//        let realTimeClient = SignalRClient(proxy: proxy, connection: connection)
+//
+//        return (connection, proxy, realTimeClient)
+        
+        let spy = RealTimeSpy()
+        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+
+        return (spy, spy, realTimeClient)
     }
 }
 
@@ -89,3 +103,7 @@ extension RealTimeClientResult: Equatable {
         }
     }
 }
+
+extension HubProxy: RealTimeProxy {}
+
+extension HubConnection: RealTimeConnection {}
