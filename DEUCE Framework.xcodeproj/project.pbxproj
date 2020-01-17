@@ -219,7 +219,6 @@
 		5F349D4422824AE20058AF4F /* API */ = {
 			isa = PBXGroup;
 			children = (
-				5F419696234019F70025549E /* HTTP */,
 				5F419695234019A00025549E /* Realtime */,
 				5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */,
 			);
@@ -233,13 +232,6 @@
 				5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */,
 			);
 			path = Realtime;
-			sourceTree = "<group>";
-		};
-		5F419696234019F70025549E /* HTTP */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HTTP;
 			sourceTree = "<group>";
 		};
 		5F4B31DB230E00CB002CF83F /* DEUCEiOS */ = {
