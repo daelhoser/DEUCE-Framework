@@ -15,6 +15,7 @@ public protocol RealTimeClient {
 
 public enum RealTimeClientResult {
     case connected
+    case slow
     case failed(Error)
     case newMessage([String: Any])
 }

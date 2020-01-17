@@ -30,6 +30,8 @@ final public class RealTimeConversationsListener: ConversationsListener {
             switch result {
             case .connected:
                 completion(.connected)
+            case .slow:
+                completion(.slow)
             case .failed:
                 completion(.failed(Error.connection))
             case let .newMessage(dictionary):

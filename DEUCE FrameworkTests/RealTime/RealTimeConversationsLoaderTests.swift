@@ -54,6 +54,20 @@ class RealTimeConversationsLoaderTests: XCTestCase {
             client.completesWithError(clientError, at: 1)
         })
     }
+    
+    func test_onConnected_notifiesConnectionSlowOnConnectionSlow() {
+        let (client, loader) = makeSUT()
+
+        expect(sut: loader, toCompleteWith: .connected, when: {
+            client.completesWithSuccess()
+        })
+
+        let clientError = NSError(domain: "connection lost error", code: 0)
+        expect(sut: loader, toCompleteWith: failure(.connection), when: {
+            //Note that removing the 'at: 1' parameter causes a memory leak plus an failed test. Review code to better understand.
+            client.completesWithError(clientError, at: 1)
+        })
+    }
 
     func test_onConnected_notifiesNewMessageOnNewMessageReceived() {
         let (client, loader) = makeSUT()
@@ -130,6 +144,10 @@ class RealTimeClientSpy: RealTimeClient {
 
     func completesWithSuccess(at index: Int = 0) {
         completions[index](.connected)
+    }
+    
+    func completeWithSlowConnection(at index: Int = 0) {
+        completions[index](.slow)
     }
 
     func completeWithNewMessage(_ message: [String: Any], at index: Int = 0) {
