@@ -55,6 +55,15 @@ class RealTimeControllerTests: XCTestCase {
         XCTAssertEqual(spy.connectionRequests, 0)
     }
     
+    func test_onConnect_startsConnections() {
+        let spy = RealTimeSpy()
+        let sut = SignalRClient(proxy: spy, connection: spy)
+        
+        sut.connectTo(url: URL(string: "www.google.com")!) { _ in }
+        
+        XCTAssertEqual(spy.connectionRequests, 1)
+    }
+    
     func test_onConnect_ReturnsErrorOnClientError() {
         let spy = RealTimeSpy()
         let realTimeClient = SignalRClient(proxy: spy, connection: spy)
@@ -126,6 +135,7 @@ class RealTimeSpy: RealTimeProxy, RealTimeConnection {
     var error: ((Error) -> Void)?
 
     func start() {
+        connectionRequests += 1
     }
     
     func successfullyConnect() {
