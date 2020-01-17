@@ -40,6 +40,15 @@ class RealTimeConversationsLoaderTests: XCTestCase {
             client.completesWithSuccess()
         })
     }
+    
+    func test_onDisconnect_notifiesDisconnectedOnClientDisconnection() {
+        let (client, loader) = makeSUT()
+
+        expect(sut: loader, toCompleteWith: .disconnected, when: {
+            client.completesWithDisconnected()
+        })
+    }
+
 
     func test_onConnected_notitiesConnectionLostOnConnectionLost() {
         let (client, loader) = makeSUT()
@@ -106,6 +115,8 @@ class RealTimeConversationsLoaderTests: XCTestCase {
             switch (expectedResult, receivedResult) {
             case (.connected, .connected):
                 break
+            case (.disconnected, .disconnected):
+                break
             case let (.failed(expectedError), .failed(receivedError)):
                 XCTAssertEqual(expectedError as! RealTimeConversationsListener.Error, receivedError  as! RealTimeConversationsListener.Error, file: file, line: line)
             case let (.newMessage(expectedMessage), .newMessage(receivedMessage)):
@@ -144,6 +155,10 @@ class RealTimeClientSpy: RealTimeClient {
 
     func completesWithSuccess(at index: Int = 0) {
         completions[index](.connected)
+    }
+    
+    func completesWithDisconnected(at index: Int = 0) {
+        completions[index](.disconnected)
     }
     
     func completeWithSlowConnection(at index: Int = 0) {

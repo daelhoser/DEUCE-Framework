@@ -21,6 +21,7 @@ protocol RealTimeConnection {
     var started: (() -> Void)? { set get }
     var error: ((Error) -> Void)? { set get }
     var connectionSlow: (() -> Void)? { set get }
+    var closed: (() -> Void)? { set get }
 }
 
 final class SignalRClient: RealTimeClient  {
@@ -47,6 +48,10 @@ final class SignalRClient: RealTimeClient  {
         
         connection.connectionSlow = {
             result(.slow)
+        }
+        
+        connection.closed = {
+            result(.disconnected)
         }
 
         connection.start()
@@ -130,6 +135,30 @@ class RealTimeControllerTests: XCTestCase {
         XCTAssertTrue(spy.calledStopConnection)
     }
     
+    func test_onDisconnected_returnsConnectionDisconnected() {
+        let spy = RealTimeSpy()
+        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+        
+        var capturedResults = [RealTimeClientResult]()
+        
+        let exp = expectation(description: "Waiting to connect")
+        exp.expectedFulfillmentCount = 2
+        
+        realTimeClient.connectTo(url: URL(string: "www.google.com")!) { (result) in
+            capturedResults.append(result)
+            
+            exp.fulfill()
+        }
+        
+        spy.successfullyConnect()
+        spy.simulateDisconnected()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(capturedResults, [RealTimeClientResult.connected, RealTimeClientResult.disconnected])
+    }
+
+    
     func test_onSlowConnection_returnsSlowConnectionResult() {
         let spy = RealTimeSpy()
         let realTimeClient = SignalRClient(proxy: spy, connection: spy)
@@ -177,6 +206,7 @@ class RealTimeSpy: RealTimeProxy, RealTimeConnection {
     var started: (() -> Void)?
     var error: ((Error) -> Void)?
     var connectionSlow: (() -> Void)?
+    var closed: (() -> Void)?
 
     func start() {
         connectionRequests += 1
@@ -189,6 +219,10 @@ class RealTimeSpy: RealTimeProxy, RealTimeConnection {
     
     func successfullyConnect() {
         started?()
+    }
+    
+    func simulateDisconnected() {
+        closed?()
     }
     
     func connectWith(error: Error) {
@@ -207,6 +241,8 @@ extension RealTimeClientResult: Equatable {
         case (.connected, .connected):
             return true
         case (.slow, .slow):
+            return true
+        case (.disconnected, .disconnected):
             return true
         default:
             return false

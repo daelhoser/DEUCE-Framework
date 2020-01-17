@@ -10,6 +10,7 @@ import Foundation
 
 public enum Status {
     case connected
+    case disconnected
     case slow
     case failed(Error)
     case newMessage(Conversation)
