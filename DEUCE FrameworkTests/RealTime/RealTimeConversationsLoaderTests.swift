@@ -120,6 +120,9 @@ class RealTimeClientSpy: RealTimeClient {
     func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
         completions.append(result)
     }
+    
+    func stop() {
+    }
 
     func completesWithError(_ error: NSError, at index: Int = 0) {
         self.completions[index](.failed(error))
