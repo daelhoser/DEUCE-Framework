@@ -18,11 +18,16 @@ protocol RealTimeProxy {
 protocol RealTimeConnection {
     func start()
     var started: (() -> Void)? { set get }
+    var error: ((Error) -> Void)? { set get }
 }
 
 final class SignalRClient: RealTimeClient  {
     let proxy: RealTimeProxy
     var connection: RealTimeConnection
+    
+    enum Error: Swift.Error {
+        case clientError
+    }
     
     init(proxy: RealTimeProxy, connection: RealTimeConnection) {
         self.proxy = proxy
@@ -32,6 +37,10 @@ final class SignalRClient: RealTimeClient  {
     func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
         connection.started = {
             result(.connected)
+        }
+        
+        connection.error = { (error) in
+            result(.failed(Error.clientError))
         }
 
         connection.start()
@@ -44,6 +53,32 @@ class RealTimeControllerTests: XCTestCase {
         _ = SignalRClient(proxy: spy, connection: spy)
         
         XCTAssertEqual(spy.connectionRequests, 0)
+    }
+    
+    func test_onConnect_ReturnsErrorOnClientError() {
+        let spy = RealTimeSpy()
+        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+                
+        var capturedResult: RealTimeClientResult?
+        
+        let exp = expectation(description: "Waiting to connect")
+        
+        realTimeClient.connectTo(url: URL(string: "www.google.com")!) { (result) in
+            capturedResult = result
+            
+            exp.fulfill()
+        }
+        
+        let error = NSError(domain: "any-Error", code: 0)
+        spy.connectWith(error: error)
+        
+        wait(for: [exp], timeout: 10.0)
+        
+        if let capturedResult = capturedResult, case RealTimeClientResult.failed(let error) = capturedResult {
+            XCTAssertEqual(error as! SignalRClient.Error, SignalRClient.Error.clientError)
+        } else {
+            XCTFail("Expected \(SignalRClient.Error.clientError), got \(String(describing: capturedResult)) instead")
+        }
     }
     
     func test_onConnect_ReturnsConnectedResultWhenConnectionSuccessful() {
@@ -59,6 +94,8 @@ class RealTimeControllerTests: XCTestCase {
             
             exp.fulfill()
         }
+        
+        spy.successfullyConnect()
         
         wait(for: [exp], timeout: 10.0)
         
@@ -86,9 +123,17 @@ class RealTimeSpy: RealTimeProxy, RealTimeConnection {
     // MARK: - RealTimeConnection
     
     var started: (() -> Void)?
+    var error: ((Error) -> Void)?
 
     func start() {
+    }
+    
+    func successfullyConnect() {
         started?()
+    }
+    
+    func connectWith(error: Error) {
+        self.error?(error)
     }
 }
 
