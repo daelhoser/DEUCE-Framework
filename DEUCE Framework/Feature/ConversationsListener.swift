@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Status {
+public enum ConnectionStatus {
     case connected
     case disconnected
     case slow
@@ -17,5 +17,5 @@ public enum Status {
 }
 
 public protocol ConversationsListener {
-    func listen(completion: @escaping (Status) -> Void)
+    func listen(completion: @escaping (ConnectionStatus) -> Void)
 }

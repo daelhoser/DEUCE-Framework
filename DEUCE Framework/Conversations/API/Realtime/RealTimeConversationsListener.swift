@@ -17,7 +17,7 @@ final public class RealTimeConversationsListener: ConversationsListener {
         case invalidData
     }
 
-    public typealias Result = Status
+    public typealias Status = ConnectionStatus
 
 
     public init(connection: RealTimeConnection, url: URL) {
@@ -25,7 +25,7 @@ final public class RealTimeConversationsListener: ConversationsListener {
         self.url = url
     }
 
-    public func listen(completion: @escaping (Result) -> Void) {
+    public func listen(completion: @escaping (Status) -> Void) {
         connection.start() { (result) in
             switch result {
             case .connected:
@@ -40,7 +40,7 @@ final public class RealTimeConversationsListener: ConversationsListener {
         }
     }
 
-    static func map(dictionary: [String: Any]) -> Status {
+    static func map(dictionary: [String: Any]) -> ConnectionStatus {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 

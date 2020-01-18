@@ -89,7 +89,7 @@ class RealTimeConversationsLoaderTests: XCTestCase {
         return (client, loader)
     }
 
-    private func expect(sut: RealTimeConversationsListener, toCompleteWith expectedResult: Status, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(sut: RealTimeConversationsListener, toCompleteWith expectedResult: ConnectionStatus, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Waiting on connection")
 
         sut.listen { (receivedResult) in
@@ -112,7 +112,7 @@ class RealTimeConversationsLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func failure(_ error: RealTimeConversationsListener.Error) -> RealTimeConversationsListener.Result {
+    private func failure(_ error: RealTimeConversationsListener.Error) -> RealTimeConversationsListener.Status {
         return .failed(error)
     }
 }

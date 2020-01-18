@@ -21,7 +21,7 @@ public final class ConversationsLoaderAndRealtimeListener: ConversationsLoaderAn
         remoteLoader.load(completion: completion)
     }
 
-    public func listen(completion: @escaping (Status) -> Void) {
+    public func listen(completion: @escaping (ConnectionStatus) -> Void) {
         realtimeLoader.listen(completion: completion)
     }
 }
