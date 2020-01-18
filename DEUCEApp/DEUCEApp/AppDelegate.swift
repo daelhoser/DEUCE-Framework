@@ -23,6 +23,9 @@ class MockRealtimeClient: RealTimeConnection {
         }
     }
     
+    func stop() {
+    }
+    
     private func sendNewMessage() {
         let message: [String: Any] = [
             "Id": "f9d90452-202e-11ea-a5e8-2e728ce88125",
