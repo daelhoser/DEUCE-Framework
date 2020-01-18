@@ -18,5 +18,4 @@ public enum RealTimeConnectionStatus {
     case disconnected
     case slow
     case failed(Error)
-    case newMessage([String: Any])
 }

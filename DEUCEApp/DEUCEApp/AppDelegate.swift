@@ -18,28 +18,28 @@ class MockRealtimeClient: RealTimeConnection {
         
         self.status(.connected)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.sendNewMessage()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+//            self.sendNewMessage()
+//        }
     }
     
     func stop() {
     }
     
     private func sendNewMessage() {
-        let message: [String: Any] = [
-            "Id": "f9d90452-202e-11ea-a5e8-2e728ce88125",
-            "ConversationId": "0004a106-202f-11ea-978f-2e728ce88125",
-            "ConversationType": 0,
-            "ContentType": 0,
-            "CreatedByUserName": "Liliana",
-            "LastMessage": "updated message?",
-            "OtherUserName": "Otro user",
-            "GroupName": "Power Ranger",
-            "LastMessageTimeStamp": "2019-12-17T02:13:54.0000000"
-        ]
-        
-        self.status(.newMessage(message))
+//        let message: [String: Any] = [
+//            "Id": "f9d90452-202e-11ea-a5e8-2e728ce88125",
+//            "ConversationId": "0004a106-202f-11ea-978f-2e728ce88125",
+//            "ConversationType": 0,
+//            "ContentType": 0,
+//            "CreatedByUserName": "Liliana",
+//            "LastMessage": "updated message?",
+//            "OtherUserName": "Otro user",
+//            "GroupName": "Power Ranger",
+//            "LastMessageTimeStamp": "2019-12-17T02:13:54.0000000"
+//        ]
+//
+//        self.status(.newMessage(message))
     }
 }
 

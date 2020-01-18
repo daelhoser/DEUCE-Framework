@@ -78,25 +78,6 @@ class RealTimeConversationsLoaderTests: XCTestCase {
         })
     }
 
-    func test_onConnected_notifiesNewMessageOnNewMessageReceived() {
-        let (client, loader) = makeSUT()
-        let conversation = makeConversation(conversationType: 0, contentType: 0, createdByName: "any name")
-
-        expect(sut: loader, toCompleteWith: .newMessage(conversation.model), when: {
-            client.completeWithNewMessage(conversation.json)
-        })
-    }
-
-    func test_onConnected_notifiesInvalidDataErrorOnInvalidDataReceived() {
-        let (client, loader) = makeSUT()
-        let invalidData = ["invalid": "Data"]
-
-        expect(sut: loader, toCompleteWith: failure(.invalidData), when: {
-            client.completeWithNewMessage(invalidData)
-        })
-    }
-
-
     // MARK - Helper methods
     private func makeSUT(url: URL = URL(string: "http://a-url.com")!, file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationsListener) {
         let client = RealTimeClientSpy()
@@ -163,10 +144,6 @@ class RealTimeClientSpy: RealTimeConnection {
     
     func completeWithSlowConnection(at index: Int = 0) {
         completions[index](.slow)
-    }
-
-    func completeWithNewMessage(_ message: [String: Any], at index: Int = 0) {
-        completions[index](.newMessage(message))
     }
 }
 

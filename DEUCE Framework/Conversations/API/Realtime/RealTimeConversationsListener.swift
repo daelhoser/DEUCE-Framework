@@ -36,8 +36,6 @@ final public class RealTimeConversationsListener: ConversationsListener {
                 completion(.slow)
             case .failed:
                 completion(.failed(Error.connection))
-            case let .newMessage(dictionary):
-                completion(RealTimeConversationsListener.map(dictionary: dictionary))
             }
         }
     }
