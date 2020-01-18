@@ -10,7 +10,7 @@ import UIKit
 import DEUCE_Framework
 import DEUCEiOS
 
-class MockRealtimeClient: RealTimeClient {
+class MockRealtimeClient: RealTimeConnection {
     private var result: ((RealTimeClientResult) -> Void)!
     
     func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let conversationsLoader = RemoteConversationsLoader(url: url, client: client)
         let realTimeClient = MockRealtimeClient()
-        let listener = RealTimeConversationsListener(client: realTimeClient, url: url)
+        let listener = RealTimeConversationsListener(connection: realTimeClient, url: url)
         let loaderAndListener = ConversationsLoaderAndRealtimeListener(remoteLoader: conversationsLoader, realtimeLoader: listener)
         let imageLoader = RemoteImageDataLoader(client: client)
         

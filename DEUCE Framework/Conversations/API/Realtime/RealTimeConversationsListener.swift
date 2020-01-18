@@ -9,7 +9,7 @@
 import Foundation
 
 final public class RealTimeConversationsListener: ConversationsListener {
-    private let client: RealTimeClient
+    private let connection: RealTimeConnection
     private let url: URL
 
     public enum Error: Swift.Error {
@@ -20,13 +20,13 @@ final public class RealTimeConversationsListener: ConversationsListener {
     public typealias Result = Status
 
 
-    public init(client: RealTimeClient, url: URL) {
-        self.client = client
+    public init(connection: RealTimeConnection, url: URL) {
+        self.connection = connection
         self.url = url
     }
 
     public func listen(completion: @escaping (Result) -> Void) {
-        client.connectTo(url: url) { (result) in
+        connection.connectTo(url: url) { (result) in
             switch result {
             case .connected:
                 completion(.connected)

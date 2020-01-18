@@ -35,6 +35,10 @@ final class ConversationsObserverViewModel {
             switch status {
             case .connected:
                 self.onConnectionStateChange?(.connected)
+            case .disconnected:
+                self.onConnectionStateChange?(.disconnected)
+            case .slow:
+                break
             case let .failed(error):
                 if let error = error as? RealTimeConversationsListener.Error {
                     if case .connection = error {

@@ -371,11 +371,11 @@ class ConversationsTests: XCTestCase {
 
         //first new message received via real time
         loader.notifyStatusChange(status: .newMessage(Conversation3))
-        assertThat(sut: sut, isRendering: [Conversation1, Conversation2, Conversation3])
+        assertThat(sut: sut, isRendering: [ Conversation3, Conversation1, Conversation2])
 
         //second new  message received via real time
         loader.notifyStatusChange(status: .newMessage(Conversation4))
-        assertThat(sut: sut, isRendering: [Conversation1, Conversation2, Conversation3, Conversation4])
+        assertThat(sut: sut, isRendering: [Conversation4, Conversation3, Conversation1, Conversation2])
     }
 
     func test_ConversationObserver_movesUpdatedConversationToTheTopOfList() {
@@ -400,7 +400,7 @@ class ConversationsTests: XCTestCase {
 
         //first new message received via real time
         loader.notifyStatusChange(status: .newMessage(newMessageToSameConversation))
-        assertThat(sut: sut, isRendering: [Conversation2, Conversation3, Conversation4, newMessageToSameConversation])
+        assertThat(sut: sut, isRendering: [newMessageToSameConversation, Conversation2, Conversation3, Conversation4])
     }
 
 
@@ -538,7 +538,7 @@ private extension UIRefreshControl {
 
 private extension ConversationCell {
     var isShowingLoadingIndicator: Bool {
-        return profileImageViewContainer.isShimmering
+        return profileImageView.isShimmering
     }
 
     var renderedImage: Data? {

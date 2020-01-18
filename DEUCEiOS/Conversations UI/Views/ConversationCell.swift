@@ -14,7 +14,7 @@ public final class ConversationCell: UITableViewCell {
     @IBOutlet public weak var nameLabel: UILabel!
     @IBOutlet public weak var messageLabel: UILabel!
     @IBOutlet public weak var dateLabel: UILabel!
-    @IBOutlet private(set) weak var profileImageRetry: UIButton!
+    @IBOutlet public weak var profileImageRetry: UIButton!
 
     var onRetry: (() -> Void)?
 

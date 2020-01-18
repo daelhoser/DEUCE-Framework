@@ -1,5 +1,5 @@
 //
-//  RealTimeClient.swift
+//  RealTimeConnection.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 9/2/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol RealTimeClient {
+public protocol RealTimeConnection {
     func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void)
     func stop()
 }
