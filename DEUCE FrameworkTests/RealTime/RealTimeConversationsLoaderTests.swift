@@ -140,10 +140,10 @@ class RealTimeClientSpy: RealTimeConnection {
     var attemptedConnections: Bool {
         return !completions.isEmpty
     }
-    private var completions = [(RealTimeClientResult) -> Void]()
+    private var completions = [(RealTimeConnectionStatus) -> Void]()
 
-    func start(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
-        completions.append(result)
+    func start(status: @escaping (RealTimeConnectionStatus) -> Void) {
+        completions.append(status)
     }
     
     func stop() {

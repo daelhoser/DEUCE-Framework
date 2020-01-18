@@ -9,11 +9,11 @@
 import Foundation
 
 public protocol RealTimeConnection {
-    func start(url: URL, result: @escaping (RealTimeClientResult) -> Void)
+    func start(status: @escaping (RealTimeConnectionStatus) -> Void)
     func stop()
 }
 
-public enum RealTimeClientResult {
+public enum RealTimeConnectionStatus {
     case connected
     case disconnected
     case slow

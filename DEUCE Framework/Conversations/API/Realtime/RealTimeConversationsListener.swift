@@ -26,7 +26,7 @@ final public class RealTimeConversationsListener: ConversationsListener {
     }
 
     public func listen(completion: @escaping (Result) -> Void) {
-        connection.start(url: url) { (result) in
+        connection.start() { (result) in
             switch result {
             case .connected:
                 completion(.connected)

@@ -11,12 +11,12 @@ import DEUCE_Framework
 import DEUCEiOS
 
 class MockRealtimeClient: RealTimeConnection {
-    private var result: ((RealTimeClientResult) -> Void)!
+    private var status: ((RealTimeConnectionStatus) -> Void)!
     
-    func start(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
-        self.result = result
+    func start(status: @escaping (RealTimeConnectionStatus) -> Void) {
+        self.status = status
         
-        self.result(.connected)
+        self.status(.connected)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.sendNewMessage()
@@ -39,7 +39,7 @@ class MockRealtimeClient: RealTimeConnection {
             "LastMessageTimeStamp": "2019-12-17T02:13:54.0000000"
         ]
         
-        self.result(.newMessage(message))
+        self.status(.newMessage(message))
     }
 }
 
