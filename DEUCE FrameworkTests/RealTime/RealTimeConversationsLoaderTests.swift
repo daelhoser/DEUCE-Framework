@@ -142,7 +142,7 @@ class RealTimeClientSpy: RealTimeConnection {
     }
     private var completions = [(RealTimeClientResult) -> Void]()
 
-    func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
+    func start(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
         completions.append(result)
     }
     

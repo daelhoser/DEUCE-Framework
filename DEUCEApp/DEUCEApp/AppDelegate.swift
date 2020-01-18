@@ -13,7 +13,7 @@ import DEUCEiOS
 class MockRealtimeClient: RealTimeConnection {
     private var result: ((RealTimeClientResult) -> Void)!
     
-    func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
+    func start(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
         self.result = result
         
         self.result(.connected)
