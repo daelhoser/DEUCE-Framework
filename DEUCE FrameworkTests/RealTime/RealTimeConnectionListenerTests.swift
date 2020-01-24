@@ -1,5 +1,5 @@
 //
-//  RealTimeConversationsLoaderTests.swift
+//  RealTimeConnectionListenerTests.swift
 //  DEUCE FrameworkTests
 //
 //  Created by Jose Alvarez on 9/2/19.
@@ -9,7 +9,7 @@
 import XCTest
 import DEUCE_Framework
 
-class RealTimeConversationsLoaderTests: XCTestCase {
+class RealTimeConnectionListenerTests: XCTestCase {
     func test_onInit_doesNotAttemptConnectToClient() {
         let (client, _) = makeSUT()
 
