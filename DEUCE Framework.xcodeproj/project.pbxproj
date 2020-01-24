@@ -38,7 +38,7 @@
 		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FB5EF2A231DC8BA00158FF6 /* RealTimeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */; };
-		5FB5EF2C231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF2B231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift */; };
+		5FD9ED7C23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */; };
 		5FE9FC7323A42FFB00ED68E8 /* UsersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */; };
 		5FEC4425230B680E001AFCA5 /* ConversationsEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */; };
 		5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
@@ -54,7 +54,7 @@
 		5FF0B7BB23A31AA700F8A1BB /* ConversationsObserverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B7BA23A31AA700F8A1BB /* ConversationsObserverViewModel.swift */; };
 		5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
-		5FF292A5234167FF008540D2 /* RealTimeConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */; };
+		5FF292A5234167FF008540D2 /* RealTimeConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConnectionListener.swift */; };
 		5FF292A723417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */; };
 		5FF292A923417C69008540D2 /* ConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A823417C69008540D2 /* ConversationsListener.swift */; };
 		5FFBAFF8231495F30097D10A /* ConversationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationsTests.swift */; };
@@ -121,7 +121,7 @@
 		5FB52C42234D6054008B6D66 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
 		5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnection.swift; sourceTree = "<group>"; };
-		5FB5EF2B231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsLoaderTests.swift; sourceTree = "<group>"; };
+		5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionListenerTests.swift; sourceTree = "<group>"; };
 		5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoader.swift; sourceTree = "<group>"; };
 		5FEC4422230B680E001AFCA5 /* ConversationsEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConversationsEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsEndToEndTests.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272C7228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsListener.swift; sourceTree = "<group>"; };
+		5FF292A4234167FF008540D2 /* RealTimeConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionListener.swift; sourceTree = "<group>"; };
 		5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoaderAndRealtimeListener.swift; sourceTree = "<group>"; };
 		5FF292A823417C69008540D2 /* ConversationsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListener.swift; sourceTree = "<group>"; };
 		5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DEUCEiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */,
-				5FF292A4234167FF008540D2 /* RealTimeConversationsListener.swift */,
+				5FF292A4234167FF008540D2 /* RealTimeConnectionListener.swift */,
 			);
 			path = Realtime;
 			sourceTree = "<group>";
@@ -410,7 +410,7 @@
 		5FF1CEE22368A523002DC32E /* RealTime */ = {
 			isa = PBXGroup;
 			children = (
-				5FB5EF2B231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift */,
+				5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */,
 			);
 			path = RealTime;
 			sourceTree = "<group>";
@@ -731,7 +731,7 @@
 				5FE9FC7323A42FFB00ED68E8 /* UsersLoader.swift in Sources */,
 				5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */,
 				5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */,
-				5FF292A5234167FF008540D2 /* RealTimeConversationsListener.swift in Sources */,
+				5FF292A5234167FF008540D2 /* RealTimeConnectionListener.swift in Sources */,
 				5F24B5CD2347ABE400E04F4D /* ConversationsLoaderAndListener.swift in Sources */,
 				5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */,
 				5FF292A723417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift in Sources */,
@@ -750,9 +750,9 @@
 				5FA6E38B23A5ED6B0059C41D /* SharedTestHelpers.swift in Sources */,
 				5F41969C23401D4A0025549E /* XCTestCase+DateFormatter.swift in Sources */,
 				5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */,
+				5FD9ED7C23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift in Sources */,
 				5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */,
 				5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */,
-				5FB5EF2C231DD17D00158FF6 /* RealTimeConversationsLoaderTests.swift in Sources */,
 				5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				5F41969A23401D070025549E /* XCTestCase+Conversation.swift in Sources */,
 				5FA6E38F23A6B7B60059C41D /* HTTPClientSpy.swift in Sources */,

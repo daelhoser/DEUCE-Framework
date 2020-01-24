@@ -40,7 +40,7 @@ final class ConversationsObserverViewModel {
             case .slow:
                 break
             case let .failed(error):
-                if let error = error as? RealTimeConversationsListener.Error {
+                if let error = error as? RealTimeConnectionListener.Error {
                     if case .connection = error {
                         self.onConnectionStateChange?(.disconnected)
                     }

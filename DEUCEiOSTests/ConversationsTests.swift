@@ -294,7 +294,7 @@ class ConversationsTests: XCTestCase {
         loader.notifyStatusChange(status: .newMessage(makeConversation()))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
 
-        let error = RealTimeConversationsListener.Error.connection
+        let error = RealTimeConnectionListener.Error.connection
         loader.notifyStatusChange(status: .failed(error))
         XCTAssertEqual(sut.loadingStatus, "disconnected")
 
@@ -302,7 +302,7 @@ class ConversationsTests: XCTestCase {
         loader.notifyStatusChange(status: .newMessage(makeConversation()))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
 
-        let invalidData = RealTimeConversationsListener.Error.invalidData
+        let invalidData = RealTimeConnectionListener.Error.invalidData
         loader.notifyStatusChange(status: .failed(invalidData))
         XCTAssertNil(sut.loadingStatus, "Expected nil when a conversation can't be decoded properly.")
     }
@@ -320,7 +320,7 @@ class ConversationsTests: XCTestCase {
         loader.notifyStatusChange(status: .connected)
         XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present when connections is successful.")
 
-        let error = RealTimeConversationsListener.Error.connection
+        let error = RealTimeConnectionListener.Error.connection
         loader.notifyStatusChange(status: .failed(error))
         XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
     }
@@ -333,7 +333,7 @@ class ConversationsTests: XCTestCase {
 
         XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected listener to be called once only")
 
-        let error = RealTimeConversationsListener.Error.connection
+        let error = RealTimeConnectionListener.Error.connection
         loader.notifyStatusChange(status: .failed(error))
         XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
 

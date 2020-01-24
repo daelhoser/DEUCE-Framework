@@ -79,9 +79,9 @@ class RealTimeConnectionListenerTests: XCTestCase {
     }
 
     // MARK - Helper methods
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConversationsListener) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (RealTimeClientSpy, RealTimeConnectionListener) {
         let client = RealTimeClientSpy()
-        let loader = RealTimeConversationsListener(connection: client)
+        let loader = RealTimeConnectionListener(connection: client)
 
         trackForMemoryLeaks(object: client, file: file, line: line)
         trackForMemoryLeaks(object: loader, file: file, line: line)
@@ -89,7 +89,7 @@ class RealTimeConnectionListenerTests: XCTestCase {
         return (client, loader)
     }
 
-    private func expect(sut: RealTimeConversationsListener, toCompleteWith expectedResult: ConnectionStatus, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(sut: RealTimeConnectionListener, toCompleteWith expectedResult: ConnectionStatus, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Waiting on connection")
 
         sut.listen { (receivedResult) in
@@ -99,7 +99,7 @@ class RealTimeConnectionListenerTests: XCTestCase {
             case (.disconnected, .disconnected):
                 break
             case let (.failed(expectedError), .failed(receivedError)):
-                XCTAssertEqual(expectedError as! RealTimeConversationsListener.Error, receivedError  as! RealTimeConversationsListener.Error, file: file, line: line)
+                XCTAssertEqual(expectedError as! RealTimeConnectionListener.Error, receivedError  as! RealTimeConnectionListener.Error, file: file, line: line)
             case let (.newMessage(expectedMessage), .newMessage(receivedMessage)):
                 XCTAssertEqual(expectedMessage, receivedMessage, file: file, line: line)
             default:
@@ -112,7 +112,7 @@ class RealTimeConnectionListenerTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
 
-    private func failure(_ error: RealTimeConversationsListener.Error) -> RealTimeConversationsListener.Status {
+    private func failure(_ error: RealTimeConnectionListener.Error) -> RealTimeConnectionListener.Status {
         return .failed(error)
     }
 }

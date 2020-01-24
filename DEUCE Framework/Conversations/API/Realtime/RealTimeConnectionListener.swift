@@ -1,5 +1,5 @@
 //
-//  RealTimeConversationsListener.swift
+//  RealTimeConnectionListener.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 9/29/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class RealTimeConversationsListener: ConversationsListener {
+final public class RealTimeConnectionListener: ConversationsListener {
     private let connection: RealTimeConnection
 
     public enum Error: Swift.Error {
