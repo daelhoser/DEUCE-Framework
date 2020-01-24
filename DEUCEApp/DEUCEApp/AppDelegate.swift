@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let conversationsLoader = RemoteConversationsLoader(url: url, client: client)
         let realTimeClient = MockRealtimeClient()
-        let listener = RealTimeConnectionListener(connection: realTimeClient, url: url)
+        let listener = RealTimeConnectionListener(connection: realTimeClient)
         let loaderAndListener = ConversationsLoaderAndRealtimeListener(remoteLoader: conversationsLoader, realtimeLoader: listener)
         let imageLoader = RemoteImageDataLoader(client: client)
         
