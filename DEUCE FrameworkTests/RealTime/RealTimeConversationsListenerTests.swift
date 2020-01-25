@@ -9,7 +9,7 @@
 import XCTest
 
 protocol ConversationsHub {
-    func on(eventName: String, handler: ([Any]) -> Void)
+    func on(eventName: String, handler: @escaping ([Any]) -> Void)
 }
 
 final class RealTimeConversationsListener {
@@ -25,7 +25,7 @@ final class RealTimeConversationsListener {
         self.newMessageEventName = newMessageEventName
     }
     
-    func listenForNewMessages(completion: (Error) -> Void) {
+    func listenForNewMessages(completion: @escaping (Error) -> Void) {
         hub.on(eventName: newMessageEventName) { (value) in
             completion(Error.invalidData)
         }
@@ -43,13 +43,21 @@ class RealTimeConversationsListenerTests: XCTestCase {
             capturedError = error
         }
         
+        let invalidDictionary = ["wrong key": "Wrong value"]
+        conversationHub.completeEvent(with: invalidDictionary)
+        
         XCTAssertEqual(capturedError, RealTimeConversationsListener.Error.invalidData)
     }
-    
+        
     class ConversationHubSpy: ConversationsHub {
-        func on(eventName: String, handler: ([Any]) -> Void) {
-            let invalidDictionary = ["wrong key": "Wrong value"]
-            handler([invalidDictionary])
+        var completion: (([Any]) -> Void)?
+        func on(eventName: String, handler: @escaping ([Any]) -> Void) {
+            completion = handler
+        }
+        
+        // MARK: - Helper Methods
+        func completeEvent(with dictionary: [String: Any]) {
+            completion?([dictionary])
         }
     }
 }
