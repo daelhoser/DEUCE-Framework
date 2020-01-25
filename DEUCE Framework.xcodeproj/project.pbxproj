@@ -39,6 +39,7 @@
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
 		5FB5EF2A231DC8BA00158FF6 /* RealTimeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */; };
 		5FD9ED7C23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */; };
+		5FD9ED7E23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9ED7D23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift */; };
 		5FE9FC7323A42FFB00ED68E8 /* UsersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */; };
 		5FEC4425230B680E001AFCA5 /* ConversationsEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */; };
 		5FEC4427230B680E001AFCA5 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
@@ -122,6 +123,7 @@
 		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
 		5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnection.swift; sourceTree = "<group>"; };
 		5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionListenerTests.swift; sourceTree = "<group>"; };
+		5FD9ED7D23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsListenerTests.swift; sourceTree = "<group>"; };
 		5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoader.swift; sourceTree = "<group>"; };
 		5FEC4422230B680E001AFCA5 /* ConversationsEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConversationsEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FEC4424230B680E001AFCA5 /* ConversationsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsEndToEndTests.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */,
+				5FD9ED7D23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift */,
 			);
 			path = RealTime;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				5F41969C23401D4A0025549E /* XCTestCase+DateFormatter.swift in Sources */,
 				5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */,
 				5FD9ED7C23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift in Sources */,
+				5FD9ED7E23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift in Sources */,
 				5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */,
 				5F92EE0923733ADC00582167 /* XCTestCase+JSON.swift in Sources */,
 				5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
