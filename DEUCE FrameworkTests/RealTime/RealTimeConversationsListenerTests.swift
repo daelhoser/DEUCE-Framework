@@ -7,48 +7,51 @@
 //
 
 import XCTest
-
-protocol ConversationsHub {
-    func on(eventName: String, handler: @escaping ([Any]) -> Void)
-}
-
-final class RealTimeConversationsListener {
-    private let hub: ConversationsHub
-    private let newMessageEventName: String
-    
-    enum Error: Swift.Error {
-        case invalidData
-    }
-    
-    init(hub: ConversationsHub, newMessageEventName: String) {
-        self.hub = hub
-        self.newMessageEventName = newMessageEventName
-    }
-    
-    func listenForNewMessages(completion: @escaping (Error) -> Void) {
-        hub.on(eventName: newMessageEventName) { (value) in
-            completion(Error.invalidData)
-        }
-    }
-}
+import DEUCE_Framework
 
 class RealTimeConversationsListenerTests: XCTestCase {
     func test_onNewMessage_deliversErrorOnInvalidDictionary() {
         let conversationHub = ConversationHubSpy()
         let sut = RealTimeConversationsListener(hub: conversationHub, newMessageEventName: "newMessage")
         
-        var capturedError: RealTimeConversationsListener.Error?
+        expect(sut: sut, toCompleteWith: RealTimeConversationsListener.Result.failed(.invalidData)) {
+            let invalidDictionary = ["invalid key": "invalid value"]
+            conversationHub.completeEvent(with: invalidDictionary)
+        }
+    }
+    
+    func test_onNewMessage_deliversItemOnValidDictionary() {
+        let conversationHub = ConversationHubSpy()
+        let sut = RealTimeConversationsListener(hub: conversationHub, newMessageEventName: "newMessage")
         
-        sut.listenForNewMessages { (error) in
-            capturedError = error
+        let conversation = makeConversation(conversationType: 0, contentType: 0, createdByName: "Jose")
+        
+        expect(sut: sut, toCompleteWith: RealTimeConversationsListener.Result.success(conversation.model)) {
+            conversationHub.completeEvent(with: conversation.json)
+        }
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func expect(sut: RealTimeConversationsListener, toCompleteWith expectedResult: RealTimeConversationsListener.Result,  file: StaticString = #file, line: UInt = #line, when action: () -> ()) {
+        let exp = expectation(description: "Waiting on load")
+
+        sut.listenForNewMessages { (result) in
+            switch(expectedResult, result) {
+            case (.failed(let expectedError), .failed(let capturedError)):
+                XCTAssertEqual(expectedError, capturedError, file: file, line:  line)
+            case (.success(let expectedMessage), .success(let capturedMessage)):
+                XCTAssertEqual(expectedMessage, capturedMessage, file: file, line:  line)
+            default:
+                XCTFail("Expected \(expectedResult) and instead got \(result)", file: file, line:  line)
+            }
+            exp.fulfill()
         }
         
-        let invalidDictionary = ["wrong key": "Wrong value"]
-        conversationHub.completeEvent(with: invalidDictionary)
-        
-        XCTAssertEqual(capturedError, RealTimeConversationsListener.Error.invalidData)
+        action()
+        wait(for: [exp], timeout: 1.0)
     }
-        
+
     class ConversationHubSpy: ConversationsHub {
         var completion: (([Any]) -> Void)?
         func on(eventName: String, handler: @escaping ([Any]) -> Void) {
