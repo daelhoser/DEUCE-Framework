@@ -12,10 +12,9 @@ import RealTimeController
 import SignalRSwift
 import DEUCE_Framework
 
-protocol RealTimeProxy {
-}
+extension HubConnection: RealTimeAzureConnection {}
 
-protocol RealTimeConnection {
+protocol RealTimeAzureConnection {
     func start()
     func stop()
     var started: (() -> Void)? { set get }
@@ -24,34 +23,33 @@ protocol RealTimeConnection {
     var closed: (() -> Void)? { set get }
 }
 
-final class SignalRClient: RealTimeClient  {
-    let proxy: RealTimeProxy
-    var connection: RealTimeConnection
+final class SignalRClient: RealTimeConnection  {
+    var connection: RealTimeAzureConnection
     
     enum Error: Swift.Error {
         case clientError
     }
     
-    init(proxy: RealTimeProxy, connection: RealTimeConnection) {
-        self.proxy = proxy
+    init(connection: RealTimeAzureConnection) {
         self.connection = connection
     }
     
-    func connectTo(url: URL, result: @escaping (RealTimeClientResult) -> Void) {
+ 
+    func start(status: @escaping (RealTimeConnectionStatus) -> Void) {
         connection.started = {
-            result(.connected)
+            status(.connected)
         }
         
         connection.error = { (error) in
-            result(.failed(Error.clientError))
+            status(.failed(Error.clientError))
         }
         
         connection.connectionSlow = {
-            result(.slow)
+            status(.slow)
         }
         
         connection.closed = {
-            result(.disconnected)
+            status(.disconnected)
         }
 
         connection.start()
@@ -65,70 +63,63 @@ final class SignalRClient: RealTimeClient  {
 class RealTimeControllerTests: XCTestCase {
     func test_onInit_doesNotConnect() {
         let spy = RealTimeSpy()
-        _ = SignalRClient(proxy: spy, connection: spy)
+        _ = SignalRClient(connection: spy)
         
         XCTAssertEqual(spy.connectionRequests, 0)
     }
     
     func test_onConnect_startsConnections() {
         let spy = RealTimeSpy()
-        let sut = SignalRClient(proxy: spy, connection: spy)
+        let sut = SignalRClient(connection: spy)
         
-        sut.connectTo(url: URL(string: "www.google.com")!) { _ in }
+        sut.start() { _ in }
         
         XCTAssertEqual(spy.connectionRequests, 1)
     }
     
     func test_onConnect_ReturnsErrorOnClientError() {
         let spy = RealTimeSpy()
-        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+        let realTimeClient = SignalRClient(connection: spy)
                 
-        var capturedResult: RealTimeClientResult?
+//        var capturedResult: RealTimeConnectionStatus?
         
-        let exp = expectation(description: "Waiting to connect")
-        
-        realTimeClient.connectTo(url: URL(string: "www.google.com")!) { (result) in
-            capturedResult = result
-            
-            exp.fulfill()
-        }
-        
-        let error = NSError(domain: "any-Error", code: 0)
-        spy.connectWith(error: error)
-        
-        wait(for: [exp], timeout: 10.0)
-        
-        if let capturedResult = capturedResult, case RealTimeClientResult.failed(let error) = capturedResult {
-            XCTAssertEqual(error as! SignalRClient.Error, SignalRClient.Error.clientError)
-        } else {
-            XCTFail("Expected \(SignalRClient.Error.clientError), got \(String(describing: capturedResult)) instead")
+//        let exp = expectation(description: "Waiting to connect")
+//
+//        realTimeClient.start() { (result) in
+//            capturedResult = result
+//
+//            exp.fulfill()
+//        }
+//
+//        let error = NSError(domain: "any-Error", code: 0)
+//        spy.connectWith(error: error)
+//
+//        wait(for: [exp], timeout: 10.0)
+//
+//        if let capturedResult = capturedResult, case RealTimeConnectionStatus.failed(let error) = capturedResult {
+//            XCTAssertEqual(error as! SignalRClient.Error, SignalRClient.Error.clientError)
+//        } else {
+//            XCTFail("Expected \(SignalRClient.Error.clientError), got \(String(describing: capturedResult)) instead")
+//        }
+//
+        expect(sut: realTimeClient, toCompleteWith: [.failed(SignalRClient.Error.clientError)]) {
+            let error = NSError(domain: "any-Error", code: 0)
+            spy.connectWith(error: error)
         }
     }
     
     func test_onConnect_ReturnsConnectedResultWhenConnectionSuccessful() {
         let spy = RealTimeSpy()
-        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
-                
-        var capturedResult: RealTimeClientResult?
+        let realTimeClient = SignalRClient(connection: spy)
         
-        let exp = expectation(description: "Waiting to connect")
-        
-        realTimeClient.connectTo(url: URL(string: "www.google.com")!) { (result) in
-            capturedResult = result
-            
-            exp.fulfill()
+        expect(sut: realTimeClient, toCompleteWith: [.connected]) {
+            spy.successfullyConnect()
         }
-        
-        spy.successfullyConnect()
-        
-        wait(for: [exp], timeout: 10.0)
-        
-        XCTAssertEqual(capturedResult, RealTimeClientResult.connected)
     }
     
     func test_onStop_stopsTheConnection() {
         let spy = RealTimeSpy()
-        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+        let realTimeClient = SignalRClient(connection: spy)
         
         realTimeClient.stop()
         
@@ -137,52 +128,26 @@ class RealTimeControllerTests: XCTestCase {
     
     func test_onDisconnected_returnsConnectionDisconnected() {
         let spy = RealTimeSpy()
-        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+        let realTimeClient = SignalRClient(connection: spy)
         
-        var capturedResults = [RealTimeClientResult]()
-        
-        let exp = expectation(description: "Waiting to connect")
-        exp.expectedFulfillmentCount = 2
-        
-        realTimeClient.connectTo(url: URL(string: "www.google.com")!) { (result) in
-            capturedResults.append(result)
-            
-            exp.fulfill()
+        expect(sut: realTimeClient, toCompleteWith: [.connected, .disconnected]) {
+            spy.successfullyConnect()
+            spy.simulateDisconnected()
         }
-        
-        spy.successfullyConnect()
-        spy.simulateDisconnected()
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(capturedResults, [RealTimeClientResult.connected, RealTimeClientResult.disconnected])
     }
 
     
     func test_onSlowConnection_returnsSlowConnectionResult() {
         let spy = RealTimeSpy()
-        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+        let realTimeClient = SignalRClient(connection: spy)
                 
-        var capturedResults = [RealTimeClientResult]()
-        
-        let exp = expectation(description: "Waiting to connect")
-        exp.expectedFulfillmentCount = 2
-        
-        realTimeClient.connectTo(url: URL(string: "www.google.com")!) { (result) in
-            capturedResults.append(result)
-            
-            exp.fulfill()
+        expect(sut: realTimeClient, toCompleteWith: [.connected, .slow]) {
+            spy.successfullyConnect()
+            spy.simulateSlowConnection()
         }
-        
-        spy.successfullyConnect()
-        spy.simulateSlowConnection()
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(capturedResults, [RealTimeClientResult.connected, RealTimeClientResult.slow])
     }
     
-    private func makeSUT() -> (connection: RealTimeConnection, proxy: RealTimeProxy, sut: SignalRClient) {
+    private func makeSUT() -> (connection: RealTimeAzureConnection, sut: SignalRClient) {
 //        let connection = HubConnection(withUrl: "http://172.17.147.90")
 //        connection.addValue(value: "Bearer Xm2mk0_R_0b5DYr95Mgo0AtH0-6yed8NgXHPFRtMYfy4wEKtdq8cjy69j6-pQjVKtU5tMGTIcbd0AMQqr4xEvcHuRUNs6HrFS6HW9FJLb6DsjrKV7ycjhTysRRua5sUYVAfO5y-sDAF_cr83HSNZ-Rt2VvStydXQkwIwYpuNanMfKAmmvEDSgirErPaz9fmwUAZiOzMRXHuoF57XgQ_it3PUFvArvM9gNzVfPg5FYEJ0XzY2x1MnbT_uIskhppjNN5kEkf--1ntCWjvlhBwL3jbl57dBz2Y0ZmLgrWFWLr2B9S2XCbIMV7CZZCLo2B5CuQmJyUBUm3pA9Q3vfbiRXeCjCAbq3AUcfQCmF4r_FsKHhEGQluZRe4UxGOdOCKpLmADLoGrNN-wlFOP44-Jp3gf8l5meFa-wLrYgNA1VB0X-RAl0oz4PdrBKvMjjonq9bjgJXJoZE4FmoSWNvdHv5jIVWiSMN6Aws6h6fP8h5hCKob1mhN3vYEhJ3J4zqR9nMqRasID0yTEZ4ajCT1tFog", forHttpHeaderField: "Authorization")
 //        let proxy = connection.createHubProxy(hubName: "chathub")!
@@ -191,13 +156,31 @@ class RealTimeControllerTests: XCTestCase {
 //        return (connection, proxy, realTimeClient)
         
         let spy = RealTimeSpy()
-        let realTimeClient = SignalRClient(proxy: spy, connection: spy)
+        let realTimeClient = SignalRClient(connection: spy)
 
-        return (spy, spy, realTimeClient)
+        return (spy, realTimeClient)
+    }
+    
+    private func expect(sut: SignalRClient, toCompleteWith expectedResults: [RealTimeConnectionStatus], file: StaticString = #file, line: UInt = #line, when action: () -> ()) {
+        let exp = expectation(description: "Waiting to connect")
+        exp.expectedFulfillmentCount = expectedResults.count
+        
+        var capturedResults = [RealTimeConnectionStatus]()
+
+        sut.start() { (result) in
+            exp.fulfill()
+            capturedResults.append(result)
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(capturedResults, expectedResults, file: file, line: line)
     }
 }
 
-class RealTimeSpy: RealTimeProxy, RealTimeConnection {
+class RealTimeSpy: RealTimeAzureConnection {
     private(set) var connectionRequests = 0
     private(set) var calledStopConnection = false
     
@@ -235,8 +218,8 @@ class RealTimeSpy: RealTimeProxy, RealTimeConnection {
 }
 
 
-extension RealTimeClientResult: Equatable {
-    public static func == (lhs: RealTimeClientResult, rhs: RealTimeClientResult) -> Bool {
+extension RealTimeConnectionStatus: Equatable {
+    public static func == (lhs: RealTimeConnectionStatus, rhs: RealTimeConnectionStatus) -> Bool {
         switch (lhs, rhs) {
         case (.connected, .connected):
             return true
@@ -244,12 +227,10 @@ extension RealTimeClientResult: Equatable {
             return true
         case (.disconnected, .disconnected):
             return true
+        case (.failed, .failed):
+            return true
         default:
             return false
         }
     }
 }
-
-extension HubProxy: RealTimeProxy {}
-
-extension HubConnection: RealTimeConnection {}
