@@ -81,27 +81,6 @@ class RealTimeControllerTests: XCTestCase {
         let spy = RealTimeSpy()
         let realTimeClient = SignalRClient(connection: spy)
                 
-//        var capturedResult: RealTimeConnectionStatus?
-        
-//        let exp = expectation(description: "Waiting to connect")
-//
-//        realTimeClient.start() { (result) in
-//            capturedResult = result
-//
-//            exp.fulfill()
-//        }
-//
-//        let error = NSError(domain: "any-Error", code: 0)
-//        spy.connectWith(error: error)
-//
-//        wait(for: [exp], timeout: 10.0)
-//
-//        if let capturedResult = capturedResult, case RealTimeConnectionStatus.failed(let error) = capturedResult {
-//            XCTAssertEqual(error as! SignalRClient.Error, SignalRClient.Error.clientError)
-//        } else {
-//            XCTFail("Expected \(SignalRClient.Error.clientError), got \(String(describing: capturedResult)) instead")
-//        }
-//
         expect(sut: realTimeClient, toCompleteWith: [.failed(SignalRClient.Error.clientError)]) {
             let error = NSError(domain: "any-Error", code: 0)
             spy.connectWith(error: error)
@@ -147,7 +126,7 @@ class RealTimeControllerTests: XCTestCase {
         }
     }
     
-    private func makeSUT() -> (connection: RealTimeAzureConnection, sut: SignalRClient) {
+    private func makeSUT() -> (azureConnection: RealTimeAzureConnection, sut: SignalRClient) {
 //        let connection = HubConnection(withUrl: "http://172.17.147.90")
 //        connection.addValue(value: "Bearer Xm2mk0_R_0b5DYr95Mgo0AtH0-6yed8NgXHPFRtMYfy4wEKtdq8cjy69j6-pQjVKtU5tMGTIcbd0AMQqr4xEvcHuRUNs6HrFS6HW9FJLb6DsjrKV7ycjhTysRRua5sUYVAfO5y-sDAF_cr83HSNZ-Rt2VvStydXQkwIwYpuNanMfKAmmvEDSgirErPaz9fmwUAZiOzMRXHuoF57XgQ_it3PUFvArvM9gNzVfPg5FYEJ0XzY2x1MnbT_uIskhppjNN5kEkf--1ntCWjvlhBwL3jbl57dBz2Y0ZmLgrWFWLr2B9S2XCbIMV7CZZCLo2B5CuQmJyUBUm3pA9Q3vfbiRXeCjCAbq3AUcfQCmF4r_FsKHhEGQluZRe4UxGOdOCKpLmADLoGrNN-wlFOP44-Jp3gf8l5meFa-wLrYgNA1VB0X-RAl0oz4PdrBKvMjjonq9bjgJXJoZE4FmoSWNvdHv5jIVWiSMN6Aws6h6fP8h5hCKob1mhN3vYEhJ3J4zqR9nMqRasID0yTEZ4ajCT1tFog", forHttpHeaderField: "Authorization")
 //        let proxy = connection.createHubProxy(hubName: "chathub")!
