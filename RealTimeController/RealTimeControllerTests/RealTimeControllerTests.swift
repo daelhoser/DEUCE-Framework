@@ -9,56 +9,7 @@
 import XCTest
 
 import RealTimeController
-import SignalRSwift
 import DEUCE_Framework
-
-extension HubConnection: RealTimeAzureConnection {}
-
-protocol RealTimeAzureConnection {
-    func start()
-    func stop()
-    var started: (() -> Void)? { set get }
-    var error: ((Error) -> Void)? { set get }
-    var connectionSlow: (() -> Void)? { set get }
-    var closed: (() -> Void)? { set get }
-}
-
-final class SignalRClient: RealTimeConnection  {
-    var connection: RealTimeAzureConnection
-    
-    enum Error: Swift.Error {
-        case clientError
-    }
-    
-    init(connection: RealTimeAzureConnection) {
-        self.connection = connection
-    }
-    
- 
-    func start(status: @escaping (RealTimeConnectionStatus) -> Void) {
-        connection.started = {
-            status(.connected)
-        }
-        
-        connection.error = { (error) in
-            status(.failed(Error.clientError))
-        }
-        
-        connection.connectionSlow = {
-            status(.slow)
-        }
-        
-        connection.closed = {
-            status(.disconnected)
-        }
-
-        connection.start()
-    }
-    
-    func stop() {
-        connection.stop()
-    }
-}
 
 class RealTimeControllerTests: XCTestCase {
     func test_onInit_doesNotConnect() {
