@@ -346,35 +346,35 @@ class ConversationsTests: XCTestCase {
         XCTAssertEqual(deltaSpy.loadRequests.count, 1)
     }
 
-//    func test_ConversationObserver_addsNewConversationToTheTopOfList() {
-//        let (loaderSpy, sut, deltaSpy) = makeSUT()
-//
-//        //forces view to load
-//        sut.loadViewIfNeeded()
-//        loaderSpy.notifyStatusChange(status: .connected)
-//
-//        let date = Date()
-//
-//        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-//        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
-//        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
-//        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
-//
-//        loaderSpy.completeConversationsLoad(at: 0, with: [Conversation1])
-//        assertThat(sut: sut, isRendering: [Conversation1])
-//
-//        sut.simulateUserInitiatedConversationLoad()
-//        loaderSpy.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
-//        assertThat(sut: sut, isRendering: [Conversation1, Conversation2])
-//
-//        //first new message received via real time
-//        deltaSpy.completeConversationsLoad(with: [Conversation3])
-//        assertThat(sut: sut, isRendering: [ Conversation3, Conversation1, Conversation2])
-//
-//        //second new  message received via real time
-//        deltaSpy.completeConversationsLoad(with: [Conversation4])
-//        assertThat(sut: sut, isRendering: [Conversation4, Conversation3, Conversation1, Conversation2])
-//    }
+    func test_ConversationObserver_addsNewConversationToTheTopOfList() {
+        let (loaderSpy, sut, deltaSpy) = makeSUT()
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+        loaderSpy.notifyStatusChange(status: .connected)
+
+        let date = Date()
+
+        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
+        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
+
+        loaderSpy.completeConversationsLoad(at: 0, with: [Conversation1])
+        assertThat(sut: sut, isRendering: [Conversation1])
+
+        sut.simulateUserInitiatedConversationLoad()
+        loaderSpy.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
+        assertThat(sut: sut, isRendering: [Conversation1, Conversation2])
+
+        //first new message received via real time
+        deltaSpy.completeConversationsLoad(with: [Conversation3])
+        assertThat(sut: sut, isRendering: [Conversation3, Conversation1, Conversation2])
+
+        //second new  message received via real time. Should be to same index since we should only call the 'load' method once.
+        deltaSpy.completeConversationsLoad(with: [Conversation4])
+        assertThat(sut: sut, isRendering: [Conversation4, Conversation3, Conversation1, Conversation2])
+    }
 
 //    func test_ConversationObserver_movesUpdatedConversationToTheTopOfList() {
 //        let (loader, sut) = makeSUT()
