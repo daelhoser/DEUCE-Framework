@@ -17,7 +17,7 @@ public final class ConversationsComposer {
         let viewModel = ConversationViewModel(loader: conversationsLoader)
         let observerViewModel = RealTimeConnectionObserverViewModel(observer: realTimeConnection)
         let refreshController = ConversationsRefreshViewController(viewModel: viewModel)
-        let observerController = ConversationsObserverController(viewmodel: observerViewModel)
+        let observerController = RealTimeConnectionObserverController(viewmodel: observerViewModel)
         let viewController = ConversationsViewController(refreshController: refreshController, observerController: observerController)
         viewController.refreshController = refreshController
 

@@ -28,7 +28,7 @@
 		5F9491042290E078007531EE /* ConversationsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9491032290E078007531EE /* ConversationsLoader.swift */; };
 		5FA4BD6F23A7F2D000ECEBAA /* RemoteImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA4BD6E23A7F2D000ECEBAA /* RemoteImageDataLoader.swift */; };
 		5FA4BD7623A84D2B00ECEBAA /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FA4BD7523A84D2B00ECEBAA /* ConversationCell.xib */; };
-		5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */; };
+		5FA5CAB0234E764500950F2B /* RealTimeConnectionObserverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAAF234E764500950F2B /* RealTimeConnectionObserverController.swift */; };
 		5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */; };
 		5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF9142319890C00083C51 /* ImageDataLoader.swift */; };
 		5FA6E38B23A5ED6B0059C41D /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6E38A23A5ED6B0059C41D /* SharedTestHelpers.swift */; };
@@ -112,7 +112,7 @@
 		5F9491032290E078007531EE /* ConversationsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoader.swift; sourceTree = "<group>"; };
 		5FA4BD6E23A7F2D000ECEBAA /* RemoteImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageDataLoader.swift; sourceTree = "<group>"; };
 		5FA4BD7523A84D2B00ECEBAA /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
-		5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsObserverController.swift; sourceTree = "<group>"; };
+		5FA5CAAF234E764500950F2B /* RealTimeConnectionObserverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionObserverController.swift; sourceTree = "<group>"; };
 		5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsHeaderController.swift; sourceTree = "<group>"; };
 		5FA6E38A23A5ED6B0059C41D /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		5FA6E38C23A6AFCA0059C41D /* LoadImageDataFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadImageDataFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 			children = (
 				5FEEF9112319882B00083C51 /* ConversationsRefreshViewController.swift */,
 				5FEEF917231994AD00083C51 /* ConversationCellController.swift */,
-				5FA5CAAF234E764500950F2B /* ConversationsObserverController.swift */,
+				5FA5CAAF234E764500950F2B /* RealTimeConnectionObserverController.swift */,
 				5FA5CAB1234E767200950F2B /* ConversationsHeaderController.swift */,
 			);
 			path = Controllers;
@@ -683,7 +683,7 @@
 			files = (
 				5F7CAF122316FFEB0088D5AC /* UIView+Shimmering.swift in Sources */,
 				5FEEF91B23199E9E00083C51 /* ConversationsComposer.swift in Sources */,
-				5FA5CAB0234E764500950F2B /* ConversationsObserverController.swift in Sources */,
+				5FA5CAB0234E764500950F2B /* RealTimeConnectionObserverController.swift in Sources */,
 				5FEEF9122319882B00083C51 /* ConversationsRefreshViewController.swift in Sources */,
 				5FA5CAB2234E767200950F2B /* ConversationsHeaderController.swift in Sources */,
 				5F7CAF102316FBA30088D5AC /* ConversationCell.swift in Sources */,

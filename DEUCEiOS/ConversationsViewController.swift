@@ -11,10 +11,10 @@ import UIKit
 public final class ConversationsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var tableModel = [ConversationCellController]()
     var refreshController: ConversationsRefreshViewController?
-    public private(set) var observerController: ConversationsObserverController?
+    public private(set) var observerController: RealTimeConnectionObserverController?
     var headerController: ConversationsHeaderController?
 
-    convenience init(refreshController: ConversationsRefreshViewController, observerController: ConversationsObserverController?) {
+    convenience init(refreshController: ConversationsRefreshViewController, observerController: RealTimeConnectionObserverController?) {
         self.init()
         self.refreshController = refreshController
         self.observerController = observerController

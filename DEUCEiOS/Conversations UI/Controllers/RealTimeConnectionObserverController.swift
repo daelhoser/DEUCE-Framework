@@ -1,5 +1,5 @@
 //
-//  ConversationsObserverController.swift
+//  RealTimeConnectionObserverController.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 10/9/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class ConversationsObserverController {
+final public class RealTimeConnectionObserverController {
     public lazy var retryView: TryAgainView = binded(view: TryAgainView())
 
     private let viewmodel: RealTimeConnectionObserverViewModel
