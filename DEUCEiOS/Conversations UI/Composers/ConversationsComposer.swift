@@ -10,13 +10,10 @@ import Foundation
 import DEUCE_Framework
 import UIKit
 
-public protocol DeltaConversationsLoader: ConversationsLoader {
-}
-
 public final class ConversationsComposer {
     private init() {}
 
-    public static func conversationsComposedWith(conversationsLoader: ConversationsLoader, realTimeConnection: RealTimeConnection, deltaConversationsLoader: DeltaConversationsLoader, imageDataLoader: ImageDataLoader) -> UINavigationController {
+    public static func conversationsComposedWith(conversationsLoader: ConversationsLoader, realTimeConnection: RealTimeConnection, deltaConversationsLoader: ConversationsLoader, imageDataLoader: ImageDataLoader) -> UINavigationController {
         let viewModel = ConversationViewModel(loader: conversationsLoader)
         let deltaViewModel = ConversationViewModel(loader: deltaConversationsLoader)
         let observerViewModel = RealTimeConnectionObserverViewModel(observer: realTimeConnection)

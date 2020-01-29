@@ -618,7 +618,7 @@ private extension TryAgainView {
     }
 }
 
-private class DeltaConversationsLoaderSpy: DeltaConversationsLoader {
+private class DeltaConversationsLoaderSpy: ConversationsLoader {
     var loadRequests = [(LoadConversationsResult) -> Void]()
     
     func load(completion: @escaping (LoadConversationsResult) -> Void) {
