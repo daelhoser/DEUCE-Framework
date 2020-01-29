@@ -68,10 +68,10 @@ extension ConversationsTests {
 
         // MARK: - RealTimeConnection
         private(set) var realtimeRequestCount = 0
-        private var statusCompletion: ((ConnectionStatus) -> Void)?
+        private var connectionStatusCompletion: ((ConnectionStatus) -> Void)?
 
         func start(status: @escaping (ConnectionStatus) -> Void) {
-            statusCompletion = status
+            connectionStatusCompletion = status
             realtimeRequestCount += 1
         }
         
@@ -79,7 +79,7 @@ extension ConversationsTests {
         }
 
         func notifyStatusChange(status: ConnectionStatus) {
-            statusCompletion?(status)
+            connectionStatusCompletion?(status)
         }
     }
 }
