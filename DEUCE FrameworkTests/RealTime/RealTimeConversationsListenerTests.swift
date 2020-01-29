@@ -36,12 +36,12 @@ class RealTimeRealTimeConnectionTests: XCTestCase {
     private func expect(sut: RealTimeConversationsListener, toCompleteWith expectedResult: RealTimeConversationsListener.Result,  file: StaticString = #file, line: UInt = #line, when action: () -> ()) {
         let exp = expectation(description: "Waiting on load")
 
-        sut.listenForNewMessages { (result) in
+        sut.load { (result) in
             switch(expectedResult, result) {
-            case (.failed(let expectedError), .failed(let capturedError)):
-                XCTAssertEqual(expectedError, capturedError, file: file, line:  line)
+            case (.failed(let expectedError), .failure(let capturedError)):
+                XCTAssertEqual(expectedError, capturedError as! RealTimeConversationsListener.Error, file: file, line:  line)
             case (.success(let expectedMessage), .success(let capturedMessage)):
-                XCTAssertEqual(expectedMessage, capturedMessage, file: file, line:  line)
+                XCTAssertEqual([expectedMessage], capturedMessage, file: file, line:  line)
             default:
                 XCTFail("Expected \(expectedResult) and instead got \(result)", file: file, line:  line)
             }

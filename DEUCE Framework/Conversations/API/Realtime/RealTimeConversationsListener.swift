@@ -13,7 +13,7 @@ public protocol ConversationsHub {
 }
 
 
-final public class RealTimeConversationsListener {
+final public class RealTimeConversationsListener: ConversationsLoader {
     private let hub: ConversationsHub
     private let newMessageEventName: String
     
@@ -31,26 +31,25 @@ final public class RealTimeConversationsListener {
         self.newMessageEventName = newMessageEventName
     }
     
-    public func listenForNewMessages(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (LoadConversationsResult) -> Void) {
         hub.on(eventName: newMessageEventName) { (value) in
             guard let first = value.first as? [String: Any] else {
-                completion(.failed(RealTimeConversationsListener.Error.invalidData))
+                completion(.failure(RealTimeConversationsListener.Error.invalidData))
                 
                 return
             }
             completion(RealTimeConversationsListener.map(dictionary: first))
         }
     }
-    
 
-    static func map(dictionary: [String: Any]) -> RealTimeConversationsListener.Result {
+    static func map(dictionary: [String: Any]) -> LoadConversationsResult {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.deuceFormatter)
 
         guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted), let convo = try? jsonDecoder.decode(ConversationDecodable.self, from: data) else {
-            return .failed(Error.invalidData)
+            return .failure(Error.invalidData)
         }
-        return .success(convo.conversation)
+        return .success([convo.conversation])
     }
 
     private struct ConversationDecodable: Equatable, Decodable {
