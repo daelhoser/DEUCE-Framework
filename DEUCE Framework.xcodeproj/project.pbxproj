@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5F0A1E45230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
 		5F0A1E47230B2C5600E8DD71 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E46230B2C5600E8DD71 /* URLSessionHTTPClient.swift */; };
-		5F24B5CD2347ABE400E04F4D /* ConversationsLoaderAndListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */; };
 		5F28F7CD239895D8005C271C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5F28F7CC239895D8005C271C /* README.md */; };
 		5F3082F7234BA534005B9CC0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3082F6234BA534005B9CC0 /* HeaderView.swift */; };
 		5F349D4322824AB20058AF4F /* RemoteConversationsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */; };
@@ -37,7 +36,7 @@
 		5FA6E38F23A6B7B60059C41D /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6E38E23A6B7B60059C41D /* HTTPClientSpy.swift */; };
 		5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB52C42234D6054008B6D66 /* TryAgainView.swift */; };
 		5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */; };
-		5FB5EF2A231DC8BA00158FF6 /* RealTimeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */; };
+		5FB5EF2A231DC8BA00158FF6 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB5EF29231DC8BA00158FF6 /* WebSocketClient.swift */; };
 		5FD9ED7C23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */; };
 		5FD9ED7E23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9ED7D23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift */; };
 		5FD9ED8023DBD878008FABE8 /* RealTimeConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD9ED7F23DBD878008FABE8 /* RealTimeConversationsListener.swift */; };
@@ -57,8 +56,7 @@
 		5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF292A5234167FF008540D2 /* RealTimeConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConnectionListener.swift */; };
-		5FF292A723417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */; };
-		5FF292A923417C69008540D2 /* ConversationsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A823417C69008540D2 /* ConversationsListener.swift */; };
+		5FF292A923417C69008540D2 /* RealTimeConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A823417C69008540D2 /* RealTimeConnection.swift */; };
 		5FFBAFF8231495F30097D10A /* ConversationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFBAFF7231495F30097D10A /* ConversationsTests.swift */; };
 		5FFBAFFA23149C2E0097D10A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FFBAFFB23149CED0097D10A /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -92,7 +90,6 @@
 /* Begin PBXFileReference section */
 		5F0A1E44230B11FD00E8DD71 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		5F0A1E46230B2C5600E8DD71 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
-		5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoaderAndListener.swift; sourceTree = "<group>"; };
 		5F28F7CC239895D8005C271C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5F3082F6234BA534005B9CC0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5F349D4222824AB20058AF4F /* RemoteConversationsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationsLoaderTests.swift; sourceTree = "<group>"; };
@@ -122,7 +119,7 @@
 		5FA6E38E23A6B7B60059C41D /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		5FB52C42234D6054008B6D66 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
 		5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeInterval.swift"; sourceTree = "<group>"; };
-		5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnection.swift; sourceTree = "<group>"; };
+		5FB5EF29231DC8BA00158FF6 /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
 		5FD9ED7B23DBB378008FABE8 /* RealTimeConnectionListenerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionListenerTests.swift; sourceTree = "<group>"; };
 		5FD9ED7D23DBB546008FABE8 /* RealTimeConversationsListenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsListenerTests.swift; sourceTree = "<group>"; };
 		5FD9ED7F23DBD878008FABE8 /* RealTimeConversationsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConversationsListener.swift; sourceTree = "<group>"; };
@@ -146,8 +143,7 @@
 		5FF272C0228249BF00E4486C /* DEUCE FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DEUCE FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272C7228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF292A4234167FF008540D2 /* RealTimeConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionListener.swift; sourceTree = "<group>"; };
-		5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsLoaderAndRealtimeListener.swift; sourceTree = "<group>"; };
-		5FF292A823417C69008540D2 /* ConversationsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListener.swift; sourceTree = "<group>"; };
+		5FF292A823417C69008540D2 /* RealTimeConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnection.swift; sourceTree = "<group>"; };
 		5FFBAFF6231495F30097D10A /* DEUCEiOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DEUCEiOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		5FFBAFF7231495F30097D10A /* ConversationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsTests.swift; sourceTree = "<group>"; };
 		5FFBAFFC2314A0BE0097D10A /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
@@ -224,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				5F419695234019A00025549E /* Realtime */,
-				5FF292A623417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -232,7 +227,7 @@
 		5F419695234019A00025549E /* Realtime */ = {
 			isa = PBXGroup;
 			children = (
-				5FB5EF29231DC8BA00158FF6 /* RealTimeConnection.swift */,
+				5FB5EF29231DC8BA00158FF6 /* WebSocketClient.swift */,
 				5FF292A4234167FF008540D2 /* RealTimeConnectionListener.swift */,
 				5FD9ED7F23DBD878008FABE8 /* RealTimeConversationsListener.swift */,
 			);
@@ -344,8 +339,7 @@
 			children = (
 				5FEC4430230C8302001AFCA5 /* Conversation.swift */,
 				5F9491032290E078007531EE /* ConversationsLoader.swift */,
-				5FF292A823417C69008540D2 /* ConversationsListener.swift */,
-				5F24B5CC2347ABE400E04F4D /* ConversationsLoaderAndListener.swift */,
+				5FF292A823417C69008540D2 /* RealTimeConnection.swift */,
 				5F92EE0F23733D1800582167 /* ConversationUser.swift */,
 				5FE9FC7223A42FFB00ED68E8 /* UsersLoader.swift */,
 				5FEEF9142319890C00083C51 /* ImageDataLoader.swift */,
@@ -730,18 +724,16 @@
 				5F0A1E47230B2C5600E8DD71 /* URLSessionHTTPClient.swift in Sources */,
 				5F92EE1023733D1800582167 /* ConversationUser.swift in Sources */,
 				5FA4BD6F23A7F2D000ECEBAA /* RemoteImageDataLoader.swift in Sources */,
-				5FB5EF2A231DC8BA00158FF6 /* RealTimeConnection.swift in Sources */,
+				5FB5EF2A231DC8BA00158FF6 /* WebSocketClient.swift in Sources */,
 				5F60848D228616E100B23235 /* DateFormatter+Deuce.swift in Sources */,
 				5FA6E38723A5E8A20059C41D /* ImageDataLoader.swift in Sources */,
-				5FF292A923417C69008540D2 /* ConversationsListener.swift in Sources */,
+				5FF292A923417C69008540D2 /* RealTimeConnection.swift in Sources */,
 				5FE9FC7323A42FFB00ED68E8 /* UsersLoader.swift in Sources */,
 				5FEC442F230C8274001AFCA5 /* ConversationsMapper.swift in Sources */,
 				5FD9ED8023DBD878008FABE8 /* RealTimeConversationsListener.swift in Sources */,
 				5F8731F82288D90600DD3358 /* HTTPClient.swift in Sources */,
 				5FF292A5234167FF008540D2 /* RealTimeConnectionListener.swift in Sources */,
-				5F24B5CD2347ABE400E04F4D /* ConversationsLoaderAndListener.swift in Sources */,
 				5F92EE122373478700582167 /* ConversationUsersMapper.swift in Sources */,
-				5FF292A723417B9E008540D2 /* ConversationsLoaderAndRealtimeListener.swift in Sources */,
 				5F349D4622824AFC0058AF4F /* RemoteConversationsLoader.swift in Sources */,
 				5FEC4431230C8302001AFCA5 /* Conversation.swift in Sources */,
 				5F92EE0C23733B8A00582167 /* RemoteConversationUsersLoader.swift in Sources */,

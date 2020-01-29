@@ -279,33 +279,33 @@ class ConversationsTests: XCTestCase {
         XCTAssertEqual(loader.realtimeRequestCount, 1, "Expected a connection request once view is loaded")
     }
 
-    func test_StatusView_isVisibleWhileListenerConnects() {
-        let (loader, sut) = makeSUT()
-
-        XCTAssertNil(sut.loadingStatus, "Expected status label to be nil")
-
-        //forces view to load
-        sut.loadViewIfNeeded()
-        XCTAssertEqual(sut.loadingStatus, "connecting...", "Expected connecting... status while connecting")
-
-        loader.notifyStatusChange(status: .connected)
-        XCTAssertNil(sut.loadingStatus, "Expected nil status when connected successfully")
-
-        loader.notifyStatusChange(status: .newMessage(makeConversation()))
-        XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
-
-        let error = RealTimeConnectionListener.Error.connection
-        loader.notifyStatusChange(status: .failed(error))
-        XCTAssertEqual(sut.loadingStatus, "disconnected")
-
-        //receiving a new message after being disconnected is unlikely. Nevertheless, we still want to test.
-        loader.notifyStatusChange(status: .newMessage(makeConversation()))
-        XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
-
-        let invalidData = RealTimeConnectionListener.Error.invalidData
-        loader.notifyStatusChange(status: .failed(invalidData))
-        XCTAssertNil(sut.loadingStatus, "Expected nil when a conversation can't be decoded properly.")
-    }
+//    func test_StatusView_isVisibleWhileListenerConnects() {
+//        let (loaderSpy, sut) = makeSUT()
+//
+//        XCTAssertNil(sut.loadingStatus, "Expected status label to be nil")
+//
+//        //forces view to load
+//        sut.loadViewIfNeeded()
+//        XCTAssertEqual(sut.loadingStatus, "connecting...", "Expected connecting... status while connecting")
+//
+//        loaderSpy.notifyStatusChange(status: .connected)
+//        XCTAssertNil(sut.loadingStatus, "Expected nil status when connected successfully")
+//
+//        loaderSpy.notifyStatusChange(status: .newMessage(makeConversation()))
+//        XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
+//
+//        let error = RealTimeConnectionListener.Error.connection
+//        loaderSpy.notifyStatusChange(status: .failed(error))
+//        XCTAssertEqual(sut.loadingStatus, "disconnected")
+//
+//        //receiving a new message after being disconnected is unlikely. Nevertheless, we still want to test.
+//        loaderSpy.notifyStatusChange(status: .newMessage(makeConversation()))
+//        XCTAssertNil(sut.loadingStatus, "Expected nil when a new conversation is received.")
+//
+//        let invalidData = RealTimeConnectionListener.Error.invalidData
+//        loaderSpy.notifyStatusChange(status: .failed(invalidData))
+//        XCTAssertNil(sut.loadingStatus, "Expected nil when a conversation can't be decoded properly.")
+//    }
 
     func test_TryAgainView_isVisibleWhenListenerFailsToConnect() {
         let (loader, sut) = makeSUT()
@@ -325,7 +325,7 @@ class ConversationsTests: XCTestCase {
         XCTAssertTrue(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view present when connection fails.")
     }
 
-    func test_ConversationsListener_attemptsToConnectOnRetryAction() {
+    func test_RealTimeConnection_attemptsToConnectOnRetryAction() {
         let (loader, sut) = makeSUT()
 
         //forces view to load
@@ -348,66 +348,66 @@ class ConversationsTests: XCTestCase {
 
     // MARK: - New Message Functionality
 
-    func test_ConversationObserver_addsNewConversationToTheTopOfList() {
-        let (loader, sut) = makeSUT()
+//    func test_ConversationObserver_addsNewConversationToTheTopOfList() {
+//        let (loader, sut) = makeSUT()
+//
+//        //forces view to load
+//        sut.loadViewIfNeeded()
+//        loader.notifyStatusChange(status: .connected)
+//
+//        let date = Date()
+//
+//        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+//        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+//        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
+//        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
+//
+//        loader.completeConversationsLoad(at: 0, with: [Conversation1])
+//        assertThat(sut: sut, isRendering: [Conversation1])
+//
+//        sut.simulateUserInitiatedConversationLoad()
+//        loader.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
+//        assertThat(sut: sut, isRendering: [Conversation1, Conversation2])
+//
+//        //first new message received via real time
+//        loader.notifyStatusChange(status: .newMessage(Conversation3))
+//        assertThat(sut: sut, isRendering: [ Conversation3, Conversation1, Conversation2])
+//
+//        //second new  message received via real time
+//        loader.notifyStatusChange(status: .newMessage(Conversation4))
+//        assertThat(sut: sut, isRendering: [Conversation4, Conversation3, Conversation1, Conversation2])
+//    }
 
-        //forces view to load
-        sut.loadViewIfNeeded()
-        loader.notifyStatusChange(status: .connected)
-
-        let date = Date()
-
-        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
-        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
-        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
-
-        loader.completeConversationsLoad(at: 0, with: [Conversation1])
-        assertThat(sut: sut, isRendering: [Conversation1])
-
-        sut.simulateUserInitiatedConversationLoad()
-        loader.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
-        assertThat(sut: sut, isRendering: [Conversation1, Conversation2])
-
-        //first new message received via real time
-        loader.notifyStatusChange(status: .newMessage(Conversation3))
-        assertThat(sut: sut, isRendering: [ Conversation3, Conversation1, Conversation2])
-
-        //second new  message received via real time
-        loader.notifyStatusChange(status: .newMessage(Conversation4))
-        assertThat(sut: sut, isRendering: [Conversation4, Conversation3, Conversation1, Conversation2])
-    }
-
-    func test_ConversationObserver_movesUpdatedConversationToTheTopOfList() {
-        let (loader, sut) = makeSUT()
-
-        //forces view to load
-        sut.loadViewIfNeeded()
-        loader.notifyStatusChange(status: .connected)
-
-        let date = Date()
-
-        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
-        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
-        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
-        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
-
-        loader.completeConversationsLoad(at: 0, with: [Conversation1, Conversation2, Conversation3, Conversation4])
-        assertThat(sut: sut, isRendering: [Conversation1, Conversation2, Conversation3, Conversation4])
-
-        let someTimeLater = Conversation1.lastMessageTime?.addingTimeInterval(1.0)
-        let newMessageToSameConversation = Conversation(id: Conversation1.id, image: Conversation1.image, conversationId: Conversation1.conversationId, message: "Different Message", lastMessageUser: Conversation1.lastMessageUser, lastMessageTime: someTimeLater, conversationType: Conversation1.conversationType, groupName: Conversation1.groupName, contentType: Conversation1.contentType, otherUserId: Conversation1.otherUserId, createdByName: Conversation1.createdByName)
-
-        //first new message received via real time
-        loader.notifyStatusChange(status: .newMessage(newMessageToSameConversation))
-        assertThat(sut: sut, isRendering: [newMessageToSameConversation, Conversation2, Conversation3, Conversation4])
-    }
+//    func test_ConversationObserver_movesUpdatedConversationToTheTopOfList() {
+//        let (loader, sut) = makeSUT()
+//
+//        //forces view to load
+//        sut.loadViewIfNeeded()
+//        loader.notifyStatusChange(status: .connected)
+//
+//        let date = Date()
+//
+//        let Conversation1 = makeConversation(imageURL: nil, message: "a message", lastMessageUser: "Jose Alvarez", lastMessageTime: date, conversationType: 0, groupName: nil, contentType: 0, createdByName: "Creator")
+//        let Conversation2 = makeConversation(imageURL: URL(string: "http:a-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Group Class", contentType: 0, createdByName: "Group Creator")
+//        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
+//        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
+//
+//        loader.completeConversationsLoad(at: 0, with: [Conversation1, Conversation2, Conversation3, Conversation4])
+//        assertThat(sut: sut, isRendering: [Conversation1, Conversation2, Conversation3, Conversation4])
+//
+//        let someTimeLater = Conversation1.lastMessageTime?.addingTimeInterval(1.0)
+//        let newMessageToSameConversation = Conversation(id: Conversation1.id, image: Conversation1.image, conversationId: Conversation1.conversationId, message: "Different Message", lastMessageUser: Conversation1.lastMessageUser, lastMessageTime: someTimeLater, conversationType: Conversation1.conversationType, groupName: Conversation1.groupName, contentType: Conversation1.contentType, otherUserId: Conversation1.otherUserId, createdByName: Conversation1.createdByName)
+//
+//        //first new message received via real time
+//        loader.notifyStatusChange(status: .newMessage(newMessageToSameConversation))
+//        assertThat(sut: sut, isRendering: [newMessageToSameConversation, Conversation2, Conversation3, Conversation4])
+//    }
 
 
     // MARK: - Helper Methods
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationsViewController) {
         let loader = LoaderSpy()
-        let navigationController = ConversationsComposer.conversationsComposedWith(conversationsLoader: loader, imageDataLoader: loader)
+        let navigationController = ConversationsComposer.conversationsComposedWith(conversationsLoader: loader, realTimeConnection: loader, imageDataLoader: loader)
         let sut = navigationController.children.first! as! ConversationsViewController
 
         trackForMemoryLeaks(object: navigationController, file: file, line: line)

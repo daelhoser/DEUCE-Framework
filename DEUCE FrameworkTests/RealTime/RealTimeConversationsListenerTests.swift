@@ -9,7 +9,7 @@
 import XCTest
 import DEUCE_Framework
 
-class RealTimeConversationsListenerTests: XCTestCase {
+class RealTimeRealTimeConnectionTests: XCTestCase {
     func test_onNewMessage_deliversErrorOnInvalidDictionary() {
         let conversationHub = ConversationHubSpy()
         let sut = RealTimeConversationsListener(hub: conversationHub, newMessageEventName: "newMessage")

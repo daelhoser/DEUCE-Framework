@@ -19,7 +19,7 @@ class RealTimeConnectionListenerTests: XCTestCase {
     func test_onConnect_attemptsToMakeAConnection() {
         let (client, loader) = makeSUT()
 
-        loader.listen { _  in }
+        loader.start { _  in }
 
         XCTAssertTrue(client.attemptedConnections)
     }
@@ -92,7 +92,7 @@ class RealTimeConnectionListenerTests: XCTestCase {
     private func expect(sut: RealTimeConnectionListener, toCompleteWith expectedResult: ConnectionStatus, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Waiting on connection")
 
-        sut.listen { (receivedResult) in
+        sut.start { (receivedResult) in
             switch (expectedResult, receivedResult) {
             case (.connected, .connected):
                 break
@@ -100,8 +100,6 @@ class RealTimeConnectionListenerTests: XCTestCase {
                 break
             case let (.failed(expectedError), .failed(receivedError)):
                 XCTAssertEqual(expectedError as! RealTimeConnectionListener.Error, receivedError  as! RealTimeConnectionListener.Error, file: file, line: line)
-            case let (.newMessage(expectedMessage), .newMessage(receivedMessage)):
-                XCTAssertEqual(expectedMessage, receivedMessage, file: file, line: line)
             default:
                 XCTFail("ExpectedResult \(expectedResult) and got receivedResult: \(receivedResult)", file: file, line: line)
             }
@@ -117,13 +115,13 @@ class RealTimeConnectionListenerTests: XCTestCase {
     }
 }
 
-class RealTimeClientSpy: RealTimeConnection {
+class RealTimeClientSpy: WebSocketClient {
     var attemptedConnections: Bool {
         return !completions.isEmpty
     }
-    private var completions = [(RealTimeConnectionStatus) -> Void]()
+    private var completions = [(WebSocketStatus) -> Void]()
 
-    func start(status: @escaping (RealTimeConnectionStatus) -> Void) {
+    func start(status: @escaping (WebSocketStatus) -> Void) {
         completions.append(status)
     }
     

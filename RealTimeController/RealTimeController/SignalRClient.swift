@@ -9,7 +9,7 @@
 import Foundation
 import DEUCE_Framework
 
-final public class SignalRClient: RealTimeConnection  {
+final public class SignalRClient: WebSocketClient {
     private var connection: RealTimeAzureConnection
     
     public enum Error: Swift.Error {
@@ -20,7 +20,7 @@ final public class SignalRClient: RealTimeConnection  {
         self.connection = connection
     }
  
-    public func start(status: @escaping (RealTimeConnectionStatus) -> Void) {
+    public func start(status: @escaping (WebSocketStatus) -> Void) {
         connection.started = {
             status(.connected)
         }

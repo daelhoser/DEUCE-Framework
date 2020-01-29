@@ -1,5 +1,5 @@
 //
-//  RealTimeConnection.swift
+//  WebSocketClient.swift
 //  DEUCE Framework
 //
 //  Created by Jose Alvarez on 9/2/19.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-public protocol RealTimeConnection {
-    func start(status: @escaping (RealTimeConnectionStatus) -> Void)
+public protocol WebSocketClient {
+    func start(status: @escaping (WebSocketStatus) -> Void)
     func stop()
 }
 
-public enum RealTimeConnectionStatus {
+public enum WebSocketStatus {
     case connected
     case disconnected
     case slow

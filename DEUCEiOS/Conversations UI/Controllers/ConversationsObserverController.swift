@@ -37,8 +37,6 @@ final public class ConversationsObserverController {
             case .disconnected:
                 view?.isHidden = false
                 self?.onStatusChange?("disconnected")
-            case .newMessage:
-                self?.onStatusChange?(nil)
             }
         }
 

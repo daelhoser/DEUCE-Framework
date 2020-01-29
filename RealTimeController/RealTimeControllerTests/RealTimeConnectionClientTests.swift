@@ -91,11 +91,11 @@ class RealTimeConnectionClientTests: XCTestCase {
         return (spy, realTimeClient)
     }
     
-    private func expect(sut: SignalRClient, toCompleteWith expectedResults: [RealTimeConnectionStatus], file: StaticString = #file, line: UInt = #line, when action: () -> ()) {
+    private func expect(sut: SignalRClient, toCompleteWith expectedResults: [WebSocketStatus], file: StaticString = #file, line: UInt = #line, when action: () -> ()) {
         let exp = expectation(description: "Waiting to connect")
         exp.expectedFulfillmentCount = expectedResults.count
         
-        var capturedResults = [RealTimeConnectionStatus]()
+        var capturedResults = [WebSocketStatus]()
 
         sut.start() { (result) in
             exp.fulfill()
@@ -114,7 +114,7 @@ class RealTimeSpy: RealTimeAzureConnection {
     private(set) var connectionRequests = 0
     private(set) var calledStopConnection = false
     
-    // MARK: - RealTimeConnection
+    // MARK: - WebSocketClient
     
     var started: (() -> Void)?
     var error: ((Error) -> Void)?
@@ -148,8 +148,8 @@ class RealTimeSpy: RealTimeAzureConnection {
 }
 
 
-extension RealTimeConnectionStatus: Equatable {
-    public static func == (lhs: RealTimeConnectionStatus, rhs: RealTimeConnectionStatus) -> Bool {
+extension WebSocketStatus: Equatable {
+    public static func == (lhs: WebSocketStatus, rhs: WebSocketStatus) -> Bool {
         switch (lhs, rhs) {
         case (.connected, .connected):
             return true

@@ -13,16 +13,16 @@ import UIKit
 public final class ConversationsComposer {
     private init() {}
 
-    public static func conversationsComposedWith(conversationsLoader: ConversationsLoaderAndListener, imageDataLoader: ImageDataLoader) -> UINavigationController {
+    public static func conversationsComposedWith(conversationsLoader: ConversationsLoader, realTimeConnection: RealTimeConnection, imageDataLoader: ImageDataLoader) -> UINavigationController {
         let viewModel = ConversationViewModel(loader: conversationsLoader)
-        let observerViewModel = ConversationsObserverViewModel(observer: conversationsLoader)
+        let observerViewModel = ConversationsObserverViewModel(observer: realTimeConnection)
         let refreshController = ConversationsRefreshViewController(viewModel: viewModel)
         let observerController = ConversationsObserverController(viewmodel: observerViewModel)
         let viewController = ConversationsViewController(refreshController: refreshController, observerController: observerController)
         viewController.refreshController = refreshController
 
         viewModel.onConversationLoad = adaptConversationsToCellControllers(forwardingTo: viewController, loader: imageDataLoader)
-        observerViewModel.onNewConversation = adaptNewConversationToCellController(forwardingTo: viewController, loader: imageDataLoader)
+//        observerViewModel.onNewConversation = adaptNewConversationToCellController(forwardingTo: viewController, loader: imageDataLoader)
 
         return UINavigationController(rootViewController: viewController)
     }

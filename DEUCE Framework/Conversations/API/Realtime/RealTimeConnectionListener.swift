@@ -8,33 +8,35 @@
 
 import Foundation
 
-final public class RealTimeConnectionListener: ConversationsListener {
-    private let connection: RealTimeConnection
+final public class RealTimeConnectionListener: RealTimeConnection {
+    private let connection: WebSocketClient
 
     public enum Error: Swift.Error {
         case connection
-        case invalidData
     }
 
     public typealias Status = ConnectionStatus
 
-
-    public init(connection: RealTimeConnection) {
+    public init(connection: WebSocketClient) {
         self.connection = connection
     }
 
-    public func listen(completion: @escaping (Status) -> Void) {
+    public func start(status: @escaping (Status) -> Void) {
         connection.start() { (result) in
             switch result {
             case .connected:
-                completion(.connected)
+                status(.connected)
             case .disconnected:
-                completion(.disconnected)
+                status(.disconnected)
             case .slow:
-                completion(.slow)
+                status(.slow)
             case .failed:
-                completion(.failed(Error.connection))
+                status(.failed(Error.connection))
             }
         }
+    }
+    
+    public func stop() {
+        connection.stop()
     }
 }

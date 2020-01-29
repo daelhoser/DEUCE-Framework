@@ -10,9 +10,9 @@ import Foundation
 import DEUCE_Framework
 
 final class ConversationsObserverViewModel {
-    private let observer: ConversationsListener
+    private let observer: RealTimeConnection
 
-    init(observer: ConversationsListener) {
+    init(observer: RealTimeConnection) {
         self.observer = observer
     }
 
@@ -20,16 +20,14 @@ final class ConversationsObserverViewModel {
         case connected
         case disconnected
         case connecting
-        case newMessage
     }
 
     var onConnectionStateChange: ((ConnectionState) -> Void)?
-    var onNewConversation: ((Conversation) -> Void)?
 
     func observe() {
         onConnectionStateChange?(.connecting)
 
-        observer.listen(completion: { [weak self] (status) in
+        observer.start(status: { [weak self] (status) in
             guard let self = self else { return }
 
             switch status {
@@ -45,9 +43,6 @@ final class ConversationsObserverViewModel {
                         self.onConnectionStateChange?(.disconnected)
                     }
                 }
-            case let .newMessage(message):
-                self.onConnectionStateChange?(.newMessage)
-                self.onNewConversation?(message)
             }
         })
     }
