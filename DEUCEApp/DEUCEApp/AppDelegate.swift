@@ -10,22 +10,7 @@ import UIKit
 import DEUCE_Framework
 import DEUCEiOS
 
-class MockRealtimeClient: RealTimeConnection {
-    private var status: ((RealTimeConnectionStatus) -> Void)!
-    
-    func start(status: @escaping (RealTimeConnectionStatus) -> Void) {
-        self.status = status
-        
-        self.status(.connected)
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-//            self.sendNewMessage()
-//        }
-    }
-    
-    func stop() {
-    }
-    
+class MockRealtimeClient: WebSocketClient, ConversationsLoader {
     private func sendNewMessage() {
 //        let message: [String: Any] = [
 //            "Id": "f9d90452-202e-11ea-a5e8-2e728ce88125",
@@ -40,6 +25,18 @@ class MockRealtimeClient: RealTimeConnection {
 //        ]
 //
 //        self.status(.newMessage(message))
+    }
+    
+    // MARK: - WebSocketClient
+    func start(status: @escaping (WebSocketStatus) -> Void) {
+        status(.connected)
+    }
+    
+    func stop() {
+    }
+    
+    // MARK: - ConversationsLoader - Used for delta updates
+    func load(completion: @escaping (LoadConversationsResult) -> Void) {
     }
 }
 
@@ -60,11 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let conversationsLoader = RemoteConversationsLoader(url: url, client: client)
         let realTimeClient = MockRealtimeClient()
-        let listener = RealTimeConnectionListener(connection: realTimeClient)
-        let loaderAndListener = ConversationsLoaderAndRealtimeListener(remoteLoader: conversationsLoader, realtimeLoader: listener)
+        let realtimeConnection = RealTimeConnectionListener(connection: realTimeClient)
         let imageLoader = RemoteImageDataLoader(client: client)
         
-        let viewController = ConversationsComposer.conversationsComposedWith(conversationsLoader: loaderAndListener, imageDataLoader: imageLoader)
+        let viewController = ConversationsComposer.conversationsComposedWith(conversationsLoader: conversationsLoader, realTimeConnection: realtimeConnection, deltaConversationsLoader: realTimeClient, imageDataLoader: imageLoader)
         
         window?.rootViewController = viewController
         
