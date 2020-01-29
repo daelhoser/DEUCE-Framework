@@ -11,8 +11,8 @@
 		5F28A14723B5854600709E19 /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F28A14623B5854600709E19 /* DEUCE_Framework.framework */; };
 		5FC7A49C23E0FCA100D91DCD /* RealTimeAzureConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC7A49B23E0FCA100D91DCD /* RealTimeAzureConnection.swift */; };
 		5FC7A49E23E0FD0400D91DCD /* SignalRClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC7A49D23E0FD0400D91DCD /* SignalRClient.swift */; };
+		5FC7A4A023E10AE300D91DCD /* RealTimeConnectionClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC7A49F23E10AE300D91DCD /* RealTimeConnectionClientTests.swift */; };
 		5FF0438723B5843800E94B8A /* RealTimeController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF0437D23B5843800E94B8A /* RealTimeController.framework */; };
-		5FF0438C23B5843800E94B8A /* RealTimeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0438B23B5843800E94B8A /* RealTimeControllerTests.swift */; };
 		5FF0438E23B5843800E94B8A /* RealTimeController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF0438023B5843800E94B8A /* RealTimeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68A6A5C4245EC3EE8F2E5C1D /* Pods_RealTimeController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C74729CC5ED79AF5BFA4522 /* Pods_RealTimeController.framework */; };
 /* End PBXBuildFile section */
@@ -35,11 +35,11 @@
 		5F28A14623B5854600709E19 /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC7A49B23E0FCA100D91DCD /* RealTimeAzureConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeAzureConnection.swift; sourceTree = "<group>"; };
 		5FC7A49D23E0FD0400D91DCD /* SignalRClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalRClient.swift; sourceTree = "<group>"; };
+		5FC7A49F23E10AE300D91DCD /* RealTimeConnectionClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionClientTests.swift; sourceTree = "<group>"; };
 		5FF0437D23B5843800E94B8A /* RealTimeController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealTimeController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF0438023B5843800E94B8A /* RealTimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealTimeController.h; sourceTree = "<group>"; };
 		5FF0438123B5843800E94B8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FF0438623B5843800E94B8A /* RealTimeControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealTimeControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FF0438B23B5843800E94B8A /* RealTimeControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeControllerTests.swift; sourceTree = "<group>"; };
 		5FF0438D23B5843800E94B8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB9DFCFB16756D78510689FC /* Pods-RealTimeController-RealTimeControllerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealTimeController-RealTimeControllerTests.debug.xcconfig"; path = "Target Support Files/Pods-RealTimeController-RealTimeControllerTests/Pods-RealTimeController-RealTimeControllerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA3B39311FD916CB6E677589 /* Pods-RealTimeController.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealTimeController.debug.xcconfig"; path = "Target Support Files/Pods-RealTimeController/Pods-RealTimeController.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		5FF0438A23B5843800E94B8A /* RealTimeControllerTests */ = {
 			isa = PBXGroup;
 			children = (
-				5FF0438B23B5843800E94B8A /* RealTimeControllerTests.swift */,
+				5FC7A49F23E10AE300D91DCD /* RealTimeConnectionClientTests.swift */,
 				5FF0438D23B5843800E94B8A /* Info.plist */,
 			);
 			path = RealTimeControllerTests;
@@ -197,6 +197,7 @@
 					};
 					5FF0438523B5843800E94B8A = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -313,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FF0438C23B5843800E94B8A /* RealTimeControllerTests.swift in Sources */,
+				5FC7A4A023E10AE300D91DCD /* RealTimeConnectionClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +511,7 @@
 			baseConfigurationReference = AB9DFCFB16756D78510689FC /* Pods-RealTimeController-RealTimeControllerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BV8HVD6H7Z;
 				INFOPLIST_FILE = RealTimeControllerTests/Info.plist;
@@ -520,6 +522,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.RealTimeControllerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -530,6 +533,7 @@
 			baseConfigurationReference = 1E63A49CBF66DCFE3B262402 /* Pods-RealTimeController-RealTimeControllerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BV8HVD6H7Z;
 				INFOPLIST_FILE = RealTimeControllerTests/Info.plist;

@@ -1,6 +1,6 @@
 //
-//  RealTimeControllerTests.swift
-//  RealTimeControllerTests
+//  RealTimeConnectionClientTests.swift
+//  RealTimeConnectionClientTests
 //
 //  Created by Jose Alvarez on 12/26/19.
 //  Copyright © 2019 DEUCE. All rights reserved.
@@ -11,7 +11,7 @@ import XCTest
 import RealTimeController
 import DEUCE_Framework
 
-class RealTimeControllerTests: XCTestCase {
+class RealTimeConnectionClientTests: XCTestCase {
     func test_onInit_doesNotConnect() {
         let spy = RealTimeSpy()
         _ = SignalRClient(connection: spy)
