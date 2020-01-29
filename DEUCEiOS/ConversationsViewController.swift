@@ -13,12 +13,14 @@ public final class ConversationsViewController: UITableViewController, UITableVi
     var refreshController: ConversationsRefreshViewController?
     public private(set) var observerController: RealTimeConnectionObserverController?
     var headerController: ConversationsHeaderController?
+    var deltaLoader: ConversationViewModel?
 
-    convenience init(refreshController: ConversationsRefreshViewController, observerController: RealTimeConnectionObserverController?) {
+    convenience init(refreshController: ConversationsRefreshViewController, observerController: RealTimeConnectionObserverController?, deltaLoader: ConversationViewModel) {
         self.init()
         self.refreshController = refreshController
         self.observerController = observerController
         self.headerController = ConversationsHeaderController()
+        self.deltaLoader = deltaLoader
     }
 
     override public func viewDidLoad() {
@@ -38,6 +40,7 @@ public final class ConversationsViewController: UITableViewController, UITableVi
         let nib = UINib(nibName: "ConversationCell", bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: "ConversationCell")
 
+        deltaLoader?.loadConversations()
         observerController?.observe()
         refreshController?.refresh()
     }

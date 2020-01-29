@@ -10,19 +10,23 @@ import Foundation
 import DEUCE_Framework
 import UIKit
 
+public protocol DeltaConversationsLoader: ConversationsLoader {
+}
+
 public final class ConversationsComposer {
     private init() {}
 
-    public static func conversationsComposedWith(conversationsLoader: ConversationsLoader, realTimeConnection: RealTimeConnection, imageDataLoader: ImageDataLoader) -> UINavigationController {
+    public static func conversationsComposedWith(conversationsLoader: ConversationsLoader, realTimeConnection: RealTimeConnection, deltaConversationsLoader: DeltaConversationsLoader, imageDataLoader: ImageDataLoader) -> UINavigationController {
         let viewModel = ConversationViewModel(loader: conversationsLoader)
+        let deltaViewModel = ConversationViewModel(loader: deltaConversationsLoader)
         let observerViewModel = RealTimeConnectionObserverViewModel(observer: realTimeConnection)
         let refreshController = ConversationsRefreshViewController(viewModel: viewModel)
         let observerController = RealTimeConnectionObserverController(viewmodel: observerViewModel)
-        let viewController = ConversationsViewController(refreshController: refreshController, observerController: observerController)
+        let viewController = ConversationsViewController(refreshController: refreshController, observerController: observerController, deltaLoader: deltaViewModel)
         viewController.refreshController = refreshController
 
         viewModel.onConversationLoad = adaptConversationsToCellControllers(forwardingTo: viewController, loader: imageDataLoader)
-//        observerViewModel.onNewConversation = adaptNewConversationToCellController(forwardingTo: viewController, loader: imageDataLoader)
+        deltaViewModel.onConversationLoad = adaptNewConversationToCellController(forwardingTo: viewController, loader: imageDataLoader)
 
         return UINavigationController(rootViewController: viewController)
     }
@@ -37,10 +41,12 @@ public final class ConversationsComposer {
         }
     }
 
-    private static func adaptNewConversationToCellController(forwardingTo controller: ConversationsViewController, loader: ImageDataLoader)  -> (Conversation) -> Void {
-        return { [weak controller] conversation in
-            let viewModel = ConversationCellViewModel(model: conversation, imageDataLoader: loader, imageTransformer: UIImage.init)
-            controller?.addConversationController(controller: ConversationCellController(viewModel: viewModel))
+    private static func adaptNewConversationToCellController(forwardingTo controller: ConversationsViewController, loader: ImageDataLoader)  -> ([Conversation]) -> Void {
+        return { [weak controller] conversations in
+            for conversation in conversations {
+                let viewModel = ConversationCellViewModel(model: conversation, imageDataLoader: loader, imageTransformer: UIImage.init)
+                controller?.addConversationController(controller: ConversationCellController(viewModel: viewModel))
+            }
         }
     }
 }

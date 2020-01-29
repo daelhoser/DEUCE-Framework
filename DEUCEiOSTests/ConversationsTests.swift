@@ -12,14 +12,14 @@ import DEUCEiOS
 
 class ConversationsTests: XCTestCase {
     func test_ViewController_isFirstViewInNavigationController() {
-        let (_, sut) = makeSUT()
+        let (_, sut, _) = makeSUT()
 
         XCTAssertNotNil(sut.parent as? UINavigationController, "Expected Conversation to be wrapped in NavigationController")
     }
 
     // MARK: - Conversation Loader
     func test_loadConversationAction_requestConversationFromLoader() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
 
         XCTAssertEqual(loader.requestCount, 0, "Expected no loading requests before view is loaded.")
 
@@ -35,7 +35,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_loadingConversationIndicator_isVisibleWhileLoadingConversation() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
 
         sut.loadViewIfNeeded()
         XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
@@ -51,7 +51,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_loadConversationCompletion_rendersSuccessfullyLoadedConversation() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         assertThat(sut: sut, isRendering: [])
@@ -69,7 +69,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_loadConversationCompletion_doesNotAlterCurrentRenderingStateOnError() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         assertThat(sut: sut, isRendering: [])
@@ -84,7 +84,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageView_loadsImageUrlWhenVisible() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -107,7 +107,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageView_cancelsLoadingWhenNotVisibleAnymore() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -126,7 +126,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageViewLoadingIndicator_isVisibleWhileLoadingImages() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -149,7 +149,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageView_rendersImageLoadedFromURL() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -173,7 +173,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageRetryButton_isVisibleOnImageURLLoadError() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -196,7 +196,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageRetryButton_isVisibleOnInvalidImageData() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -221,7 +221,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageRetryButton_retriesImageLoad() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -242,7 +242,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageView_preloadsImageURLWhenNearVisible() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -255,7 +255,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_profileImageView_cancelsImageURLPreloadingWhenNotNearVisibleAnymore() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
         sut.loadViewIfNeeded()
 
         let Conversation1 = makeConversation(imageURL: URL(string: "http:a-url.com"))
@@ -270,7 +270,7 @@ class ConversationsTests: XCTestCase {
 
     // MARK: - Conversation Listener
     func test_listenForConversation_beginsListeningForConversation() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
 
         XCTAssertEqual(loader.realtimeRequestCount, 0, "Expected no connection requests before view is loaded.")
 
@@ -280,7 +280,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_StatusView_isVisibleWhileConnectingToRealtime() {
-        let (loaderSpy, sut) = makeSUT()
+        let (loaderSpy, sut, _) = makeSUT()
 
         XCTAssertNil(sut.loadingStatus, "Expected status label to be nil")
 
@@ -297,7 +297,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_TryAgainView_isVisibleWhenListenerFailsToConnect() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
 
         XCTAssertFalse(sut.isTryAgainViewDisplayed, "Expected 'Try Again' view not present before load starts")
 
@@ -315,7 +315,7 @@ class ConversationsTests: XCTestCase {
     }
 
     func test_RealTimeConnection_attemptsToConnectOnRetryAction() {
-        let (loader, sut) = makeSUT()
+        let (loader, sut, _) = makeSUT()
 
         //forces view to load
         sut.loadViewIfNeeded()
@@ -336,13 +336,22 @@ class ConversationsTests: XCTestCase {
     }
 
     // MARK: - New Message Functionality
+    
+    func test_onViewDidLoad_startsLoadingDelta() {
+        let (_, sut, deltaSpy) = makeSUT()
+
+        //forces view to load
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(deltaSpy.loadRequests.count, 1)
+    }
 
 //    func test_ConversationObserver_addsNewConversationToTheTopOfList() {
-//        let (loader, sut) = makeSUT()
+//        let (loaderSpy, sut, deltaSpy) = makeSUT()
 //
 //        //forces view to load
 //        sut.loadViewIfNeeded()
-//        loader.notifyStatusChange(status: .connected)
+//        loaderSpy.notifyStatusChange(status: .connected)
 //
 //        let date = Date()
 //
@@ -351,19 +360,19 @@ class ConversationsTests: XCTestCase {
 //        let Conversation3 = makeConversation(imageURL: URL(string: "http:another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Other Class", contentType: 0, createdByName: "Other Creator")
 //        let Conversation4 = makeConversation(imageURL: URL(string: "http:yet-another-url.com"), message: nil, lastMessageUser: nil, conversationType: 1, groupName: "Crazy Class", contentType: 0, createdByName: "Crazy Creator")
 //
-//        loader.completeConversationsLoad(at: 0, with: [Conversation1])
+//        loaderSpy.completeConversationsLoad(at: 0, with: [Conversation1])
 //        assertThat(sut: sut, isRendering: [Conversation1])
 //
 //        sut.simulateUserInitiatedConversationLoad()
-//        loader.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
+//        loaderSpy.completeConversationsLoad(at: 1, with: [Conversation1, Conversation2])
 //        assertThat(sut: sut, isRendering: [Conversation1, Conversation2])
 //
 //        //first new message received via real time
-//        loader.notifyStatusChange(status: .newMessage(Conversation3))
+//        deltaSpy.completeConversationsLoad(with: [Conversation3])
 //        assertThat(sut: sut, isRendering: [ Conversation3, Conversation1, Conversation2])
 //
 //        //second new  message received via real time
-//        loader.notifyStatusChange(status: .newMessage(Conversation4))
+//        deltaSpy.completeConversationsLoad(with: [Conversation4])
 //        assertThat(sut: sut, isRendering: [Conversation4, Conversation3, Conversation1, Conversation2])
 //    }
 
@@ -394,16 +403,17 @@ class ConversationsTests: XCTestCase {
 
 
     // MARK: - Helper Methods
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationsViewController) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (LoaderSpy, ConversationsViewController, DeltaConversationsLoaderSpy) {
         let loader = LoaderSpy()
-        let navigationController = ConversationsComposer.conversationsComposedWith(conversationsLoader: loader, realTimeConnection: loader, imageDataLoader: loader)
+        let deltaLoaderSpy = DeltaConversationsLoaderSpy()
+        let navigationController = ConversationsComposer.conversationsComposedWith(conversationsLoader: loader, realTimeConnection: loader, deltaConversationsLoader: deltaLoaderSpy, imageDataLoader: loader)
         let sut = navigationController.children.first! as! ConversationsViewController
 
         trackForMemoryLeaks(object: navigationController, file: file, line: line)
         trackForMemoryLeaks(object: loader, file: file, line: line)
         trackForMemoryLeaks(object: sut, file: file, line: line)
 
-        return (loader, sut)
+        return (loader, sut, deltaLoaderSpy)
     }
 
     private func makeConversation(id: UUID = UUID(), imageURL: URL? = nil, conversationID: UUID = UUID(), message: String? = nil, lastMessageUser: String? = nil, lastMessageTime: Date = Date(), conversationType: Int = 0, groupName: String? = nil, contentType: Int = 0, otherUserId: UUID = UUID(), createdByName: String = "creator") -> Conversation {
@@ -605,6 +615,18 @@ private extension Conversation {
 private extension TryAgainView {
     func simulateTryAgainButtonTapped() {
         self.onRetryButtonTapped?()
+    }
+}
+
+private class DeltaConversationsLoaderSpy: DeltaConversationsLoader {
+    var loadRequests = [(LoadConversationsResult) -> Void]()
+    
+    func load(completion: @escaping (LoadConversationsResult) -> Void) {
+        loadRequests.append(completion)
+    }
+    
+    func completeConversationsLoad(at index: Int = 0, with conversations: [Conversation] = [])  {
+        loadRequests[index](.success(conversations))
     }
 }
 
