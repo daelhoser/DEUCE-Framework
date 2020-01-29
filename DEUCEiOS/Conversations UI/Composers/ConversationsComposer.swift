@@ -15,7 +15,7 @@ public final class ConversationsComposer {
 
     public static func conversationsComposedWith(conversationsLoader: ConversationsLoader, realTimeConnection: RealTimeConnection, imageDataLoader: ImageDataLoader) -> UINavigationController {
         let viewModel = ConversationViewModel(loader: conversationsLoader)
-        let observerViewModel = ConversationsObserverViewModel(observer: realTimeConnection)
+        let observerViewModel = RealTimeConnectionObserverViewModel(observer: realTimeConnection)
         let refreshController = ConversationsRefreshViewController(viewModel: viewModel)
         let observerController = ConversationsObserverController(viewmodel: observerViewModel)
         let viewController = ConversationsViewController(refreshController: refreshController, observerController: observerController)

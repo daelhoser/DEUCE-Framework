@@ -11,11 +11,11 @@ import Foundation
 final public class ConversationsObserverController {
     public lazy var retryView: TryAgainView = binded(view: TryAgainView())
 
-    private let viewmodel: ConversationsObserverViewModel
+    private let viewmodel: RealTimeConnectionObserverViewModel
 
     var onStatusChange: ((String?) -> Void)?
 
-    init(viewmodel: ConversationsObserverViewModel) {
+    init(viewmodel: RealTimeConnectionObserverViewModel) {
         self.viewmodel = viewmodel
     }
 

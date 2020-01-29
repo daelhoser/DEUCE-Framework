@@ -52,7 +52,7 @@
 		5FEEF91E2319C51800083C51 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91D2319C51800083C51 /* ConversationViewModel.swift */; };
 		5FEEF920231BEFAC00083C51 /* ConversationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEEF91F231BEFAC00083C51 /* ConversationCellViewModel.swift */; };
 		5FF0B7B923A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B7B823A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift */; };
-		5FF0B7BB23A31AA700F8A1BB /* ConversationsObserverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B7BA23A31AA700F8A1BB /* ConversationsObserverViewModel.swift */; };
+		5FF0B7BB23A31AA700F8A1BB /* RealTimeConnectionObserverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B7BA23A31AA700F8A1BB /* RealTimeConnectionObserverViewModel.swift */; };
 		5FF1CEE42368A578002DC32E /* RemoteConversationUsersLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */; };
 		5FF272C1228249BF00E4486C /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */; };
 		5FF292A5234167FF008540D2 /* RealTimeConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF292A4234167FF008540D2 /* RealTimeConnectionListener.swift */; };
@@ -136,7 +136,7 @@
 		5FEEF91D2319C51800083C51 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		5FEEF91F231BEFAC00083C51 /* ConversationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellViewModel.swift; sourceTree = "<group>"; };
 		5FF0B7B823A3197800F8A1BB /* ConversationsTests+LoaderSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConversationsTests+LoaderSpy.swift"; sourceTree = "<group>"; };
-		5FF0B7BA23A31AA700F8A1BB /* ConversationsObserverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsObserverViewModel.swift; sourceTree = "<group>"; };
+		5FF0B7BA23A31AA700F8A1BB /* RealTimeConnectionObserverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionObserverViewModel.swift; sourceTree = "<group>"; };
 		5FF1CEE32368A578002DC32E /* RemoteConversationUsersLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConversationUsersLoaderTests.swift; sourceTree = "<group>"; };
 		5FF272B7228249BF00E4486C /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF272BB228249BF00E4486C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 		5FEEF91C2319C50C00083C51 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5FF0B7BA23A31AA700F8A1BB /* ConversationsObserverViewModel.swift */,
+				5FF0B7BA23A31AA700F8A1BB /* RealTimeConnectionObserverViewModel.swift */,
 				5FEEF91D2319C51800083C51 /* ConversationViewModel.swift */,
 				5FEEF91F231BEFAC00083C51 /* ConversationCellViewModel.swift */,
 				5FB5EF27231DBF1F00158FF6 /* Date+TimeInterval.swift */,
@@ -693,7 +693,7 @@
 				5FB5EF28231DBF1F00158FF6 /* Date+TimeInterval.swift in Sources */,
 				5FEEF918231994AD00083C51 /* ConversationCellController.swift in Sources */,
 				5FFBAFFD2314A0BE0097D10A /* ConversationsViewController.swift in Sources */,
-				5FF0B7BB23A31AA700F8A1BB /* ConversationsObserverViewModel.swift in Sources */,
+				5FF0B7BB23A31AA700F8A1BB /* RealTimeConnectionObserverViewModel.swift in Sources */,
 				5FB52C43234D6054008B6D66 /* TryAgainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

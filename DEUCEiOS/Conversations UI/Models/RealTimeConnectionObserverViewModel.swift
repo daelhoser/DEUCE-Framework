@@ -1,5 +1,5 @@
 //
-//  ConversationsObserverViewModel.swift
+//  RealTimeConnectionObserverViewModel.swift
 //  DEUCEiOS
 //
 //  Created by Jose Alvarez on 10/14/19.
@@ -9,7 +9,7 @@
 import Foundation
 import DEUCE_Framework
 
-final class ConversationsObserverViewModel {
+final class RealTimeConnectionObserverViewModel {
     private let observer: RealTimeConnection
 
     init(observer: RealTimeConnection) {
