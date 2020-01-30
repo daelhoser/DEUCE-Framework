@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.9.1)
+  - SignalRSwift (2.0.3):
+    - Alamofire (~> 4.2)
+    - Starscream (~> 3.0)
+  - Starscream (3.1.1)
+
+DEPENDENCIES:
+  - SignalRSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SignalRSwift
+    - Starscream
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  SignalRSwift: 6f30893680780d4f4e9981795478ea43f5b63f3e
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+
+PODFILE CHECKSUM: f8cb550136beec3bf0cdb196f316000f0899a624
+
+COCOAPODS: 1.8.4
