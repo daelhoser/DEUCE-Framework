@@ -9,6 +9,8 @@
 import UIKit
 import DEUCE_Framework
 import DEUCEiOS
+import RealTimeAzure
+import SignalRSwift
 
 class MockRealtimeClient: WebSocketClient, ConversationsLoader {
     private func sendNewMessage() {
@@ -60,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let realtimeConnection = RealTimeConnectionListener(connection: realTimeClient)
         let imageLoader = RemoteImageDataLoader(client: client)
         
+//        let connection = HubConnection(withUrl: "")
+//        let x = SignalRClient(connection: connection)
+        
         let viewController = ConversationsComposer.conversationsComposedWith(conversationsLoader: conversationsLoader, realTimeConnection: realtimeConnection, deltaConversationsLoader: realTimeClient, imageDataLoader: imageLoader)
         
         window?.rootViewController = viewController
@@ -91,4 +96,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
