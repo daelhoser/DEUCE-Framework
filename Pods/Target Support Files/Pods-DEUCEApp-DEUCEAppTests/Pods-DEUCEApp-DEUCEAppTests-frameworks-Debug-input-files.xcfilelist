@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SignalRSwift/SignalRSwift.framework
+${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework

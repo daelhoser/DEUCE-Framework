@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		5F276B4823E267260094E312 /* RealTimeAzure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F276B3E23E267260094E312 /* RealTimeAzure.framework */; };
 		5F276B4F23E267260094E312 /* RealTimeAzure.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F276B4123E267260094E312 /* RealTimeAzure.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5FCE2ECA23E36F44008B10D7 /* Pods_RealTimeAzure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEF80AD23E36A4E00E7306A /* Pods_RealTimeAzure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5FD5A5CC23E272F60062631C /* RealTimeAzureConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5A5CA23E272F60062631C /* RealTimeAzureConnection.swift */; };
 		5FD5A5CD23E272F60062631C /* SignalRClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5A5CB23E272F60062631C /* SignalRClient.swift */; };
 		5FD5A5CF23E272FF0062631C /* RealTimeConnectionClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD5A5CE23E272FF0062631C /* RealTimeConnectionClientTests.swift */; };
-		A1C37315E0A49BAEB06A9604 /* Pods_RealTimeAzure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AB0B34A3DF4B07EFD228C7 /* Pods_RealTimeAzure.framework */; };
+		5FEF809F23E35AC500E7306A /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEF809E23E35AC500E7306A /* DEUCE_Framework.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		5FEF80A023E35AC500E7306A /* DEUCE_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEF809E23E35AC500E7306A /* DEUCE_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5FEF80AE23E36A4E00E7306A /* Pods_RealTimeAzure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEF80AD23E36A4E00E7306A /* Pods_RealTimeAzure.framework */; };
 		D84DD1C409EF9BF4A63AC5AD /* Pods_RealTimeAzure_RealTimeAzureTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4039FBE14929D0CF7BCCEE /* Pods_RealTimeAzure_RealTimeAzureTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +29,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5FEF80A123E35AC500E7306A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5FCE2ECA23E36F44008B10D7 /* Pods_RealTimeAzure.framework in Embed Frameworks */,
+				5FEF80A023E35AC500E7306A /* DEUCE_Framework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		43AB0B34A3DF4B07EFD228C7 /* Pods_RealTimeAzure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealTimeAzure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4039FBE14929D0CF7BCCEE /* Pods_RealTimeAzure_RealTimeAzureTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealTimeAzure_RealTimeAzureTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +55,8 @@
 		5FD5A5CA23E272F60062631C /* RealTimeAzureConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeAzureConnection.swift; sourceTree = "<group>"; };
 		5FD5A5CB23E272F60062631C /* SignalRClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalRClient.swift; sourceTree = "<group>"; };
 		5FD5A5CE23E272FF0062631C /* RealTimeConnectionClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionClientTests.swift; sourceTree = "<group>"; };
+		5FEF809E23E35AC500E7306A /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FEF80AD23E36A4E00E7306A /* Pods_RealTimeAzure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_RealTimeAzure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		827C662E358BF0B430C03F6E /* Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig"; path = "Target Support Files/Pods-RealTimeAzure-RealTimeAzureTests/Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig"; sourceTree = "<group>"; };
 		ACBFF64EEA2727FA08E6C860 /* Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig"; path = "Target Support Files/Pods-RealTimeAzure-RealTimeAzureTests/Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF758B4C9B774DFB10813342 /* Pods-RealTimeAzure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealTimeAzure.debug.xcconfig"; path = "Target Support Files/Pods-RealTimeAzure/Pods-RealTimeAzure.debug.xcconfig"; sourceTree = "<group>"; };
@@ -48,7 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1C37315E0A49BAEB06A9604 /* Pods_RealTimeAzure.framework in Frameworks */,
+				5FEF809F23E35AC500E7306A /* DEUCE_Framework.framework in Frameworks */,
+				5FEF80AE23E36A4E00E7306A /* Pods_RealTimeAzure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +88,8 @@
 		134308EF717DC1B446CD5986 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FEF80AD23E36A4E00E7306A /* Pods_RealTimeAzure.framework */,
+				5FEF809E23E35AC500E7306A /* DEUCE_Framework.framework */,
 				43AB0B34A3DF4B07EFD228C7 /* Pods_RealTimeAzure.framework */,
 				4A4039FBE14929D0CF7BCCEE /* Pods_RealTimeAzure_RealTimeAzureTests.framework */,
 			);
@@ -148,6 +171,7 @@
 				5F276B3A23E267260094E312 /* Sources */,
 				5F276B3B23E267260094E312 /* Frameworks */,
 				5F276B3C23E267260094E312 /* Resources */,
+				5FEF80A123E35AC500E7306A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,7 +190,7 @@
 				5F276B4323E267260094E312 /* Sources */,
 				5F276B4423E267260094E312 /* Frameworks */,
 				5F276B4523E267260094E312 /* Resources */,
-				884E248D8BCF32795A01545B /* [CP] Embed Pods Frameworks */,
+				57F8BD45CF876158699D1FF9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,7 +281,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		884E248D8BCF32795A01545B /* [CP] Embed Pods Frameworks */ = {
+		57F8BD45CF876158699D1FF9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -469,6 +493,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.RealTimeAzure;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -497,6 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.DEUCE.RealTimeAzure;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A94E86BB48DC3EFBA7524C07EA1B75 /* Pods-DEUCEApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C8903824E6861AAA16F0ADA856222380 /* Pods-DEUCEApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C5E11DE24DAA737704B355F5F2F3426 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239607F43A78E41E12279BA8885613B /* ParameterEncoding.swift */; };
 		11BB5CE905661EB37DA418376AEC35F2 /* HttpTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C958CEE2D5E1CFB78BCCB10C5779B9 /* HttpTransport.swift */; };
 		132E0F619E4338E5D1B27E4C72076B3F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51302397D1EBDFECA59DDE07139B9CD /* Notifications.swift */; };
@@ -23,25 +24,27 @@
 		423CC307BBEB3F9CA8BC9FF7E8D15F5A /* HubConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62BDBB41FDE632051A7DC657B026959 /* HubConnectionProtocol.swift */; };
 		467DD59CF015716E5EC82A8894C89701 /* WebSocketTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1820188F964895F7061CFF999A8C28 /* WebSocketTransport.swift */; };
 		4767C9091D3583C08CBC3F2929668796 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD47B7ED70906659933260470B8C99C /* Foundation.framework */; };
+		48F787915F39BFC58F359819BA692EEC /* Pods-DEUCEApp-DEUCEAppTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DDD598382C50A232E9FE2811A584C913 /* Pods-DEUCEApp-DEUCEAppTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C6ACA0ECE506E3557E2068A01E70DE3 /* HeartbeatMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15059DA60D57DE7E5D9F8448B266D4B /* HeartbeatMonitor.swift */; };
 		53791F5E5F07400F92CFDFC89A432305 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2714C49878605EAB0696A0064BD905 /* Validation.swift */; };
 		5612FC2D64EC636E4CF078D9C9B0ED23 /* HubInvocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91A0E3CA892E731D7962BB0FECC66C /* HubInvocation.swift */; };
 		5BF1C6EC35F33973C08FE44879F53F94 /* ChunkBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB24034EEF840D89C903A97C7BC8CD /* ChunkBuffer.swift */; };
-		63E7CE094DD8F9BA0363B98E3E7A8B56 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 346B77C9E296BFD9C0CD11C6D21954E3 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m */; };
+		63E7CE094DD8F9BA0363B98E3E7A8B56 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AE89E7305C75D10DA677E46185C239 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m */; };
 		64344AC23C9E45C8FA03D86E44ECFFDC /* AutoTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784104A874F4D7561D5CB85B7B2D7333 /* AutoTransport.swift */; };
 		64744C911253C3E01461FAD7C935C8D7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04659EBAC7BF59EF0459E7848117894D /* Result.swift */; };
 		73057C824D448481B25D6F1C6E7E53BD /* SignalRSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A113AE18472E78E090A9F1E6912390DB /* SignalRSwift-dummy.m */; };
 		731C4A5F0E3A515D4BA565D96515C81A /* SSLClientCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B29B51D3D783477867C9DBEC36805 /* SSLClientCertificate.swift */; };
 		7664FD4F59A0C00866CBAE60B0A3AD64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD47B7ED70906659933260470B8C99C /* Foundation.framework */; };
-		7D599984E474FD22E1C7132DEB7DA952 /* Pods-RealTimeAzure-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F0FFB82207CED96EE5F14D6D6E1AC149 /* Pods-RealTimeAzure-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D599984E474FD22E1C7132DEB7DA952 /* Pods-RealTimeAzure-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A84ABDCF785DE0B494BAC76AC248217E /* Pods-RealTimeAzure-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EB28FB166FBF3107B1B88C4805061D9 /* Dictionary+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31017B8FCFEA22D45FF8B895482530CA /* Dictionary+Json.swift */; };
 		83956E20859CDBBE7BC38ABADE0170FB /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF2AD132CED97115A9B88FA28FC4393 /* AFError.swift */; };
 		859DF819D10DEDF79400EDA7611027F5 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5088554EF9D54A6713E7177BCEABB97 /* Connection.swift */; };
-		89AB6C92596068A444265FB993427405 /* Pods-RealTimeAzure-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FCBB4FC0CD68FF83709EB51C7F6E64 /* Pods-RealTimeAzure-dummy.m */; };
-		8C2F84ADC2629E7B3148E6DB6D8CD25B /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7589D0AAD074CAC80F1A138938689223 /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		89AB6C92596068A444265FB993427405 /* Pods-RealTimeAzure-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CDF928F999D604EF5C6E76F3D35DE2 /* Pods-RealTimeAzure-dummy.m */; };
+		8C2F84ADC2629E7B3148E6DB6D8CD25B /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F044CDE79CBEDED8B55660C8005FDA /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D5B5E4711EDCFCEEA9C8D2EE2E84A03 /* HubProxyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4325A94A2E00EBF86D1289E6D7BB84 /* HubProxyProtocol.swift */; };
 		931BBB8230A25161D5C37528A8F9FECF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0359685C88011CCFBEB86EB7D30CA407 /* SessionManager.swift */; };
 		933FDA5970AA525D6CB92BFEBA2BAB4A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8896AEB0B672ABD3A38A7E160E4721 /* Timeline.swift */; };
+		98131558239A41D6094458418FE165B4 /* Pods-DEUCEApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C898C8D7688C6BB6588C495CCB713D35 /* Pods-DEUCEApp-dummy.m */; };
 		98A929C8E9012AB167672714FFD2113C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = D868164C60087657AC331917E44F14D6 /* Request.swift */; };
 		998A88A9E3EF39E31401D501975B8C42 /* HubConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABFA8289E73DAF11D7B8569EE0EAC9B /* HubConnection.swift */; };
 		9E1A38191087118209634A138C250C13 /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5DE62B932800F83A8E9B88DA11DCAA /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,7 +55,9 @@
 		AA90F1C52C62B412D30550DDCA850DE6 /* ExceptionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3CDDC98D74F7575192A37E846C9983 /* ExceptionHelper.swift */; };
 		AF43C72D1BFF6A245260925C3B4691B4 /* ServerSentEventsTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A1BA0EB33F76135B212970CDFCCF7 /* ServerSentEventsTransport.swift */; };
 		AFC64B1097F7355FF423D6A73E9C7210 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F69E2A397378B0633D15939D6FD1B7 /* TaskDelegate.swift */; };
+		B32B4B672AFC6B2D43231C915ADB2166 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD47B7ED70906659933260470B8C99C /* Foundation.framework */; };
 		B71B234E3946116965CA4E888840304D /* ConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3CF3033B9382514092BD00FA34778B /* ConnectionProtocol.swift */; };
+		BB7037473601BBEB1E0B6508FDBAC240 /* Pods-DEUCEApp-DEUCEAppTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D32AA16E51A39B404349669598F5E3 /* Pods-DEUCEApp-DEUCEAppTests-dummy.m */; };
 		BEE6B677416CA71C981D1D3F60B18C96 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE304AC430A55DAA07DE9748D97C2759 /* Alamofire.swift */; };
 		C00BC2B09FA2AFC4DD3FE799EFF27EEC /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 51AB9F68420006C686DBA03D74ACE053 /* Starscream-dummy.m */; };
 		C32AE97CAEBA6A904FFF21100E8616F4 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53156371F4497FFC2FAC724DF8FE6BD7 /* SSLSecurity.swift */; };
@@ -62,6 +67,7 @@
 		DA1E1DCC59C64067872F2FC59F7F4D8D /* HubProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE3CAFAF5E5056213C3148C7BE55BF /* HubProxy.swift */; };
 		DB7F8875A5967537D90A67AE9CC806CF /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95879F2FB8EFE0533D36F27B13927F /* Compression.swift */; };
 		DD3736C1A6C61E361A9761BE8B2F98B7 /* ConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED17D3A27F5EF35668DC1EFBB291C1 /* ConnectionState.swift */; };
+		DE406D8EB0D0D0B2C93A299DBA7FBB3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD47B7ED70906659933260470B8C99C /* Foundation.framework */; };
 		DE916389FFC1CEC3AC53F2699EA4D4F5 /* ConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3B5E3F735D76060C5949A42029182 /* ConnectionDelegate.swift */; };
 		E3747EC31FCCA97D75A81FC700CF7E24 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDE1F56DB3814A3FAB76F1174505D55 /* ResponseSerialization.swift */; };
 		E66B42B72D8A4FF47CF787C9F8090654 /* ReceivedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0960C117646DC0447DE30CD7972FB086 /* ReceivedMessage.swift */; };
@@ -82,6 +88,20 @@
 			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
 			remoteInfo = Alamofire;
 		};
+		1A39CD382F2456830492246FB99CD772 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
+			remoteInfo = Alamofire;
+		};
+		2070DA92E56402720D45C57CB86CB82A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
+			remoteInfo = Alamofire;
+		};
 		6052E04D4754C5BEA2601E086B94901E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -95,6 +115,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9B78EE4AF6AE03E79D88886319853FF7;
 			remoteInfo = Starscream;
+		};
+		85D51FAB0811403740E411157691E9BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B78EE4AF6AE03E79D88886319853FF7;
+			remoteInfo = Starscream;
+		};
+		9EE184582288ADBD5DAB1BB22CF5E7DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E6C4045913212CD35E82B99586FC32D;
+			remoteInfo = SignalRSwift;
 		};
 		ADBF041D06738A6346EEDFB8EA4F9A84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -110,12 +144,26 @@
 			remoteGlobalIDString = 9B78EE4AF6AE03E79D88886319853FF7;
 			remoteInfo = Starscream;
 		};
+		BD68CA5A601AD478FF3864DD9B2A06E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E6C4045913212CD35E82B99586FC32D;
+			remoteInfo = SignalRSwift;
+		};
 		CE1ACA4DBD31CB3967CD0926901B47E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1E6C4045913212CD35E82B99586FC32D;
 			remoteInfo = SignalRSwift;
+		};
+		E0ED794EE57461FFBEBC905D419FDB55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B78EE4AF6AE03E79D88886319853FF7;
+			remoteInfo = Starscream;
 		};
 		EFC4BCF1C0D84C2E5DF0319C1A97D2CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -134,98 +182,118 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		013D33CEA54D1173F691461DE5E16370 /* Pods-DEUCEApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DEUCEApp-acknowledgements.markdown"; sourceTree = "<group>"; };
 		01EE3CECD3C4F071A14DEBEB5C163CA6 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		0359685C88011CCFBEB86EB7D30CA407 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
 		03D5D0A098461AAE9963C1B8C54A11E2 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		03F88EC2B2978C96A815D22B902B9E72 /* Pods-DEUCEApp-DEUCEAppTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DEUCEApp-DEUCEAppTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		045687FC52FA435BF8BD9FF95B4ADF36 /* Pods-DEUCEApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DEUCEApp-frameworks.sh"; sourceTree = "<group>"; };
 		04659EBAC7BF59EF0459E7848117894D /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		0960C117646DC0447DE30CD7972FB086 /* ReceivedMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReceivedMessage.swift; path = "SignalR-Swift/Models/ReceivedMessage.swift"; sourceTree = "<group>"; };
+		0D661C7F84DD2E2DFF8DBC179C781016 /* Pods-RealTimeAzure.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RealTimeAzure.modulemap"; sourceTree = "<group>"; };
+		110AE328E655367B26DA10171BDF9114 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		131EFA3F252AC54ABDFEF0FF2C70BDC9 /* Pods-DEUCEApp-DEUCEAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DEUCEApp-DEUCEAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		14F69E2A397378B0633D15939D6FD1B7 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		19DB076877C7D45BC672579E04788FA7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		19FCBB4FC0CD68FF83709EB51C7F6E64 /* Pods-RealTimeAzure-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RealTimeAzure-dummy.m"; sourceTree = "<group>"; };
+		19F044CDE79CBEDED8B55660C8005FDA /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h"; sourceTree = "<group>"; };
 		1D24D207D841CE3AA0800BCF946AE1F3 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		1F3CDDC98D74F7575192A37E846C9983 /* ExceptionHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExceptionHelper.swift; path = "SignalR-Swift/Client/Infrastructure/ExceptionHelper.swift"; sourceTree = "<group>"; };
 		2011D28A0866EA0369099C27B03C3641 /* Starscream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.xcconfig; sourceTree = "<group>"; };
+		20FA9AEFF0FBF70774EF28D3315DBA8D /* Pods-RealTimeAzure-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RealTimeAzure-acknowledgements.markdown"; sourceTree = "<group>"; };
 		245A7DB30E629E7984BEB8C372D203AE /* Pods_RealTimeAzure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RealTimeAzure.framework; path = "Pods-RealTimeAzure.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D0B18DDDF54CF63B540B23AFDDC0D7 /* Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Alamofire-Info.plist"; sourceTree = "<group>"; };
 		2732D333731630109DBFC20A119B0853 /* Version.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Version.swift; path = "SignalR-Swift/Client/Infrastructure/Version.swift"; sourceTree = "<group>"; };
 		28A85E5459ACD369714D48CCFC29491A /* SignalRSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SignalRSwift-Info.plist"; sourceTree = "<group>"; };
 		2B8896AEB0B672ABD3A38A7E160E4721 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		2C8ED76ADB46C6BBF904FCEF86736869 /* Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig"; sourceTree = "<group>"; };
 		31017B8FCFEA22D45FF8B895482530CA /* Dictionary+Json.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Json.swift"; path = "SignalR-Swift/Extensions/Dictionary+Json.swift"; sourceTree = "<group>"; };
-		346B77C9E296BFD9C0CD11C6D21954E3 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RealTimeAzure-RealTimeAzureTests-dummy.m"; sourceTree = "<group>"; };
-		35E3623467CD8F71D6E6B40AB90C9273 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		35C057EE2A989C2B42B2EF6079C5FEEB /* Pods-DEUCEApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DEUCEApp.release.xcconfig"; sourceTree = "<group>"; };
 		393BCC684A6735B01BA5A5704857B96F /* HubResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HubResult.swift; path = "SignalR-Swift/Client/Hubs/HubResult.swift"; sourceTree = "<group>"; };
 		398C40A55EE4A19DA5A37815BBC95D46 /* KeepAliveData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeepAliveData.swift; path = "SignalR-Swift/Client/KeepAliveData.swift"; sourceTree = "<group>"; };
 		3AF3E2AC77C0218FAFD85582CAE3A735 /* Pods_RealTimeAzure_RealTimeAzureTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RealTimeAzure_RealTimeAzureTests.framework; path = "Pods-RealTimeAzure-RealTimeAzureTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		452879FD25984D2CACA014C57FC378AB /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		470D6CAD3F9E210F52449E0238055193 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		4ABFA8289E73DAF11D7B8569EE0EAC9B /* HubConnection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HubConnection.swift; path = "SignalR-Swift/Client/Hubs/HubConnection.swift"; sourceTree = "<group>"; };
 		4AE4D565394B07E141A9D0CB1308173F /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
-		4BE46B7A2DBC2AA959C2642E0C5150E9 /* Pods-RealTimeAzure-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RealTimeAzure-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4C2714C49878605EAB0696A0064BD905 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		4FDE1F56DB3814A3FAB76F1174505D55 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		512A1BA0EB33F76135B212970CDFCCF7 /* ServerSentEventsTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerSentEventsTransport.swift; path = "SignalR-Swift/Transports/ServerSentEventsTransport.swift"; sourceTree = "<group>"; };
 		51AB9F68420006C686DBA03D74ACE053 /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
+		51DC31C717D083E1CA23FCFB4999B802 /* Pods-DEUCEApp-DEUCEAppTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DEUCEApp-DEUCEAppTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		53156371F4497FFC2FAC724DF8FE6BD7 /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Sources/Starscream/SSLSecurity.swift; sourceTree = "<group>"; };
+		58823E2D057CC2F0BC5A7521C4C72E3B /* Pods-RealTimeAzure-RealTimeAzureTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-RealTimeAzureTests-Info.plist"; sourceTree = "<group>"; };
 		5C1820188F964895F7061CFF999A8C28 /* WebSocketTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketTransport.swift; path = "SignalR-Swift/Transports/WebSocketTransport.swift"; sourceTree = "<group>"; };
 		5C5DE62B932800F83A8E9B88DA11DCAA /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
 		5D030790FC589529EF5C6F25CF83BB54 /* SignalRSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SignalRSwift.modulemap; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DF47A65107B8127600DC97560FC4088 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5F3CF3033B9382514092BD00FA34778B /* ConnectionProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectionProtocol.swift; path = "SignalR-Swift/Client/Protocols/ConnectionProtocol.swift"; sourceTree = "<group>"; };
 		60291A6A9429D31B031E93E94C374738 /* SignalRSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SignalRSwift.framework; path = SignalRSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61EBE04BFBA26BBD1CCE533E7DB6FFD8 /* Pods-RealTimeAzure-RealTimeAzureTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RealTimeAzure-RealTimeAzureTests-frameworks.sh"; sourceTree = "<group>"; };
 		62A46EC8F88ED08AF6B38D11E0A014D8 /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
 		646638D233A67A06C603689A29156747 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6619DFB0BD79DDFD3F0C215F0A7D3722 /* Pods-RealTimeAzure-RealTimeAzureTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RealTimeAzure-RealTimeAzureTests.modulemap"; sourceTree = "<group>"; };
 		68C958CEE2D5E1CFB78BCCB10C5779B9 /* HttpTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HttpTransport.swift; path = "SignalR-Swift/Transports/HttpTransport.swift"; sourceTree = "<group>"; };
-		6C20F004127E696080160E3737B57A00 /* Pods-RealTimeAzure-RealTimeAzureTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RealTimeAzure-RealTimeAzureTests.modulemap"; sourceTree = "<group>"; };
-		705CABC4873877084862115227B208CE /* Pods-RealTimeAzure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure.debug.xcconfig"; sourceTree = "<group>"; };
+		6A7C9949C9FD916EDBAAB7B1D04B37A4 /* Pods-DEUCEApp-DEUCEAppTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DEUCEApp-DEUCEAppTests-frameworks.sh"; sourceTree = "<group>"; };
+		6CAD2E5A64C527497240577BD523126F /* Pods_DEUCEApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DEUCEApp.framework; path = "Pods-DEUCEApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7111D43B96E40DDD89FFB8E18EA3C6CE /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		7589D0AAD074CAC80F1A138938689223 /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h"; sourceTree = "<group>"; };
 		76ED17D3A27F5EF35668DC1EFBB291C1 /* ConnectionState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectionState.swift; path = "SignalR-Swift/Client/Enums/ConnectionState.swift"; sourceTree = "<group>"; };
 		784104A874F4D7561D5CB85B7B2D7333 /* AutoTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoTransport.swift; path = "SignalR-Swift/Transports/AutoTransport.swift"; sourceTree = "<group>"; };
+		78AE89E7305C75D10DA677E46185C239 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RealTimeAzure-RealTimeAzureTests-dummy.m"; sourceTree = "<group>"; };
+		7CFB81631A4274F5EF7C8415E7AB8D4F /* Pods-DEUCEApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DEUCEApp-acknowledgements.plist"; sourceTree = "<group>"; };
 		7DD3B5E3F735D76060C5949A42029182 /* ConnectionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectionDelegate.swift; path = "SignalR-Swift/Client/Protocols/ConnectionDelegate.swift"; sourceTree = "<group>"; };
 		7E4325A94A2E00EBF86D1289E6D7BB84 /* HubProxyProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HubProxyProtocol.swift; path = "SignalR-Swift/Client/Protocols/HubProxyProtocol.swift"; sourceTree = "<group>"; };
 		8239607F43A78E41E12279BA8885613B /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		8815734CE97FB44E4CC727DD6D9363FD /* Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig"; sourceTree = "<group>"; };
 		88B460CDDB937C92A9BF6C78EE86B900 /* Starscream-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Starscream-Info.plist"; sourceTree = "<group>"; };
 		891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		896DAB037742FBD319058FE8506FF3B4 /* SignalRSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SignalRSwift-prefix.pch"; sourceTree = "<group>"; };
+		903B7CE5BC924F5B36048914C58FF1BD /* Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		90505FB7865D8FF2AA42F2D7627F6BD1 /* SignalRSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SignalRSwift-umbrella.h"; sourceTree = "<group>"; };
-		90FCD524D9AEB03A585C250AF18E3160 /* Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig"; sourceTree = "<group>"; };
+		933D29339B8BA5EA8A682200F28F3986 /* Pods-RealTimeAzure-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-acknowledgements.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F36B575B84AF97E599C658E4B08814D /* LongPollingTransport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LongPollingTransport.swift; path = "SignalR-Swift/Transports/LongPollingTransport.swift"; sourceTree = "<group>"; };
+		9FF99199A140783181694352288FBFB8 /* Pods-RealTimeAzure-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-Info.plist"; sourceTree = "<group>"; };
 		A0CA040BAF4EB53A0AF6085AAAC544FE /* Starscream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-prefix.pch"; sourceTree = "<group>"; };
 		A113AE18472E78E090A9F1E6912390DB /* SignalRSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SignalRSwift-dummy.m"; sourceTree = "<group>"; };
 		A15059DA60D57DE7E5D9F8448B266D4B /* HeartbeatMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeartbeatMonitor.swift; path = "SignalR-Swift/Client/HeartbeatMonitor.swift"; sourceTree = "<group>"; };
-		A289EF1ED203A3C72308AB9E2FB76BD1 /* Pods-RealTimeAzure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure.release.xcconfig"; sourceTree = "<group>"; };
 		A5AA4A580207BD56103A06D9638C16C7 /* SignalRSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SignalRSwift.xcconfig; sourceTree = "<group>"; };
+		A5D32AA16E51A39B404349669598F5E3 /* Pods-DEUCEApp-DEUCEAppTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DEUCEApp-DEUCEAppTests-dummy.m"; sourceTree = "<group>"; };
 		A832526DC5CC8205E682A646703317A1 /* WebSocketConnectionInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocketConnectionInfo.swift; path = "SignalR-Swift/Transports/WebSockets/WebSocketConnectionInfo.swift"; sourceTree = "<group>"; };
+		A84ABDCF785DE0B494BAC76AC248217E /* Pods-RealTimeAzure-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RealTimeAzure-umbrella.h"; sourceTree = "<group>"; };
 		AB6C5F9579026C9DF224BB0E950F036F /* ClientTransportProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClientTransportProtocol.swift; path = "SignalR-Swift/Client/Protocols/ClientTransportProtocol.swift"; sourceTree = "<group>"; };
 		AC3D3F70174D86CAB2CAEF244491E457 /* NegotiationResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NegotiationResponse.swift; path = "SignalR-Swift/Client/NegotiationResponse.swift"; sourceTree = "<group>"; };
 		AE304AC430A55DAA07DE9748D97C2759 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		AFA4D2965FAB1BCE025897B71A0D35A6 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		B088D66500BF142CC456E75FFC0BE4E4 /* Pods-RealTimeAzure-RealTimeAzureTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-RealTimeAzureTests-Info.plist"; sourceTree = "<group>"; };
-		B36B239681B1F6AB65C038DBD702CE45 /* Pods-RealTimeAzure.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RealTimeAzure.modulemap"; sourceTree = "<group>"; };
+		B29099E936643DC6E479DFB8967D0380 /* Pods-DEUCEApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DEUCEApp.modulemap"; sourceTree = "<group>"; };
+		B901102C50A6AEA96AB482B21CBDB744 /* Pods-RealTimeAzure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure.release.xcconfig"; sourceTree = "<group>"; };
 		BB95879F2FB8EFE0533D36F27B13927F /* Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Sources/Starscream/Compression.swift; sourceTree = "<group>"; };
-		BCCD16FC955926046F59D5022DDB7F5A /* Pods-RealTimeAzure-RealTimeAzureTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RealTimeAzure-RealTimeAzureTests-frameworks.sh"; sourceTree = "<group>"; };
 		BF5B29B51D3D783477867C9DBEC36805 /* SSLClientCertificate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLClientCertificate.swift; path = Sources/Starscream/SSLClientCertificate.swift; sourceTree = "<group>"; };
-		C017CADF555415D99C7D8EC2B1794B64 /* Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF5D573B22BF1E1CAE9262BC3C5A6028 /* Pods_DEUCEApp_DEUCEAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DEUCEApp_DEUCEAppTests.framework; path = "Pods-DEUCEApp-DEUCEAppTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4CDF928F999D604EF5C6E76F3D35DE2 /* Pods-RealTimeAzure-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RealTimeAzure-dummy.m"; sourceTree = "<group>"; };
 		C5088554EF9D54A6713E7177BCEABB97 /* Connection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Connection.swift; path = "SignalR-Swift/Client/Connection.swift"; sourceTree = "<group>"; };
 		C62BDBB41FDE632051A7DC657B026959 /* HubConnectionProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HubConnectionProtocol.swift; path = "SignalR-Swift/Client/Protocols/HubConnectionProtocol.swift"; sourceTree = "<group>"; };
+		C84AADEF0DE604C811F6AFB214639191 /* Pods-RealTimeAzure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RealTimeAzure.debug.xcconfig"; sourceTree = "<group>"; };
+		C8903824E6861AAA16F0ADA856222380 /* Pods-DEUCEApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DEUCEApp-umbrella.h"; sourceTree = "<group>"; };
+		C898C8D7688C6BB6588C495CCB713D35 /* Pods-DEUCEApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DEUCEApp-dummy.m"; sourceTree = "<group>"; };
+		CA6F04D4D0261D2E78FAECED3724AD39 /* Pods-DEUCEApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DEUCEApp-Info.plist"; sourceTree = "<group>"; };
 		CB954D1FC72869ECEF8D979C01A4F88F /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Sources/Starscream/WebSocket.swift; sourceTree = "<group>"; };
 		D1795793F80D345A0651228DED671227 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		D6C9DEC4E23EA5D4C3D530C2197EC01E /* Pods-RealTimeAzure-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-acknowledgements.plist"; sourceTree = "<group>"; };
 		D806167A4587A1A9B70EF86AA03D6E94 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		D868164C60087657AC331917E44F14D6 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		DA2DE7419897803E613D39EFFA67F045 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		DDD2E5115F44FAB9BFE104DE90FAF65C /* Pods-DEUCEApp-DEUCEAppTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DEUCEApp-DEUCEAppTests.modulemap"; sourceTree = "<group>"; };
+		DDD598382C50A232E9FE2811A584C913 /* Pods-DEUCEApp-DEUCEAppTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DEUCEApp-DEUCEAppTests-umbrella.h"; sourceTree = "<group>"; };
 		E4EB24034EEF840D89C903A97C7BC8CD /* ChunkBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChunkBuffer.swift; path = "SignalR-Swift/Transports/ServerSentEvents/ChunkBuffer.swift"; sourceTree = "<group>"; };
 		E51302397D1EBDFECA59DDE07139B9CD /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		EFF2AD132CED97115A9B88FA28FC4393 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		F0FFB82207CED96EE5F14D6D6E1AC149 /* Pods-RealTimeAzure-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RealTimeAzure-umbrella.h"; sourceTree = "<group>"; };
+		F19F0806C7124BA1ECF8B05327DC5481 /* Pods-DEUCEApp-DEUCEAppTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DEUCEApp-DEUCEAppTests-Info.plist"; sourceTree = "<group>"; };
 		F2AE3CAFAF5E5056213C3148C7BE55BF /* HubProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HubProxy.swift; path = "SignalR-Swift/Client/Hubs/HubProxy.swift"; sourceTree = "<group>"; };
 		F35671AA66AE51AF9BE7CA94767920A9 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		F35B3830871A8A31488121083040517C /* Pods-RealTimeAzure-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RealTimeAzure-Info.plist"; sourceTree = "<group>"; };
 		F9CDA97A3E5273ECDEFFDB8A0504382E /* ServerSentEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerSentEvent.swift; path = "SignalR-Swift/Transports/ServerSentEvents/ServerSentEvent.swift"; sourceTree = "<group>"; };
 		FBD47B7ED70906659933260470B8C99C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		FC9F1C6F403CD6B9ECBDB356F57667D2 /* String+Dictionary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Dictionary.swift"; path = "SignalR-Swift/Extensions/String+Dictionary.swift"; sourceTree = "<group>"; };
 		FD91A0E3CA892E731D7962BB0FECC66C /* HubInvocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HubInvocation.swift; path = "SignalR-Swift/Client/Hubs/HubInvocation.swift"; sourceTree = "<group>"; };
+		FFC3CC36E883213A8D15796D5325F4A7 /* Pods-DEUCEApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DEUCEApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +331,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AE827A912EE89E6338970732241927DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32B4B672AFC6B2D43231C915ADB2166 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3A3EABDB58EF565ED291A19B8CD809A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE406D8EB0D0D0B2C93A299DBA7FBB3D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F24750B2B9DEF2B6CA6CCD3E08C98E1D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,13 +368,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		124E4CF30E661116C1F27880BB7A180F /* Targets Support Files */ = {
+		0F7D82818D67ED7BFB4777D3728945B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66710DAC0B7362CE7CB3458E24D1DC1C /* Pods-RealTimeAzure */,
-				E34F343A35B928AA2D43DB2607106672 /* Pods-RealTimeAzure-RealTimeAzureTests */,
+				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */,
+				6CAD2E5A64C527497240577BD523126F /* Pods_DEUCEApp.framework */,
+				BF5D573B22BF1E1CAE9262BC3C5A6028 /* Pods_DEUCEApp_DEUCEAppTests.framework */,
+				245A7DB30E629E7984BEB8C372D203AE /* Pods_RealTimeAzure.framework */,
+				3AF3E2AC77C0218FAFD85582CAE3A735 /* Pods_RealTimeAzure_RealTimeAzureTests.framework */,
+				60291A6A9429D31B031E93E94C374738 /* SignalRSwift.framework */,
+				891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */,
 			);
-			name = "Targets Support Files";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		17A7C2C7B77CD8B4B82F9CFFAE4E9F79 /* Support Files */ = {
@@ -320,32 +409,32 @@
 			path = Starscream;
 			sourceTree = "<group>";
 		};
-		6101C9764480AE4488275372C287E466 /* Products */ = {
+		21AFD1E72CE43978625E85B2E282BDAE /* Pods-DEUCEApp-DEUCEAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */,
-				245A7DB30E629E7984BEB8C372D203AE /* Pods_RealTimeAzure.framework */,
-				3AF3E2AC77C0218FAFD85582CAE3A735 /* Pods_RealTimeAzure_RealTimeAzureTests.framework */,
-				60291A6A9429D31B031E93E94C374738 /* SignalRSwift.framework */,
-				891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */,
+				DDD2E5115F44FAB9BFE104DE90FAF65C /* Pods-DEUCEApp-DEUCEAppTests.modulemap */,
+				51DC31C717D083E1CA23FCFB4999B802 /* Pods-DEUCEApp-DEUCEAppTests-acknowledgements.markdown */,
+				03F88EC2B2978C96A815D22B902B9E72 /* Pods-DEUCEApp-DEUCEAppTests-acknowledgements.plist */,
+				A5D32AA16E51A39B404349669598F5E3 /* Pods-DEUCEApp-DEUCEAppTests-dummy.m */,
+				6A7C9949C9FD916EDBAAB7B1D04B37A4 /* Pods-DEUCEApp-DEUCEAppTests-frameworks.sh */,
+				F19F0806C7124BA1ECF8B05327DC5481 /* Pods-DEUCEApp-DEUCEAppTests-Info.plist */,
+				DDD598382C50A232E9FE2811A584C913 /* Pods-DEUCEApp-DEUCEAppTests-umbrella.h */,
+				903B7CE5BC924F5B36048914C58FF1BD /* Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig */,
+				131EFA3F252AC54ABDFEF0FF2C70BDC9 /* Pods-DEUCEApp-DEUCEAppTests.release.xcconfig */,
 			);
-			name = Products;
+			name = "Pods-DEUCEApp-DEUCEAppTests";
+			path = "Target Support Files/Pods-DEUCEApp-DEUCEAppTests";
 			sourceTree = "<group>";
 		};
-		66710DAC0B7362CE7CB3458E24D1DC1C /* Pods-RealTimeAzure */ = {
+		42818E2B22A6C53B7FB67C0BB7309A0E /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B36B239681B1F6AB65C038DBD702CE45 /* Pods-RealTimeAzure.modulemap */,
-				4BE46B7A2DBC2AA959C2642E0C5150E9 /* Pods-RealTimeAzure-acknowledgements.markdown */,
-				D6C9DEC4E23EA5D4C3D530C2197EC01E /* Pods-RealTimeAzure-acknowledgements.plist */,
-				19FCBB4FC0CD68FF83709EB51C7F6E64 /* Pods-RealTimeAzure-dummy.m */,
-				F35B3830871A8A31488121083040517C /* Pods-RealTimeAzure-Info.plist */,
-				F0FFB82207CED96EE5F14D6D6E1AC149 /* Pods-RealTimeAzure-umbrella.h */,
-				705CABC4873877084862115227B208CE /* Pods-RealTimeAzure.debug.xcconfig */,
-				A289EF1ED203A3C72308AB9E2FB76BD1 /* Pods-RealTimeAzure.release.xcconfig */,
+				FEBA3877AF8C9DA52372FE4AFF0DA4D0 /* Pods-DEUCEApp */,
+				21AFD1E72CE43978625E85B2E282BDAE /* Pods-DEUCEApp-DEUCEAppTests */,
+				F903D60CF67474A2C95D8B2DCD45E455 /* Pods-RealTimeAzure */,
+				E49D19D0BCE572D7073685B1B0A6C73A /* Pods-RealTimeAzure-RealTimeAzureTests */,
 			);
-			name = "Pods-RealTimeAzure";
-			path = "Target Support Files/Pods-RealTimeAzure";
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		6694809FE3EB29EF84432FCD0B2AB445 /* iOS */ = {
@@ -426,23 +515,23 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				00434031056BB68FC07FA7C0CF264C01 /* Frameworks */,
 				EB8BC27434D189C5C0A117DC88D41B8B /* Pods */,
-				6101C9764480AE4488275372C287E466 /* Products */,
-				124E4CF30E661116C1F27880BB7A180F /* Targets Support Files */,
+				0F7D82818D67ED7BFB4777D3728945B4 /* Products */,
+				42818E2B22A6C53B7FB67C0BB7309A0E /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		E34F343A35B928AA2D43DB2607106672 /* Pods-RealTimeAzure-RealTimeAzureTests */ = {
+		E49D19D0BCE572D7073685B1B0A6C73A /* Pods-RealTimeAzure-RealTimeAzureTests */ = {
 			isa = PBXGroup;
 			children = (
-				6C20F004127E696080160E3737B57A00 /* Pods-RealTimeAzure-RealTimeAzureTests.modulemap */,
-				35E3623467CD8F71D6E6B40AB90C9273 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.markdown */,
-				470D6CAD3F9E210F52449E0238055193 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.plist */,
-				346B77C9E296BFD9C0CD11C6D21954E3 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m */,
-				BCCD16FC955926046F59D5022DDB7F5A /* Pods-RealTimeAzure-RealTimeAzureTests-frameworks.sh */,
-				B088D66500BF142CC456E75FFC0BE4E4 /* Pods-RealTimeAzure-RealTimeAzureTests-Info.plist */,
-				7589D0AAD074CAC80F1A138938689223 /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h */,
-				90FCD524D9AEB03A585C250AF18E3160 /* Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig */,
-				C017CADF555415D99C7D8EC2B1794B64 /* Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig */,
+				6619DFB0BD79DDFD3F0C215F0A7D3722 /* Pods-RealTimeAzure-RealTimeAzureTests.modulemap */,
+				5DF47A65107B8127600DC97560FC4088 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.markdown */,
+				110AE328E655367B26DA10171BDF9114 /* Pods-RealTimeAzure-RealTimeAzureTests-acknowledgements.plist */,
+				78AE89E7305C75D10DA677E46185C239 /* Pods-RealTimeAzure-RealTimeAzureTests-dummy.m */,
+				61EBE04BFBA26BBD1CCE533E7DB6FFD8 /* Pods-RealTimeAzure-RealTimeAzureTests-frameworks.sh */,
+				58823E2D057CC2F0BC5A7521C4C72E3B /* Pods-RealTimeAzure-RealTimeAzureTests-Info.plist */,
+				19F044CDE79CBEDED8B55660C8005FDA /* Pods-RealTimeAzure-RealTimeAzureTests-umbrella.h */,
+				2C8ED76ADB46C6BBF904FCEF86736869 /* Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig */,
+				8815734CE97FB44E4CC727DD6D9363FD /* Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig */,
 			);
 			name = "Pods-RealTimeAzure-RealTimeAzureTests";
 			path = "Target Support Files/Pods-RealTimeAzure-RealTimeAzureTests";
@@ -484,9 +573,50 @@
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
+		F903D60CF67474A2C95D8B2DCD45E455 /* Pods-RealTimeAzure */ = {
+			isa = PBXGroup;
+			children = (
+				0D661C7F84DD2E2DFF8DBC179C781016 /* Pods-RealTimeAzure.modulemap */,
+				20FA9AEFF0FBF70774EF28D3315DBA8D /* Pods-RealTimeAzure-acknowledgements.markdown */,
+				933D29339B8BA5EA8A682200F28F3986 /* Pods-RealTimeAzure-acknowledgements.plist */,
+				C4CDF928F999D604EF5C6E76F3D35DE2 /* Pods-RealTimeAzure-dummy.m */,
+				9FF99199A140783181694352288FBFB8 /* Pods-RealTimeAzure-Info.plist */,
+				A84ABDCF785DE0B494BAC76AC248217E /* Pods-RealTimeAzure-umbrella.h */,
+				C84AADEF0DE604C811F6AFB214639191 /* Pods-RealTimeAzure.debug.xcconfig */,
+				B901102C50A6AEA96AB482B21CBDB744 /* Pods-RealTimeAzure.release.xcconfig */,
+			);
+			name = "Pods-RealTimeAzure";
+			path = "Target Support Files/Pods-RealTimeAzure";
+			sourceTree = "<group>";
+		};
+		FEBA3877AF8C9DA52372FE4AFF0DA4D0 /* Pods-DEUCEApp */ = {
+			isa = PBXGroup;
+			children = (
+				B29099E936643DC6E479DFB8967D0380 /* Pods-DEUCEApp.modulemap */,
+				013D33CEA54D1173F691461DE5E16370 /* Pods-DEUCEApp-acknowledgements.markdown */,
+				7CFB81631A4274F5EF7C8415E7AB8D4F /* Pods-DEUCEApp-acknowledgements.plist */,
+				C898C8D7688C6BB6588C495CCB713D35 /* Pods-DEUCEApp-dummy.m */,
+				045687FC52FA435BF8BD9FF95B4ADF36 /* Pods-DEUCEApp-frameworks.sh */,
+				CA6F04D4D0261D2E78FAECED3724AD39 /* Pods-DEUCEApp-Info.plist */,
+				C8903824E6861AAA16F0ADA856222380 /* Pods-DEUCEApp-umbrella.h */,
+				FFC3CC36E883213A8D15796D5325F4A7 /* Pods-DEUCEApp.debug.xcconfig */,
+				35C057EE2A989C2B42B2EF6079C5FEEB /* Pods-DEUCEApp.release.xcconfig */,
+			);
+			name = "Pods-DEUCEApp";
+			path = "Target Support Files/Pods-DEUCEApp";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0A5E432E08154E2FA153CDEF3B05DC4F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48F787915F39BFC58F359819BA692EEC /* Pods-DEUCEApp-DEUCEAppTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2582784E4FA6A1AC5D23FC53AC3F6EE2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -511,6 +641,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		71A71356BB51D8AA16B4D805F7A1F59D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01A94E86BB48DC3EFBA7524C07EA1B75 /* Pods-DEUCEApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C26041CB2E3232D4863676981914AA81 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,6 +668,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		09344D1699A2AEE9C54B98F56DAD7258 /* Pods-DEUCEApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59DC3DA5EE4B4FFE684C7BA787877140 /* Build configuration list for PBXNativeTarget "Pods-DEUCEApp" */;
+			buildPhases = (
+				71A71356BB51D8AA16B4D805F7A1F59D /* Headers */,
+				193D69A5067B871DE63C7800A946ADE7 /* Sources */,
+				C3A3EABDB58EF565ED291A19B8CD809A /* Frameworks */,
+				44B11CD9FB0DFEF85EC5042448653FE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2748FC688899D3CFB01ADB776C9EBEA9 /* PBXTargetDependency */,
+				43518767D82474D3751A02725CE9C1E8 /* PBXTargetDependency */,
+				4C746CC35E185C69E1B8102ED9F3CBCF /* PBXTargetDependency */,
+			);
+			name = "Pods-DEUCEApp";
+			productName = "Pods-DEUCEApp";
+			productReference = 6CAD2E5A64C527497240577BD523126F /* Pods_DEUCEApp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		1E6C4045913212CD35E82B99586FC32D /* SignalRSwift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD46B6C6688BE8320A0563AFACD6DEE8 /* Build configuration list for PBXNativeTarget "SignalRSwift" */;
@@ -569,6 +728,27 @@
 			name = "Pods-RealTimeAzure-RealTimeAzureTests";
 			productName = "Pods-RealTimeAzure-RealTimeAzureTests";
 			productReference = 3AF3E2AC77C0218FAFD85582CAE3A735 /* Pods_RealTimeAzure_RealTimeAzureTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		741ED935C400F1D074A81ED0AE7EFE7D /* Pods-DEUCEApp-DEUCEAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7AE3E5A70FDA6A0F819CA54A5654EEF /* Build configuration list for PBXNativeTarget "Pods-DEUCEApp-DEUCEAppTests" */;
+			buildPhases = (
+				0A5E432E08154E2FA153CDEF3B05DC4F /* Headers */,
+				B40F1603B23E5E0B903C771FEACA5C05 /* Sources */,
+				AE827A912EE89E6338970732241927DA /* Frameworks */,
+				CEB3093FC968C3A1AF6D77EEF71319A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E0F9A6AD9B1E1D859CD547C13C47176 /* PBXTargetDependency */,
+				DF97889C1ABE5AB363C4E59E709F29C2 /* PBXTargetDependency */,
+				F8A119FD535D49D11050CBCD3DFFA4C7 /* PBXTargetDependency */,
+			);
+			name = "Pods-DEUCEApp-DEUCEAppTests";
+			productName = "Pods-DEUCEApp-DEUCEAppTests";
+			productReference = BF5D573B22BF1E1CAE9262BC3C5A6028 /* Pods_DEUCEApp_DEUCEAppTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */ = {
@@ -646,11 +826,13 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 6101C9764480AE4488275372C287E466 /* Products */;
+			productRefGroup = 0F7D82818D67ED7BFB4777D3728945B4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */,
+				09344D1699A2AEE9C54B98F56DAD7258 /* Pods-DEUCEApp */,
+				741ED935C400F1D074A81ED0AE7EFE7D /* Pods-DEUCEApp-DEUCEAppTests */,
 				B775A1D93547D51B094EE2CBA8D7F82E /* Pods-RealTimeAzure */,
 				65674D0F2AE43448DD7CA87EF4EC3B8E /* Pods-RealTimeAzure-RealTimeAzureTests */,
 				1E6C4045913212CD35E82B99586FC32D /* SignalRSwift */,
@@ -661,6 +843,13 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		03FF25E32E0A8F24DEC8988198CAF4F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44B11CD9FB0DFEF85EC5042448653FE3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -695,9 +884,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEB3093FC968C3A1AF6D77EEF71319A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		193D69A5067B871DE63C7800A946ADE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98131558239A41D6094458418FE165B4 /* Pods-DEUCEApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2DDFD9AC10F181CD7130BDF5F9E0502B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -778,6 +982,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B40F1603B23E5E0B903C771FEACA5C05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB7037473601BBEB1E0B6508FDBAC240 /* Pods-DEUCEApp-DEUCEAppTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF4AE6D2938F33FEABC4B580644E1BF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -789,6 +1001,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1E0F9A6AD9B1E1D859CD547C13C47176 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
+			targetProxy = 1A39CD382F2456830492246FB99CD772 /* PBXContainerItemProxy */;
+		};
+		2748FC688899D3CFB01ADB776C9EBEA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
+			targetProxy = 2070DA92E56402720D45C57CB86CB82A /* PBXContainerItemProxy */;
+		};
 		31349A93C4228E62D09754B2F2309750 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SignalRSwift;
@@ -806,6 +1030,18 @@
 			name = Alamofire;
 			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
 			targetProxy = 1765893E4205CDD0C36BC089A99B83FB /* PBXContainerItemProxy */;
+		};
+		43518767D82474D3751A02725CE9C1E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SignalRSwift;
+			target = 1E6C4045913212CD35E82B99586FC32D /* SignalRSwift */;
+			targetProxy = BD68CA5A601AD478FF3864DD9B2A06E8 /* PBXContainerItemProxy */;
+		};
+		4C746CC35E185C69E1B8102ED9F3CBCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			target = 9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */;
+			targetProxy = 85D51FAB0811403740E411157691E9BD /* PBXContainerItemProxy */;
 		};
 		7FA1C0CF1D36211254649D70A5593C30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -836,6 +1072,18 @@
 			name = Starscream;
 			target = 9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */;
 			targetProxy = 83BBBC658AC3F0D3AFE2F649C4D77DF9 /* PBXContainerItemProxy */;
+		};
+		DF97889C1ABE5AB363C4E59E709F29C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SignalRSwift;
+			target = 1E6C4045913212CD35E82B99586FC32D /* SignalRSwift */;
+			targetProxy = 9EE184582288ADBD5DAB1BB22CF5E7DF /* PBXContainerItemProxy */;
+		};
+		F8A119FD535D49D11050CBCD3DFFA4C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			target = 9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */;
+			targetProxy = E0ED794EE57461FFBEBC905D419FDB55 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -942,7 +1190,7 @@
 		};
 		26193C25C28A9608EDF878B1DDC58A9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 705CABC4873877084862115227B208CE /* Pods-RealTimeAzure.debug.xcconfig */;
+			baseConfigurationReference = C84AADEF0DE604C811F6AFB214639191 /* Pods-RealTimeAzure.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -977,6 +1225,45 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		262B2169E056595D7B511A9843CFFEB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 131EFA3F252AC54ABDFEF0FF2C70BDC9 /* Pods-DEUCEApp-DEUCEAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		2B1D7136C42470C6515F9E5AA8395D7A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1014,9 +1301,48 @@
 			};
 			name = Release;
 		};
+		33AB4E70CC6A0DDEAE3995E28C95EC2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35C057EE2A989C2B42B2EF6079C5FEEB /* Pods-DEUCEApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		45785AD6322A2F55EBE4B0A741570967 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90FCD524D9AEB03A585C250AF18E3160 /* Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig */;
+			baseConfigurationReference = 2C8ED76ADB46C6BBF904FCEF86736869 /* Pods-RealTimeAzure-RealTimeAzureTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1039,6 +1365,44 @@
 				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-RealTimeAzure-RealTimeAzureTests/Pods-RealTimeAzure-RealTimeAzureTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6C413D894CE27BB16732DB1BB834D223 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 903B7CE5BC924F5B36048914C58FF1BD /* Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1124,7 +1488,7 @@
 		};
 		9C091F99A9723083763B37C827339D91 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A289EF1ED203A3C72308AB9E2FB76BD1 /* Pods-RealTimeAzure.release.xcconfig */;
+			baseConfigurationReference = B901102C50A6AEA96AB482B21CBDB744 /* Pods-RealTimeAzure.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1198,7 +1562,7 @@
 		};
 		E27617F4CF8081325681ACF00FD51041 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C017CADF555415D99C7D8EC2B1794B64 /* Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig */;
+			baseConfigurationReference = 8815734CE97FB44E4CC727DD6D9363FD /* Pods-RealTimeAzure-RealTimeAzureTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1295,6 +1659,44 @@
 			};
 			name = Release;
 		};
+		F5AEFCE63F08F75886F36BDF66D5D010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFC3CC36E883213A8D15796D5325F4A7 /* Pods-DEUCEApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		F94FD07C591B17B7E61A1528AB9BCB3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 452879FD25984D2CACA014C57FC378AB /* Alamofire.xcconfig */;
@@ -1352,11 +1754,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		59DC3DA5EE4B4FFE684C7BA787877140 /* Build configuration list for PBXNativeTarget "Pods-DEUCEApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5AEFCE63F08F75886F36BDF66D5D010 /* Debug */,
+				33AB4E70CC6A0DDEAE3995E28C95EC2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A4000D3BF2BA6DA337609563B4737305 /* Build configuration list for PBXNativeTarget "Starscream" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9827FC66AE38CC3921324EA675F6E463 /* Debug */,
 				06E4242808F0A83065003C671109C32E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7AE3E5A70FDA6A0F819CA54A5654EEF /* Build configuration list for PBXNativeTarget "Pods-DEUCEApp-DEUCEAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C413D894CE27BB16732DB1BB834D223 /* Debug */,
+				262B2169E056595D7B511A9843CFFEB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

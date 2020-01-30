@@ -36,6 +36,7 @@ final public class SignalRClient: WebSocketClient {
         connection.closed = {
             status(.disconnected)
         }
+        
 
         connection.start()
     }

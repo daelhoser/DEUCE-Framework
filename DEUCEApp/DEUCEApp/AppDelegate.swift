@@ -10,7 +10,6 @@ import UIKit
 import DEUCE_Framework
 import DEUCEiOS
 import RealTimeAzure
-import SignalRSwift
 
 class MockRealtimeClient: WebSocketClient, ConversationsLoader {
     private func sendNewMessage() {
@@ -58,14 +57,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = URL(string: "http://172.17.147.90/api/ConversationStatus/Latest")!
         
         let conversationsLoader = RemoteConversationsLoader(url: url, client: client)
-        let realTimeClient = MockRealtimeClient()
-        let realtimeConnection = RealTimeConnectionListener(connection: realTimeClient)
+//        let realTimeClient = MockRealtimeClient()
+//        let realtimeConnection = RealTimeConnectionListener(connection: realTimeClient)
         let imageLoader = RemoteImageDataLoader(client: client)
         
-//        let connection = HubConnection(withUrl: "")
-//        let x = SignalRClient(connection: connection)
+        let connection = HubConnectionDecorator()
+//        connection.addValue(value: "Bearer Xm2mk0_R_0b5DYr95Mgo0AtH0-6yed8NgXHPFRtMYfy4wEKtdq8cjy69j6-pQjVKtU5tMGTIcbd0AMQqr4xEvcHuRUNs6HrFS6HW9FJLb6DsjrKV7ycjhTysRRua5sUYVAfO5y-sDAF_cr83HSNZ-Rt2VvStydXQkwIwYpuNanMfKAmmvEDSgirErPaz9fmwUAZiOzMRXHuoF57XgQ_it3PUFvArvM9gNzVfPg5FYEJ0XzY2x1MnbT_uIskhppjNN5kEkf--1ntCWjvlhBwL3jbl57dBz2Y0ZmLgrWFWLr2B9S2XCbIMV7CZZCLo2B5CuQmJyUBUm3pA9Q3vfbiRXeCjCAbq3AUcfQCmF4r_FsKHhEGQluZRe4UxGOdOCKpLmADLoGrNN-wlFOP44-Jp3gf8l5meFa-wLrYgNA1VB0X-RAl0oz4PdrBKvMjjonq9bjgJXJoZE4FmoSWNvdHv5jIVWiSMN6Aws6h6fP8h5hCKob1mhN3vYEhJ3J4zqR9nMqRasID0yTEZ4ajCT1tFog", forHttpHeaderField: "Authorization")
+
+        let signalRClient = SignalRClient(connection: connection)
+        let realtimeConnection = RealTimeConnectionListener(connection: signalRClient)
+
+//        let proxy = connection.createHubProxy(hubName: "chathub")!
+        let proxy = HubProxyDecorator()
+
+        let deltaConversationsLoader = RealTimeConversationsListener(hub: proxy, newMessageEventName: "newMessage")
         
-        let viewController = ConversationsComposer.conversationsComposedWith(conversationsLoader: conversationsLoader, realTimeConnection: realtimeConnection, deltaConversationsLoader: realTimeClient, imageDataLoader: imageLoader)
+        let viewController = ConversationsComposer.conversationsComposedWith(conversationsLoader: conversationsLoader, realTimeConnection: realtimeConnection, deltaConversationsLoader: deltaConversationsLoader, imageDataLoader: imageLoader)
         
         window?.rootViewController = viewController
         

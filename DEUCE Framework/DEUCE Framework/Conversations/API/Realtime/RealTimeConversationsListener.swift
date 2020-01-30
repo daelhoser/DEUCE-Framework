@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol ConversationsHub {
-    func on(eventName: String, handler: @escaping ([Any]) -> Void)
+    func onn(eventName: String, handler: @escaping ([Any]) -> Void)
 }
 
 
@@ -32,7 +32,7 @@ final public class RealTimeConversationsListener: ConversationsLoader {
     }
     
     public func load(completion: @escaping (LoadConversationsResult) -> Void) {
-        hub.on(eventName: newMessageEventName) { (value) in
+        hub.onn(eventName: newMessageEventName) { (value) in
             guard let first = value.first as? [String: Any] else {
                 completion(.failure(RealTimeConversationsListener.Error.invalidData))
                 

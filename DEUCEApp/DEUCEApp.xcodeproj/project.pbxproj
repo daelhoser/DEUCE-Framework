@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		5FA4BD7223A81C3E00ECEBAA /* DEUCE_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA4BD7123A81C3E00ECEBAA /* DEUCE_Framework.framework */; };
 		5FA4BD7423A81C3E00ECEBAA /* DEUCEiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA4BD7323A81C3E00ECEBAA /* DEUCEiOS.framework */; };
-		5FDCD53723E236F0000A235F /* RealTimeController.xcworkspace in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDCD53323E23501000A235F /* RealTimeController.xcworkspace */; };
 		5FE9FC8123A476AD00ED68E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE9FC8023A476AD00ED68E8 /* AppDelegate.swift */; };
 		5FE9FC8323A476AD00ED68E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE9FC8223A476AD00ED68E8 /* ViewController.swift */; };
 		5FE9FC8623A476AD00ED68E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FE9FC8423A476AD00ED68E8 /* Main.storyboard */; };
 		5FE9FC8823A476AF00ED68E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE9FC8723A476AF00ED68E8 /* Assets.xcassets */; };
 		5FE9FC8B23A476AF00ED68E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FE9FC8923A476AF00ED68E8 /* LaunchScreen.storyboard */; };
 		5FE9FC9623A476AF00ED68E8 /* DEUCEAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE9FC9523A476AF00ED68E8 /* DEUCEAppTests.swift */; };
+		CECF5C62DF00B44FDE7F68F0 /* Pods_DEUCEApp_DEUCEAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3591A544212D3783125C7B06 /* Pods_DEUCEApp_DEUCEAppTests.framework */; };
+		D0A19DE0677121EFBE72D57F /* Pods_DEUCEApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91BCBF9EF6AB7F6DE9C469ED /* Pods_DEUCEApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,11 +29,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5FCE2EE023E373F3008B10D7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0A6128943AD636AD22C5F493 /* Pods-DEUCEApp-DEUCEAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEUCEApp-DEUCEAppTests.release.xcconfig"; path = "Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		3591A544212D3783125C7B06 /* Pods_DEUCEApp_DEUCEAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DEUCEApp_DEUCEAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C0785C195A92B9316A7A150 /* Pods-DEUCEApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEUCEApp.release.xcconfig"; path = "Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp.release.xcconfig"; sourceTree = "<group>"; };
 		5FA4BD7123A81C3E00ECEBAA /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA4BD7323A81C3E00ECEBAA /* DEUCEiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DEUCEiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA6E38223A5CFD00059C41D /* DEUCE_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DEUCE_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA6E38423A5CFD00059C41D /* DEUCEiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DEUCEiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FCE2ECF23E370FB008B10D7 /* RealTimeAzure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealTimeAzure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FCE2ED223E37215008B10D7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDCD53323E23501000A235F /* RealTimeController.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = RealTimeController.xcworkspace; path = ../RealTimeController/RealTimeController.xcworkspace; sourceTree = "<group>"; };
 		5FE9FC7D23A476AD00ED68E8 /* DEUCEApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DEUCEApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9FC8023A476AD00ED68E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +63,9 @@
 		5FE9FC9123A476AF00ED68E8 /* DEUCEAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DEUCEAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9FC9523A476AF00ED68E8 /* DEUCEAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEUCEAppTests.swift; sourceTree = "<group>"; };
 		5FE9FC9723A476AF00ED68E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91BCBF9EF6AB7F6DE9C469ED /* Pods_DEUCEApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DEUCEApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F191E7D7796776B87D5DF630 /* Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig"; path = "Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FFCAC2EEFA6488646A53C9DA /* Pods-DEUCEApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DEUCEApp.debug.xcconfig"; path = "Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FDCD53723E236F0000A235F /* RealTimeController.xcworkspace in Frameworks */,
 				5FA4BD7223A81C3E00ECEBAA /* DEUCE_Framework.framework in Frameworks */,
 				5FA4BD7423A81C3E00ECEBAA /* DEUCEiOS.framework in Frameworks */,
+				D0A19DE0677121EFBE72D57F /* Pods_DEUCEApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,20 +83,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECF5C62DF00B44FDE7F68F0 /* Pods_DEUCEApp_DEUCEAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E4F4C992F576426BEEE18A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FFCAC2EEFA6488646A53C9DA /* Pods-DEUCEApp.debug.xcconfig */,
+				5C0785C195A92B9316A7A150 /* Pods-DEUCEApp.release.xcconfig */,
+				F191E7D7796776B87D5DF630 /* Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig */,
+				0A6128943AD636AD22C5F493 /* Pods-DEUCEApp-DEUCEAppTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
 		5FA6E38123A5CFD00059C41D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FCE2ED223E37215008B10D7 /* Alamofire.framework */,
+				5FCE2ECF23E370FB008B10D7 /* RealTimeAzure.framework */,
 				5FDCD53323E23501000A235F /* RealTimeController.xcworkspace */,
 				5FA4BD7123A81C3E00ECEBAA /* DEUCE_Framework.framework */,
 				5FA4BD7323A81C3E00ECEBAA /* DEUCEiOS.framework */,
 				5FA6E38223A5CFD00059C41D /* DEUCE_Framework.framework */,
 				5FA6E38423A5CFD00059C41D /* DEUCEiOS.framework */,
+				91BCBF9EF6AB7F6DE9C469ED /* Pods_DEUCEApp.framework */,
+				3591A544212D3783125C7B06 /* Pods_DEUCEApp_DEUCEAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -86,6 +125,7 @@
 				5FE9FC9423A476AF00ED68E8 /* DEUCEAppTests */,
 				5FE9FC7E23A476AD00ED68E8 /* Products */,
 				5FA6E38123A5CFD00059C41D /* Frameworks */,
+				4E4F4C992F576426BEEE18A8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,9 +167,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FE9FC9A23A476AF00ED68E8 /* Build configuration list for PBXNativeTarget "DEUCEApp" */;
 			buildPhases = (
+				35E3A9F64B8A9162E49B4592 /* [CP] Check Pods Manifest.lock */,
 				5FE9FC7923A476AD00ED68E8 /* Sources */,
 				5FE9FC7A23A476AD00ED68E8 /* Frameworks */,
 				5FE9FC7B23A476AD00ED68E8 /* Resources */,
+				5FCE2EE023E373F3008B10D7 /* Embed Frameworks */,
+				9CAB9E8C85024E775D4FE6AC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FE9FC9D23A476AF00ED68E8 /* Build configuration list for PBXNativeTarget "DEUCEAppTests" */;
 			buildPhases = (
+				E4652A9C531456E6476F02C1 /* [CP] Check Pods Manifest.lock */,
 				5FE9FC8D23A476AF00ED68E8 /* Sources */,
 				5FE9FC8E23A476AF00ED68E8 /* Frameworks */,
 				5FE9FC8F23A476AF00ED68E8 /* Resources */,
+				38D5A91CEE75F60F9E264C34 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,6 +260,87 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35E3A9F64B8A9162E49B4592 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DEUCEApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		38D5A91CEE75F60F9E264C34 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DEUCEApp-DEUCEAppTests/Pods-DEUCEApp-DEUCEAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CAB9E8C85024E775D4FE6AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DEUCEApp/Pods-DEUCEApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4652A9C531456E6476F02C1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DEUCEApp-DEUCEAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5FE9FC7923A476AD00ED68E8 /* Sources */ = {
@@ -382,11 +508,13 @@
 		};
 		5FE9FC9B23A476AF00ED68E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFCAC2EEFA6488646A53C9DA /* Pods-DEUCEApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5M6V4BGSTB;
 				INFOPLIST_FILE = DEUCEApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,11 +528,13 @@
 		};
 		5FE9FC9C23A476AF00ED68E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C0785C195A92B9316A7A150 /* Pods-DEUCEApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5M6V4BGSTB;
 				INFOPLIST_FILE = DEUCEApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -418,6 +548,7 @@
 		};
 		5FE9FC9E23A476AF00ED68E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F191E7D7796776B87D5DF630 /* Pods-DEUCEApp-DEUCEAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -439,6 +570,7 @@
 		};
 		5FE9FC9F23A476AF00ED68E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A6128943AD636AD22C5F493 /* Pods-DEUCEApp-DEUCEAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
