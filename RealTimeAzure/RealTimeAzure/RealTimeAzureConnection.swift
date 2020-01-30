@@ -53,7 +53,7 @@ public class HubProxyDecorator: ConversationsHub {
 //        hubProxy = hubConnection.createHubProxy(hubName: "chathub")
     }
     
-    public func onn(eventName: String, handler: @escaping ([Any]) -> Void) {
+    public func on(eventName: String, handler: @escaping ([Any]) -> Void) {
         _ = hubProxy?.on(eventName: eventName, handler: handler)
     }
 }
